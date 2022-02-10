@@ -1,0 +1,23 @@
+import React from "react";
+
+import { Navbar } from "../components";
+
+import { Box, Button, Flex, Spacer, Text, VStack } from "@chakra-ui/react";
+
+export default function Landing() {
+  return (
+    <>
+      <Navbar />
+      <Flex mt="200" justifyContent="center">
+        <Box p="10" bg="gray.300" borderRadius="lg">
+          <VStack>
+            <Text fontSize="1.5xl" fontWeight="semibold">Hire great talents or work freely now!</Text>
+            <Spacer></Spacer>
+            <Spacer></Spacer>
+            <Button onClick={() => window.location.href="/login"}>Get Started</Button>
+          </VStack>
+        </Box>
+      </Flex>
+    </>
+  );
+}

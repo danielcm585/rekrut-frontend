@@ -1,0 +1,50 @@
+import React from "react";
+import { IoChevronDown } from "react-icons/io5";
+import { BiLogOut, BiUser } from "react-icons/bi";
+
+import { Button, Flex, HStack, Spacer, Text, Image, Link } from "@chakra-ui/react";
+import { Menu, MenuButton, MenuList, MenuItem, MenuDivider } from "@chakra-ui/react";
+
+export default function Navbar() {
+  const user = null;
+  // const user = {
+  //   photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+  //   name: "Uttsada Salim Mandolang",
+  //   email: "uttsada.salim.mandolang@gmail.com"
+  // };
+
+  return (
+    <Flex p="3" w="100%" bg="gray.500" justifyContent="center">
+      <HStack w="95%">
+        <Link href="/">
+          <Text fontSize="2xl" fontWeight="semibold">Rekrut.id</Text>
+        </Link>
+        <Spacer></Spacer>
+        {
+          (user != null) ? (
+            <>
+              <Menu>
+                <MenuButton as={Button} rightIcon={<IoChevronDown />}>
+                <HStack>
+                  <Image src={user.photo} h="7" borderRadius="full" />
+                  <Text fontSize="1xl" fontWeight="semibold">{user.name}</Text>
+                </HStack>
+                </MenuButton>
+                <MenuList>
+                  <MenuItem icon={<BiUser />}>Profil Saya</MenuItem>
+                  <MenuDivider />
+                  <MenuItem icon={<BiLogOut />}>Keluar</MenuItem>
+              </MenuList>
+              </Menu>
+            </>
+          ) : (
+            <>
+              <Button onClick={() => window.location.href="/login"}>Masuk</Button>
+              <Button onClick={() => window.location.href="/register"}>Daftar</Button>
+            </>
+          )
+        }
+      </HStack>
+    </Flex>
+  );
+}
