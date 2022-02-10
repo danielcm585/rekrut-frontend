@@ -6,12 +6,12 @@ import { Button, Flex, HStack, Spacer, Text, Image, Link } from "@chakra-ui/reac
 import { Menu, MenuButton, MenuList, MenuItem, MenuDivider } from "@chakra-ui/react";
 
 export default function Navbar() {
-  const user = null;
-  // const user = {
-  //   photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-  //   name: "Uttsada Salim Mandolang",
-  //   email: "uttsada.salim.mandolang@gmail.com"
-  // };
+  // const user = null;
+  const user = {
+    photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+    name: "John Doe",
+    email: "john.doe@gmail.com"
+  };
 
   return (
     <Flex p="3" w="100%" bg="gray.500" justifyContent="center">
@@ -31,16 +31,16 @@ export default function Navbar() {
                 </HStack>
                 </MenuButton>
                 <MenuList>
-                  <MenuItem icon={<BiUser />}>Profil Saya</MenuItem>
+                  <MenuItem icon={<BiUser />}>My Profile</MenuItem>
                   <MenuDivider />
-                  <MenuItem icon={<BiLogOut />}>Keluar</MenuItem>
+                  <MenuItem icon={<BiLogOut />}>Logout</MenuItem>
               </MenuList>
               </Menu>
             </>
           ) : (
             <>
-              <Button onClick={() => window.location.href="/login"}>Masuk</Button>
-              <Button onClick={() => window.location.href="/register"}>Daftar</Button>
+              <Button onClick={() => window.location.href="/login"}>Login</Button>
+              <Button onClick={() => window.location.href="/register"}>Register</Button>
             </>
           )
         }

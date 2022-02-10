@@ -9,12 +9,12 @@ export default function Landing() {
     <>
       <Navbar />
       <Flex mt="200" justifyContent="center">
-        <Box p="10" bg="gray.300" borderRadius="lg">
+        <Box p="10" borderRadius="lg">
           <VStack>
             <Text fontSize="1.5xl" fontWeight="semibold">Hire great talents or work freely now!</Text>
             <Spacer></Spacer>
             <Spacer></Spacer>
-            <Button onClick={() => window.location.href="/login"}>Get Started</Button>
+            <Button variant="outline" borderColor="black" borderRadius="50"  onClick={() => window.location.href="/login"}>Get Started</Button>
           </VStack>
         </Box>
       </Flex>

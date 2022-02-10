@@ -17,7 +17,7 @@ export default function Login() {
       <Flex justifyContent="center">
         <Flex w="30%" p="10" mt="100" direction="column">
           <Flex justifyContent="center">
-            <Text fontSize="3xl" fontWeight="semibold">MASUK</Text>
+            <Text fontSize="3xl" fontWeight="semibold">LOGIN</Text>
           </Flex>
           <FormControl mt="8">
             <FormLabel>Email</FormLabel>
@@ -25,15 +25,17 @@ export default function Login() {
               borderColor="black" onChange={handleEmailChanges} />
           </FormControl>
           <FormControl mt="3">
-            <FormLabel>Kata Sandi</FormLabel>
+            <FormLabel>Password</FormLabel>
             <Input type="password" placeholder="your-password" value={password} 
               borderColor="black" onChange={handlePasswordChanges} />
           </FormControl>
-          <Button mt="8" variant="outline" borderRadius="50" 
-            borderColor="black">Masuk</Button>
+          <Button mt="8" variant="outline" borderRadius="50" borderColor="black"
+            onClick={() => {
+              // TODO: Send request to api & get credentials
+            }}>Login</Button>
           <Flex mt="38" justifyContent="center">
             <Link href="/register">
-              <Text fontWeight="semibold">Daftar</Text>
+              <Text fontWeight="semibold">Register</Text>
             </Link>
           </Flex>
         </Flex>
