@@ -8,16 +8,12 @@ export default function SearchBar({ keyword, setKeyword }) {
 
   return (
     <>
-      <Flex justifyContent="center">
-        <Flex mt="100px" w="95%">
-          <HStack w="100%">
-            <Input variant="outline" borderRadius="50" borderColor="black"
-              placeholder="Search for a job" value={keyword} onChange={handleChanges}>
-            </Input>
-            <Button>Search</Button> 
-          </HStack>
-        </Flex>
-      </Flex>
+      <HStack w="100%">
+        <Input variant="outline" borderRadius="50" borderColor="black"
+          placeholder="Search for a job" value={keyword} onChange={handleChanges}>
+        </Input>
+        <Button>Search</Button> 
+      </HStack>
     </>
   );
 }

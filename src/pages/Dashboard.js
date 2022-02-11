@@ -8,6 +8,7 @@ export default function Dashboard() {
   // TODO: Get user from localStorage
   // const user = null;
   const user = {
+    id: 3,
     photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
     name: "Luke Skywalker",
     email: "luke.skywalker@gmail.com",
@@ -110,7 +111,11 @@ export default function Dashboard() {
   return (
     <>
       <Navbar />
-      <SearchBar keyword={keyword} setKeyword={setKeyword} />
+      <Flex justifyContent="center">
+        <Flex mt="100px" w="95%">
+          <SearchBar keyword={keyword} setKeyword={setKeyword} />
+        </Flex>
+      </Flex>
       {
         (bestOffer != null) && (
           <>

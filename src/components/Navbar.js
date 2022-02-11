@@ -6,14 +6,16 @@ import { Button, Flex, HStack, Spacer, Text, Image, Link } from "@chakra-ui/reac
 import { Menu, MenuButton, MenuList, MenuItem, MenuDivider } from "@chakra-ui/react";
 
 export default function Navbar() {
+  // TODO: Get user from localStorage
   // const user = null;
   const user = {
+    id: 3,
     photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
     name: "Luke Skywalker",
     email: "luke.skywalker@gmail.com",
-    role: "worker"
+    role: "worker",
+    category: "Web Developer"
   };
-  // TODO: Get user from localStorage
 
   return (
     <>
@@ -35,7 +37,7 @@ export default function Navbar() {
                     </HStack>
                     </MenuButton>
                     <MenuList>
-                      <MenuItem icon={<BiUser />}>My Profile</MenuItem>
+                      <MenuItem icon={<BiUser />} onClick={() => window.location.href="/profile/"+user.id}>My Profile</MenuItem>
                       <MenuDivider />
                       <MenuItem icon={<BiLogOut />}>Logout</MenuItem>
                   </MenuList>
