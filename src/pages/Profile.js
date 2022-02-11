@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { BiLinkExternal } from "react-icons/bi";
 
 import { Navbar, ProfileCard, SearchBar } from "../components";
 
-import { Flex, Box, Divider } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 
 export default function Profile() {
   // TODO: Fetch user from api based on id
@@ -22,6 +21,8 @@ export default function Profile() {
   };
 
   const [ keyword, setKeyword ] = useState("");
+
+  // TODO: Fetch pending, accepted, rejected from api
   
   return (
     <>
