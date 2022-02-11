@@ -22,7 +22,7 @@ export default function Navbar() {
       <Flex w="100%" as="header" position="fixed">
         <Flex p="3" w="100%" bg="gray.400" justifyContent="center">
           <HStack w="95%">
-            <Link href="/">
+            <Link href="/dashboard">
               <Text fontSize="2xl" fontWeight="semibold">Rekrut.id</Text>
             </Link>
             <Spacer></Spacer>

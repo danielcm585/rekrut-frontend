@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { JobCard, Navbar, SearchBar } from "../components";
+import { JobCard, Navbar, SearchBar, JobGrid } from "../components";
 
 import { Flex, Text, Box, Grid, Link, Button, Spacer } from "@chakra-ui/react";
 
@@ -128,11 +128,7 @@ export default function Dashboard() {
                   <Spacer></Spacer>
                   <Button onClick={() => window.location.href="/jobs/best-offer"}>See all</Button>
                 </Flex>
-                <Grid mt="3" templateColumns="repeat(4, 1fr)" gap="3">
-                  {
-                    bestOffer.map((job, idx) => <JobCard key={idx} job={job} />)
-                  }
-                </Grid>
+                <JobGrid jobs={bestOffer} />
               </Box>
             </Flex>
           </>
@@ -150,11 +146,7 @@ export default function Dashboard() {
                   <Spacer></Spacer>
                   <Button onClick={() => window.location.href="/jobs/best-offer"}>See all</Button>
                 </Flex>
-                <Grid mt="3" templateColumns="repeat(4, 1fr)" gap="3">
-                  {
-                    recentJob.map((job, idx) => <JobCard key={idx} job={job} />)
-                  }
-                </Grid>
+                <JobGrid jobs={recentJob} />
               </Box>
             </Flex>
           </>
