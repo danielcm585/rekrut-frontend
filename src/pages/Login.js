@@ -4,6 +4,7 @@ import { Navbar } from "../components";
 
 import { Flex, Text, Input, Button, Link } from "@chakra-ui/react";
 import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react";
+import { BiWindows } from "react-icons/bi";
 
 export default function Login() {
   const [ email, setEmail ] = useState();
@@ -32,6 +33,7 @@ export default function Login() {
           <Button mt="8" variant="outline" borderRadius="50" borderColor="black"
             onClick={() => {
               // TODO: Send request to api & get credentials
+              window.location.href="/dashboard";
             }}>Login</Button>
           <Flex mt="38" justifyContent="center">
             <Link href="/register">
