@@ -8,8 +8,8 @@ export default function Landing() {
   return (
     <>
       <Navbar />
-      <Flex mt="200" justifyContent="center">
-        <Box p="10" borderRadius="lg">
+      <Flex justifyContent="center">
+        <Box p="10" mt="250" borderRadius="lg">
           <VStack>
             <Text fontSize="1.5xl" fontWeight="semibold">Hire great talents or work freely now!</Text>
             <Spacer></Spacer>

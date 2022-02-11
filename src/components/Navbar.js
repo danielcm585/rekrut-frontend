@@ -18,7 +18,7 @@ export default function Navbar() {
   return (
     <>
       <Flex w="100%" as="header" position="fixed">
-        <Flex p="3" w="100%" bg="gray.500" justifyContent="center">
+        <Flex p="3" w="100%" bg="gray.400" justifyContent="center">
           <HStack w="95%">
             <Link href="/">
               <Text fontSize="2xl" fontWeight="semibold">Rekrut.id</Text>
