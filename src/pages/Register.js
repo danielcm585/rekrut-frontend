@@ -21,7 +21,7 @@ export default function Register() {
     // TODO: Post request to API 
     return {
       success: true
-    }
+    };
   };
 
   return (

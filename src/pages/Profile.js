@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { Navbar, ProfileCard, SearchBar, JobGrid } from "../components";
 
-import { Flex } from "@chakra-ui/react";
+import { Divider, Flex, Text } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 
 export default function Profile() {
@@ -136,7 +136,11 @@ export default function Profile() {
       <Navbar />
       <Flex justifyContent="center">
         <Flex w="95%" mt="100" direction="column">
-          <ProfileCard user={user} />
+          <Flex justifyContent="center">
+            <ProfileCard user={user} />
+            <Divider orientation="vertical" />
+            <Text>{user.bio}</Text>
+          </Flex>
           <Flex mt="9">
             <SearchBar keyword={keyword} setKeyword={setKeyword} />
           </Flex>
