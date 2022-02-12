@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { Checkbox, Flex, Text, Box, Grid, Button, Link } from "@chakra-ui/react";
 
-export default function RegisterPage4({ role, setPage }) {
+export default function RegisterPage4({ role, setPage, postRequest }) {
   const [ agree, setAgree ] = useState(false);
   
   const [ error, setError ] = useState();
@@ -37,7 +37,11 @@ export default function RegisterPage4({ role, setPage }) {
                   setError("You need to agree to the terms and conditions")
                   return;
                 }
-                // TODO: Send request to the api
+                const json = postRequest();
+                if (!json.success) {
+                  setError(json.message);
+                  return;
+                }
                 window.location.href="/login";
               }}>Next</Button>
           </Grid>

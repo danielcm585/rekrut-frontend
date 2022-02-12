@@ -17,6 +17,13 @@ export default function Register() {
 
   const [ category, setCategory ] = useState();
 
+  const postRequest = () => {
+    // TODO: Post request to API 
+    return {
+      success: true
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -40,7 +47,8 @@ export default function Register() {
           category={category} setCategory={setCategory} />
       }
       {
-        (page == 4) && <RegisterPage4 role={role} setPage={setPage} />
+        (page == 4) && <RegisterPage4 role={role} setPage={setPage}
+          postRequest={postRequest} />
       }
     </>
   );
