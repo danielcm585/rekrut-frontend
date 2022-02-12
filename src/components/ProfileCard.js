@@ -1,12 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { BiLinkExternal } from "react-icons/bi";
 
-import { Flex, Image, Box, Text, HStack, Spacer, Link, Icon } from "@chakra-ui/react";
-import { SearchBar } from ".";
+import { Image, Box, Text, HStack, Spacer, Link, Icon } from "@chakra-ui/react";
 
 export default function ProfileCard({ user }) {
-  const [ keyword, setKeyword ] = useState("");
-
   return (
     <>
       <HStack>
