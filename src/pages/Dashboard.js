@@ -35,20 +35,14 @@ export default function Dashboard() {
           {
             photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
             name: "Obiwan Kenobi",
-            email: "obiwan.kenobi@gmail.com",
-            role: "worker"
           },
           {
             photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
             name: "Anakin Skywalker",
-            email: "anakin.skywalker@gmail.com",
-            role: "worker"
           },
           {
             photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
             name: "C3PO",
-            email: "c3po@gmail.com",
-            role: "worker"
           }
         ]
       },
@@ -67,14 +61,10 @@ export default function Dashboard() {
           {
             photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
             name: "Mace Windu",
-            email: "mace.windu@gmail.com",
-            role: "worker"
           },
           {
             photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
             name: "Din Djarin",
-            email: "din.djarin@gmail.com",
-            role: "worker"
           }
         ]
       },
