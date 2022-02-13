@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 import { Navbar } from "../components";
+import LoginImg from "../images/Login.svg";
 
-import { Flex, Text, Input, Button, Link } from "@chakra-ui/react";
+import { Flex, Text, Input, Button, Link, HStack, Image } from "@chakra-ui/react";
 import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react";
-import { BiWindows } from "react-icons/bi";
 
 export default function Login() {
   const [ email, setEmail ] = useState();
@@ -14,33 +14,44 @@ export default function Login() {
 
   return (
     <>
-      <Navbar />
+      <Navbar login={true} />
       <Flex justifyContent="center">
-        <Flex w="30%" p="10" mt="100" direction="column">
-          <Flex justifyContent="center">
-            <Text fontSize="3xl" fontWeight="semibold">LOGIN</Text>
+          <Image mt="11%" mr="20" w="30%" src={LoginImg} />
+          <Flex w="30%" p="10" mt="11%" direction="column">
+            <Text fontSize="3xl" fontWeight="bold">Selamat datang kembali</Text>
+            <Text mt="2" fontSize="1xl">Login untuk melanjutkan</Text>
+            <FormControl mt="3">
+              <FormLabel>
+                <Text fontSize="1xl" fontWeight="bold">Email</Text>
+              </FormLabel>           
+              <Input type="email" placeholder="email@gmail.com" value={email}
+                borderColor="black" onChange={handleEmailChanges} />
+            </FormControl>
+            <FormControl mt="3">
+              <FormLabel>
+                <Text fontSize="1xl" fontWeight="bold">Password</Text>
+              </FormLabel>
+              <Input type="password" placeholder="password" value={password} 
+                borderColor="black" onChange={handlePasswordChanges} />
+            </FormControl>
+            <Button mt="8" borderRadius="50" borderColor="black" bgColor="#FF8450"
+              onClick={() => {
+                // TODO: Send request to api & get credentials
+                window.location.href="/dashboard";
+              }}>
+                <Text fontSize="1xl" fontWeight="bold">Login</Text>
+              </Button>
+            <Flex mt="7">
+              <Text fontWeight="semibold">
+                Belum memiliki akun? 
+              </Text>
+              <Link href="/register">
+                <Text ml="2" fontWeight="semibold" color="#FF8450" as="ins">
+                  Buat Akun Baru
+                </Text>
+              </Link>
+            </Flex>
           </Flex>
-          <FormControl mt="8">
-            <FormLabel>Email</FormLabel>
-            <Input type="email" placeholder="your-email@gmail.com" value={email}
-              borderColor="black" onChange={handleEmailChanges} />
-          </FormControl>
-          <FormControl mt="3">
-            <FormLabel>Password</FormLabel>
-            <Input type="password" placeholder="your-password" value={password} 
-              borderColor="black" onChange={handlePasswordChanges} />
-          </FormControl>
-          <Button mt="8" variant="outline" borderRadius="50" borderColor="black"
-            onClick={() => {
-              // TODO: Send request to api & get credentials
-              window.location.href="/dashboard";
-            }}>Login</Button>
-          <Flex mt="38" justifyContent="center">
-            <Link href="/register">
-              <Text fontWeight="semibold">Register</Text>
-            </Link>
-          </Flex>
-        </Flex>
       </Flex>
     </>
   );

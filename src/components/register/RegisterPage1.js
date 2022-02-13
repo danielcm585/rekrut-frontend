@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 
-import { Flex, Text, Input, Button, Link, Grid, Box } from "@chakra-ui/react";
+import LoginImg from "../../images/Login.svg";
+
+import { Flex, Text, Input, Button, Link, Image } from "@chakra-ui/react";
+import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react";
 import { FormControl, FormLabel } from "@chakra-ui/react";
 
 export default function RegisterPage1({ role, setPage, email, setEmail, password, setPassword, confPassword, setConfPassword }) {
@@ -13,47 +16,57 @@ export default function RegisterPage1({ role, setPage, email, setEmail, password
   return (
     <>
       <Flex justifyContent="center">
-        <Flex w="30%" p="10" mt="100" direction="column">
-          <Flex justifyContent="center">
-            <Text fontSize="3xl" fontWeight="semibold">REGISTER</Text>
-          </Flex>
-          <FormControl mt="8">
-            <FormLabel>Email</FormLabel>
-            <Input type="email" placeholder="your-email@gmail.com" value={email}
+        <Image mt="8%" mr="20" w="30%" src={LoginImg} />
+        <Flex w="30%" p="10" mt="8%" direction="column">
+          <Text fontSize="3xl" fontWeight="bold">Halo, pengguna baru</Text>
+          <Text mt="2" fontSize="1xl">Cukup 5 menit saja untuk membuat akun</Text>
+          <FormControl mt="3">
+            <FormLabel>
+              <Text fontSize="1xl" fontWeight="bold">Email</Text>
+            </FormLabel>           
+            <Input type="email" placeholder="email@gmail.com" value={email}
               borderColor="black" onChange={handleEmailChanges} />
           </FormControl>
           <FormControl mt="3">
-            <FormLabel>Password</FormLabel>
-            <Input type="password" placeholder="your-password" value={password} 
+            <FormLabel>
+              <Text fontSize="1xl" fontWeight="bold">Password</Text>
+            </FormLabel>
+            <Input type="password" placeholder="password" value={password} 
               borderColor="black" onChange={handlePasswordChanges} />
           </FormControl>
           <FormControl mt="3">
-            <FormLabel>Confirm Password</FormLabel>
-            <Input type="password" placeholder="your-password" value={confPassword} 
+            <FormLabel>
+              <Text fontSize="1xl" fontWeight="bold">Ketik Ulang Password</Text>
+            </FormLabel>
+            <Input type="password" placeholder="password" value={confPassword} 
               borderColor="black" onChange={handleConfPasswordChanges} />
           </FormControl>
           {
             (error != null) && (
-              <Box p="2" mt="5" bg="red.300" borderRadius="lg">
-                <Text>{error}</Text>
-              </Box>
+              <Alert mt="5" status="error">
+                <AlertIcon />
+                {error}
+              </Alert>
             )
           }
-          <Grid templateColumns="repeat(2, 1fr)" gap="2">
-            <Button mt="8" variant="outline" borderRadius="50" borderColor="black"
-              onClick={() => setPage(prevPage => prevPage-1)}>Previous</Button>
-            <Button mt="8" variant="outline" borderRadius="50" borderColor="black"
-              onClick={() => {
-                if (password == confPassword) {
-                  setPage(prevPage => prevPage+1);
-                  return;
-                }
-                setError("Password not matching");
-              }}>Next</Button>
-          </Grid>
-          <Flex mt="38" justifyContent="center">
-            <Link href="/register">
-              <Text fontWeight="semibold">Login</Text>
+          <Button mt="8" borderRadius="50" borderColor="black" bgColor="#FF8450"
+            onClick={() => {
+              if (password == confPassword) {
+                setPage(prevPage => prevPage+1);
+                return;
+              }
+              setError("Password not matching");
+            }}>
+              <Text fontSize="1xl" fontWeight="bold">Buat Akun</Text>
+            </Button>
+          <Flex mt="7">
+            <Text fontWeight="semibold">
+              Sudah memiliki akun? 
+            </Text>
+            <Link href="/login">
+              <Text ml="2" fontWeight="semibold" color="#FF8450" as="ins">
+                Login
+              </Text>
             </Link>
           </Flex>
         </Flex>

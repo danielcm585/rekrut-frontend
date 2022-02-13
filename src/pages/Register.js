@@ -16,6 +16,7 @@ export default function Register() {
   const [ bank, setBank ] = useState();
 
   const [ category, setCategory ] = useState();
+  const [ bio, setBio ] = useState();
 
   const postRequest = () => {
     // TODO: Post request to API 
@@ -26,7 +27,7 @@ export default function Register() {
 
   return (
     <>
-      <Navbar />
+      <Navbar register={true} />
       {
         (page == 0) && <RegisterPage0 setRole={setRole} setPage={setPage} />
       }
@@ -44,7 +45,8 @@ export default function Register() {
       }
       {
         (page == 3) && <RegisterPage3 role={role} setPage={setPage} 
-          category={category} setCategory={setCategory} />
+          category={category} setCategory={setCategory}
+          bio={bio} setBio={setBio} />
       }
       {
         (page == 4) && <RegisterPage4 role={role} setPage={setPage}

@@ -10,6 +10,7 @@ export default function ProfileCard({ user }) {
         <Image mr="5" h="170px" borderRadius="full" src={user.photo} />
         <Box>
           <Text fontSize="30" fontWeight="semibold">{user.name}</Text>
+          <Text fontSize="20" color="gray.600">{user.category}</Text> 
           <Link href={"mailto:"+user.email} isExternal>
             <HStack>
               <Text fontSize="20" color="gray.600">{user.email}</Text>

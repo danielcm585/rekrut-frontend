@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-import { Flex, Text, Input, Button, Link, Grid, Box, Select } from "@chakra-ui/react";
+import { Flex, Text, Input, Button, Grid, Box, Select, VStack } from "@chakra-ui/react";
+import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react";
 import { FormControl, FormLabel } from "@chakra-ui/react";
 
-export default function RegisterPage1({ role, setPage, category, setCategory }) {
-  const handleChanges = (e) => setCategory(e.target.value);
+export default function RegisterPage1({ role, setPage, category, setCategory, bio, setBio }) {
+  const handleBioChanges = (e) => setBio(e.target.value);
+  const handleCategoryChanges = (e) => setCategory(e.target.value);
   useEffect(() => {
     setCategory("Web Developer");
   }, [])
@@ -14,35 +16,53 @@ export default function RegisterPage1({ role, setPage, category, setCategory }) 
   return (
     <>
       <Flex justifyContent="center">
-        <Flex w="30%" p="10" mt="100" direction="column">
+        <Flex mt="11%" w="100%" direction="column">
           <Flex justifyContent="center">
-            <Text fontSize="3xl" fontWeight="semibold">REGISTER</Text>
+            <VStack>
+              <Text fontSize="1xl" fontWeight="semibold" color="#FF8450">02/03</Text>
+              <Text fontSize="2xl" fontWeight="semibold" color="#FF8450">Mengenai Pekerjaan</Text>
+              <Text fontSize="1xl">Kami akan menyesuaikan pilihan pekerjaan sesuai minat Anda</Text>
+            </VStack>
           </Flex>
-          <FormControl mt="8">
-            <FormLabel>Job Category</FormLabel>
-            <Select placeholder="Web Developer" variant="outline" borderColor="black"
-              value={category} onChange={handleChanges}>
-              <option value="Graphic Designer">Graphic Designer</option>
-              <option value="Photographer">Photographer</option>
-            </Select>
-          </FormControl>
-          {
-            (error != null) && (
-              <Box p="2" mt="5" bg="red.300" borderRadius="lg">
-                <Text>{error}</Text>
-              </Box>
-            )
-          }
-          <Grid templateColumns="repeat(2, 1fr)" gap="2">
-            <Button mt="8" variant="outline" borderRadius="50" borderColor="black"
-              onClick={() => setPage(prevPage => prevPage-1)}>Previous</Button>
-            <Button mt="8" variant="outline" borderRadius="50" borderColor="black"
-              onClick={() => setPage(prevPage => prevPage+1)}>Next</Button>
-          </Grid>
-          <Flex mt="38" justifyContent="center">
-            <Link href="/register">
-              <Text fontWeight="semibold">Login</Text>
-            </Link>
+          <Flex justifyContent="center">
+            <Flex w="30%" p="10" pt="2" direction="column">
+              <FormControl mt="5">
+                <FormLabel>
+                  <Text fontSize="1xl" fontWeight="bold">Kategori Pekerjaan</Text>
+                </FormLabel>
+                <Select placeholder="Web Developer" variant="outline" borderColor="black"
+                  value={category} onChange={handleCategoryChanges}>
+                  <option value="Graphic Designer">Graphic Designer</option>
+                  <option value="Photographer">Photographer</option>
+                </Select>
+              </FormControl>
+              <FormControl mt="3">
+                <FormLabel>
+                  <Text fontSize="1xl" fontWeight="bold">Bio Anda</Text>
+                </FormLabel>
+                <Input type="text" placeholder="Saya seorang web developer profesional" value={bio} 
+                  borderColor="black" onChange={handleBioChanges} />
+              </FormControl>
+              {/* TODO: Submit CV */}
+              {
+                (error != null) && (
+                  <Alert mt="5" status="error">
+                    <AlertIcon />
+                    {error}
+                  </Alert>
+                )
+              }
+              <Grid templateColumns="repeat(2, 1fr)" gap="2">
+                <Button mt="8" bgColor="#FF8450" borderRadius="50" borderColor="black"
+                  onClick={() => setPage(prevPage => prevPage-1)}>
+                  <Text fontSize="1xl" fontWeight="bold">Kembali</Text>
+                </Button>
+                <Button mt="8" bgColor="#FF8450" borderRadius="50" borderColor="black"
+                  onClick={() => setPage(prevPage => prevPage+1)}>
+                  <Text fontSize="1xl" fontWeight="bold">Selanjutnya</Text>
+                </Button>
+              </Grid>
+            </Flex>
           </Flex>
         </Flex>
       </Flex>
