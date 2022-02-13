@@ -57,7 +57,7 @@ export default function RegisterPage1({ role, setPage, email, setEmail, password
               }
               setError("Password not matching");
             }}>
-              <Text fontSize="1xl" fontWeight="bold">Buat Akun</Text>
+              <Text fontSize="sm" fontWeight="bold">Buat Akun</Text>
             </Button>
           <Flex mt="7">
             <Text fontWeight="semibold">

@@ -135,7 +135,7 @@ export default function Profile() {
     <>
       <Navbar />
       <Flex justifyContent="center">
-        <Flex w="95%" mt="100" direction="column">
+        <Flex w="85%" mt="100" direction="column">
           <Flex justifyContent="center">
             <ProfileCard user={user} />
             <Divider orientation="vertical" />

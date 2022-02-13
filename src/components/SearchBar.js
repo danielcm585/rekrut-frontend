@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Flex, HStack, Input, Button } from "@chakra-ui/react";
+import { HStack, Input, Button, Text } from "@chakra-ui/react";
 
 export default function SearchBar({ keyword, setKeyword }) {
   // console.log(keyword);
@@ -12,7 +12,9 @@ export default function SearchBar({ keyword, setKeyword }) {
         <Input variant="outline" borderRadius="50" borderColor="black"
           placeholder="Search for a job" value={keyword} onChange={handleChanges}>
         </Input>
-        <Button>Search</Button> 
+        <Button pl="10" pr="10" borderRadius="50" bgColor="#FF8450">
+          <Text fontSize="sm" fontWeight="bold">Search</Text>
+        </Button> 
       </HStack>
     </>
   );

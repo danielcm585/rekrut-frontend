@@ -53,10 +53,16 @@ export default function RegisterPage1({ role, setPage, name, setName, phone, set
                   </Alert>
                 )
               }
-              <Button mt="8" bgColor="#FF8450" borderRadius="50" borderColor="black"
-                onClick={() => setPage(prevPage => prevPage+1)}>
-                  <Text fontSize="1xl" fontWeight="bold">Selanjutnya</Text>
+              <Grid templateColumns="repeat(2, 1fr)" gap="2">
+                <Button mt="8" bgColor="#FF8450" borderRadius="50" borderColor="black"
+                  onClick={() => setPage(prevPage => prevPage-1)}>
+                  <Text fontSize="sm" fontWeight="bold">Kembali</Text>
                 </Button>
+                <Button mt="8" bgColor="#FF8450" borderRadius="50" borderColor="black"
+                  onClick={() => setPage(prevPage => prevPage+1)}>
+                  <Text fontSize="sm" fontWeight="bold">Selanjutnya</Text>
+                </Button>
+              </Grid>
             </Flex>
           </Flex>
         </Flex>

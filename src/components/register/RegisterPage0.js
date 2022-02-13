@@ -9,11 +9,11 @@ export default function RegisterPage0({ setRole, setPage }) {
   return (
     <>
       <Flex justifyContent="center">
-        <Flex w="45%" p="10" mt="8%" direction="column">
+        <Flex w="45%" p="10" mt="9%" direction="column">
           <Flex justifyContent="center">
             <Text fontSize="3xl" fontWeight="bold">Halo, Apa Role Anda?</Text>
           </Flex>
-          <Box mt="20">
+          <Box mt="50">
             <Grid templateColumns="repeat(2, 1fr)" gap="20">
               <Box p="4" pl="6" pr="6" pb="7" border="1px" borderColor="gray.300">
                 <Image src={WorkerImg} />

@@ -39,7 +39,7 @@ export default function Login() {
                 // TODO: Send request to api & get credentials
                 window.location.href="/dashboard";
               }}>
-                <Text fontSize="1xl" fontWeight="bold">Login</Text>
+                <Text fontSize="sm" fontWeight="bold">Login</Text>
               </Button>
             <Flex mt="7">
               <Text fontWeight="semibold">

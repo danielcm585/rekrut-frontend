@@ -26,7 +26,9 @@ export default function RegisterPage4({ role, setPage, postRequest }) {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
               </Box>
               <Checkbox isChecked={agree} onChange={() => setAgree(prev => !prev)}>
-                I agree to all terms and conditions
+                <Text fontWeight="semibold">
+                  I agree to all terms and conditions
+                </Text>
               </Checkbox>
               {
                 (error != null) && (
@@ -39,7 +41,7 @@ export default function RegisterPage4({ role, setPage, postRequest }) {
               <Grid templateColumns="repeat(2, 1fr)" gap="2">
                 <Button mt="8" bgColor="#FF8450" borderRadius="50" borderColor="black"
                   onClick={() => setPage(prevPage => prevPage-1)}>
-                  <Text fontSize="1xl" fontWeight="bold">Kembali</Text>
+                  <Text fontSize="sm" fontWeight="bold">Kembali</Text>
                 </Button>
                 <Button mt="8" bgColor="#FF8450" borderRadius="50" borderColor="black"
                   onClick={() => {
@@ -54,7 +56,7 @@ export default function RegisterPage4({ role, setPage, postRequest }) {
                     }
                     window.location.href="/login";
                   }}>
-                  <Text fontSize="1xl" fontWeight="bold">Selanjutnya</Text>
+                  <Text fontSize="sm" fontWeight="bold">Selanjutnya</Text>
                 </Button>
               </Grid>
             </Flex>

@@ -102,7 +102,7 @@ export default function Dashboard() {
     <>
       <Navbar />
       <Flex justifyContent="center">
-        <Flex mt="100px" w="95%">
+        <Flex mt="100px" w="85%">
           <SearchBar keyword={keyword} setKeyword={setKeyword} />
         </Flex>
       </Flex>
@@ -110,7 +110,7 @@ export default function Dashboard() {
         (bestOffer != null) && (
           <>
             <Flex justifyContent="center">
-              <Box mt="10" w="95%">
+              <Box mt="10" w="85%">
                 <Flex>
                   <Text fontSize="2xl" fontWeight="semibold">
                     BEST OFFER
@@ -128,7 +128,7 @@ export default function Dashboard() {
         (recentJob != null) && (
           <>
             <Flex justifyContent="center">
-              <Box mt="10" w="95%">
+              <Box mt="10" w="85%">
                 <Flex>
                   <Text fontSize="2xl" fontWeight="semibold">
                     RECENTLY ADDED
