@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import LoginImg from "../../images/Login.svg";
+import { LoginImg } from "../../images";
 
 import { Flex, Text, Input, Button, Link, Image } from "@chakra-ui/react";
 import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react";

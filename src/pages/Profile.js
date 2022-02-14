@@ -14,12 +14,12 @@ export default function Profile() {
     id: 3,
     photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
     name: "Luke Skywalker",
-    bio: "I'm a tech enthusiast who always try to do my best in every project I create.",
+    bio: "Hello , I am energetic UX Designer and currently studies computer science, skilled in Figma and UX research. Have completed several projects, including design of an event web, mobile app for study group and redesign mobile bank app.",
     email: "luke.skywalker@gmail.com",
     phone: "628123456789",
     role: "worker",
     cv: "",
-    category: "Web Developer"
+    category: "UI/UX Designer"
   };
 
   // TODO: Fetch ONLY my jobs (the jobs I registered) from api
@@ -136,19 +136,15 @@ export default function Profile() {
       <Navbar />
       <Flex justifyContent="center">
         <Flex w="85%" mt="100" direction="column">
-          <Flex justifyContent="center">
-            <ProfileCard user={user} />
-            <Divider orientation="vertical" />
-            <Text>{user.bio}</Text>
-          </Flex>
+          <ProfileCard user={user} />
           <Flex mt="9">
             <SearchBar keyword={keyword} setKeyword={setKeyword} />
           </Flex>
           <Tabs mt="5" isFitted>
             <TabList>
-              <Tab>PENDING</Tab>
-              <Tab>ACCEPTED</Tab>
-              <Tab>REJECTED</Tab>
+              <Tab>Lamaran dikirim</Tab>
+              <Tab>Lamaran diterima</Tab>
+              <Tab>Lamaran ditolak</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>

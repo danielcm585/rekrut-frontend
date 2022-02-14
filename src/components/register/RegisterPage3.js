@@ -32,6 +32,8 @@ export default function RegisterPage1({ role, setPage, category, setCategory, bi
                 </FormLabel>
                 <Select placeholder="Web Developer" variant="outline" borderColor="black"
                   value={category} onChange={handleCategoryChanges}>
+                  <option value="Software Engineer">Software Engineer</option>
+                  <option value="UI/UX Designer">UI/UX Designer</option>
                   <option value="Graphic Designer">Graphic Designer</option>
                   <option value="Photographer">Photographer</option>
                 </Select>

@@ -6,6 +6,7 @@ import { Image, Box, Text, HStack, Spacer, Link, Icon } from "@chakra-ui/react";
 export default function ProfileCard({ user }) {
   return (
     <>
+    <Box>
       <HStack>
         <Image mr="5" h="170px" borderRadius="full" src={user.photo} />
         <Box>
@@ -25,13 +26,15 @@ export default function ProfileCard({ user }) {
           </Link>
           <Link href={user.cv}>
             <HStack>
-              <Text fontSize="15" color="gray.600">Get CV</Text>
+              <Text fontSize="15" color="gray.600">{user.name+"'s CV"}</Text>
               <Icon as={BiLinkExternal} />
             </HStack>
           </Link>
         </Box>
         <Spacer></Spacer>
       </HStack>
+      <Text mt="5">{user.bio}</Text>
+    </Box>
     </>
   );
 }
