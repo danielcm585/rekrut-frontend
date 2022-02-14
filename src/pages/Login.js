@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { Navbar } from "../components";
-import LoginImg from "../images/Login.svg";
+import { LoginImg } from "../images";
 
 import { Flex, Text, Input, Button, Link, HStack, Image } from "@chakra-ui/react";
 import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react";

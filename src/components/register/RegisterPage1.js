@@ -16,8 +16,8 @@ export default function RegisterPage1({ role, setPage, email, setEmail, password
   return (
     <>
       <Flex justifyContent="center">
-        <Image mt="8%" mr="20" w="30%" src={LoginImg} />
-        <Flex w="30%" p="10" mt="8%" direction="column">
+        <Image mt="9%" mr="20" w="30%" src={LoginImg} />
+        <Flex w="30%" p="10" mt="9%" direction="column">
           <Text fontSize="3xl" fontWeight="bold">Halo, pengguna baru</Text>
           <Text mt="2" fontSize="1xl">Cukup 5 menit saja untuk membuat akun</Text>
           <FormControl mt="3">
