@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import { Flex, Text, Input, Button, Link, Grid, Box, VStack } from "@chakra-ui/react";
-import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react";
-import { FormControl, FormLabel } from "@chakra-ui/react";
+import { Flex, Text, Input, Button, Grid, VStack } from "@chakra-ui/react"
+import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react"
+import { FormControl, FormLabel } from "@chakra-ui/react"
 
 export default function RegisterPage1({ role, setPage, name, setName, phone, setPhone, bank, setBank }) {
-  const handleNameChanges = (e) => setName(e.target.value);
-  const handlePhoneChanges = (e) => setPhone(e.target.value);
-  const handleBankChanges = (e) => setBank(e.target.value);
+  const handleNameChanges = (e) => setName(e.target.value)
+  const handlePhoneChanges = (e) => setPhone(e.target.value)
+  const handleBankChanges = (e) => setBank(e.target.value)
 
-  const [ error, setError ] = useState();
+  const [ error, setError ] = useState()
 
   return (
     <>
@@ -68,5 +68,5 @@ export default function RegisterPage1({ role, setPage, name, setName, phone, set
         </Flex>
       </Flex>
     </>
-  );
+  )
 }

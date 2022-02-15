@@ -1,7 +1,7 @@
-import React from "react";
-import { BiLinkExternal } from "react-icons/bi";
+import React from "react"
+import { BiLinkExternal } from "react-icons/bi"
 
-import { Image, Box, Text, HStack, Spacer, Link, Icon } from "@chakra-ui/react";
+import { Image, Box, Text, HStack, Spacer, Link, Icon } from "@chakra-ui/react"
 
 export default function ProfileCard({ user }) {
   return (
@@ -36,5 +36,5 @@ export default function ProfileCard({ user }) {
       <Text mt="5">{user.bio}</Text>
     </Box>
     </>
-  );
+  )
 }

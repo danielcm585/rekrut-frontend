@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"
 
-import { JobCard, Navbar, SearchBar, JobGrid } from "../components";
+import { JobCard, Navbar, SearchBar, JobGrid } from "../components"
 
-import { Flex, Text, Box, Grid, Link, Button, Spacer } from "@chakra-ui/react";
+import { Flex, Text, Box, Grid, Link, Button, Spacer } from "@chakra-ui/react"
 
 export default function Dashboard() {
   // TODO: Get user from localStorage
-  // const user = null;
+  // const user = null
   const user = {
     id: 3,
     photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
@@ -14,10 +14,10 @@ export default function Dashboard() {
     email: "luke.skywalker@gmail.com",
     role: "worker",
     category: "Web Developer"
-  };
+  }
 
   // TODO: Fetch jobs data from api
-  const [ jobs, setJobs ] = useState();
+  const [ jobs, setJobs ] = useState()
   useEffect(() => {
     setJobs([
       {
@@ -81,22 +81,22 @@ export default function Dashboard() {
         },
         registrants: []
       }
-    ]);
-    console.log("FETCH API");
-  }, []);
+    ])
+    console.log("FETCH API")
+  }, [])
 
-  const [ keyword, setKeyword ] = useState("");
+  const [ keyword, setKeyword ] = useState("")
   
   // TODO: My jobs
-  const [ bestOffer, setBestOffer ] = useState();
-  const [ recentJob, setRecentJob ] = useState();
+  const [ bestOffer, setBestOffer ] = useState()
+  const [ recentJob, setRecentJob ] = useState()
   useEffect(() => {
-    if (jobs == null) return;
-    jobs.filter(job => job.category == user.category);
-    const searchedJobs = jobs.filter(job => job.title.includes(keyword));
-    setRecentJob([...searchedJobs]);
-    setBestOffer([...searchedJobs].sort((jobA, jobB) => jobB.fee-jobA.fee));
-  }, [ keyword, jobs ]);
+    if (jobs == null) return
+    jobs.filter(job => job.category == user.category)
+    const searchedJobs = jobs.filter(job => job.title.includes(keyword))
+    setRecentJob([...searchedJobs])
+    setBestOffer([...searchedJobs].sort((jobA, jobB) => jobB.fee-jobA.fee))
+  }, [ keyword, jobs ])
 
   return (
     <>
@@ -143,5 +143,5 @@ export default function Dashboard() {
         )
       }
     </>
-  );
+  )
 }

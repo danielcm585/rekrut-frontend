@@ -1,29 +1,29 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import { Navbar } from "../components";
-import { RegisterPage0, RegisterPage1, RegisterPage2, RegisterPage3, RegisterPage4 } from "../components/register";
+import { Navbar } from "../components"
+import { RegisterPage0, RegisterPage1, RegisterPage2, RegisterPage3, RegisterPage4 } from "../components/register"
 
 export default function Register() {
-  const [ role, setRole ] = useState();
-  const [ page, setPage ] = useState(0);
+  const [ role, setRole ] = useState()
+  const [ page, setPage ] = useState(0)
 
-  const [ email, setEmail ] = useState();
-  const [ password, setPassword ] = useState();
-  const [ confPassword, setConfPassword ] = useState();
+  const [ email, setEmail ] = useState()
+  const [ password, setPassword ] = useState()
+  const [ confPassword, setConfPassword ] = useState()
 
-  const [ name, setName ] = useState();
-  const [ phone, setPhone ] = useState();
-  const [ bank, setBank ] = useState();
+  const [ name, setName ] = useState()
+  const [ phone, setPhone ] = useState()
+  const [ bank, setBank ] = useState()
 
-  const [ category, setCategory ] = useState();
-  const [ bio, setBio ] = useState();
+  const [ category, setCategory ] = useState()
+  const [ bio, setBio ] = useState()
 
   const postRequest = () => {
     // TODO: Post request to API 
     return {
       success: true
-    };
-  };
+    }
+  }
 
   return (
     <>
@@ -53,5 +53,5 @@ export default function Register() {
           postRequest={postRequest} />
       }
     </>
-  );
+  )
 }

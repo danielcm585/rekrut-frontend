@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
 
-import { Navbar, ProfileCard, SearchBar, JobGrid } from "../components";
+import { Navbar, ProfileCard, SearchBar, JobGrid } from "../components"
 
-import { Divider, Flex, Text } from "@chakra-ui/react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+import { Divider, Flex, Text } from "@chakra-ui/react"
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react"
 
 export default function Profile() {
   // TODO: Fetch user from api based on id
-  const { id } = useParams();
-  // const user = null;
+  const { id } = useParams()
+  // const user = null
   const user = {
     id: 3,
     photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
@@ -20,10 +20,10 @@ export default function Profile() {
     role: "worker",
     cv: "",
     category: "UI/UX Designer"
-  };
+  }
 
   // TODO: Fetch ONLY my jobs (the jobs I registered) from api
-  const [ jobs, setJobs ] = useState();
+  const [ jobs, setJobs ] = useState()
   useEffect(() => {
     setJobs([
       {
@@ -110,26 +110,26 @@ export default function Profile() {
         ],
         chosen: "Luke Skywalker"
       }
-    ]);
-    console.log("FETCH API");
-  }, []);
+    ])
+    console.log("FETCH API")
+  }, [])
   
-  const [ keyword, setKeyword ] = useState("");
+  const [ keyword, setKeyword ] = useState("")
   
   // TODO: Parse pending, accepted, rejected from api
-  const [ pending, setPending ] = useState();
-  const [ accepted, setAccepted ] = useState();
-  const [ rejected, setRejected ] = useState();
+  const [ pending, setPending ] = useState()
+  const [ accepted, setAccepted ] = useState()
+  const [ rejected, setRejected ] = useState()
   useEffect(() => {
-    if (jobs == null) return;
-    jobs.filter(job => job.category == user.category);
-    const searchedJobs = jobs.filter(job => job.title.includes(keyword));
-    setPending([...searchedJobs].filter(job => job.chosen == null));
-    setAccepted([...searchedJobs].filter(job => job.chosen == user.name));
+    if (jobs == null) return
+    jobs.filter(job => job.category == user.category)
+    const searchedJobs = jobs.filter(job => job.title.includes(keyword))
+    setPending([...searchedJobs].filter(job => job.chosen == null))
+    setAccepted([...searchedJobs].filter(job => job.chosen == user.name))
     setRejected([...searchedJobs]
       .filter(job => job.chosen != null)
-      .filter(job => job.chosen != user.name));
-  }, [ keyword, jobs ]);
+      .filter(job => job.chosen != user.name))
+  }, [ keyword, jobs ])
   
   return (
     <>
@@ -167,5 +167,5 @@ export default function Profile() {
         </Flex>
       </Flex>
     </>
-  );
+  )
 }

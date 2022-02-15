@@ -1,12 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from "react"
+import ReactDOM from "react-dom"
 
-import "@fontsource/inter/400.css";
+import "@fontsource/inter/400.css"
 
-import App from "./App";
-import theme from "./theme";
+import App from "./App"
+import theme from "./theme"
 
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react"
 
 ReactDOM.render(
   <React.StrictMode>
@@ -15,4 +15,4 @@ ReactDOM.render(
     </ChakraProvider>
   </React.StrictMode>,
   document.getElementById("root")
-);
+)

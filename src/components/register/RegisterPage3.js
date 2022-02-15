@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"
 
-import { Flex, Text, Input, Button, Grid, Box, Select, VStack } from "@chakra-ui/react";
-import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react";
-import { FormControl, FormLabel } from "@chakra-ui/react";
+import { Flex, Text, Input, Button, Grid, Select, VStack } from "@chakra-ui/react"
+import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react"
+import { FormControl, FormLabel } from "@chakra-ui/react"
 
 export default function RegisterPage1({ role, setPage, category, setCategory, bio, setBio }) {
-  const handleBioChanges = (e) => setBio(e.target.value);
-  const handleCategoryChanges = (e) => setCategory(e.target.value);
+  const handleBioChanges = (e) => setBio(e.target.value)
+  const handleCategoryChanges = (e) => setCategory(e.target.value)
   useEffect(() => {
-    setCategory("Web Developer");
+    setCategory("Web Developer")
   }, [])
   
-  const [ error, setError ] = useState();
+  const [ error, setError ] = useState()
 
   return (
     <>
@@ -69,5 +69,5 @@ export default function RegisterPage1({ role, setPage, category, setCategory, bi
         </Flex>
       </Flex>
     </>
-  );
+  )
 }

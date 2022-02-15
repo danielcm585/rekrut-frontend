@@ -1,10 +1,10 @@
-import React from "react";
+import React from "react"
 
-import { HStack, Input, Button, Text } from "@chakra-ui/react";
+import { HStack, Input, Button, Text } from "@chakra-ui/react"
 
 export default function SearchBar({ keyword, setKeyword }) {
-  // console.log(keyword);
-  const handleChanges = (e) => setKeyword(e.target.value);
+  // console.log(keyword)
+  const handleChanges = (e) => setKeyword(e.target.value)
 
   return (
     <>
@@ -17,5 +17,5 @@ export default function SearchBar({ keyword, setKeyword }) {
         </Button> 
       </HStack>
     </>
-  );
+  )
 }

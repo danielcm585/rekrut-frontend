@@ -1,8 +1,8 @@
-import React from "react";
+import React from "react"
 
-import { JobCard } from ".";
+import { JobCard } from "."
 
-import { Grid, Flex } from "@chakra-ui/react";
+import { Grid, Flex } from "@chakra-ui/react"
 
 export default function JobGrid({ jobs }) {
   return (
@@ -15,5 +15,5 @@ export default function JobGrid({ jobs }) {
       {/* </Grid> */}
       </Flex>
     </>
-  );
+  )
 }

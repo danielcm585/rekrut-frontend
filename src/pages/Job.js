@@ -1,10 +1,10 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React from "react"
+import { useParams } from "react-router-dom"
 
-import { Navbar } from "../components";
+import { Navbar } from "../components"
 
 export default function Job() {
-  const { id } = useParams();
+  const { id } = useParams()
   // TODO: Fetch job data from api
   const job = {
     id: 1,
@@ -32,11 +32,11 @@ export default function Job() {
       }
     ],
     chosen: "C3PO"
-  };
+  }
 
   return (
     <>
       <Navbar />
     </>
-  );
+  )
 }

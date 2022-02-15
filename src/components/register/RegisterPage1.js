@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import { LoginImg } from "../../images";
+import { LoginImg } from "../../images"
 
-import { Flex, Text, Input, Button, Link, Image } from "@chakra-ui/react";
-import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react";
-import { FormControl, FormLabel } from "@chakra-ui/react";
+import { Flex, Text, Input, Button, Link, Image } from "@chakra-ui/react"
+import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react"
+import { FormControl, FormLabel } from "@chakra-ui/react"
 
 export default function RegisterPage1({ role, setPage, email, setEmail, password, setPassword, confPassword, setConfPassword }) {
-  const handleEmailChanges = (e) => setEmail(e.target.value);
-  const handlePasswordChanges = (e) => setPassword(e.target.value);
-  const handleConfPasswordChanges = (e) => setConfPassword(e.target.value);
+  const handleEmailChanges = (e) => setEmail(e.target.value)
+  const handlePasswordChanges = (e) => setPassword(e.target.value)
+  const handleConfPasswordChanges = (e) => setConfPassword(e.target.value)
 
-  const [ error, setError ] = useState();
+  const [ error, setError ] = useState()
 
   return (
     <>
@@ -52,10 +52,10 @@ export default function RegisterPage1({ role, setPage, email, setEmail, password
           <Button mt="8" borderRadius="50" borderColor="black" bgColor="#FF8450"
             onClick={() => {
               if (password == confPassword) {
-                setPage(prevPage => prevPage+1);
-                return;
+                setPage(prevPage => prevPage+1)
+                return
               }
-              setError("Password not matching");
+              setError("Password not matching")
             }}>
               <Text fontSize="sm" fontWeight="bold">Buat Akun</Text>
             </Button>
@@ -72,5 +72,5 @@ export default function RegisterPage1({ role, setPage, email, setEmail, password
         </Flex>
       </Flex>
     </>
-  );
+  )
 }

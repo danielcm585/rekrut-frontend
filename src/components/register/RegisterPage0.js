@@ -1,8 +1,8 @@
-import React from "react";
+import React from "react"
 
-import { WorkerImg, ClientImg } from "../../images";
+import { WorkerImg, ClientImg } from "../../images"
 
-import { Box, Button, Flex, Image, Text, Grid } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Text, Grid } from "@chakra-ui/react"
 
 export default function RegisterPage0({ setRole, setPage }) {
   return (
@@ -25,8 +25,8 @@ export default function RegisterPage0({ setRole, setPage }) {
                     </Flex>
                     <Button mt="3" pl="10" pr="10" bgColor="#FF8450" borderColor="black" borderRadius="50" 
                       onClick={() => {
-                        setRole("client");
-                        setPage(prevPage => prevPage+1);
+                        setRole("client")
+                        setPage(prevPage => prevPage+1)
                       }}>
                       <Text fontSize="sm" fontWeight="bold">Selanjutnya</Text>
                     </Button>
@@ -44,8 +44,8 @@ export default function RegisterPage0({ setRole, setPage }) {
                     </Flex>
                     <Button mt="3" pl="10" pr="10" bgColor="#FF8450" borderColor="black" borderRadius="50" 
                       onClick={() => {
-                        setRole("worker");
-                        setPage(prevPage => prevPage+1);
+                        setRole("worker")
+                        setPage(prevPage => prevPage+1)
                       }}>
                       <Text fontSize="sm" fontWeight="bold">Selanjutnya</Text>
                     </Button>
@@ -57,5 +57,5 @@ export default function RegisterPage0({ setRole, setPage }) {
         </Flex>
       </Flex>
     </>
-  );
+  )
 }

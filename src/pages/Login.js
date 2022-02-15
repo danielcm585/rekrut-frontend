@@ -1,16 +1,16 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import { Navbar } from "../components";
-import { LoginImg } from "../images";
+import { Navbar } from "../components"
+import { LoginImg } from "../images"
 
-import { Flex, Text, Input, Button, Link, HStack, Image } from "@chakra-ui/react";
-import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react";
+import { Flex, Text, Input, Button, Link, HStack, Image } from "@chakra-ui/react"
+import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react"
 
 export default function Login() {
-  const [ email, setEmail ] = useState();
-  const handleEmailChanges = (e) => setEmail(e.target.value);
-  const [ password, setPassword ] = useState();
-  const handlePasswordChanges = (e) => setPassword(e.target.value);
+  const [ email, setEmail ] = useState()
+  const handleEmailChanges = (e) => setEmail(e.target.value)
+  const [ password, setPassword ] = useState()
+  const handlePasswordChanges = (e) => setPassword(e.target.value)
 
   return (
     <>
@@ -37,7 +37,7 @@ export default function Login() {
           <Button mt="8" borderRadius="50" borderColor="black" bgColor="#FF8450"
             onClick={() => {
               // TODO: Send request to api & get credentials
-              window.location.href="/dashboard";
+              window.location.href="/dashboard"
             }}>
               <Text fontSize="sm" fontWeight="bold">Login</Text>
             </Button>
@@ -54,5 +54,5 @@ export default function Login() {
         </Flex>
       </Flex>
     </>
-  );
+  )
 }
