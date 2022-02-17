@@ -5,7 +5,7 @@ import { Box, Button, HStack, Image, Link, Spacer, Text, Flex } from "@chakra-ui
 export default function JobCard({ job }) {
   return (
     <>
-      <Box p="3" mb="4" border="1px" borderColor="gray.300" borderRadius="md">
+      <Box p="3" mt="2" mb="2" border="1px" borderColor="gray.300" borderRadius="md">
         <HStack mb="2">
           <Flex p="2">
             <Image src={job.company.photo} h="55" borderRadius="md" />
