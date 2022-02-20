@@ -37,7 +37,7 @@ export default function Navbar({ login, register }) {
                     </HStack>
                     </MenuButton>
                     <MenuList>
-                      <MenuItem icon={<BiUser />} onClick={() => window.location.href="/profile/"+user.id}>My Profile</MenuItem>
+                      <MenuItem icon={<BiUser />} onClick={() => window.location.href="/profile/me"}>My Profile</MenuItem>
                       <MenuDivider />
                       <MenuItem icon={<BiLogOut />}>Logout</MenuItem>
                   </MenuList>
