@@ -177,7 +177,6 @@ export default function Dashboard() {
         .filter(job => job.title.toLowerCase().includes(keyword.toLowerCase()))
         .sort((jobA, jobB) => jobB.fee-jobA.fee)) // FIXME: To be confirmed
     }
-    console.log("REFRESH")
   }, [ keyword, recentJobs, bestOffer ])
 
   return (

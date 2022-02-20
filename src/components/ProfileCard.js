@@ -1,38 +1,44 @@
 import React from "react"
 import { BiLinkExternal } from "react-icons/bi"
+import { IoMdMail, IoMdDocument } from "react-icons/io"
+import { MdPhone } from "react-icons/md"
 
-import { Image, Box, Text, HStack, Spacer, Link, Icon } from "@chakra-ui/react"
+import { Image, Box, Text, HStack, Spacer, Link, Icon, Button, Flex } from "@chakra-ui/react"
 
 export default function ProfileCard({ user }) {
   return (
     <>
     <Box>
-      <HStack>
-        <Image mr="5" h="170px" borderRadius="full" src={user.photo} />
+      <Flex>
+        <Image mr="5" h="145px" src={user.photo} borderRadius="lg" />
         <Box>
-          <Text fontSize="30" fontWeight="semibold">{user.name}</Text>
-          <Text fontSize="20" color="gray.600">{user.category}</Text> 
+          <Text fontSize="2xl" fontWeight="semibold">{user.name}</Text>
+          <Text fontSize="lg" color="gray.600">{user.category}</Text> 
           <Link href={"mailto:"+user.email} isExternal>
             <HStack>
-              <Text fontSize="20" color="gray.600">{user.email}</Text>
-              <Icon as={BiLinkExternal} />
+              <Icon as={IoMdMail} />
+              <Text color="gray.600">{user.email}</Text>
+              {/* <Icon as={BiLinkExternal} /> */}
             </HStack>
           </Link>
           <Link href={"https://wa.me/"+user.phone} isExternal>
             <HStack>
-              <Text fontSize="18" color="gray.600">{"+"+user.phone}</Text>
-              <Icon as={BiLinkExternal} />
+              <Icon as={MdPhone} />
+              <Text color="gray.600">{"+"+user.phone}</Text>
+              {/* <Icon as={BiLinkExternal} /> */}
             </HStack>
           </Link>
           <Link href={user.cv}>
             <HStack>
-              <Text fontSize="15" color="gray.600">{user.name+"'s CV"}</Text>
-              <Icon as={BiLinkExternal} />
+              <Icon as={IoMdDocument} />
+              <Text color="gray.600">{user.name+"'s CV"}</Text>
+              {/* <Icon as={BiLinkExternal} /> */}
             </HStack>
           </Link>
         </Box>
         <Spacer></Spacer>
-      </HStack>
+        <Button variant="ghost">Edit Profil</Button> {/*FIXME: Add onClick func*/}
+      </Flex>
       <Text mt="5">{user.bio}</Text>
     </Box>
     </>
