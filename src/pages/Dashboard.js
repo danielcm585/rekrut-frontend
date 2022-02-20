@@ -193,7 +193,7 @@ export default function Dashboard() {
         (filteredBestOffer != null) && (
           <>
             <Flex justifyContent="center">
-              <Box mt="10" w="85%">
+              <Box mt="8" w="85%">
                 <Flex>
                   <Text fontSize="xl" fontWeight="semibold">Best Offer</Text>
                   <Spacer></Spacer>
@@ -209,7 +209,7 @@ export default function Dashboard() {
         (filteredRecentJobs != null) && (
           <>
             <Flex justifyContent="center">
-              <Box mt="10" w="85%">
+              <Box mt="8" w="85%">
                 <Flex>
                   <Text fontSize="xl" fontWeight="semibold">Recently Added</Text>
                   <Spacer></Spacer>
