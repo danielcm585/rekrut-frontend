@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 
-import { JobCard, Navbar, SearchBar, JobGrid } from "../components"
+import { JobCard, Navbar, SearchBar, JobList } from "../components"
 
 import { Flex, Text, Box, Grid, Link, Button, Spacer } from "@chakra-ui/react"
 
@@ -26,6 +26,8 @@ export default function Dashboard() {
         desc: "Do backend work in developing our app.",
         category: "Web Developer",
         fee: 5000000,
+        type: "Full Time",
+        location: "Jakarta",
         company: {
           id: 1,
           name: "BukaPedia",
@@ -52,6 +54,8 @@ export default function Dashboard() {
         category: "Web Developer",
         desc: "Do frontend work in developing our app.",
         fee: 6000000,
+        type: "Full Time",
+        location: "Jakarta",
         company: {
           id: 1,
           name: "BukaPedia",
@@ -74,6 +78,8 @@ export default function Dashboard() {
         category: "Web Developer",
         desc: "Develop a great website for our company",
         fee: 4000000,
+        type: "Full Time",
+        location: "Jakarta",
         company: {
           id: 2,
           name: "TokoLapak",
@@ -102,7 +108,8 @@ export default function Dashboard() {
     <>
       <Navbar />
       <Flex justifyContent="center">
-        <Flex mt="100px" w="85%">
+        <Flex mt="100" w="85%" direction="column">
+          <Text mb="6" fontSize="2xl" fontWeight="semibold">Job Portal</Text>
           <SearchBar keyword={keyword} setKeyword={setKeyword} />
         </Flex>
       </Flex>
@@ -112,13 +119,13 @@ export default function Dashboard() {
             <Flex justifyContent="center">
               <Box mt="10" w="85%">
                 <Flex>
-                  <Text fontSize="2xl" fontWeight="semibold">
-                    BEST OFFER
+                  <Text fontSize="xl" fontWeight="semibold">
+                    Best Offer
                   </Text>
                   <Spacer></Spacer>
-                  <Button onClick={() => window.location.href="/jobs/best-offer"}>See all</Button>
+                  <Button variant="ghost" onClick={() => window.location.href="/jobs/best-offer"}>See all</Button>
                 </Flex>
-                <JobGrid jobs={bestOffer} />
+                <JobList jobs={bestOffer} />
               </Box>
             </Flex>
           </>
@@ -130,13 +137,13 @@ export default function Dashboard() {
             <Flex justifyContent="center">
               <Box mt="10" w="85%">
                 <Flex>
-                  <Text fontSize="2xl" fontWeight="semibold">
-                    RECENTLY ADDED
+                  <Text fontSize="xl" fontWeight="semibold">
+                    Recently Added
                   </Text>
                   <Spacer></Spacer>
-                  <Button onClick={() => window.location.href="/jobs/best-offer"}>See all</Button>
+                  <Button variant="ghost" onClick={() => window.location.href="/jobs/best-offer"}>See all</Button>
                 </Flex>
-                <JobGrid jobs={recentJob} />
+                <JobList jobs={recentJob} />
               </Box>
             </Flex>
           </>

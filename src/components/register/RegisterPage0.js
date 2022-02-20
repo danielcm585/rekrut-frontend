@@ -14,7 +14,7 @@ export default function RegisterPage0({ setRole, setPage }) {
           </Flex>
           <Box mt="50">
             <Grid templateColumns="repeat(2, 1fr)" gap="20">
-              <Box pt="4" pl="6" pr="6" pb="7" border="1px" borderColor="gray.300">
+              <Box pt="4" pl="6" pr="6" pb="7" shadow="md">
                 <Flex justifyContent="center">
                   <Image src={WorkerImg} />
                 </Flex>
@@ -33,7 +33,7 @@ export default function RegisterPage0({ setRole, setPage }) {
                   </Flex>
                 </Flex>
               </Box>
-              <Box p="4" pl="6" pr="6" pb="7" border="1px" borderColor="gray.300">
+              <Box p="4" pl="6" pr="6" pb="7" shadow="md">
                 <Flex justifyContent="center">
                   <Image src={ClientImg} />
                 </Flex>

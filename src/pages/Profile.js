@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 
-import { Navbar, ProfileCard, SearchBar, JobGrid } from "../components"
+import { Navbar, ProfileCard, SearchBar, JobList } from "../components"
 
 import { Divider, Flex, Text } from "@chakra-ui/react"
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react"
@@ -149,17 +149,17 @@ export default function Profile() {
             <TabPanels>
               <TabPanel>
                 {
-                  (pending != null) && <JobGrid jobs={pending} />
+                  (pending != null) && <JobList jobs={pending} />
                 }
               </TabPanel>
               <TabPanel>
                 {
-                  (accepted != null) && <JobGrid jobs={accepted} />
+                  (accepted != null) && <JobList jobs={accepted} />
                 }
               </TabPanel>
               <TabPanel>
                 {
-                  (rejected != null) && <JobGrid jobs={rejected} />
+                  (rejected != null) && <JobList jobs={rejected} />
                 }
               </TabPanel>
             </TabPanels>
