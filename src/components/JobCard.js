@@ -13,11 +13,12 @@ export default function JobCard({ job }) {
             <Image src={job.company.photo} h="55" borderRadius="md" />
           </Flex>
           <Box>
+            <Text fontSize="xl" fontWeight="semibold">{job.title}</Text>
             <Link href={"/profile/"+job.company.id}>
               <Text color="gray.600">{job.company.name}</Text>
             </Link>
-            <Text fontSize="xl" fontWeight="semibold">{job.title}</Text>
           </Box>
+          {/*FIXME: use grid maybe? */}
           <Spacer></Spacer> <Spacer></Spacer> <Spacer></Spacer> <Spacer></Spacer> <Spacer></Spacer> <Spacer></Spacer> <Spacer></Spacer> <Spacer></Spacer> <Spacer></Spacer>
           <Flex direction="column">
             <Flex justifyContent="center">

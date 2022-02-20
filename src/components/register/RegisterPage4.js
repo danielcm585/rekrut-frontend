@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import { Checkbox, Flex, Text, Box, Grid, Button, VStack } from "@chakra-ui/react"
+import { Checkbox, Flex, Text, Box, SimpleGrid, Button, VStack } from "@chakra-ui/react"
 import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react"
 
 export default function RegisterPage4({ role, setPage, postRequest }) {
@@ -38,7 +38,7 @@ export default function RegisterPage4({ role, setPage, postRequest }) {
                   </Alert>
                 )
               }
-              <Grid templateColumns="repeat(2, 1fr)" gap="2">
+              <SimpleGrid columns="2" spacing="2">
                 <Button mt="8" bgColor="#FF8450" borderRadius="50" borderColor="black"
                   onClick={() => setPage(prevPage => prevPage-1)}>
                   <Text fontSize="sm" fontWeight="bold">Kembali</Text>
@@ -58,7 +58,7 @@ export default function RegisterPage4({ role, setPage, postRequest }) {
                   }}>
                   <Text fontSize="sm" fontWeight="bold">Selanjutnya</Text>
                 </Button>
-              </Grid>
+              </SimpleGrid>
             </Flex>
           </Flex>
         </Flex>

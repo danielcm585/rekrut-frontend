@@ -1,5 +1,6 @@
 import React from "react"
 import { IoChevronDown } from "react-icons/io5"
+import { AiFillCaretDown } from "react-icons/ai"
 import { BiLogOut, BiUser } from "react-icons/bi"
 
 import { Button, Flex, HStack, Spacer, Text, Image, Link } from "@chakra-ui/react"

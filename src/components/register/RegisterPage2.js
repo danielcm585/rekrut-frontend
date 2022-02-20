@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import { Flex, Text, Input, Button, Grid, VStack } from "@chakra-ui/react"
+import { Flex, Text, Input, Button, SimpleGrid, VStack } from "@chakra-ui/react"
 import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
 
@@ -53,7 +53,7 @@ export default function RegisterPage1({ role, setPage, name, setName, phone, set
                   </Alert>
                 )
               }
-              <Grid templateColumns="repeat(2, 1fr)" gap="2">
+              <SimpleGrid columns="2" spacing="2">
                 <Button mt="8" bgColor="#FF8450" borderRadius="50" borderColor="black"
                   onClick={() => setPage(prevPage => prevPage-1)}>
                   <Text fontSize="sm" fontWeight="bold">Kembali</Text>
@@ -62,7 +62,7 @@ export default function RegisterPage1({ role, setPage, name, setName, phone, set
                   onClick={() => setPage(prevPage => prevPage+1)}>
                   <Text fontSize="sm" fontWeight="bold">Selanjutnya</Text>
                 </Button>
-              </Grid>
+              </SimpleGrid>
             </Flex>
           </Flex>
         </Flex>

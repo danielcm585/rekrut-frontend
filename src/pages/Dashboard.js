@@ -5,7 +5,7 @@ import { JobCard, Navbar, SearchBar, JobList } from "../components"
 import { Flex, Text, Box, Grid, Link, Button, Spacer } from "@chakra-ui/react"
 
 export default function Dashboard() {
-  // TODO: Get user from localStorage
+  // TODO: Get user from localStorage??
   // const user = null
   const user = {
     id: 3,
@@ -158,8 +158,9 @@ export default function Dashboard() {
         registrants: []
       }
     ])
-    
     console.log("FETCH API")
+
+    document.title = "Dashboard"
   }, [])
 
   const [ keyword, setKeyword ] = useState("")
@@ -194,9 +195,7 @@ export default function Dashboard() {
             <Flex justifyContent="center">
               <Box mt="10" w="85%">
                 <Flex>
-                  <Text fontSize="xl" fontWeight="semibold">
-                    Best Offer
-                  </Text>
+                  <Text fontSize="xl" fontWeight="semibold">Best Offer</Text>
                   <Spacer></Spacer>
                   <Button variant="ghost" onClick={() => window.location.href="/jobs/best-offer"}>See all</Button>
                 </Flex>
@@ -212,9 +211,7 @@ export default function Dashboard() {
             <Flex justifyContent="center">
               <Box mt="10" w="85%">
                 <Flex>
-                  <Text fontSize="xl" fontWeight="semibold">
-                    Recently Added
-                  </Text>
+                  <Text fontSize="xl" fontWeight="semibold">Recently Added</Text>
                   <Spacer></Spacer>
                   <Button variant="ghost" onClick={() => window.location.href="/jobs/best-offer"}>See all</Button>
                 </Flex>

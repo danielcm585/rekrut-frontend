@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
 
 import { Navbar, ProfileCard, SearchBar, JobList } from "../components"
 
-import { Divider, Flex, Text } from "@chakra-ui/react"
+import { Flex, Text } from "@chakra-ui/react"
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react"
 
 export default function Profile() {
@@ -123,6 +122,8 @@ export default function Profile() {
       }
     ])
     console.log("FETCH API")
+
+    document.title = user.name + " | " + user.category
   }, [])
   
   const [ keyword, setKeyword ] = useState("")
