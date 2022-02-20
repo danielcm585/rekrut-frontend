@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { MdOutlineAttachMoney, MdOutlineLocationOn, MdWorkOutline } from "react-icons/md"
+import { MdAttachMoney, MdLocationOn, MdWork } from "react-icons/md"
 
 import { Navbar, JobList } from "../components"
 
@@ -143,17 +143,17 @@ export default function Job() {
           <Flex>
             <SimpleGrid columns="2" spacing="4">
               <HStack mt="8">
-                <Icon as={MdOutlineLocationOn} />
+                <Icon as={MdLocationOn} color="gray.600" />
                 <Text color="gray.600">Lokasi</Text>
               </HStack>
               <Text mt="8" fontWeight="semibold">{job.location}</Text>
               <HStack>
-                <Icon as={MdWorkOutline} />
+                <Icon as={MdWork} color="gray.600" />
                 <Text color="gray.600">Job Type</Text>
               </HStack>
               <Text fontWeight="semibold">{job.type}</Text>
               <HStack>
-                <Icon as={MdOutlineAttachMoney} />
+                <Icon as={MdAttachMoney} color="gray.600" />
                 <Text color="gray.600">Salary</Text>
               </HStack>
               <Text fontWeight="semibold">{"IDR "+job.fee}</Text>

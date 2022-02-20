@@ -12,6 +12,10 @@ export default function Login() {
   const [ password, setPassword ] = useState()
   const handlePasswordChanges = (e) => setPassword(e.target.value)
 
+  useState(() => {
+    document.title = "Rekrut.id | Login"
+  }, [])
+
   return (
     <>
       <Navbar login={true} />

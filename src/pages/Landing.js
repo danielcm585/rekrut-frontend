@@ -1,10 +1,14 @@
-import React from "react"
+import React, { useState } from "react"
 
 import { Navbar } from "../components"
 
 import { Box, Button, Flex, Spacer, Text, VStack } from "@chakra-ui/react"
 
 export default function Landing() {
+  useState(() => {
+    document.title = "Rekrut.id | Work or hire now!"
+  }, [])
+
   return (
     <>
       <Navbar />

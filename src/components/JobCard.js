@@ -1,5 +1,5 @@
 import React from "react"
-import { MdWorkOutline, MdOutlineLocationOn, MdOutlineAttachMoney } from "react-icons/md"
+import { MdWork, MdLocationOn, MdAttachMoney } from "react-icons/md"
 
 import { Box, HStack, Image, Link, Spacer, Text, Flex, Icon } from "@chakra-ui/react"
 
@@ -19,11 +19,11 @@ export default function JobCard({ job }) {
             </Link>
           </Box>
           {/*FIXME: use grid maybe? */}
-          <Spacer></Spacer> <Spacer></Spacer> <Spacer></Spacer> <Spacer></Spacer> <Spacer></Spacer> <Spacer></Spacer> <Spacer></Spacer> <Spacer></Spacer> <Spacer></Spacer>
+          <Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer>
           <Flex direction="column">
             <Flex justifyContent="center">
               <HStack>
-                <Icon as={MdOutlineLocationOn} />
+                <Icon as={MdLocationOn} color="gray.600" />
                 <Text color="gray.600">Lokasi</Text>
               </HStack>
             </Flex>
@@ -35,7 +35,7 @@ export default function JobCard({ job }) {
           <Flex direction="column">
             <Flex justifyContent="center">
               <HStack>
-                <Icon as={MdWorkOutline} />
+                <Icon as={MdWork} color="gray.600" />
                 <Text color="gray.600">Job Type</Text>
               </HStack>
             </Flex>
@@ -47,7 +47,7 @@ export default function JobCard({ job }) {
           <Flex direction="column">
             <Flex justifyContent="center">
               <HStack>
-                <Icon as={MdOutlineAttachMoney} />
+                <Icon as={MdAttachMoney} color="gray.600" />
                 <Text color="gray.600">Salary</Text>
               </HStack>
             </Flex>

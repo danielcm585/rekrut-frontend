@@ -160,7 +160,7 @@ export default function Dashboard() {
     ])
     console.log("FETCH API")
 
-    document.title = "Dashboard"
+    document.title = "Rekrut.id"
   }, [])
 
   const [ keyword, setKeyword ] = useState("")

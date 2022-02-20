@@ -16,23 +16,23 @@ export default function ProfileCard({ user }) {
           <Text fontSize="lg" color="gray.600">{user.category}</Text> 
           <Link href={"mailto:"+user.email} isExternal>
             <HStack>
-              <Icon as={IoMdMail} />
+              <Icon as={IoMdMail} color="gray.600" />
               <Text color="gray.600">{user.email}</Text>
-              {/* <Icon as={BiLinkExternal} /> */}
+              {/* <Icon as={BiLinkExternal} color="gray.600" /> */}
             </HStack>
           </Link>
           <Link href={"https://wa.me/"+user.phone} isExternal>
             <HStack>
-              <Icon as={MdPhone} />
+              <Icon as={MdPhone} color="gray.600" />
               <Text color="gray.600">{"+"+user.phone}</Text>
-              {/* <Icon as={BiLinkExternal} /> */}
+              {/* <Icon as={BiLinkExternal} color="gray.600" /> */}
             </HStack>
           </Link>
           <Link href={user.cv}>
             <HStack>
-              <Icon as={IoMdDocument} />
+              <Icon as={IoMdDocument} color="gray.600" />
               <Text color="gray.600">{user.name+"'s CV"}</Text>
-              {/* <Icon as={BiLinkExternal} /> */}
+              {/* <Icon as={BiLinkExternal} color="gray.600" /> */}
             </HStack>
           </Link>
         </Box>

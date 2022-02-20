@@ -18,12 +18,9 @@ export default function Register() {
   const [ category, setCategory ] = useState()
   const [ bio, setBio ] = useState()
 
-  const postRequest = () => {
-    // TODO: Post request to API 
-    return {
-      success: true
-    }
-  }
+  useState(() => {
+    document.title = "Rekrut.id | Register"
+  }, [])
 
   return (
     <>
@@ -50,7 +47,12 @@ export default function Register() {
       }
       {
         (page == 4) && <RegisterPage4 role={role} setPage={setPage}
-          postRequest={postRequest} />
+          postRequest={() => {
+            // TODO: Post request to API 
+            return {
+              success: true
+            }
+          }} />
       }
     </>
   )
