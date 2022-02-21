@@ -163,17 +163,32 @@ export default function Profile() {
             <TabPanels>
               <TabPanel>
                 {
-                  (filteredPending != null) && <JobList jobs={filteredPending} />
+                  (filteredPending != null) && (
+                    <>
+                      <Text mt="3" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredPending.length+" lamaran dikirim"}</Text>
+                      <JobList jobs={filteredPending} />
+                    </>
+                  )
                 }
               </TabPanel>
               <TabPanel>
                 {
-                  (filteredAccepted != null) && <JobList jobs={filteredAccepted} />
+                  (filteredAccepted != null) && (
+                    <>
+                      <Text mt="3" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredAccepted.length+" lamaran diterima"}</Text>
+                      <JobList jobs={filteredAccepted} />
+                    </>
+                  )
                 }
               </TabPanel>
               <TabPanel>
                 {
-                  (filteredRejected != null) && <JobList jobs={filteredRejected} />
+                  (filteredRejected != null) && (
+                    <>
+                      <Text mt="3" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredRejected.length+" lamaran ditolak"}</Text>
+                      <JobList jobs={filteredRejected} />
+                    </>
+                  )
                 }
               </TabPanel>
             </TabPanels>
