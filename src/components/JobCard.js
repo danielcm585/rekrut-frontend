@@ -7,6 +7,7 @@ export default function JobCard({ job }) {
   return (
     <>
       <Box p="3" pr="6" mt="2" mb="2" shadow="md" borderRadius="md"
+        _hover={{ bgColor:"gray.50" }}
         onClick={() => window.location.href="/job/"+job.id}>
         <HStack mb="2">
           <Flex p="2">
