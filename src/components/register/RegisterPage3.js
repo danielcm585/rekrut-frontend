@@ -55,11 +55,10 @@ export default function RegisterPage1({ role, setPage, category, setCategory, bi
                 )
               }
               <SimpleGrid columns="2" spacing="2">
-                <Button mt="8" bgColor="#FF8450" borderRadius="50" borderColor="black"
-                  onClick={() => setPage(prevPage => prevPage-1)}>
+                <Button mt="8" borderRadius="50" onClick={() => setPage(prevPage => prevPage-1)}>
                   <Text fontSize="sm" fontWeight="bold">Kembali</Text>
                 </Button>
-                <Button mt="8" bgColor="#FF8450" borderRadius="50" borderColor="black"
+                <Button mt="8" bgColor="#FF8450" borderRadius="50"
                   onClick={() => setPage(prevPage => prevPage+1)}>
                   <Text fontSize="sm" fontWeight="bold">Selanjutnya</Text>
                 </Button>

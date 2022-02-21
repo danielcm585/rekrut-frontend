@@ -22,8 +22,8 @@ export default function ApplyButton({ isOpen, setIsOpen }) {
           </PopoverBody>
           <PopoverFooter d="flex" justifyContent="flex-end">
             <ButtonGroup size="sm">
-              <Button borderRadius="50" variant="outline" onClick={() => setIsOpen(false)}>Cancel</Button>
-              <Button borderRadius="50" bgColor="#FF8450" color="black" colorScheme="red">Apply</Button> {/*TODO: Add onClick func*/}
+              <Button borderRadius="50" onClick={() => setIsOpen(false)}>Cancel</Button>
+              <Button borderRadius="50" bgColor="#FF8450">Apply</Button> {/*TODO: Add onClick func*/}
             </ButtonGroup>
           </PopoverFooter>
         </PopoverContent>

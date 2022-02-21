@@ -12,8 +12,8 @@ export default function SearchBar({ keyword, setKeyword }) {
       <HStack w="100%">
         <InputGroup>
           <InputLeftElement children={<Icon ml="2" as={BiSearch} color="gray.600" />} />
-          <Input variant="outline" borderRadius="50" borderColor="black"
-            placeholder="Search for a job" value={keyword} onChange={handleChanges}>
+          <Input borderRadius="50" borderColor="black" placeholder="Search for a job" 
+            value={keyword} onChange={handleChanges}>
           </Input>
         </InputGroup>
         <Button pl="10" pr="10" borderRadius="50" bgColor="#FF8450">

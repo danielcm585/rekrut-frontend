@@ -197,7 +197,7 @@ export default function Dashboard() {
                 <Flex>
                   <Text fontSize="xl" fontWeight="semibold">Best Offer</Text>
                   <Spacer></Spacer>
-                  <Button variant="ghost" onClick={() => window.location.href="/jobs/best-offer"}>See all</Button>
+                  <Button variant="ghost" borderRadius="50" onClick={() => window.location.href="/jobs/best-offer"}>See all</Button>
                 </Flex>
                 <JobList jobs={filteredBestOffer} />
               </Box>
@@ -213,7 +213,7 @@ export default function Dashboard() {
                 <Flex>
                   <Text fontSize="xl" fontWeight="semibold">Recently Added</Text>
                   <Spacer></Spacer>
-                  <Button variant="ghost" onClick={() => window.location.href="/jobs/best-offer"}>See all</Button>
+                  <Button variant="ghost" borderRadius="50" onClick={() => window.location.href="/jobs/best-offer"}>See all</Button>
                 </Flex>
                 <JobList jobs={filteredRecentJobs} />
               </Box>

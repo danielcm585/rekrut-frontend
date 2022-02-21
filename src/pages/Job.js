@@ -4,7 +4,7 @@ import { MdAttachMoney, MdLocationOn, MdWork } from "react-icons/md"
 
 import { Navbar, JobList, ApplyButton } from "../components"
 
-import { Box, Button, Flex, HStack, Image, Link, Spacer, Text, Icon, SimpleGrid } from "@chakra-ui/react"
+import { Box, Flex, HStack, Image, Link, Spacer, Text, Icon, SimpleGrid } from "@chakra-ui/react"
 
 export default function Job() {
   const { id } = useParams()

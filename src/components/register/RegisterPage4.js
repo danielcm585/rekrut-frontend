@@ -39,11 +39,10 @@ export default function RegisterPage4({ role, setPage, postRequest }) {
                 )
               }
               <SimpleGrid columns="2" spacing="2">
-                <Button mt="8" bgColor="#FF8450" borderRadius="50" borderColor="black"
-                  onClick={() => setPage(prevPage => prevPage-1)}>
+                <Button mt="8" borderRadius="50" onClick={() => setPage(prevPage => prevPage-1)}>
                   <Text fontSize="sm" fontWeight="bold">Kembali</Text>
                 </Button>
-                <Button mt="8" bgColor="#FF8450" borderRadius="50" borderColor="black"
+                <Button mt="8" bgColor="#FF8450" borderRadius="50"
                   onClick={() => {
                     if (!agree) {
                       setError("You need to agree to the terms and conditions")
