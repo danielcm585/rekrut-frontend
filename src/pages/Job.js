@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { MdAttachMoney, MdLocationOn, MdWork } from "react-icons/md"
 
-import { Navbar, JobList } from "../components"
+import { Navbar, JobList, ApplyButton } from "../components"
 
 import { Box, Button, Flex, HStack, Image, Link, Spacer, Text, Icon, SimpleGrid } from "@chakra-ui/react"
 
@@ -42,8 +42,7 @@ export default function Job() {
       ],
       chosen: "C3PO"
     }
-
-  // const [ job, setJob ] = useState()
+    
   const [ otherJobs, setOtherJobs ] = useState()
   useEffect(() => {
     document.title = job.title+" | "+job.company.name
@@ -119,6 +118,8 @@ export default function Job() {
     ].slice(0,3))
   }, [])
   
+  const [ isOpen, setIsOpen ] = useState(false)
+  
   return (
     <>
       <Navbar />
@@ -131,15 +132,15 @@ export default function Job() {
               </Flex>
               <Box>
                 <Text fontSize="xl" fontWeight="semibold">{job.title}</Text>
-                <Link href={"/profile/"+job.company.id}>
-                  <Text color="gray.600">{job.company.name}</Text>
-                </Link>
+                <Flex>
+                  <Link href={"/profile/"+job.company.id}>
+                    <Text color="gray.600">{job.company.name}</Text>
+                  </Link>
+                </Flex>
               </Box>
             </HStack>
             <Spacer></Spacer>
-            <Button pl="10" pr="10" borderRadius="50" bgColor="#FF8450">
-              <Text fontSize="sm" fontWeight="bold">Apply</Text>
-            </Button> 
+            <ApplyButton isOpen={isOpen} setIsOpen={setIsOpen} />
           </Flex>
           <Flex>
             <SimpleGrid columns="2" spacing="4">
