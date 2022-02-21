@@ -10,6 +10,7 @@ export default function Job() {
   const { id } = useParams()
   
   // TODO: Fetch job data from api
+  // FIXME: Did we apply for the job?
   const job = {
     id: 1,
       title: "Backend Engineer",

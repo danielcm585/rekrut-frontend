@@ -15,9 +15,11 @@ export default function JobCard({ job }) {
           </Flex>
           <Box>
             <Text fontSize="xl" fontWeight="semibold">{job.title}</Text>
-            <Link href={"/profile/"+job.company.id}>
-              <Text color="gray.600">{job.company.name}</Text>
-            </Link>
+            <Flex>
+              <Link href={"/profile/"+job.company.id}>
+                <Text color="gray.600">{job.company.name}</Text>
+              </Link>
+            </Flex>
           </Box>
           {/*FIXME: use grid maybe? */}
           <Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer>
