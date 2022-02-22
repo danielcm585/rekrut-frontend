@@ -47,18 +47,44 @@ export default function RegisterPage1({ role, setPage, name, setName, phone, set
               </FormControl>
               {
                 (error != null) && (
-                  <Alert mt="5" status="error">
+                  <Alert mt="5" status="error" borderRadius="lg">
                     <AlertIcon />
                     {error}
                   </Alert>
                 )
               }
               <SimpleGrid columns="2" spacing="2">
-                <Button mt="8" borderRadius="50" onClick={() => setPage(prevPage => prevPage-1)}>
+                <Button mt="8" borderRadius="50" onClick={() => setPage(prev => prev-1)}>
                   <Text fontSize="sm" fontWeight="bold">Kembali</Text>
                 </Button>
                 <Button mt="8" bgColor="#FF8450" borderRadius="50"
-                  onClick={() => setPage(prevPage => prevPage+1)}>
+                  onClick={() => {
+                    if (name == null || name.length == 0) {
+                      setError("Nama tidak boleh kosong")
+                      return
+                    }
+                    if (phone == null || phone.length == 0) {
+                      setError("Nomor telepon tidak boleh kosong")
+                      return
+                    }
+                    if (phone.length < 10) {
+                      setError("Nomor telepon tidak valid")
+                      return
+                    }
+                    if (phone[0] != '+' || phone[0] == '0') {
+                      setError("Nomor telepon harus ditulis dalam format internasional, contoh: +628123456789")
+                      return
+                    }
+                    if (bank == null || bank.length == 0)  {
+                      setError("Nomor rekening tidak boleh kosong")
+                      return
+                    }
+                    if (bank.length < 6) { // FIXME: The valid rule
+                      setError("Nomor rekening tidak valid")
+                      return
+                    }
+                    setPage(prev => prev+1)
+                  }}>
                   <Text fontSize="sm" fontWeight="bold">Selanjutnya</Text>
                 </Button>
               </SimpleGrid>

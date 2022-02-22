@@ -48,18 +48,24 @@ export default function RegisterPage1({ role, setPage, category, setCategory, bi
               {/* TODO: Submit CV */}
               {
                 (error != null) && (
-                  <Alert mt="5" status="error">
+                  <Alert mt="5" status="warning" borderRadius="lg">
                     <AlertIcon />
                     {error}
                   </Alert>
                 )
               }
               <SimpleGrid columns="2" spacing="2">
-                <Button mt="8" borderRadius="50" onClick={() => setPage(prevPage => prevPage-1)}>
+                <Button mt="8" borderRadius="50" onClick={() => setPage(prev => prev-1)}>
                   <Text fontSize="sm" fontWeight="bold">Kembali</Text>
                 </Button>
                 <Button mt="8" bgColor="#FF8450" borderRadius="50"
-                  onClick={() => setPage(prevPage => prevPage+1)}>
+                  onClick={() => {
+                    if (bio == null || bio.length == 0) {
+                      setError("Bio anda masih kosong")
+                      return
+                    }
+                    setPage(prev => prev+1)
+                  }}>
                   <Text fontSize="sm" fontWeight="bold">Selanjutnya</Text>
                 </Button>
               </SimpleGrid>

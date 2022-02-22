@@ -43,7 +43,7 @@ export default function RegisterPage1({ role, setPage, email, setEmail, password
           </FormControl>
           {
             (error != null) && (
-              <Alert mt="5" status="error">
+              <Alert mt="5" status="error" borderRadius="lg">
                 <AlertIcon />
                 {error}
               </Alert>
@@ -51,11 +51,19 @@ export default function RegisterPage1({ role, setPage, email, setEmail, password
           }
           <Button mt="8" borderRadius="50" borderColor="black" bgColor="#FF8450"
             onClick={() => {
-              if (password == confPassword) {
-                setPage(prevPage => prevPage+1)
+              if (email == null || email.length < 3) {
+                setError("Email tidak valid")
                 return
               }
-              setError("Password not matching")
+              if (password == null || password.length < 6) {
+                setError("Password minimal terdiri dari 6 karakter")
+                return
+              }
+              if (password != confPassword) {
+                setError("Password tidak cocok")
+                return
+              }
+              setPage(prev => prev+1)
             }}>
               <Text fontSize="sm" fontWeight="bold">Buat Akun</Text>
             </Button>
