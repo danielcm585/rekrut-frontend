@@ -33,7 +33,7 @@ export default function Profile() {
         category: "Web Developer",
         fee: 5000000,
         location: "Jakarta",
-        type: "Full Time",
+        type: "Full-time",
         company: {
           id: 1,
           name: "BukaPedia",
@@ -66,8 +66,8 @@ export default function Profile() {
         category: "Web Developer",
         desc: "Do frontend work in developing our app.",
         fee: 6000000,
-        location: "Jakarta",
-        type: "Full Time",
+        location: "Semarang",
+        type: "Contract",
         company: {
           id: 1,
           name: "BukaPedia",
@@ -97,8 +97,8 @@ export default function Profile() {
         category: "Web Developer",
         desc: "Develop a great website for our company",
         fee: 4000000,
-        location: "Jakarta",
-        type: "Full Time",
+        location: "Surabaya",
+        type: "Full-project",
         company: {
           id: 2,
           name: "TokoLapak",
@@ -127,33 +127,38 @@ export default function Profile() {
   }, [])
   
   const [ keyword, setKeyword ] = useState("")
+  const [ location, setLocation ] = useState("Semua lokasi")
+  const [ type, setType ] = useState("Semua tipe pekerjaan")
+  const [ salary, setSalary ] = useState("Semua range upah")
+  const filterJobs = (job) => {
+    return ((job.location == location || location == "Semua lokasi") &&
+            (job.type == type || type == "Semua tipe pekerjaan") &&
+            (job.salary == salary || salary == "Semua range upah") && 
+            job.title.toLowerCase().includes(keyword.toLowerCase()))
+  }
+
   const [ filteredAccepted, setFilteredAccepted] = useState()
   const [ filteredPending, setFilteredPending] = useState()
   const [ filteredRejected, setFilteredRejected] = useState()
   useEffect(() => {
-    if (accepted != null) {
-      setFilteredAccepted(accepted
-        .filter(job => job.title.toLowerCase().includes(keyword.toLowerCase())))
-    }
-    if (pending != null) {
-      setFilteredPending(pending
-        .filter(job => job.title.toLowerCase().includes(keyword.toLowerCase())))
-    }
-    if (rejected != null) {
-      setFilteredRejected(rejected
-        .filter(job => job.title.toLowerCase().includes(keyword.toLowerCase())))
-    }
-  }, [ keyword, accepted, pending, rejected ])
+    console.log(location)
+    if (pending != null) setFilteredPending(pending.filter(filterJobs))
+    if (accepted != null) setFilteredAccepted(accepted.filter(filterJobs))
+    if (rejected != null) setFilteredRejected(rejected.filter(filterJobs))
+  }, [ keyword, location, type, salary, accepted, pending, rejected ])
   
   return (
     <>
       <Navbar />
-      <Flex justifyContent="center">
-        <Flex w="85%" mt="100" direction="column">
-          <ProfileCard user={user} />
-          <Flex mt="9">
-            <SearchBar keyword={keyword} setKeyword={setKeyword} />
+      <Flex>
+        <Flex mt="66" justifyContent="center" bg="#2A2A30">
+          <Flex w="85%" pt="10" pb="10">
+            <ProfileCard user={user} />
           </Flex>
+        </Flex>
+      </Flex>
+      <Flex justifyContent="center">
+        <Flex w="85%" direction="column">
           <Tabs mt="5" isFitted>
             <TabList>
               <Tab>Lamaran dikirim</Tab>
@@ -165,7 +170,13 @@ export default function Profile() {
                 {
                   (filteredPending != null) && (
                     <>
-                      <Text mt="3" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredPending.length+" lamaran dikirim"}</Text>
+                      <Flex mt="3">
+                        <SearchBar keyword={keyword} setKeyword={setKeyword}
+                          location={location} setLocation={setLocation}
+                          type={type} setType={setType}
+                          salary={salary} setSalary={setSalary} />
+                      </Flex>
+                      <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredPending.length+" lamaran dikirim"}</Text>
                       <JobList jobs={filteredPending} />
                     </>
                   )
@@ -175,7 +186,13 @@ export default function Profile() {
                 {
                   (filteredAccepted != null) && (
                     <>
-                      <Text mt="3" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredAccepted.length+" lamaran diterima"}</Text>
+                      <Flex mt="3">
+                        <SearchBar keyword={keyword} setKeyword={setKeyword}
+                          location={location} setLocation={setLocation}
+                          type={type} setType={setType}
+                          salary={salary} setSalary={setSalary} />
+                      </Flex>
+                      <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredAccepted.length+" lamaran diterima"}</Text>
                       <JobList jobs={filteredAccepted} />
                     </>
                   )
@@ -185,7 +202,13 @@ export default function Profile() {
                 {
                   (filteredRejected != null) && (
                     <>
-                      <Text mt="3" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredRejected.length+" lamaran ditolak"}</Text>
+                      <Flex mt="3">
+                        <SearchBar keyword={keyword} setKeyword={setKeyword}
+                          location={location} setLocation={setLocation}
+                          type={type} setType={setType}
+                          salary={salary} setSalary={setSalary} />
+                      </Flex>
+                      <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredRejected.length+" lamaran ditolak"}</Text>
                       <JobList jobs={filteredRejected} />
                     </>
                   )

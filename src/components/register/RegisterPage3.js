@@ -7,6 +7,7 @@ import { FormControl, FormLabel } from "@chakra-ui/react"
 export default function RegisterPage1({ role, setPage, category, setCategory, bio, setBio }) {
   const handleBioChanges = (e) => setBio(e.target.value)
   const handleCategoryChanges = (e) => setCategory(e.target.value)
+  
   useEffect(() => {
     setCategory("Web Developer")
   }, [])
@@ -30,8 +31,9 @@ export default function RegisterPage1({ role, setPage, category, setCategory, bi
                 <FormLabel>
                   <Text fontSize="1xl" fontWeight="bold">Kategori Pekerjaan</Text>
                 </FormLabel>
-                <Select placeholder="Web Developer" variant="outline" borderColor="black"
+                <Select variant="outline" borderColor="black"
                   value={category} onChange={handleCategoryChanges}>
+                  <option value="Web Developer">Web Developer</option>
                   <option value="Software Engineer">Software Engineer</option>
                   <option value="UI/UX Designer">UI/UX Designer</option>
                   <option value="Graphic Designer">Graphic Designer</option>

@@ -32,10 +32,10 @@ export default function Navbar({ login, register }) {
                 <>
                   <Menu>
                     <MenuButton as={Button} variant="ghost" borderRadius="50" rightIcon={<IoChevronDown />}>
-                    <HStack>
-                      <Image src={user.photo} h="7" borderRadius="full" />
-                      <Text fontSize="1xl" fontWeight="semibold">{user.name}</Text>
-                    </HStack>
+                      <HStack>
+                        <Image src={user.photo} h="7" borderRadius="full" />
+                        <Text fontSize="1xl" fontWeight="semibold">{user.name}</Text>
+                      </HStack>
                     </MenuButton>
                     <MenuList>
                       <MenuItem icon={<BiUser />} onClick={() => window.location.href="/profile/me"}>My Profile</MenuItem>

@@ -8,39 +8,36 @@ import { Image, Box, Text, HStack, Spacer, Link, Icon, Button, Flex } from "@cha
 export default function ProfileCard({ user }) {
   return (
     <>
-    <Box>
-      <Flex>
-        <Image mr="5" h="145px" src={user.photo} borderRadius="lg" />
-        <Box>
-          <Text fontSize="2xl" fontWeight="semibold">{user.name}</Text>
-          <Text fontSize="lg" color="gray.600">{user.category}</Text> 
-          <Link href={"mailto:"+user.email} isExternal>
-            <HStack>
-              <Icon as={IoMdMail} color="gray.600" />
-              <Text color="gray.600">{user.email}</Text>
-              {/* <Icon as={BiLinkExternal} color="gray.600" /> */}
-            </HStack>
-          </Link>
-          <Link href={"https://wa.me/"+user.phone} isExternal>
-            <HStack>
-              <Icon as={MdPhone} color="gray.600" />
-              <Text color="gray.600">{"+"+user.phone}</Text>
-              {/* <Icon as={BiLinkExternal} color="gray.600" /> */}
-            </HStack>
-          </Link>
-          <Link href={user.cv}>
-            <HStack>
-              <Icon as={IoMdDocument} color="gray.600" />
-              <Text color="gray.600">{user.name+"'s CV"}</Text>
-              {/* <Icon as={BiLinkExternal} color="gray.600" /> */}
-            </HStack>
-          </Link>
-        </Box>
-        <Spacer></Spacer>
-        <Button variant="ghost">Edit Profil</Button> {/*FIXME: Add onClick func*/}
-      </Flex>
-      <Text mt="5">{user.bio}</Text>
-    </Box>
+      <Box bg="#2A2A30">
+        <Flex>
+          <Image mr="5" h="145px" src={user.photo} borderRadius="lg" />
+          <Box>
+            <Text fontSize="2xl" fontWeight="semibold" color="white">{user.name}</Text>
+            <Text fontSize="lg" color="white">{user.category}</Text> 
+            <Link href={"mailto:"+user.email} isExternal>
+              <HStack>
+                <Icon as={IoMdMail} color="#FF8450" />
+                <Text color="white">{user.email}</Text>
+              </HStack>
+            </Link>
+            <Link href={"https://wa.me/"+user.phone} isExternal>
+              <HStack>
+                <Icon as={MdPhone} color="#FF8450" />
+                <Text color="white">{"+"+user.phone}</Text>
+              </HStack>
+            </Link>
+            <Link href={user.cv}>
+              <HStack>
+                <Icon as={IoMdDocument} color="#FF8450" />
+                <Text color="white">{user.name+"'s CV"}</Text>
+              </HStack>
+            </Link>
+          </Box>
+          <Spacer></Spacer>
+          <Button variant="ghost" color="white">Edit Profil</Button> {/*FIXME: Add onClick func*/}
+        </Flex>
+        <Text mt="5" color="white">{user.bio}</Text>
+      </Box>
     </>
   )
 }

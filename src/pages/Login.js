@@ -40,7 +40,17 @@ export default function Login() {
           </FormControl>
           <Button mt="8" borderRadius="50" borderColor="black" bgColor="#FF8450"
             onClick={() => {
-              // TODO: Send request to api & get credentials
+              fetch("https://localhost:3001/user/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  email: email,
+                  password: password
+                })
+              }).then(resp => resp.json())
+                .then(json => {
+                  console.log(json.statusCode)
+                })
               window.location.href="/dashboard"
             }}>
               <Text fontSize="sm" fontWeight="bold">Login</Text>

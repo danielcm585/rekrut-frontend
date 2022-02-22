@@ -27,8 +27,8 @@ export default function Dashboard() {
         desc: "Do backend work in developing our app.",
         category: "Web Developer",
         fee: 5000000,
-        type: "Full Time",
-        location: "Jakarta",
+        type: "Full-time",
+        location: "Semarang",
         company: {
           id: 1,
           name: "BukaPedia",
@@ -55,8 +55,8 @@ export default function Dashboard() {
         category: "Web Developer",
         desc: "Do frontend work in developing our app.",
         fee: 6000000,
-        type: "Full Time",
-        location: "Jakarta",
+        type: "Full-time",
+        location: "Surabaya",
         company: {
           id: 1,
           name: "BukaPedia",
@@ -79,7 +79,7 @@ export default function Dashboard() {
         category: "Web Developer",
         desc: "Develop a great website for our company",
         fee: 4000000,
-        type: "Full Time",
+        type: "Full-time",
         location: "Jakarta",
         company: {
           id: 2,
@@ -96,7 +96,7 @@ export default function Dashboard() {
         desc: "Do backend work in developing our app.",
         category: "Web Developer",
         fee: 5000000,
-        type: "Full Time",
+        type: "Full-time",
         location: "Jakarta",
         company: {
           id: 1,
@@ -124,8 +124,8 @@ export default function Dashboard() {
         category: "Web Developer",
         desc: "Do frontend work in developing our app.",
         fee: 6000000,
-        type: "Full Time",
-        location: "Jakarta",
+        type: "Full-time",
+        location: "Surabaya",
         company: {
           id: 1,
           name: "BukaPedia",
@@ -148,8 +148,8 @@ export default function Dashboard() {
         category: "Web Developer",
         desc: "Develop a great website for our company",
         fee: 4000000,
-        type: "Full Time",
-        location: "Jakarta",
+        type: "Full-time",
+        location: "Semarang",
         company: {
           id: 2,
           name: "TokoLapak",
@@ -164,21 +164,26 @@ export default function Dashboard() {
   }, [])
 
   const [ keyword, setKeyword ] = useState("")
+  const [ location, setLocation ] = useState("Semua lokasi")
+  const [ type, setType ] = useState("Semua tipe pekerjaan")
+  const [ salary, setSalary ] = useState("Semua range upah")
+  const filterJobs = (job) => {
+    return ((job.location == location || location == "Semua lokasi") &&
+            (job.type == type || type == "Semua tipe pekerjaan") &&
+            (job.salary == salary || salary == "Semua range upah") && 
+            (job.category == user.category || user.category == null) && 
+            job.title.toLowerCase().includes(keyword.toLowerCase()))
+  }
+
   const [ filteredRecentJobs, setFilteredRecentJobs ] = useState()
   const [ filteredBestOffer, setFilteredBestOffer ] = useState()
   useEffect(() => {
-    if (recentJobs != null) {
-      setFilteredRecentJobs(recentJobs
-        .filter(job => job.category == user.category)
-        .filter(job => job.title.toLowerCase().includes(keyword.toLowerCase())))
-    }
+    if (recentJobs != null) setFilteredRecentJobs(recentJobs.filter(filterJobs))
     if (bestOffer != null) {
-      setFilteredBestOffer(bestOffer
-        .filter(job => job.category == user.category)
-        .filter(job => job.title.toLowerCase().includes(keyword.toLowerCase()))
+      setFilteredBestOffer(bestOffer.filter(filterJobs)
         .sort((jobA, jobB) => jobB.fee-jobA.fee)) // FIXME: To be confirmed
     }
-  }, [ keyword, recentJobs, bestOffer ])
+  }, [ keyword, location, type, salary, recentJobs, bestOffer ])
 
   return (
     <>
@@ -186,7 +191,10 @@ export default function Dashboard() {
       <Flex justifyContent="center">
         <Flex mt="100" w="85%" direction="column">
           <Text mb="6" fontSize="2xl" fontWeight="semibold">Job Portal</Text>
-          <SearchBar keyword={keyword} setKeyword={setKeyword} />
+          <SearchBar keyword={keyword} setKeyword={setKeyword}
+            location={location} setLocation={setLocation}
+            type={type} setType={setType}
+            salary={salary} setSalary={setSalary} />
         </Flex>
       </Flex>
       {
