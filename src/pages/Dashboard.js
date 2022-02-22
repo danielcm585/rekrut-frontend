@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 
-import { JobCard, Navbar, SearchBar, JobList } from "../components"
+import { JobCard, Navbar, SearchBar, JobList, Footer } from "../components"
 
 import { Flex, Text, Box, Grid, Link, Button, Spacer } from "@chakra-ui/react"
 
@@ -55,7 +55,7 @@ export default function Dashboard() {
         category: "Web Developer",
         desc: "Do frontend work in developing our app.",
         fee: 6000000,
-        type: "Full-time",
+        type: "Full-project",
         location: "Surabaya",
         company: {
           id: 1,
@@ -124,7 +124,7 @@ export default function Dashboard() {
         category: "Web Developer",
         desc: "Do frontend work in developing our app.",
         fee: 6000000,
-        type: "Full-time",
+        type: "Part-time",
         location: "Surabaya",
         company: {
           id: 1,
@@ -148,7 +148,7 @@ export default function Dashboard() {
         category: "Web Developer",
         desc: "Develop a great website for our company",
         fee: 4000000,
-        type: "Full-time",
+        type: "Contract",
         location: "Semarang",
         company: {
           id: 2,
@@ -229,6 +229,7 @@ export default function Dashboard() {
           </>
         )
       }
+      <Footer />
     </>
   )
 }

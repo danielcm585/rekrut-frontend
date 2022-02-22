@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import { Navbar } from "../components"
+import { Navbar, Footer } from "../components"
 
 import { Box, Button, Flex, Spacer, Text, VStack } from "@chakra-ui/react"
 
@@ -22,6 +22,7 @@ export default function Landing() {
           </VStack>
         </Box>
       </Flex>
+      <Footer />  
     </>
   )
 }

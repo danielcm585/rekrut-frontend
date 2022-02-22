@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 
-import { Navbar, ProfileCard, SearchBar, JobList } from "../components"
+import { Navbar, ProfileCard, SearchBar, JobList, Footer } from "../components"
 
 import { Flex, Text } from "@chakra-ui/react"
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react"
@@ -218,6 +218,7 @@ export default function Profile() {
           </Tabs>
         </Flex>
       </Flex>
+      <Footer />
     </>
   )
 }
