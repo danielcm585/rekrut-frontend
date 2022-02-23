@@ -204,9 +204,9 @@ export default function Dashboard() {
             <Flex justifyContent="center">
               <Box mt="8" w="85%">
                 <Flex>
-                  <Text fontSize="xl" fontWeight="semibold">Best Offer</Text>
+                  <Text fontSize="xl" fontWeight="semibold">Penawaran terbaik</Text>
                   <Spacer></Spacer>
-                  <Button variant="ghost" borderRadius="50" onClick={() => window.location.href="/jobs/best-offer"}>See all</Button>
+                  <Button variant="ghost" borderRadius="50" onClick={() => window.location.href="/jobs/best-offer"}>Lihat semua</Button>
                 </Flex>
                 <JobList jobs={filteredBestOffer} />
               </Box>
@@ -220,9 +220,9 @@ export default function Dashboard() {
             <Flex justifyContent="center">
               <Box mt="8" w="85%">
                 <Flex>
-                  <Text fontSize="xl" fontWeight="semibold">Recently Added</Text>
+                  <Text fontSize="xl" fontWeight="semibold">Baru ditambahkan</Text>
                   <Spacer></Spacer>
-                  <Button variant="ghost" borderRadius="50" onClick={() => window.location.href="/jobs/best-offer"}>See all</Button>
+                  <Button variant="ghost" borderRadius="50" onClick={() => window.location.href="/jobs/best-offer"}>Lihat semua</Button>
                 </Flex>
                 <JobList jobs={filteredRecentJobs} />
               </Box>

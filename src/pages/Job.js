@@ -139,6 +139,10 @@ export default function Job() {
   
   const [ isConfirmOpen, setIsConfirmOpen ] = useState(false)
   const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const parseAmount = (amount) => {
+    return amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+  }
   
   return (
     <>
@@ -210,7 +214,7 @@ export default function Job() {
                 <Icon as={MdAttachMoney} color="gray.600" />
                 <Text color="gray.600">Salary</Text>
               </HStack>
-              <Text fontWeight="semibold">{"IDR "+job.salary}</Text>
+              <Text fontWeight="semibold">{"IDR "+parseAmount(job.salary)+",00"}</Text>
             </SimpleGrid>
           </Flex>
           {

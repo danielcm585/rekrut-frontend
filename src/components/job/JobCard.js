@@ -1,9 +1,14 @@
 import React from "react"
 import { MdWork, MdLocationOn, MdAttachMoney } from "react-icons/md"
+import { FaMoneyBillWave } from "react-icons/fa"
 
 import { Box, HStack, Image, Link, Spacer, Text, Flex, Icon } from "@chakra-ui/react"
 
 export default function JobCard({ job }) {
+  const parseAmount = (amount) => {
+    return amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+  }
+
   return (
     <>
       <Box p="3" pr="6" mt="2" mb="2" shadow="md" borderRadius="md"
@@ -39,7 +44,7 @@ export default function JobCard({ job }) {
             <Flex justifyContent="center">
               <HStack>
                 <Icon as={MdWork} color="gray.600" />
-                <Text color="gray.600">Job Type</Text>
+                <Text color="gray.600">Tipe pekerjaan</Text>
               </HStack>
             </Flex>
             <Flex justifyContent="center">
@@ -50,12 +55,12 @@ export default function JobCard({ job }) {
           <Flex direction="column">
             <Flex justifyContent="center">
               <HStack>
-                <Icon as={MdAttachMoney} color="gray.600" />
-                <Text color="gray.600">Salary</Text>
+                <Icon as={FaMoneyBillWave} color="gray.600" />
+                <Text color="gray.600">Upah</Text>
               </HStack>
             </Flex>
             <Flex justifyContent="center">
-              <Text fontWeight="semibold">{"IDR "+job.salary}</Text>
+              <Text fontWeight="semibold">{"IDR "+parseAmount(job.salary)+",00"}</Text>
             </Flex>
           </Flex>
         </HStack>

@@ -70,7 +70,7 @@ export default function Profile() {
                 <Flex>
                   <Text fontSize="xl" fontWeight="semibold">Reviews</Text>
                   <Spacer></Spacer>
-                  <Button variant="ghost" borderRadius="50" onClick={() => window.location.href=""}>See all</Button> {/*TODO: Add see all */}
+                  <Button variant="ghost" borderRadius="50" onClick={() => window.location.href=""}>Lihat semua</Button> {/*TODO: Add Lihat semua */}
                 </Flex>
                 <ReviewList reviews={user.reviews} />
               </Box>

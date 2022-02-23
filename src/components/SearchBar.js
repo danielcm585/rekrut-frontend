@@ -10,6 +10,10 @@ export default function SearchBar({ keyword, setKeyword, location, setLocation, 
   const handleTypeChanges = (e) => setType(e.target.value)
   const handleSalaryChanges = (e) => setSalary(e.target.value)
 
+  const parseAmount = (amount) => {
+    return amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+  }
+
   return (
     <>
       <Box w="100%">
@@ -70,7 +74,7 @@ export default function SearchBar({ keyword, setKeyword, location, setLocation, 
             (salary != "Semua range upah") && (
               <>
                 <Box mt="4" p="1" pl="4" pr="4" bg="#FF8450" borderRadius="50">
-                  ≥ IDR {salary}
+                  ≥ IDR {parseAmount(salary)},00
                 </Box>
               </>
             )
