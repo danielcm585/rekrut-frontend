@@ -3,46 +3,62 @@ import { useParams } from "react-router-dom"
 import { MdAttachMoney, MdLocationOn, MdWork } from "react-icons/md"
 
 import { Navbar, Footer } from "../components"
-import { JobList, ApplyButton } from "../components/job"
+import { JobList, ConfirmButton } from "../components/job"
 
-import { Box, Flex, HStack, Image, Link, Spacer, Text, Icon, SimpleGrid } from "@chakra-ui/react"
+import { Box, Button, Flex, HStack, Image, Link, Spacer, Text, Icon, SimpleGrid } from "@chakra-ui/react"
 
 export default function Job() {
   const { id } = useParams()
+
+  // TODO: Get user from localStorage
+  // const user = null
+  const user = {
+    id: 3,
+    photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+    name: "Luke Skywalker",
+    email: "luke.skywalker@gmail.com",
+    role: "worker",
+    category: "Web Developer"
+  }
+
   
   // TODO: Fetch job data from api
   // FIXME: Did we apply for the job?
   const job = {
     id: 1,
-      title: "Backend Engineer",
-      detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-      requirement: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-      benefit: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-      category: "Web Developer",
-      fee: 5000000,
-      location: "Jakarta",
-      type: "Full Time",
-      company: {
-        id: 1,
-        name: "BukaPedia",
-        photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+    title: "Backend Engineer",
+    detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    requirement: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    benefit: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    category: "Web Developer",
+    fee: 5000000,
+    location: "Jakarta",
+    type: "Full Time",
+    // status: "hiring",
+    // status: "hired",
+    // status: "in review",
+    status: "done",
+    company: {
+      id: 1,
+      name: "BukaPedia",
+      photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+    },
+    registrants: [
+      {
+        photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+        name: "Obiwan Kenobi",
       },
-      registrants: [
-        {
-          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-          name: "Obiwan Kenobi",
-        },
-        {
-          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-          name: "Anakin Skywalker",
-        },
-        {
-          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-          name: "C3PO",
-        }
-      ],
-      chosen: "C3PO"
-    }
+      {
+        photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+        name: "Anakin Skywalker",
+      },
+      {
+        photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+        name: "C3PO",
+      }
+    ],
+    chosen: "C3PO"
+  }
     
   const [ otherJobs, setOtherJobs ] = useState()
   useEffect(() => {
@@ -141,7 +157,37 @@ export default function Job() {
               </Box>
             </HStack>
             <Spacer></Spacer>
-            <ApplyButton isOpen={isOpen} setIsOpen={setIsOpen} />
+            {
+              (job.status == "hiring") && <ConfirmButton isOpen={isOpen} setIsOpen={setIsOpen} action="Apply" />
+            }
+            {
+              (job.status == "hired") && <ConfirmButton isOpen={isOpen} setIsOpen={setIsOpen} action="Done" />
+            }
+            {
+              (job.status == "in review") && (
+                <>
+                  {
+                    (user.role == "client") ? (
+                      <ConfirmButton isOpen={isOpen} setIsOpen={setIsOpen} action="Approve" />
+                      ) : (
+                      <Button pl="10" pr="10" borderRadius="50" bgColor="#FF8450" isDisabled>
+                        <Text fontSize="sm" fontWeight="bold">Done</Text>
+                      </Button> 
+                    )
+                  }
+                </>
+              )
+            }
+            {
+              (job.status == "done") && (
+                <Button pl="10" pr="10" borderRadius="50" bgColor="#FF8450" 
+                  onClick={() => {
+                    // TODO: Add onClick func
+                  }}>
+                  <Text fontSize="sm" fontWeight="bold">Review</Text>
+                </Button> 
+              )
+            }
           </Flex>
           <Flex>
             <SimpleGrid columns="2" spacing="4">
