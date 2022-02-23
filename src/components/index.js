@@ -1,7 +1,4 @@
 export { default as Navbar } from "./Navbar"
 export { default as SearchBar } from "./SearchBar"
-export { default as JobCard } from "./JobCard"
 export { default as ProfileCard } from "./ProfileCard"
-export { default as JobList } from "./JobList"
-export { default as ApplyButton } from "./ApplyButton"
 export { default as Footer } from "./Footer"

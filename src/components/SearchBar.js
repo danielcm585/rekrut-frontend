@@ -40,11 +40,11 @@ export default function SearchBar({ keyword, setKeyword, location, setLocation, 
           <Select variant="outline" borderColor="black" 
             value={salary} onChange={handleSalaryChanges}>
             <option value="Semua range upah">Semua range upah</option>
-            <option value="1000000">≥ IDR 1.000.000,00</option>
-            <option value="2000000">≥ IDR 2.000.000,00</option>
-            <option value="5000000">≥ IDR 5.000.000,00</option>
-            <option value="7000000">≥ IDR 7.000.000,00</option>
-            <option value="10000000">≥ IDR 10.000.000,00</option>
+            <option value={1000000}>≥ IDR 1.000.000,00</option>
+            <option value={2000000}>≥ IDR 2.000.000,00</option>
+            <option value={5000000}>≥ IDR 5.000.000,00</option>
+            <option value={7000000}>≥ IDR 7.000.000,00</option>
+            <option value={10000000}>≥ IDR 10.000.000,00</option>
           </Select>
         </HStack>
         <Flex>

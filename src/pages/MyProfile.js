@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react"
 
-import { Navbar, ProfileCard, SearchBar, JobList, Footer } from "../components"
+import { Navbar, ProfileCard, SearchBar, Footer } from "../components"
+import { JobList } from "../components/job"
 
-import { Flex, Text } from "@chakra-ui/react"
+import { Flex, Text, Button, Spacer } from "@chakra-ui/react"
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react"
 
 export default function Profile() {
@@ -133,7 +134,7 @@ export default function Profile() {
   const filterJobs = (job) => {
     return ((job.location == location || location == "Semua lokasi") &&
             (job.type == type || type == "Semua tipe pekerjaan") &&
-            (job.salary >= parseInt(salary) || salary == "Semua range upah") && 
+            (job.salary >= salary || salary == "Semua range upah") && 
             job.title.toLowerCase().includes(keyword.toLowerCase()))
   }
 
@@ -151,9 +152,10 @@ export default function Profile() {
     <>
       <Navbar />
       <Flex>
-        <Flex mt="66" justifyContent="center" bg="#2A2A30">
-          <Flex w="85%" pt="10" pb="10">
-            <ProfileCard user={user} />
+        {/* <Flex mt="66" justifyContent="center" bg="#2A2A30"> */}
+        <Flex mt="66" justifyContent="center">
+          <Flex w="80%" pt="10" pb="10">
+            <ProfileCard user={user} me={true} />
           </Flex>
         </Flex>
       </Flex>

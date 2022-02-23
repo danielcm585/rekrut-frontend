@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 
-import { JobCard, Navbar, SearchBar, JobList, Footer } from "../components"
+import { Navbar, SearchBar, Footer } from "../components"
+import { JobList, JobCard } from "../components/job"
 
 import { Flex, Text, Box, Grid, Link, Button, Spacer } from "@chakra-ui/react"
 
@@ -170,7 +171,7 @@ export default function Dashboard() {
   const filterJobs = (job) => {
     return ((job.location == location || location == "Semua lokasi") &&
             (job.type == type || type == "Semua tipe pekerjaan") &&
-            (job.salary >= parseInt(salary) || salary == "Semua range upah") && 
+            (job.salary >= salary || salary == "Semua range upah") && 
             (job.category == user.category || user.category == null) && 
             job.title.toLowerCase().includes(keyword.toLowerCase()))
   }

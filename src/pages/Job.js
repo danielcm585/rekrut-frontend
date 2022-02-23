@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { MdAttachMoney, MdLocationOn, MdWork } from "react-icons/md"
 
-import { Navbar, JobList, ApplyButton, Footer } from "../components"
+import { Navbar, Footer } from "../components"
+import { JobList, ApplyButton } from "../components/job"
 
 import { Box, Flex, HStack, Image, Link, Spacer, Text, Icon, SimpleGrid } from "@chakra-ui/react"
 
