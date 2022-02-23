@@ -6,7 +6,7 @@ import { Box, HStack, Image, Link, Spacer, Text, Flex, Icon } from "@chakra-ui/r
 
 export default function JobCard({ job }) {
   const parseAmount = (amount) => {
-    return amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+    return "IDR "+amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")+",00";
   }
 
   return (
@@ -60,7 +60,7 @@ export default function JobCard({ job }) {
               </HStack>
             </Flex>
             <Flex justifyContent="center">
-              <Text fontWeight="semibold">{"IDR "+parseAmount(job.salary)+",00"}</Text>
+              <Text fontWeight="semibold">{parseAmount(job.salary)}</Text>
             </Flex>
           </Flex>
         </HStack>

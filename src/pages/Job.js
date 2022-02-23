@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { MdAttachMoney, MdLocationOn, MdWork } from "react-icons/md"
+import { MdLocationOn, MdWork } from "react-icons/md"
+import { FaMoneyBillWave } from "react-icons/fa"
 
 import { Navbar, Footer } from "../components"
 import { JobList, ConfirmButton } from "../components/job"
@@ -30,8 +31,8 @@ export default function Job() {
     id: 1,
     title: "Backend Engineer",
     detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    requirement: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    benefit: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    responsibilities: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    qualifications: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     category: "Web Developer",
     salary: 5000000,
     location: "Jakarta",
@@ -134,14 +135,15 @@ export default function Job() {
         },
         registrants: []
       }
-    ].slice(0,3))
+    ])
+    setOtherJobs(jobs => jobs.slice(0,3))
   }, [])
   
   const [ isConfirmOpen, setIsConfirmOpen ] = useState(false)
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const parseAmount = (amount) => {
-    return amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".");
+    return "IDR "+amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")+",00";
   }
   
   return (
@@ -211,10 +213,10 @@ export default function Job() {
               </HStack>
               <Text fontWeight="semibold">{job.type}</Text>
               <HStack>
-                <Icon as={MdAttachMoney} color="gray.600" />
+                <Icon as={FaMoneyBillWave} color="gray.600" />
                 <Text color="gray.600">Salary</Text>
               </HStack>
-              <Text fontWeight="semibold">{"IDR "+parseAmount(job.salary)+",00"}</Text>
+              <Text fontWeight="semibold">{parseAmount(job.salary)}</Text>
             </SimpleGrid>
           </Flex>
           {
@@ -226,18 +228,18 @@ export default function Job() {
             )
           }
           {
-            (job.requirement != null) && (
+            (job.responsibilities != null) && (
               <>
-                <Text mt="8" fontWeight="bold">Requirement</Text>
-                <Text mt="2">{job.requirement}</Text>
+                <Text mt="8" fontWeight="bold">Responsibilities</Text>
+                <Text mt="2">{job.responsibilities}</Text>
               </>
             )
           }
           {
-            (job.benefit != null) && (
+            (job.qualifications != null) && (
               <>
-                <Text mt="8" fontWeight="bold">Benefit</Text>
-                <Text mt="2">{job.benefit}</Text>
+                <Text mt="8" fontWeight="bold">Qualifications</Text>
+                <Text mt="2">{job.qualifications}</Text>
               </>
             )
           }

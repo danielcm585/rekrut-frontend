@@ -8,15 +8,15 @@ import { Menu, MenuButton, MenuList, MenuItem, MenuDivider } from "@chakra-ui/re
 
 export default function Navbar({ login, register }) {
   // TODO: Get user from localStorage
-  // const user = null
-  const user = {
-    id: 3,
-    photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-    name: "Luke Skywalker",
-    email: "luke.skywalker@gmail.com",
-    role: "worker",
-    category: "Web Developer"
-  }
+  const user = null
+  // const user = {
+  //   id: 3,
+  //   photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+  //   name: "Luke Skywalker",
+  //   email: "luke.skywalker@gmail.com",
+  //   role: "worker",
+  //   category: "Web Developer"
+  // }
 
   return (
     <>

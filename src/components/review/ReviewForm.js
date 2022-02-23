@@ -22,7 +22,7 @@ export default function ReviewForm({ isOpen, onClose }) {
           <ModalCloseButton />
           <ModalBody>
             <StarButton rate={rate} setRate={setRate} />
-            <Textarea mt="2" variant="outline" borderColor="black" placeholder="Review saya" 
+            <Textarea mt="3" variant="outline" borderColor="black" placeholder="Review saya" 
               value={body} onChange={handleBodyChange} />
             {
               (error != null) && (
