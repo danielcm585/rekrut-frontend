@@ -1,7 +1,7 @@
 import React from "react"
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa"
 
-import { Box, Divider, Flex, IconButton, Text } from "@chakra-ui/react"
+import { Box, Flex, IconButton, Text } from "@chakra-ui/react"
 
 export default function Footer() {
   return (

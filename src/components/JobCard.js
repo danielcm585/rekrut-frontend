@@ -55,7 +55,7 @@ export default function JobCard({ job }) {
               </HStack>
             </Flex>
             <Flex justifyContent="center">
-              <Text fontWeight="semibold">{"IDR "+job.fee}</Text>
+              <Text fontWeight="semibold">{"IDR "+job.salary}</Text>
             </Flex>
           </Flex>
         </HStack>

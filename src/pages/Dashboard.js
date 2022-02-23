@@ -26,7 +26,7 @@ export default function Dashboard() {
         title: "Backend Engineer",
         desc: "Do backend work in developing our app.",
         category: "Web Developer",
-        fee: 5000000,
+        salary: 5000000,
         type: "Full-time",
         location: "Semarang",
         company: {
@@ -54,7 +54,7 @@ export default function Dashboard() {
         title: "Frontend Engineer",
         category: "Web Developer",
         desc: "Do frontend work in developing our app.",
-        fee: 6000000,
+        salary: 6000000,
         type: "Full-project",
         location: "Surabaya",
         company: {
@@ -78,7 +78,7 @@ export default function Dashboard() {
         title: "Web Developer",
         category: "Web Developer",
         desc: "Develop a great website for our company",
-        fee: 4000000,
+        salary: 4000000,
         type: "Full-time",
         location: "Jakarta",
         company: {
@@ -95,7 +95,7 @@ export default function Dashboard() {
         title: "Backend Engineer",
         desc: "Do backend work in developing our app.",
         category: "Web Developer",
-        fee: 5000000,
+        salary: 5000000,
         type: "Full-time",
         location: "Jakarta",
         company: {
@@ -123,7 +123,7 @@ export default function Dashboard() {
         title: "Frontend Engineer",
         category: "Web Developer",
         desc: "Do frontend work in developing our app.",
-        fee: 6000000,
+        salary: 6000000,
         type: "Part-time",
         location: "Surabaya",
         company: {
@@ -147,7 +147,7 @@ export default function Dashboard() {
         title: "Web Developer",
         category: "Web Developer",
         desc: "Develop a great website for our company",
-        fee: 4000000,
+        salary: 4000000,
         type: "Contract",
         location: "Semarang",
         company: {
@@ -170,7 +170,7 @@ export default function Dashboard() {
   const filterJobs = (job) => {
     return ((job.location == location || location == "Semua lokasi") &&
             (job.type == type || type == "Semua tipe pekerjaan") &&
-            (job.salary == salary || salary == "Semua range upah") && 
+            (job.salary >= parseInt(salary) || salary == "Semua range upah") && 
             (job.category == user.category || user.category == null) && 
             job.title.toLowerCase().includes(keyword.toLowerCase()))
   }
@@ -181,7 +181,7 @@ export default function Dashboard() {
     if (recentJobs != null) setFilteredRecentJobs(recentJobs.filter(filterJobs))
     if (bestOffer != null) {
       setFilteredBestOffer(bestOffer.filter(filterJobs)
-        .sort((jobA, jobB) => jobB.fee-jobA.fee)) // FIXME: To be confirmed
+        .sort((jobA, jobB) => jobB.salary-jobA.salary)) // FIXME: To be confirmed
     }
   }, [ keyword, location, type, salary, recentJobs, bestOffer ])
 

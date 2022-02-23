@@ -31,7 +31,7 @@ export default function Profile() {
         title: "Backend Engineer",
         desc: "Do backend work in developing our app.",
         category: "Web Developer",
-        fee: 5000000,
+        salary: 5000000,
         location: "Jakarta",
         type: "Full-time",
         company: {
@@ -65,7 +65,7 @@ export default function Profile() {
         title: "Frontend Engineer",
         category: "Web Developer",
         desc: "Do frontend work in developing our app.",
-        fee: 6000000,
+        salary: 6000000,
         location: "Semarang",
         type: "Contract",
         company: {
@@ -96,7 +96,7 @@ export default function Profile() {
         title: "Web Developer",
         category: "Web Developer",
         desc: "Develop a great website for our company",
-        fee: 4000000,
+        salary: 4000000,
         location: "Surabaya",
         type: "Full-project",
         company: {
