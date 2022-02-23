@@ -70,7 +70,7 @@ export default function SearchBar({ keyword, setKeyword, location, setLocation, 
             (salary != "Semua range upah") && (
               <>
                 <Box mt="4" p="1" pl="4" pr="4" bg="#FF8450" borderRadius="50">
-                  ≥ {salary}
+                  ≥ IDR {salary}
                 </Box>
               </>
             )

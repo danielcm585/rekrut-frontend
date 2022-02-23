@@ -133,7 +133,7 @@ export default function Profile() {
   const filterJobs = (job) => {
     return ((job.location == location || location == "Semua lokasi") &&
             (job.type == type || type == "Semua tipe pekerjaan") &&
-            (job.salary == salary || salary == "Semua range upah") && 
+            (job.salary >= parseInt(salary) || salary == "Semua range upah") && 
             job.title.toLowerCase().includes(keyword.toLowerCase()))
   }
 
