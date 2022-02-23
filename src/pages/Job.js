@@ -33,7 +33,7 @@ export default function Job() {
     requirement: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     benefit: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     category: "Web Developer",
-    fee: 5000000,
+    salary: 5000000,
     location: "Jakarta",
     type: "Full Time",
     // status: "hiring",
@@ -72,7 +72,7 @@ export default function Job() {
         title: "Backend Engineer",
         desc: "Do backend work in developing our app.",
         category: "Web Developer",
-        fee: 5000000,
+        salary: 5000000,
         type: "Full Time",
         location: "Jakarta",
         company: {
@@ -100,7 +100,7 @@ export default function Job() {
         title: "Frontend Engineer",
         category: "Web Developer",
         desc: "Do frontend work in developing our app.",
-        fee: 6000000,
+        salary: 6000000,
         type: "Full Time",
         location: "Jakarta",
         company: {
@@ -124,7 +124,7 @@ export default function Job() {
         title: "Web Developer",
         category: "Web Developer",
         desc: "Develop a great website for our company",
-        fee: 4000000,
+        salary: 4000000,
         type: "Full Time",
         location: "Jakarta",
         company: {
@@ -210,7 +210,7 @@ export default function Job() {
                 <Icon as={MdAttachMoney} color="gray.600" />
                 <Text color="gray.600">Salary</Text>
               </HStack>
-              <Text fontWeight="semibold">{"IDR "+job.fee}</Text>
+              <Text fontWeight="semibold">{"IDR "+job.salary}</Text>
             </SimpleGrid>
           </Flex>
           {
