@@ -5,7 +5,9 @@ import { MdAttachMoney, MdLocationOn, MdWork } from "react-icons/md"
 import { Navbar, Footer } from "../components"
 import { JobList, ConfirmButton } from "../components/job"
 
+import { useDisclosure } from "@chakra-ui/react"
 import { Box, Button, Flex, HStack, Image, Link, Spacer, Text, Icon, SimpleGrid } from "@chakra-ui/react"
+import ReviewForm from "../components/review/ReviewForm"
 
 export default function Job() {
   const { id } = useParams()
@@ -135,7 +137,8 @@ export default function Job() {
     ].slice(0,3))
   }, [])
   
-  const [ isOpen, setIsOpen ] = useState(false)
+  const [ isConfirmOpen, setIsConfirmOpen ] = useState(false)
+  const { isOpen, onOpen, onClose } = useDisclosure()
   
   return (
     <>
@@ -158,19 +161,20 @@ export default function Job() {
             </HStack>
             <Spacer></Spacer>
             {
-              (job.status == "hiring") && <ConfirmButton isOpen={isOpen} setIsOpen={setIsOpen} action="Apply" />
+              (job.status == "hiring") && <ConfirmButton isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} action="Apply" />
             }
             {
-              (job.status == "hired") && <ConfirmButton isOpen={isOpen} setIsOpen={setIsOpen} action="Done" />
+              (job.status == "hired") && <ConfirmButton isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} action="Done" />
             }
             {
               (job.status == "in review") && (
                 <>
                   {
                     (user.role == "client") ? (
-                      <ConfirmButton isOpen={isOpen} setIsOpen={setIsOpen} action="Approve" />
+                      <ConfirmButton isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} action="Approve" />
                       ) : (
-                      <Button pl="10" pr="10" borderRadius="50" bgColor="#FF8450" isDisabled>
+                      <Button pl="10" pr="10" borderRadius="50" bgColor="#FF8450" 
+                        onClick={() => onOpen()}>
                         <Text fontSize="sm" fontWeight="bold">Done</Text>
                       </Button> 
                     )
@@ -180,12 +184,13 @@ export default function Job() {
             }
             {
               (job.status == "done") && (
-                <Button pl="10" pr="10" borderRadius="50" bgColor="#FF8450" 
-                  onClick={() => {
-                    // TODO: Add onClick func
-                  }}>
-                  <Text fontSize="sm" fontWeight="bold">Review</Text>
-                </Button> 
+                <>
+                  <ReviewForm isOpen={isOpen} onClose={onClose} />
+                  <Button pl="10" pr="10" borderRadius="50" bgColor="#FF8450" 
+                    onClick={() => onOpen()}>
+                    <Text fontSize="sm" fontWeight="bold">Review</Text>
+                  </Button> 
+                </>
               )
             }
           </Flex>
