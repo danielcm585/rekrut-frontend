@@ -167,22 +167,34 @@ export default function Job() {
             </HStack>
             <Spacer></Spacer>
             {
-              (job.status == "hiring") && <ConfirmButton isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} action="Apply" />
+              (job.status == "hiring" && user.role == "worker") && (
+                <ConfirmButton isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} action="Apply" />
+              )
             }
             {
-              (job.status == "hired") && <ConfirmButton isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} action="Done" />
+              (job.status == "hired") && (
+                <>
+                  {
+                    (user.role == "worker") ? (
+                      <ConfirmButton isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} action="Done" />
+                    ) : (
+                      <ConfirmButton isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} action="Approve" isDisabled />
+                    )
+                  }
+                </>
+              )
             }
             {
               (job.status == "in review") && (
                 <>
                   {
-                    (user.role == "client") ? (
-                      <ConfirmButton isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} action="Approve" />
-                      ) : (
+                    (user.role == "worker") ? (
                       <Button pl="10" pr="10" borderRadius="50" bgColor="#FF8450" 
                         onClick={() => onOpen()}>
                         <Text fontSize="sm" fontWeight="bold">Done</Text>
                       </Button> 
+                    ) : (
+                      <ConfirmButton isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} action="Approve" />
                     )
                   }
                 </>
@@ -191,7 +203,7 @@ export default function Job() {
             {
               (job.status == "done") && (
                 <>
-                  <ReviewForm isOpen={isOpen} onClose={onClose} />
+                  <ReviewForm isOpen={isOpen} onClose={onClose} job={job} />
                   <Button pl="10" pr="10" borderRadius="50" bgColor="#FF8450" 
                     onClick={() => onOpen()}>
                     <Text fontSize="sm" fontWeight="bold">Review</Text>

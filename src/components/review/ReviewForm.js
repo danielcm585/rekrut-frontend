@@ -6,7 +6,7 @@ import { Button, Text, Textarea } from "@chakra-ui/react"
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from "@chakra-ui/react"
 import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react"
 
-export default function ReviewForm({ isOpen, onClose }) {
+export default function ReviewForm({ isOpen, onClose, job }) {
   const [ rate, setRate ] = useState()
   const [ body, setBody ] = useState()
   const handleBodyChange = (e) => setBody(e.target.value)
@@ -43,7 +43,10 @@ export default function ReviewForm({ isOpen, onClose }) {
                   setError("Anda belum memberi bintang")
                   return;
                 }
+                // TODO: Get client and worker
+
                 // TODO: Send request to api
+
                 onClose()
               }}>
               <Text fontSize="sm" fontWeight="bold">Submit</Text>
