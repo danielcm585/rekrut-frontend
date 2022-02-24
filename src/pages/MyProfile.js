@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 
-import { Navbar, ProfileCard, SearchBar, Footer } from "../components"
+import { Navbar, SearchBar, Footer } from "../components"
+import { ProfileDetails } from "../components/profile"
 import { JobList } from "../components/job"
 
 import { Flex, Text, Button, Spacer } from "@chakra-ui/react"
@@ -155,7 +156,7 @@ export default function Profile() {
         {/* <Flex mt="66" justifyContent="center" bg="#2A2A30"> */}
         <Flex mt="66" justifyContent="center">
           <Flex w="80%" pt="10" pb="10">
-            <ProfileCard user={user} me={true} />
+            <ProfileDetails user={user} me={true} />
           </Flex>
         </Flex>
       </Flex>

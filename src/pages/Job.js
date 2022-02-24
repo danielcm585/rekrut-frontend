@@ -4,11 +4,10 @@ import { MdLocationOn, MdWork } from "react-icons/md"
 import { FaMoneyBillWave } from "react-icons/fa"
 
 import { Navbar, Footer } from "../components"
-import { JobList, ConfirmButton } from "../components/job"
+import { JobList, JobButton } from "../components/job"
 
 import { useDisclosure } from "@chakra-ui/react"
-import { Box, Button, Flex, HStack, Image, Link, Spacer, Text, Icon, SimpleGrid } from "@chakra-ui/react"
-import ReviewForm from "../components/review/ReviewForm"
+import { Box, Flex, HStack, Image, Link, Spacer, Text, Icon, SimpleGrid } from "@chakra-ui/react"
 
 export default function Job() {
   const { id } = useParams()
@@ -21,12 +20,12 @@ export default function Job() {
     name: "Luke Skywalker",
     email: "luke.skywalker@gmail.com",
     role: "worker",
+    // role: "client",
     category: "Web Developer"
   }
 
   
   // TODO: Fetch job data from api
-  // FIXME: Did we apply for the job?
   const job = {
     id: 1,
     title: "Backend Engineer",
@@ -37,10 +36,10 @@ export default function Job() {
     salary: 5000000,
     location: "Jakarta",
     type: "Full Time",
-    // status: "hiring",
+    status: "hiring",
     // status: "hired",
     // status: "in review",
-    status: "done",
+    // status: "done",
     company: {
       id: 1,
       name: "BukaPedia",
@@ -66,7 +65,7 @@ export default function Job() {
   const [ otherJobs, setOtherJobs ] = useState()
   useEffect(() => {
     document.title = job.title+" | "+job.company.name
-
+    
     setOtherJobs([
       {
         id: 1,
@@ -136,6 +135,7 @@ export default function Job() {
         registrants: []
       }
     ])
+
     setOtherJobs(jobs => jobs.slice(0,3))
   }, [])
   
@@ -166,51 +166,9 @@ export default function Job() {
               </Box>
             </HStack>
             <Spacer></Spacer>
-            {
-              (job.status == "hiring" && user.role == "worker") && (
-                <ConfirmButton isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} action="Apply" />
-              )
-            }
-            {
-              (job.status == "hired") && (
-                <>
-                  {
-                    (user.role == "worker") ? (
-                      <ConfirmButton isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} action="Done" />
-                    ) : (
-                      <ConfirmButton isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} action="Approve" isDisabled />
-                    )
-                  }
-                </>
-              )
-            }
-            {
-              (job.status == "in review") && (
-                <>
-                  {
-                    (user.role == "worker") ? (
-                      <Button pl="10" pr="10" borderRadius="50" bgColor="#FF8450" 
-                        onClick={() => onOpen()}>
-                        <Text fontSize="sm" fontWeight="bold">Done</Text>
-                      </Button> 
-                    ) : (
-                      <ConfirmButton isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} action="Approve" />
-                    )
-                  }
-                </>
-              )
-            }
-            {
-              (job.status == "done") && (
-                <>
-                  <ReviewForm isOpen={isOpen} onClose={onClose} job={job} />
-                  <Button pl="10" pr="10" borderRadius="50" bgColor="#FF8450" 
-                    onClick={() => onOpen()}>
-                    <Text fontSize="sm" fontWeight="bold">Review</Text>
-                  </Button> 
-                </>
-              )
-            }
+            <JobButton user={user} job={job} 
+              isOpen={isOpen} onOpen={onOpen} onClose={onClose}
+              isConfirmOpen={isConfirmOpen} setIsConfirmOpen={setIsConfirmOpen} />
           </Flex>
           <Flex>
             <SimpleGrid columns="2" spacing="4">

@@ -1,7 +1,8 @@
 import React from "react"
 import { useParams } from "react-router-dom"
 
-import { Footer, Navbar, ProfileCard } from "../components"
+import { Footer, Navbar } from "../components"
+import { ProfileDetails } from "../components/profile"
 import { ReviewList } from "../components/review"
 
 import { Box, Flex, Spacer, Button, Text } from "@chakra-ui/react"
@@ -58,7 +59,7 @@ export default function Profile() {
       <Flex>
         <Flex mt="66" justifyContent="center">
           <Flex w="80%" pt="10" pb="10">
-            <ProfileCard user={user} />
+            <ProfileDetails user={user} />
           </Flex>
         </Flex>
       </Flex>

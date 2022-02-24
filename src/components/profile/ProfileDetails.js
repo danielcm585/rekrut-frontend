@@ -3,9 +3,9 @@ import { IoMdMail, IoMdDocument } from "react-icons/io"
 import { MdPhone } from "react-icons/md"
 
 import { Image, Box, Text, HStack, Spacer, Link, Icon, Button, Flex } from "@chakra-ui/react"
-import { Star } from "./review"
+import { Star } from "../review"
 
-export default function ProfileCard({ user, me }) {
+export default function ProfileDetails({ user, me }) {
   return (
     <>
       {/* <Box bg="#2A2A30"> */}
