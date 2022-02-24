@@ -32,10 +32,10 @@ export default function ProfileDetails({ user, me }) {
                 <HStack>
                   <Icon as={MdPhone} color="#FF8450" />
                   {/* <Text color="white">{"+"+user.phone}</Text> */}
-                  <Text>{"+"+user.phone}</Text>
+                  <Text>{user.phone}</Text>
                 </HStack>
               </Link>
-              <Link href={user.cv}>
+              <Link href={user.cv} isExternal>
                 <HStack>
                   <Icon as={IoMdDocument} color="#FF8450" />
                   {/* <Text color="white">{user.name+"'s CV"}</Text> */}
@@ -46,7 +46,9 @@ export default function ProfileDetails({ user, me }) {
             <Spacer></Spacer>
           </Flex>
           {/* <Text mt="5" color="white">{user.bio}</Text> */}
-          <Text mt="5">{user.bio}</Text>
+          {
+            (user.bio != null) && <Text mt="5">{user.bio}</Text>
+          }
         </Flex>
         {
           me && (

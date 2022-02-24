@@ -11,58 +11,46 @@ export default function JobCard({ job }) {
 
   return (
     <>
-      <Box p="3" pr="6" mt="2" mb="2" shadow="md" borderRadius="md"
+      <Box p="2" mb="2" shadow="md" borderRadius="md"
         _hover={{ bgColor:"gray.50" }}
         onClick={() => window.location.href="/job/"+job.id}>
-        <HStack mb="2">
-          <Flex p="2">
-            <Image src={job.company.photo} h="55" borderRadius="md" />
-          </Flex>
-          <Box>
-            <Text fontSize="xl" fontWeight="semibold">{job.title}</Text>
-            <Flex>
-              <Link href={"/profile/"+job.company.id}>
-                <Text color="gray.600">{job.company.name}</Text>
-              </Link>
+        <HStack w="100%">
+          <HStack w="50%">
+            <Flex p="2">
+              <Image src={job.company.photo} h="55" borderRadius="md" />
             </Flex>
-          </Box>
-          {/*FIXME: use grid maybe? */}
-          <Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer><Spacer></Spacer>
-          <Flex direction="column">
-            <Flex justifyContent="center">
+            <Box>
+              <Text fontSize="lg" fontWeight="semibold">{job.title}</Text>
+              <Flex>
+                <Link href={"/profile/"+job.company.id}>
+                  <Text color="gray.600">{job.company.name}</Text>
+                </Link>
+              </Flex>
+            </Box>
+          </HStack>
+          <Box w="16%" pl="3">
               <HStack>
                 <Icon as={MdLocationOn} color="gray.600" />
                 <Text color="gray.600">Lokasi</Text>
               </HStack>
-            </Flex>
-            <Flex justifyContent="center">
               <Text fontWeight="semibold">{job.location}</Text>
-            </Flex>
-          </Flex>
+          </Box>
           <Spacer></Spacer>
-          <Flex direction="column">
-            <Flex justifyContent="center">
+          <Box w="16%" pl="2">
               <HStack>
                 <Icon as={MdWork} color="gray.600" />
                 <Text color="gray.600">Tipe pekerjaan</Text>
               </HStack>
-            </Flex>
-            <Flex justifyContent="center">
               <Text fontWeight="semibold">{job.type}</Text>
-            </Flex>
-          </Flex>
+          </Box>
           <Spacer></Spacer>
-          <Flex direction="column">
-            <Flex justifyContent="center">
+          <Box w="16%" pl="2">
               <HStack>
                 <Icon as={FaMoneyBillWave} color="gray.600" />
                 <Text color="gray.600">Upah</Text>
               </HStack>
-            </Flex>
-            <Flex justifyContent="center">
               <Text fontWeight="semibold">{parseAmount(job.salary)}</Text>
-            </Flex>
-          </Flex>
+          </Box>
         </HStack>
       </Box>
     </>

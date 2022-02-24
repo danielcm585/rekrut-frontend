@@ -19,8 +19,8 @@ export default function Job() {
     photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
     name: "Luke Skywalker",
     email: "luke.skywalker@gmail.com",
-    role: "worker",
-    // role: "client",
+    // role: "worker",
+    role: "client",
     category: "Web Developer"
   }
 
@@ -47,16 +47,34 @@ export default function Job() {
     },
     registrants: [
       {
+        id: 9,
         photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
         name: "Obiwan Kenobi",
+        category: "Web Developer",
+        rate: 4.3,
+        reviews: ["ada"],
+        email: "email@gmail.com",
+        phone: "+62123213123"
       },
       {
+        id: 10,
         photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
         name: "Anakin Skywalker",
+        category: "Web Developer",
+        rate: 2.1,
+        reviews: ["ada"],
+        email: "email@gmail.com",
+        phone: "+62123213123"
       },
       {
+        id: 11,
         photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
         name: "C3PO",
+        category: "Web Developer",
+        rate: 4.9,
+        reviews: ["ada"],
+        email: "email@gmail.com",
+        phone: "+62123213123"
       }
     ],
     chosen: "C3PO"

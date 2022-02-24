@@ -51,8 +51,7 @@ export default function RegisterPage1({ role, setPage, category, setCategory, bi
               {
                 (error != null) && (
                   <Alert mt="5" status="warning" borderRadius="lg">
-                    <AlertIcon />
-                    {error}
+                    <AlertIcon />{error}
                   </Alert>
                 )
               }

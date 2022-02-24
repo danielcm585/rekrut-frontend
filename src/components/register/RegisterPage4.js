@@ -33,8 +33,7 @@ export default function RegisterPage4({ role, setPage, postRequest }) {
               {
                 (error != null) && (
                   <Alert mt="5" status="error" borderRadius="lg">
-                    <AlertIcon />
-                    {error}
+                    <AlertIcon />{error}
                   </Alert>
                 )
               }

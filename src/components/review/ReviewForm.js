@@ -26,9 +26,8 @@ export default function ReviewForm({ isOpen, onClose, job }) {
               value={body} onChange={handleBodyChange} />
             {
               (error != null) && (
-                <Alert mt="5" status="error" borderRadius="lg">
-                  <AlertIcon />
-                  {error}
+                <Alert mt="3" status="error" borderRadius="lg">
+                  <AlertIcon />{error}
                 </Alert>
               )
             }

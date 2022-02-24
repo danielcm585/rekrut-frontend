@@ -44,8 +44,7 @@ export default function RegisterPage1({ role, setPage, email, setEmail, password
           {
             (error != null) && (
               <Alert mt="5" status="error" borderRadius="lg">
-                <AlertIcon />
-                {error}
+                <AlertIcon />{error}
               </Alert>
             )
           }

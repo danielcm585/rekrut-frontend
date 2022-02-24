@@ -29,7 +29,7 @@ export default function JobButton({ user, job, isOpen, onOpen, onClose, isConfir
                         {
                           (job.registrants != null && job.registrants.length > 0) ? (
                             <>
-                              <ChooseWorker isOpen={isOpen} onClose={onClose} /> 
+                              <ChooseWorker job={job} isOpen={isOpen} onClose={onClose} /> 
                               <Button pl="10" pr="10" borderRadius="50" bgColor="#FF8450"
                                 onClick={() => onOpen()}> {/*TODO: Add onClick func */}
                                 <Text fontSize="sm" fontWeight="bold">Hire</Text>
