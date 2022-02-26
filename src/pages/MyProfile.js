@@ -136,7 +136,8 @@ export default function Profile() {
     return ((job.location == location || location == "Semua lokasi") &&
             (job.type == type || type == "Semua tipe pekerjaan") &&
             (job.salary >= salary || salary == "Semua range upah") && 
-            job.title.toLowerCase().includes(keyword.toLowerCase()))
+            (job.title.toLowerCase().includes(keyword.toLowerCase())) ||
+            job.company.name.toLowerCase().includes(keyword.toLowerCase()))
   }
 
   const [ filteredAccepted, setFilteredAccepted] = useState()

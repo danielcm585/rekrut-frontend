@@ -50,11 +50,19 @@ export default function RegisterPage1({ role, setPage, email, setEmail, password
           }
           <Button mt="8" borderRadius="50" borderColor="black" bgColor="#FF8450"
             onClick={() => {
-              if (email == null || email.length < 3) {
+              if (email == null || email.length == 0) {
+                setError("Email tidak boleh kosong")
+                return
+              }
+              if (email.length < 4 || !email.includes('@')) {
                 setError("Email tidak valid")
                 return
               }
-              if (password == null || password.length < 6) {
+              if (password == null || password.length == 0) {
+                setError("Password tidak boleh kosong")
+                return
+              }
+              if (password.length < 6) {
                 setError("Password minimal terdiri dari 6 karakter")
                 return
               }
