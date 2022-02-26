@@ -14,8 +14,10 @@ export default function ProfileDetails({ user, me }) {
           <Flex>
             <Image mr="5" h="165px" src={user.photo} borderRadius="lg" />
             <Box>
-              {/* <Text fontSize="2xl" fontWeight="semibold" color="white">{user.name}</Text> */}
-              <Text fontSize="2xl" fontWeight="semibold">{user.name}</Text>
+              <Link href={"/profile/"+user.id}>
+                {/* <Text fontSize="2xl" fontWeight="semibold" color="white">{user.name}</Text> */}
+                <Text fontSize="2xl" fontWeight="semibold">{user.name}</Text>
+              </Link>
               {/* <Text fontSize="lg" color="white">{user.category}</Text>  */}
               <Text fontSize="lg">{user.category}</Text> 
               {

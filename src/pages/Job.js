@@ -5,6 +5,7 @@ import { FaMoneyBillWave } from "react-icons/fa"
 
 import { Navbar, Footer } from "../components"
 import { JobList, JobButton } from "../components/job"
+import { ProfileList } from "../components/profile"
 
 import { useDisclosure } from "@chakra-ui/react"
 import { Box, Flex, HStack, Image, Link, Spacer, Text, Icon, SimpleGrid } from "@chakra-ui/react"
@@ -164,6 +165,9 @@ export default function Job() {
     return "IDR "+amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")+",00";
   }
   
+  // FIXME: Can we review?
+  const canReview = true
+  
   return (
     <>
       <Navbar />
@@ -231,10 +235,22 @@ export default function Job() {
               </>
             )
           }
-          <Text mt="8" fontWeight="bold">Other Job</Text>
           {
-            (otherJobs != null) && <JobList jobs={otherJobs} />
+            (user.role == "client" && canReview) && (
+              <>
+                <Text mt="8" fontWeight="bold">Top Registrants</Text>
+                <Flex mt="2">
+                  <ProfileList profiles={job.registrants} />
+                </Flex>
+              </>
+            )
           }
+          <Text mt="8" fontWeight="bold">Other Job</Text>
+          <Flex mt="2">
+            {
+              (otherJobs != null) && <JobList jobs={otherJobs} />
+            }
+          </Flex>
         </Flex>
       </Flex>
       <Footer /> 
