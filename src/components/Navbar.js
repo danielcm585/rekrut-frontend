@@ -1,7 +1,7 @@
 import React from "react"
 import { IoChevronDown } from "react-icons/io5"
 import { AiFillCaretDown } from "react-icons/ai"
-import { BiLogOut, BiUser } from "react-icons/bi"
+import { BiBell, BiLogOut, BiUser } from "react-icons/bi"
 
 import { Button, Flex, HStack, Spacer, Text, Image, Link } from "@chakra-ui/react"
 import { Menu, MenuButton, MenuList, MenuItem, MenuDivider } from "@chakra-ui/react"
@@ -39,6 +39,7 @@ export default function Navbar({ login, register }) {
                     </MenuButton>
                     <MenuList>
                       <MenuItem icon={<BiUser />} onClick={() => window.location.href="/profile/me"}>My Profile</MenuItem>
+                      <MenuItem icon={<BiBell />}>Notifications</MenuItem> {/*TODO: Add onClick func */}
                       <MenuDivider />
                       <MenuItem icon={<BiLogOut />}>Logout</MenuItem>
                   </MenuList>
