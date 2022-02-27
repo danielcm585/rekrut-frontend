@@ -173,8 +173,8 @@ export default function Dashboard() {
             (job.type == type || type == "Semua tipe pekerjaan") &&
             (job.salary >= salary || salary == "Semua range upah") && 
             (job.category == user.category || user.category == null) && 
-            (job.title.toLowerCase().includes(keyword.toLowerCase())) ||
-            job.company.name.toLowerCase().includes(keyword.toLowerCase()))
+            (job.title.toLowerCase().includes(keyword.toLowerCase()) ||
+            job.company.name.toLowerCase().includes(keyword.toLowerCase())))
   }
 
   const [ filteredRecentJobs, setFilteredRecentJobs ] = useState()
