@@ -21,17 +21,21 @@ export default function Landing() {
             <div className="section">
               <div className="text">
               <h1>Rekrut.id</h1>
-              <p>Rekrut.Id adalah web pencari kerja untuk para freelancer</p>
+              <p>
+                Rekrut.id adalah web pencari kerja untuk para freelancer dan pencari jasa bagi para pengusaha
+              </p>
               </div>
               <Flex>
-                <SimpleGrid w="55%">
-                  <Button size="lg" mt="6" borderRadius="50" bgColor="#FF8450">
-                    <Text fontSize="lg" fontWeight="bold">Cari Pekerjaan</Text>
+                {/* <SimpleGrid w="55%"> */}
+                  <Button mt="6" p="7" pl="50" pr="50" borderRadius="50" bgColor="#FF8450"
+                    onClick={() => window.location.href="/register"}>
+                    <Text fontSize="xl" fontWeight="bold">Mulai Sekarang</Text>
                   </Button> 
-                  <Button size="lg" mt="4" borderRadius="50" bgColor="#FF8450">
+                  {/* <Button size="lg" mt="4" borderRadius="50" bgColor="#FF8450"
+                    onClick={() => window.location.href="/login"}>
                     <Text fontSize="lg" fontWeight="bold">Cari Jasa</Text>
                   </Button> 
-                </SimpleGrid>
+                </SimpleGrid> */}
               </Flex>
             </div>
           </div>
