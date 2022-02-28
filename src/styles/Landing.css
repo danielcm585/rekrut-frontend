@@ -1,0 +1,48 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+.black {
+  background-color: #2A2A30;
+  margin-top: 65px;
+  
+  width: 100%;
+  padding: 10vh;
+  justify-content: center;
+}
+.white {
+  position: relative;
+  background-color: white;
+  height: 75vh;
+}
+.section {
+  position: absolute;
+  top: 45%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  
+  width: 60vh;
+  margin: 0;
+  margin-left: 20vh;
+}
+.text h1 {
+  font-size: 7vh;
+  font-weight: bold;
+}
+.text p {
+  font-size: 3vh;
+}
+.orange {
+  position: absolute;
+  background-color: #FF8450;
+  margin-top: 65px;
+  margin-left: 106vh;
+  width: 57vh;
+  height: 95vh;
+}
+.image {
+  position: absolute;
+  margin-top: 65px;
+  margin-left: 99vh;
+  height: 95vh;
+}
