@@ -17,7 +17,7 @@ export default function Profile() {
     name: "Mace Windu",
     bio: "Hello , I am energetic UX Designer and currently studies computer science, skilled in Figma and UX research. Have completed several projects, including design of an event web, mobile app for study group and redesign mobile bank app.",
     email: "mace.windu@gmail.com",
-    phone: "628123456789",
+    phone: "+628123456789",
     role: "worker",
     cv: "",
     category: "UI/UX Designer",

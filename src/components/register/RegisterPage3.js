@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 
-import { Flex, Text, Input, Button, SimpleGrid, Select, VStack } from "@chakra-ui/react"
+import { Flex, Text, Input, Button, SimpleGrid, Select, VStack, Textarea } from "@chakra-ui/react"
 import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
 
@@ -44,7 +44,7 @@ export default function RegisterPage1({ role, setPage, category, setCategory, bi
                 <FormLabel>
                   <Text fontSize="1xl" fontWeight="bold">Bio Anda</Text>
                 </FormLabel>
-                <Input type="text" placeholder="Saya seorang web developer profesional" value={bio} 
+                <Textarea type="text" placeholder="Saya seorang web developer profesional" value={bio} 
                   borderColor="black" onChange={handleBioChanges} />
               </FormControl>
               {/* TODO: Submit CV */}

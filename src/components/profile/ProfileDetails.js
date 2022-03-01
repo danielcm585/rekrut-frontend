@@ -2,10 +2,15 @@ import React from "react"
 import { IoMdMail, IoMdDocument } from "react-icons/io"
 import { MdPhone } from "react-icons/md"
 
-import { Image, Box, Text, HStack, Spacer, Link, Icon, Button, Flex } from "@chakra-ui/react"
+import { ProfileForm } from "./";
 import { Star } from "../review"
 
+import { useDisclosure } from "@chakra-ui/react";
+import { Image, Box, Text, HStack, Spacer, Link, Icon, Button, Flex } from "@chakra-ui/react"
+
 export default function ProfileDetails({ user, me }) {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
   return (
     <>
       {/* <Box bg="#2A2A30"> */}
@@ -56,7 +61,11 @@ export default function ProfileDetails({ user, me }) {
           me && (
             <>
               {/* <Button variant="ghost" color="white">Edit Profil</Button> */}
-              <Button variant="ghost" borderRadius="50">Edit Profil</Button> {/*FIXME: Add onClick func*/}
+              <ProfileForm isOpen={isOpen} onClose={onClose} user={user} />
+              <Button pl="8" pr="8" variant="ghost" borderRadius="50"
+                onClick={() => onOpen()}>
+                Edit Profil
+              </Button>
             </>
           )
         }

@@ -6,7 +6,7 @@ import { Box, Flex, IconButton, Text } from "@chakra-ui/react"
 export default function Footer() {
   return (
     <>
-      <Flex mt="420" w="100%" justifyContent="center" bg="#2A2A30">
+      <Flex mt="250" w="100%" justifyContent="center" bg="#2A2A30">
         <Flex mt="10" mb="10" w="85%">
           <Flex w="45%" direction="column">
             <Text fontSize="2xl" fontWeight="bold" color="white">Rekrut.id</Text>
