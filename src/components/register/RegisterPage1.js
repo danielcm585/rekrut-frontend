@@ -36,7 +36,7 @@ export default function RegisterPage1({ role, setPage, email, setEmail, password
           </FormControl>
           <FormControl mt="3">
             <FormLabel>
-              <Text fontSize="1xl" fontWeight="bold">Ketik Ulang Password</Text>
+              <Text fontSize="1xl" fontWeight="bold">Konfirmasi Password</Text>
             </FormLabel>
             <Input type="password" placeholder="password" value={confPassword} 
               borderColor="black" onChange={handleConfPasswordChanges} />

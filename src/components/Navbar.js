@@ -5,6 +5,7 @@ import { BiBell, BiLogOut, BiUser, BiEdit, BiHistory } from "react-icons/bi"
 import { useDisclosure } from "@chakra-ui/react";
 import { Button, Flex, HStack, Spacer, Text, Image, Link } from "@chakra-ui/react"
 import { Menu, MenuButton, MenuList, MenuItem, MenuDivider } from "@chakra-ui/react"
+import { PasswordForm } from "./profile";
 
 export default function Navbar({ login, register }) {
   // TODO: Get user from localStorage
@@ -32,6 +33,7 @@ export default function Navbar({ login, register }) {
             {
               (user != null) ? (
                 <>
+                  <PasswordForm isOpen={isOpen} onClose={onClose} user={user} />
                   <Menu>
                     <MenuButton as={Button} variant="ghost" borderRadius="50" rightIcon={<IoChevronDown />}>
                       <HStack>
@@ -44,9 +46,9 @@ export default function Navbar({ login, register }) {
                       <MenuItem icon={<BiBell />}>Notifikasi</MenuItem> {/*TODO: Add onClick func */}
                       <MenuItem icon={<BiHistory />}>Riwayat</MenuItem> {/*TODO: Add onClick func */}
                       <MenuDivider />
-                      <MenuItem icon={<BiEdit />}>Ganti Password</MenuItem> {/*TODO: Add onClick func */}
+                      <MenuItem icon={<BiEdit />} onClick={() => onOpen()}>Ganti Password</MenuItem> {/*TODO: Add onClick func */}
                       <MenuItem icon={<BiLogOut />}>Keluar</MenuItem>
-                  </MenuList>
+                    </MenuList>
                   </Menu>
                 </>
               ) : (

@@ -6,16 +6,12 @@ import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react";
 import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react"
 
 export default function ProfileForm({ isOpen, onClose, user }) {
-  const [ name, setName ] = useState(user.name)
-  const handleNameChanges = (e) => setName(e.target.value)
-  const [ email, setEmail ] = useState(user.email)
-  const handleEmailChanges = (e) => setEmail(e.target.value)
-  const [ phone, setPhone ] = useState(user.phone)
-  const handlePhoneChanges = (e) => setPhone(e.target.value)
-  const [ category, setCategory ] = useState(user.category)
-  const handleCategoryChanges = (e) => setCategory(e.target.value)
-  const [ bio, setBio ] = useState(user.bio)
-  const handleBioChanges = (e) => setBio(e.target.value)
+  const [ oldPassword, setOldPassword ] = useState()
+  const handleOldPasswordChanges = (e) => setOldPassword(e.target.value)
+  const [ password, setPassword ] = useState()
+  const handlePasswordChanges = (e) => setPassword(e.target.value)
+  const [ confPassword, setConfPassword ] = useState()
+  const handleConfPasswordChanges = (e) => setConfPassword(e.target.value)
 
   const [ error, setError ] = useState()
 
@@ -29,44 +25,24 @@ export default function ProfileForm({ isOpen, onClose, user }) {
           <ModalBody>
             <FormControl>
               <FormLabel>
-                <Text fontSize="1xl" fontWeight="bold">Nama</Text>
+                <Text fontSize="1xl" fontWeight="bold">Password Lama</Text>
               </FormLabel>
-              <Input type="text" value={name} 
-                borderColor="black" onChange={handleNameChanges} />
+              <Input type="password" value={oldPassword} placeholder="password-lama"
+                borderColor="black" onChange={handleOldPasswordChanges} />
             </FormControl>
             <FormControl mt="3">
               <FormLabel>
-                <Text fontSize="1xl" fontWeight="bold">Email</Text>
+                <Text fontSize="1xl" fontWeight="bold">Password Baru</Text>
               </FormLabel>
-              <Input type="email" value={email} 
-                borderColor="black" onChange={handleEmailChanges} />
+              <Input type="password" value={password} placeholder="password-baru"
+                borderColor="black" onChange={handlePasswordChanges} />
             </FormControl>
             <FormControl mt="3">
               <FormLabel>
-                <Text fontSize="1xl" fontWeight="bold">Nomor Telepon</Text>
+                <Text fontSize="1xl" fontWeight="bold">Konfirmasi Password Baru</Text>
               </FormLabel>
-              <Input type="text" value={phone} 
-                borderColor="black" onChange={handlePhoneChanges} />
-            </FormControl>
-            <FormControl mt="3">
-              <FormLabel>
-                <Text fontSize="1xl" fontWeight="bold">Kategori Pekerjaan</Text>
-              </FormLabel>
-              <Select variant="outline" borderColor="black"
-                value={category} onChange={handleCategoryChanges}>
-                <option value="Web Developer">Web Developer</option>
-                <option value="Software Engineer">Software Engineer</option>
-                <option value="UI/UX Designer">UI/UX Designer</option>
-                <option value="Graphic Designer">Graphic Designer</option>
-                <option value="Photographer">Photographer</option>
-              </Select>
-            </FormControl>
-            <FormControl mt="3">
-              <FormLabel>
-                <Text fontSize="1xl" fontWeight="bold">Bio</Text>
-              </FormLabel>
-              <Textarea type="text" placeholder="Saya seorang web developer profesional" value={bio} 
-                borderColor="black" onChange={handleBioChanges} />
+              <Input type="password" value={confPassword} placeholder="password-baru"
+                borderColor="black" onChange={handleConfPasswordChanges} />
             </FormControl>
             {
               (error != null) && (
@@ -82,6 +58,22 @@ export default function ProfileForm({ isOpen, onClose, user }) {
             </Button> 
             <Button ml="2" borderRadius="50" bgColor="#FF8450" 
               onClick={() => {
+                if (password == null || password.length == 0) {
+                  setError("Password tidak boleh kosong")
+                  return
+                }
+                if (password.length < 6) {
+                  setError("Password minimal terdiri dari 6 karakter")
+                  return
+                }
+                if (password != confPassword) {
+                  setError("Password tidak cocok")
+                  return
+                }
+                if (password == oldPassword) {
+                  setError("Password tidak boleh sama dengan password lama")
+                  return
+                }
                 // TODO: Send request to api
                 onClose()
               }}>
