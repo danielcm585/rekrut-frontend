@@ -2,10 +2,12 @@ import React from "react"
 import { IoChevronDown } from "react-icons/io5"
 import { BiBell, BiLogOut, BiUser, BiEdit, BiHistory } from "react-icons/bi"
 
+import { PasswordForm } from "./profile";
+import { Notification } from "./";
+
 import { useDisclosure } from "@chakra-ui/react";
 import { Button, Flex, HStack, Spacer, Text, Image, Link } from "@chakra-ui/react"
 import { Menu, MenuButton, MenuList, MenuItem, MenuDivider } from "@chakra-ui/react"
-import { PasswordForm } from "./profile";
 
 export default function Navbar({ login, register }) {
   // TODO: Get user from localStorage
@@ -19,7 +21,17 @@ export default function Navbar({ login, register }) {
     category: "Web Developer"
   }
 
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { 
+    isOpen: isPasswordOpen, 
+    onOpen: onPasswordOpen, 
+    onClose: onPasswordClose
+  } = useDisclosure()
+  
+  const { 
+    isOpen: isNotificationOpen, 
+    onOpen: onNotificationOpen, 
+    onClose: onNotificationClose
+  } = useDisclosure()
 
   return (
     <>
@@ -33,7 +45,8 @@ export default function Navbar({ login, register }) {
             {
               (user != null) ? (
                 <>
-                  <PasswordForm isOpen={isOpen} onClose={onClose} user={user} />
+                  <PasswordForm isOpen={isPasswordOpen} onClose={onPasswordClose} user={user} />
+                  <Notification isOpen={isNotificationOpen} onClose={onNotificationClose} user={user} />
                   <Menu>
                     <MenuButton as={Button} variant="ghost" borderRadius="50" rightIcon={<IoChevronDown />}>
                       <HStack>
@@ -43,10 +56,10 @@ export default function Navbar({ login, register }) {
                     </MenuButton>
                     <MenuList>
                       <MenuItem icon={<BiUser />} onClick={() => window.location.href="/profile/me"}>Profil Saya</MenuItem>
-                      <MenuItem icon={<BiBell />}>Notifikasi</MenuItem> {/*TODO: Add onClick func */}
+                      <MenuItem icon={<BiBell />} onClick={() => onNotificationOpen()}>Notifikasi</MenuItem> 
                       <MenuItem icon={<BiHistory />}>Riwayat</MenuItem> {/*TODO: Add onClick func */}
                       <MenuDivider />
-                      <MenuItem icon={<BiEdit />} onClick={() => onOpen()}>Ganti Password</MenuItem> {/*TODO: Add onClick func */}
+                      <MenuItem icon={<BiEdit />} onClick={() => onPasswordOpen()}>Ganti Password</MenuItem> 
                       <MenuItem icon={<BiLogOut />}>Keluar</MenuItem>
                     </MenuList>
                   </Menu>
@@ -55,16 +68,12 @@ export default function Navbar({ login, register }) {
                 <>
                   <Flex>
                     <Link href="/login">
-                      <Text color={login ? "#FF8450" : "black"} as={login && "ins"}>
-                        Masuk
-                      </Text>
+                      <Text color={login ? "#FF8450" : "black"} as={login && "ins"}>Masuk</Text>
                     </Link>
                   </Flex>
                   <Flex pl="8">
                     <Link href="/register">
-                      <Text color={register ? "#FF8450" : "black"} as={register && "ins"}>
-                        Daftar
-                      </Text>
+                      <Text color={register ? "#FF8450" : "black"} as={register && "ins"}>Daftar</Text>
                     </Link>
                   </Flex>
                 </>
