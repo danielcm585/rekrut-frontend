@@ -56,6 +56,7 @@ export default function Navbar({ login, register }) {
                     </MenuButton>
                     <MenuList>
                       <MenuItem icon={<BiUser />} onClick={() => window.location.href="/profile/me"}>Profil Saya</MenuItem>
+                      {/*FIXME: Notification panel can't open */}
                       <MenuItem icon={<BiBell />} onClick={() => onNotificationOpen()}>Notifikasi</MenuItem> 
                       <MenuItem icon={<BiHistory />}>Riwayat</MenuItem> {/*TODO: Add onClick func */}
                       <MenuDivider />

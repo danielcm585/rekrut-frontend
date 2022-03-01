@@ -58,20 +58,24 @@ export default function ProfileForm({ isOpen, onClose, user }) {
             </Button> 
             <Button ml="2" borderRadius="50" bgColor="#FF8450" 
               onClick={() => {
+                if (oldPassword == null || oldPassword.length == 0) {
+                  setError("Password lama tidak boleh kosong")
+                  return
+                }
                 if (password == null || password.length == 0) {
-                  setError("Password tidak boleh kosong")
+                  setError("Password baru tidak boleh kosong")
                   return
                 }
                 if (password.length < 6) {
-                  setError("Password minimal terdiri dari 6 karakter")
+                  setError("Password baru minimal terdiri dari 6 karakter")
                   return
                 }
                 if (password != confPassword) {
-                  setError("Password tidak cocok")
+                  setError("Password baru tidak cocok")
                   return
                 }
                 if (password == oldPassword) {
-                  setError("Password tidak boleh sama dengan password lama")
+                  setError("Password baru tidak boleh sama dengan password lama")
                   return
                 }
                 // TODO: Send request to api
