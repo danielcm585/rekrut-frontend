@@ -15,8 +15,9 @@ export default function Register() {
   const [ phone, setPhone ] = useState()
   const [ bank, setBank ] = useState()
 
-  const [ category, setCategory ] = useState()
+  const [ category, setCategory ] = useState("-")
   const [ bio, setBio ] = useState()
+  const [ cv, setCv ] = useState(null)
 
   useState(() => {
     document.title = "Rekrut.id | Register"
@@ -43,7 +44,8 @@ export default function Register() {
       {
         (page == 3) && <RegisterPage3 role={role} setPage={setPage} 
           category={category} setCategory={setCategory}
-          bio={bio} setBio={setBio} />
+          bio={bio} setBio={setBio}
+          cv={cv} setCv={setCv} />
       }
       {
         (page == 4) && <RegisterPage4 role={role} setPage={setPage}
