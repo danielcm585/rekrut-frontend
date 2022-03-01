@@ -1,7 +1,6 @@
 import React from "react"
 import { IoChevronDown } from "react-icons/io5"
-import { AiFillCaretDown } from "react-icons/ai"
-import { BiBell, BiLogOut, BiUser } from "react-icons/bi"
+import { BiBell, BiLogOut, BiUser, BiEdit, BiHistory } from "react-icons/bi"
 
 import { Button, Flex, HStack, Spacer, Text, Image, Link } from "@chakra-ui/react"
 import { Menu, MenuButton, MenuList, MenuItem, MenuDivider } from "@chakra-ui/react"
@@ -17,6 +16,8 @@ export default function Navbar({ login, register }) {
     role: "worker",
     category: "Web Developer"
   }
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <>
@@ -38,10 +39,12 @@ export default function Navbar({ login, register }) {
                       </HStack>
                     </MenuButton>
                     <MenuList>
-                      <MenuItem icon={<BiUser />} onClick={() => window.location.href="/profile/me"}>My Profile</MenuItem>
-                      <MenuItem icon={<BiBell />}>Notifications</MenuItem> {/*TODO: Add onClick func */}
+                      <MenuItem icon={<BiUser />} onClick={() => window.location.href="/profile/me"}>Profil Saya</MenuItem>
+                      <MenuItem icon={<BiBell />}>Notifikasi</MenuItem> {/*TODO: Add onClick func */}
+                      <MenuItem icon={<BiHistory />}>Riwayat</MenuItem> {/*TODO: Add onClick func */}
                       <MenuDivider />
-                      <MenuItem icon={<BiLogOut />}>Logout</MenuItem>
+                      <MenuItem icon={<BiEdit />}>Ganti Password</MenuItem> {/*TODO: Add onClick func */}
+                      <MenuItem icon={<BiLogOut />}>Keluar</MenuItem>
                   </MenuList>
                   </Menu>
                 </>
@@ -50,14 +53,14 @@ export default function Navbar({ login, register }) {
                   <Flex>
                     <Link href="/login">
                       <Text color={login ? "#FF8450" : "black"} as={login && "ins"}>
-                        Login
+                        Masuk
                       </Text>
                     </Link>
                   </Flex>
                   <Flex pl="8">
                     <Link href="/register">
                       <Text color={register ? "#FF8450" : "black"} as={register && "ins"}>
-                        Register
+                        Daftar
                       </Text>
                     </Link>
                   </Flex>
