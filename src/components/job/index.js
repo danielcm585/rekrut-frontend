@@ -1,5 +1,6 @@
 export { default as JobCard } from "./JobCard"
 export { default as JobList } from "./JobList"
 export { default as JobButton } from "./JobButton"
+export { default as JobBadges } from "./JobBadges"
 export { default as ConfirmButton } from "./ConfirmButton"
 export { default as ChooseWorker } from "./ChooseWorker"

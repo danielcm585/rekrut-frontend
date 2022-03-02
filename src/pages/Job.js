@@ -3,12 +3,13 @@ import { useParams } from "react-router-dom"
 import { MdLocationOn, MdWork } from "react-icons/md"
 import { FaMoneyBillWave } from "react-icons/fa"
 
-import { Navbar, Footer } from "../components"
-import { JobList, JobButton } from "../components/job"
+import { JobList, JobButton, JobBadges } from "../components/job"
 import { ProfileList } from "../components/profile"
+import { Navbar, Footer } from "../components"
 
 import { useDisclosure } from "@chakra-ui/react"
 import { Box, Flex, HStack, Image, Link, Spacer, Text, Icon, SimpleGrid } from "@chakra-ui/react"
+import { Star } from "../components/review"
 
 export default function Job() {
   const { id } = useParams()
@@ -44,6 +45,7 @@ export default function Job() {
     company: {
       id: 1,
       name: "BukaPedia",
+      rating: 4.2,
       photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
     },
     registrants: [
@@ -52,7 +54,7 @@ export default function Job() {
         photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
         name: "Obiwan Kenobi",
         category: "Web Developer",
-        rate: 4.3,
+        rating: 4.3,
         reviews: ["ada"],
         email: "email@gmail.com",
         phone: "+62123213123"
@@ -62,7 +64,7 @@ export default function Job() {
         photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
         name: "Anakin Skywalker",
         category: "Web Developer",
-        rate: 2.1,
+        rating: 2.1,
         reviews: ["ada"],
         email: "email@gmail.com",
         phone: "+62123213123"
@@ -72,7 +74,7 @@ export default function Job() {
         photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
         name: "C3PO",
         category: "Web Developer",
-        rate: 4.9,
+        rating: 4.9,
         reviews: ["ada"],
         email: "email@gmail.com",
         phone: "+62123213123"
@@ -92,11 +94,12 @@ export default function Job() {
         desc: "Do backend work in developing our app.",
         category: "Web Developer",
         salary: 5000000,
-        type: "Full Time",
+        type: "Full-time",
         location: "Jakarta",
         company: {
           id: 1,
           name: "BukaPedia",
+          rating: 4.2,
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
         },
         registrants: [
@@ -120,11 +123,12 @@ export default function Job() {
         category: "Web Developer",
         desc: "Do frontend work in developing our app.",
         salary: 6000000,
-        type: "Full Time",
-        location: "Jakarta",
+        type: "Part-time",
+        location: "Surabaya",
         company: {
           id: 1,
           name: "BukaPedia",
+          rating: 4.2,
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
         },
         registrants: [
@@ -144,14 +148,22 @@ export default function Job() {
         category: "Web Developer",
         desc: "Develop a great website for our company",
         salary: 4000000,
-        type: "Full Time",
-        location: "Jakarta",
+        type: "Contract",
+        location: "Semarang",
         company: {
           id: 2,
           name: "TokoLapak",
+          rating: 2.1,
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
         },
-        registrants: []
+        registrants: [
+          "ada",
+          "ada",
+          "ada",
+          "ada",
+          "ada",
+          "ada",
+        ]
       }
     ])
 
@@ -174,19 +186,28 @@ export default function Job() {
       <Flex justifyContent="center">
         <Flex mt="100" w="85%" direction="column">
           <Flex>
-            <HStack>
+            <Flex>
               <Flex p="2" pl="0">
-                <Image src={job.company.photo} h="55" borderRadius="md" />
+                <Image src={job.company.photo} h="95" borderRadius="md" />
               </Flex>
-              <Box>
-                <Text fontSize="xl" fontWeight="semibold">{job.title}</Text>
+              <Box ml="2" mt="1">
+                <HStack>
+                  <Text fontSize="xl" fontWeight="semibold">{job.title}</Text>
+                  <JobBadges job={job} />
+                </HStack>
                 <Flex>
                   <Link href={"/profile/"+job.company.id}>
                     <Text color="gray.600">{job.company.name}</Text>
                   </Link>
                 </Flex>
+                {
+                  (job.company.rating != null) && <Star rate={job.company.rating} />
+                }
+                <Text fontSize="sm" color="gray.600">
+                  {job.registrants.length+" Pelamar"}
+                </Text>
               </Box>
-            </HStack>
+            </Flex>
             <Spacer></Spacer>
             <JobButton user={user} job={job} 
               isOpen={isOpen} onOpen={onOpen} onClose={onClose}
