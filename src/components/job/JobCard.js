@@ -2,7 +2,8 @@ import React from "react"
 import { MdWork, MdLocationOn, MdAttachMoney } from "react-icons/md"
 import { FaMoneyBillWave } from "react-icons/fa"
 
-import { Box, HStack, Image, Link, Spacer, Text, Flex, Icon } from "@chakra-ui/react"
+import { Box, HStack, Image, Link, Spacer, Text, Flex, Icon, Badge } from "@chakra-ui/react"
+import { Star } from "../review"
 
 export default function JobCard({ job }) {
   const parseAmount = (amount) => {
@@ -15,19 +16,49 @@ export default function JobCard({ job }) {
         _hover={{ bgColor:"gray.50" }}
         onClick={() => window.location.href="/job/"+job.id}>
         <HStack w="100%">
-          <HStack w="50%">
+          <Flex w="50%">
             <Flex p="2">
-              <Image src={job.company.photo} h="55" borderRadius="md" />
+              <Image src={job.company.photo} h="70" borderRadius="md" />
             </Flex>
-            <Box>
-              <Text fontSize="lg" fontWeight="semibold">{job.title}</Text>
-              <Flex>
-                <Link href={"/profile/"+job.company.id}>
-                  <Text color="gray.600">{job.company.name}</Text>
-                </Link>
-              </Flex>
+            <Box ml="2">
+              <HStack spacing="2">
+                <Text fontSize="lg" fontWeight="semibold">{job.title}</Text>
+                {
+                  (job.salary > 5000000) && (
+                    <Badge size="sm" colorScheme="orange">
+                      Best Offer
+                    </Badge>
+                  )
+                }
+                {
+                  (job.company.rating > 4) && (
+                    <Badge size="sm" colorScheme="green">
+                      Great Company
+                    </Badge>
+                  )
+                }
+                {
+                  /*TODO: Limited Time */
+                  (job.registrants.length > 5) && (
+                    <Badge size="sm" colorScheme="red">
+                      Limited Time
+                    </Badge>
+                  )
+                }
+              </HStack>
+                <Flex>
+                  <Link href={"/profile/"+job.company.id}>
+                    <Text fontSize="md" color="gray.600">{job.company.name}</Text>
+                  </Link>
+                </Flex>
+                {
+                  (job.company.rating != null) && <Star rate={job.company.rating} />
+                }
+              <Text fontSize="sm" color="gray.600">
+                {job.registrants.length+" Pelamar"}
+              </Text>
             </Box>
-          </HStack>
+          </Flex>
           <Box w="16%" pl="3">
               <HStack>
                 <Icon as={MdLocationOn} color="gray.600" />

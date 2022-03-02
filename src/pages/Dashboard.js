@@ -33,6 +33,7 @@ export default function Dashboard() {
         company: {
           id: 1,
           name: "BukaPedia",
+          rating: 4.2,
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
         },
         registrants: [
@@ -61,6 +62,7 @@ export default function Dashboard() {
         company: {
           id: 1,
           name: "BukaPedia",
+          rating: 4.2,
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
         },
         registrants: [
@@ -71,7 +73,9 @@ export default function Dashboard() {
           {
             photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
             name: "Din Djarin",
-          }
+          },
+          "ada",
+          "ada",
         ]
       },
       {
@@ -85,9 +89,17 @@ export default function Dashboard() {
         company: {
           id: 2,
           name: "TokoLapak",
+          rating: 2.1,
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
         },
-        registrants: []
+        registrants: [
+          "ada",
+          "ada",
+          "ada",
+          "ada",
+          "ada",
+          "ada",
+        ]
       }
     ])
     setRecentJobs([
@@ -102,6 +114,7 @@ export default function Dashboard() {
         company: {
           id: 1,
           name: "BukaPedia",
+          rating: 4.2,
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
         },
         registrants: [
@@ -130,6 +143,7 @@ export default function Dashboard() {
         company: {
           id: 1,
           name: "BukaPedia",
+          rating: 4.2,
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
         },
         registrants: [
@@ -154,9 +168,17 @@ export default function Dashboard() {
         company: {
           id: 2,
           name: "TokoLapak",
+          rating: 2.1,
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
         },
-        registrants: []
+        registrants: [
+          "ada",
+          "ada",
+          "ada",
+          "ada",
+          "ada",
+          "ada",
+        ]
       }
     ])
     console.log("FETCH API")

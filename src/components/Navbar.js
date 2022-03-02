@@ -1,6 +1,6 @@
 import React from "react"
 import { IoChevronDown } from "react-icons/io5"
-import { BiBell, BiLogOut, BiUser, BiEdit, BiHistory } from "react-icons/bi"
+import { BiBell, BiLogOut, BiUser, BiEdit, BiHistory, BiStar } from "react-icons/bi"
 
 import { PasswordForm } from "./profile";
 import { Notification } from "./";
@@ -58,7 +58,7 @@ export default function Navbar({ login, register }) {
                       <MenuItem icon={<BiUser />} onClick={() => window.location.href="/profile/me"}>Profil Saya</MenuItem>
                       {/*FIXME: Notification panel can't open */}
                       <MenuItem icon={<BiBell />} onClick={() => onNotificationOpen()}>Notifikasi</MenuItem> 
-                      <MenuItem icon={<BiHistory />}>Riwayat</MenuItem> {/*TODO: Add onClick func */}
+                      <MenuItem icon={<BiStar />}>Ulasan</MenuItem> {/*TODO: Add onClick func */}
                       <MenuDivider />
                       <MenuItem icon={<BiEdit />} onClick={() => onPasswordOpen()}>Ganti Password</MenuItem> 
                       <MenuItem icon={<BiLogOut />}>Keluar</MenuItem>
