@@ -9,21 +9,19 @@ export default function ReviewCard({ review }) {
     <>
       <Box p="3" mt="2" mb="2" shadow="md" borderRadius="md" 
         _hover={{ bgColor:"gray.50" }}>
-        <HStack mb="2">
+        <Flex>
           <Flex p="2">
-            <Image src={review.user.photo} h="55" borderRadius="md" />
+            <Image src={review.user.photo} h="95" borderRadius="md" />
           </Flex>
-          <Box>
+          <Box ml="2" mt="2">
             <Flex>
               <Link href={"/profile/"+review.user.id}>
                 <Text fontSize="xl" fontWeight="semibold">{review.user.name}</Text>
               </Link>
             </Flex>
             <Star rate={review.rate} />
+            <Text>{review.body}</Text>
           </Box>
-        </HStack>
-        <Flex pl="2">
-          <Text>{review.body}</Text>
         </Flex>
       </Box>
     </>
