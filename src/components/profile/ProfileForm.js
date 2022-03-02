@@ -1,23 +1,24 @@
 import React, { useState } from "react"
 
 import { Button, Text, Input, Select, Textarea } from "@chakra-ui/react"
-import { Modal, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, ModalOverlay, ModalContent } from "@chakra-ui/react"
 import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react";
-import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react"
+import { Modal, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, ModalOverlay, ModalContent } from "@chakra-ui/react"
 
 export default function ProfileForm({ isOpen, onClose, user }) {
   const [ name, setName ] = useState(user.name)
   const handleNameChanges = (e) => setName(e.target.value)
+
   const [ email, setEmail ] = useState(user.email)
   const handleEmailChanges = (e) => setEmail(e.target.value)
+
   const [ phone, setPhone ] = useState(user.phone)
   const handlePhoneChanges = (e) => setPhone(e.target.value)
+
   const [ category, setCategory ] = useState(user.category)
   const handleCategoryChanges = (e) => setCategory(e.target.value)
+  
   const [ bio, setBio ] = useState(user.bio)
   const handleBioChanges = (e) => setBio(e.target.value)
-
-  const [ error, setError ] = useState()
 
   return (
     <>
@@ -68,13 +69,6 @@ export default function ProfileForm({ isOpen, onClose, user }) {
               <Textarea type="text" placeholder="Saya seorang web developer profesional" value={bio} 
                 borderColor="black" onChange={handleBioChanges} />
             </FormControl>
-            {
-              (error != null) && (
-                <Alert mt="5" status="error" borderRadius="lg">
-                  <AlertIcon />{error}
-                </Alert>
-              )
-            }
           </ModalBody>
           <ModalFooter>
             <Button borderRadius="50" onClick={() => onClose()}>

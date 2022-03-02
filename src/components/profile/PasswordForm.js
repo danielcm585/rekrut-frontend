@@ -2,18 +2,23 @@ import React, { useState } from "react"
 
 import { PasswordInput } from "..";
 
-import { Modal, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, ModalOverlay, ModalContent } from "@chakra-ui/react"
-import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react"
-import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react";
+import { useToast } from "@chakra-ui/react"
 import { Button, Text, Input, Select, Textarea } from "@chakra-ui/react"
+import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react";
+import { Modal, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, ModalOverlay, ModalContent } from "@chakra-ui/react"
 
 export default function ProfileForm({ isOpen, onClose, user }) {
   const [ oldPassword, setOldPassword ] = useState()
   const handleOldPasswordChanges = (e) => setOldPassword(e.target.value)
+  
   const [ password, setPassword ] = useState()
   const [ confPassword, setConfPassword ] = useState()
 
-  const [ error, setError ] = useState()
+  const toast = useToast({
+    position: "top",
+    variant: "solid",
+    isClosable: true
+  })
 
   return (
     <>
@@ -44,13 +49,6 @@ export default function ProfileForm({ isOpen, onClose, user }) {
               <PasswordInput password={confPassword} setPassword={setConfPassword}
                 placeholder="password-baru" />
             </FormControl>
-            {
-              (error != null) && (
-                <Alert mt="5" status="error" borderRadius="lg">
-                  <AlertIcon />{error}
-                </Alert>
-              )
-            }
           </ModalBody>
           <ModalFooter>
             <Button borderRadius="50" onClick={() => onClose()}>
@@ -59,23 +57,38 @@ export default function ProfileForm({ isOpen, onClose, user }) {
             <Button ml="2" borderRadius="50" bgColor="#FF8450" 
               onClick={() => {
                 if (oldPassword == null || oldPassword.length == 0) {
-                  setError("Password lama tidak boleh kosong")
+                  toast({
+                    title: "Password lama tidak boleh kosong",
+                    status: "error"
+                  })
                   return
                 }
                 if (password == null || password.length == 0) {
-                  setError("Password baru tidak boleh kosong")
+                  toast({
+                    title: "Password baru tidak boleh kosong",
+                    status: "error"
+                  })
                   return
                 }
                 if (password.length < 6) {
-                  setError("Password baru minimal terdiri dari 6 karakter")
+                  toast({
+                    title: "Password baru minimal terdiri dari 6 karakter",
+                    status: "error"
+                  })
                   return
                 }
                 if (password != confPassword) {
-                  setError("Password baru tidak cocok")
+                  toast({
+                    title: "Password baru tidak cocok",
+                    status: "error"
+                  })
                   return
                 }
                 if (password == oldPassword) {
-                  setError("Password baru tidak boleh sama dengan password lama")
+                  toast({
+                    title: "Password baru tidak boleh sama dengan password lama",
+                    status: "error"
+                  })
                   return
                 }
                 // TODO: Send request to api

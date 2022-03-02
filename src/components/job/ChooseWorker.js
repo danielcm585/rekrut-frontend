@@ -1,15 +1,12 @@
-import React, { useState } from "react"
+import React from "react"
 
 import { ProfileCard, ProfileCard2, ProfileDetails } from "../profile"
 
 import { Button, Text, Flex } from "@chakra-ui/react"
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from "@chakra-ui/react"
-import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react"
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon } from '@chakra-ui/react'
 
 export default function ChooseWorker({ isOpen, onClose, job }) {
-  const [ error, setError ] = useState()
-
   return (
     <>
       <Modal size="2xl" isOpen={isOpen} onClose={onClose}>
@@ -40,18 +37,11 @@ export default function ChooseWorker({ isOpen, onClose, job }) {
             <Flex direction="column">
               {
                 job.registrants.map((profile, idx) => 
-                  <ProfileCard key={idx} profile={profile} setError={setError} />)
+                  <ProfileCard key={idx} profile={profile} />)
               }
             </Flex>
           </ModalBody>
           <ModalFooter>
-            {
-              (error != null) && (
-                <Alert mt="5" status="error" borderRadius="lg">
-                  <AlertIcon />{error}
-                </Alert>
-              )
-            }
             <Button borderRadius="50" onClick={() => onClose()}>
               <Text fontSize="sm" fontWeight="bold">Cancel</Text>
             </Button> 

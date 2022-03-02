@@ -1,15 +1,19 @@
-import React, { useState } from "react"
+import React from "react"
 
-import { Flex, Text, Input, Button, SimpleGrid, VStack } from "@chakra-ui/react"
-import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react"
+import { useToast } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
+import { Flex, Text, Input, Button, SimpleGrid, VStack } from "@chakra-ui/react"
 
 export default function RegisterPage1({ role, setPage, name, setName, phone, setPhone, bank, setBank }) {
   const handleNameChanges = (e) => setName(e.target.value)
   const handlePhoneChanges = (e) => setPhone(e.target.value)
   const handleBankChanges = (e) => setBank(e.target.value)
 
-  const [ error, setError ] = useState()
+  const toast = useToast({
+    position: "top",
+    variant: "solid",
+    isClosable: true
+  })
 
   return (
     <>
@@ -45,13 +49,6 @@ export default function RegisterPage1({ role, setPage, name, setName, phone, set
                 <Input type="number" placeholder="31234567" value={bank} 
                   borderColor="black" onChange={handleBankChanges} />
               </FormControl>
-              {
-                (error != null) && (
-                  <Alert mt="5" status="error" borderRadius="lg">
-                    <AlertIcon />{error}
-                  </Alert>
-                )
-              }
               <SimpleGrid columns="2" spacing="2">
                 <Button mt="8" borderRadius="50" onClick={() => setPage(prev => prev-1)}>
                   <Text fontSize="sm" fontWeight="bold">Kembali</Text>
@@ -59,27 +56,45 @@ export default function RegisterPage1({ role, setPage, name, setName, phone, set
                 <Button mt="8" bgColor="#FF8450" borderRadius="50"
                   onClick={() => {
                     if (name == null || name.length == 0) {
-                      setError("Nama tidak boleh kosong")
+                      toast({
+                        title: "Nama tidak boleh kosong",
+                        status: "error"
+                      })
                       return
                     }
                     if (phone == null || phone.length == 0) {
-                      setError("Nomor telepon tidak boleh kosong")
+                      toast({
+                        title: "Nomor telepon tidak boleh kosong",
+                        status: "error"
+                      })
                       return
                     }
                     if (phone.length < 10) {
-                      setError("Nomor telepon tidak valid")
+                      toast({
+                        title: "Nomor telepon tidak valid",
+                        status: "error"
+                      })
                       return
                     }
                     if (phone[0] != '+' || phone[0] == '0') {
-                      setError("Nomor telepon harus ditulis dalam format internasional, contoh: +628123456789")
+                      toast({
+                        title: "Nomor telepon harus ditulis dalam format internasional, contoh: +628123456789",
+                        status: "error"
+                      })
                       return
                     }
                     if (bank == null || bank.length == 0)  {
-                      setError("Nomor rekening tidak boleh kosong")
+                      toast({
+                        title: "Nomor rekening tidak boleh kosong",
+                        status: "error"
+                      })
                       return
                     }
                     if (bank.length < 6) { // FIXME: The valid rule
-                      setError("Nomor rekening tidak valid")
+                      toast({
+                        title: "Nomor rekening tidak valid",
+                        status: "error"
+                      })
                       return
                     }
                     setPage(prev => prev+1)

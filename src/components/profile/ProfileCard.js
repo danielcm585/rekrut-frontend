@@ -5,7 +5,7 @@ import { ConfirmButton } from "../job"
 
 import { Box, Flex, Spacer } from "@chakra-ui/react"
 
-export default function ProfileCard({ profile, setError }) {
+export default function ProfileCard({ profile }) {
   const [ isConfrimOpen, setIsConfirmOpen ] = useState()
 
   return (

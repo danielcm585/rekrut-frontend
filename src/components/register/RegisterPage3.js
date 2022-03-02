@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 
-import { Flex, Text, Input, Button, SimpleGrid, Select, VStack, Textarea } from "@chakra-ui/react"
-import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react"
+import { useToast } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
+import { Flex, Text, Input, Button, SimpleGrid, Select, VStack, Textarea } from "@chakra-ui/react"
 
 export default function RegisterPage1({ role, setPage, category, setCategory, bio, setBio, cv, setCv }) {
-  const handleBioChanges = (e) => setBio(e.target.value)
+const handleBioChanges = (e) => setBio(e.target.value)
   const handleCategoryChanges = (e) => setCategory(e.target.value)
   const handleCvChanges = (e) => setCv(e.target.files[0])
 
-  const [ error, setError ] = useState()
+  const toast = useToast({
+    position: "top",
+    variant: "solid",
+    isClosable: true
+  })
 
   return (
     <>
@@ -53,14 +57,6 @@ export default function RegisterPage1({ role, setPage, category, setCategory, bi
                 <Input p="1" type="file" variant="unstyled"
                   onChange={handleCvChanges} />
               </FormControl>
-              {/* TODO: Submit CV */}
-              {
-                (error != null) && (
-                  <Alert mt="5" status="error" borderRadius="lg">
-                    <AlertIcon />{error}
-                  </Alert>
-                )
-              }
               <SimpleGrid columns="2" spacing="2">
                 <Button mt="8" borderRadius="50" onClick={() => setPage(prev => prev-1)}>
                   <Text fontSize="sm" fontWeight="bold">Kembali</Text>
@@ -68,15 +64,25 @@ export default function RegisterPage1({ role, setPage, category, setCategory, bi
                 <Button mt="8" bgColor="#FF8450" borderRadius="50"
                   onClick={() => {
                     if (category == "-") {
-                      setError("Kategori pekerjaan tidak boleh kosong")
+                      toast({
+                        title: "Kategori pekerjaan tidak boleh kosong",
+                        status: "error"
+                      })
                       return
                     }
+                    // TODO: Optional
                     if (bio == null || bio.length == 0) {
-                      setError("Bio anda masih kosong")
+                      toast({
+                        title: "Bio anda masih kosong",
+                        status: "warning"
+                      })
                       return
                     }
                     if (cv == null) {
-                      setError("CV tidak boleh kosong")
+                      toast({
+                        title: "CV tidak boleh kosong",
+                        status: "error"
+                      })
                       return
                     }
                     setPage(prev => prev+1)

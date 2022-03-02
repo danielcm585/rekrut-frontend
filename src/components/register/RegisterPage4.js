@@ -1,12 +1,16 @@
 import React, { useState } from "react"
 
+import { useToast } from "@chakra-ui/react"
 import { Checkbox, Flex, Text, Box, SimpleGrid, Button, VStack } from "@chakra-ui/react"
-import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react"
 
 export default function RegisterPage4({ role, setPage, postRequest }) {
   const [ agree, setAgree ] = useState(false)
   
-  const [ error, setError ] = useState()
+  const toast = useToast({
+    position: "top",
+    variant: "solid",
+    isClosable: true
+  })
 
   return (
     <>
@@ -30,13 +34,6 @@ export default function RegisterPage4({ role, setPage, postRequest }) {
                   I agree to all terms and conditions
                 </Text>
               </Checkbox>
-              {
-                (error != null) && (
-                  <Alert mt="5" status="error" borderRadius="lg">
-                    <AlertIcon />{error}
-                  </Alert>
-                )
-              }
               <SimpleGrid columns="2" spacing="2">
                 <Button mt="8" borderRadius="50" onClick={() => setPage(prev => prev-1)}>
                   <Text fontSize="sm" fontWeight="bold">Kembali</Text>
@@ -44,14 +41,13 @@ export default function RegisterPage4({ role, setPage, postRequest }) {
                 <Button mt="8" bgColor="#FF8450" borderRadius="50"
                   onClick={() => {
                     if (!agree) {
-                      setError("You need to agree to the terms and conditions")
+                      toast({
+                        title: "Anda wajib membaca dan menyetujui semua syarat yang berlaku",
+                        status: "error"
+                      })
                       return
                     }
-                    const json = postRequest()
-                    if (!json.success) {
-                      setError(json.message)
-                      return
-                    }
+                    // TODO: send request
                     window.location.href="/login"
                   }}>
                   <Text fontSize="sm" fontWeight="bold">Selanjutnya</Text>

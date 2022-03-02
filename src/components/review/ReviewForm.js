@@ -2,16 +2,20 @@ import React, { useState } from "react"
 
 import { StarButton } from "."
 
+import { useToast } from "@chakra-ui/react"
 import { Button, Text, Textarea } from "@chakra-ui/react"
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from "@chakra-ui/react"
-import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react"
 
 export default function ReviewForm({ isOpen, onClose, job }) {
   const [ rate, setRate ] = useState()
   const [ body, setBody ] = useState()
   const handleBodyChange = (e) => setBody(e.target.value)
 
-  const [ error, setError ] = useState()
+  const toast = useToast({
+    position: "top",
+    variant: "solid",
+    isClosable: true
+  })
 
   return (
     <>
@@ -24,13 +28,6 @@ export default function ReviewForm({ isOpen, onClose, job }) {
             <StarButton rate={rate} setRate={setRate} />
             <Textarea mt="3" variant="outline" borderColor="black" placeholder="Review saya" 
               value={body} onChange={handleBodyChange} />
-            {
-              (error != null) && (
-                <Alert mt="3" status="error" borderRadius="lg">
-                  <AlertIcon />{error}
-                </Alert>
-              )
-            }
           </ModalBody>
           <ModalFooter>
             <Button borderRadius="50" onClick={() => onClose()}>
@@ -39,7 +36,10 @@ export default function ReviewForm({ isOpen, onClose, job }) {
             <Button ml="2" borderRadius="50" bgColor="#FF8450" 
               onClick={() => {
                 if (rate == null) {
-                  setError("Anda belum memberi bintang")
+                  toast({
+                    title: "Anda belum memberi bintang",
+                    status: "error"
+                  })
                   return;
                 }
                 // TODO: Get client and worker

@@ -1,16 +1,20 @@
-import React, { useState } from "react"
+import React from "react"
 
 import { PasswordInput } from ".."
 import { LoginImg } from "../../images"
 
-import { Flex, Text, Input, Button, Link, Image } from "@chakra-ui/react"
-import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react"
+import { useToast } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
+import { Flex, Text, Input, Button, Link, Image } from "@chakra-ui/react"
 
 export default function RegisterPage1({ role, setPage, email, setEmail, password, setPassword, confPassword, setConfPassword }) {
   const handleEmailChanges = (e) => setEmail(e.target.value)
 
-  const [ error, setError ] = useState()
+  const toast = useToast({
+    position: "top",
+    variant: "solid",
+    isClosable: true
+  })
 
   return (
     <>
@@ -38,33 +42,41 @@ export default function RegisterPage1({ role, setPage, email, setEmail, password
             </FormLabel>
             <PasswordInput password={confPassword} setPassword={setConfPassword} />
           </FormControl>
-          {
-            (error != null) && (
-              <Alert mt="5" status="error" borderRadius="lg">
-                <AlertIcon />{error}
-              </Alert>
-            )
-          }
           <Button mt="8" borderRadius="50" borderColor="black" bgColor="#FF8450"
             onClick={() => {
               if (email == null || email.length == 0) {
-                setError("Email tidak boleh kosong")
+                toast({
+                  title: "Email tidak boleh kosong",
+                  status: "error"
+                })
                 return
               }
               if (email.length < 4 || !email.includes('@')) {
-                setError("Email tidak valid")
+                toast({
+                  title: "Email tidak valid",
+                  status: "error"
+                })
                 return
               }
               if (password == null || password.length == 0) {
-                setError("Password tidak boleh kosong")
+                toast({
+                  title: "Password tidak boleh kosong",
+                  status: "error"
+                })
                 return
               }
               if (password.length < 6) {
-                setError("Password minimal terdiri dari 6 karakter")
+                toast({
+                  title: "Password minimal terdiri dari 6 karakter",
+                  status: "error"
+                })
                 return
               }
               if (password != confPassword) {
-                setError("Password tidak cocok")
+                toast({
+                  title: "Password tidak cocok",
+                  status: "error"
+                })
                 return
               }
               setPage(prev => prev+1)
