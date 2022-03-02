@@ -13,7 +13,7 @@ export default function Notification({ isOpen, onClose, user }) {
   const notifications = [
     // Client
     {
-      title: "Hei! Ada 1 orang mendaftar sebagai Web Developer.",
+      title: "Hei! Ada pekerja yang baru saja mendaftar sebagai Web Developer.",
       link: "job/3",
       type: "important",
       read: false
@@ -115,7 +115,7 @@ export default function Notification({ isOpen, onClose, user }) {
           </ModalBody>
           <ModalFooter>
             <Button borderRadius="50" onClick={() => onClose()}>
-              <Text fontSize="sm" fontWeight="bold">Cancel</Text>
+              <Text fontSize="sm" fontWeight="bold">Close</Text>
             </Button> 
           </ModalFooter>
         </ModalContent>
