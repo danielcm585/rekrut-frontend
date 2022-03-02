@@ -2,8 +2,8 @@ import React from "react"
 import { IoChevronDown } from "react-icons/io5"
 import { BiBell, BiLogOut, BiUser, BiEdit, BiHistory, BiStar } from "react-icons/bi"
 
-import { PasswordForm } from "./profile";
 import { Notification } from "./";
+import { PasswordForm } from "./profile";
 
 import { useDisclosure } from "@chakra-ui/react";
 import { Button, Flex, HStack, Spacer, Text, Image, Link } from "@chakra-ui/react"
@@ -61,7 +61,7 @@ export default function Navbar({ login, register }) {
                       <MenuItem icon={<BiStar />}>Ulasan</MenuItem> {/*TODO: Add onClick func */}
                       <MenuDivider />
                       <MenuItem icon={<BiEdit />} onClick={() => onPasswordOpen()}>Ganti Password</MenuItem> 
-                      <MenuItem icon={<BiLogOut />}>Keluar</MenuItem>
+                      <MenuItem icon={<BiLogOut />}>Keluar</MenuItem> {/*TODO: Add onClick func */}
                     </MenuList>
                   </Menu>
                 </>
