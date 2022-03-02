@@ -6,7 +6,7 @@ import { Notification } from "./";
 import { PasswordForm } from "./profile";
 
 import { useDisclosure } from "@chakra-ui/react";
-import { Button, Flex, HStack, Spacer, Text, Image, Link } from "@chakra-ui/react"
+import { Button, Flex, HStack, Spacer, Text, Image, Link, Badge } from "@chakra-ui/react"
 import { Menu, MenuButton, MenuList, MenuItem, MenuDivider } from "@chakra-ui/react"
 
 export default function Navbar({ login, register }) {
@@ -27,6 +27,7 @@ export default function Navbar({ login, register }) {
     onClose: onPasswordClose
   } = useDisclosure()
   
+  const unreadNotifications = 2
   const { 
     isOpen: isNotificationOpen, 
     onOpen: onNotificationOpen, 
@@ -56,9 +57,16 @@ export default function Navbar({ login, register }) {
                     </MenuButton>
                     <MenuList>
                       <MenuItem icon={<BiUser />} onClick={() => window.location.href="/profile/me"}>Profil Saya</MenuItem>
-                      {/*FIXME: Notification panel can't open */}
-                      <MenuItem icon={<BiBell />} onClick={() => onNotificationOpen()}>Notifikasi</MenuItem> 
-                      <MenuItem icon={<BiStar />}>Ulasan</MenuItem> {/*TODO: Add onClick func */}
+                      <MenuItem icon={<BiBell />} onClick={() => onNotificationOpen()}>
+                        <HStack spacing="1">
+                          <Text>Notifikasi</Text>
+                          {
+                            (unreadNotifications > 0) && 
+                              <Badge size="xs" colorScheme="red">New</Badge>
+                          }
+                        </HStack>
+                      </MenuItem> 
+                      <MenuItem icon={<BiStar />} onClick={() => window.location.href="/profile/"+user.id}>Ulasan</MenuItem> {/*TODO: Add onClick func */}
                       <MenuDivider />
                       <MenuItem icon={<BiEdit />} onClick={() => onPasswordOpen()}>Ganti Password</MenuItem> 
                       <MenuItem icon={<BiLogOut />}>Keluar</MenuItem> {/*TODO: Add onClick func */}
