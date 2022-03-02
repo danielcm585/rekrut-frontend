@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 
+import { PasswordInput } from ".."
 import { LoginImg } from "../../images"
 
 import { Flex, Text, Input, Button, Link, Image } from "@chakra-ui/react"
@@ -8,8 +9,6 @@ import { FormControl, FormLabel } from "@chakra-ui/react"
 
 export default function RegisterPage1({ role, setPage, email, setEmail, password, setPassword, confPassword, setConfPassword }) {
   const handleEmailChanges = (e) => setEmail(e.target.value)
-  const handlePasswordChanges = (e) => setPassword(e.target.value)
-  const handleConfPasswordChanges = (e) => setConfPassword(e.target.value)
 
   const [ error, setError ] = useState()
 
@@ -31,15 +30,13 @@ export default function RegisterPage1({ role, setPage, email, setEmail, password
             <FormLabel>
               <Text fontSize="1xl" fontWeight="bold">Password</Text>
             </FormLabel>
-            <Input type="password" placeholder="password" value={password} 
-              borderColor="black" onChange={handlePasswordChanges} />
+            <PasswordInput password={password} setPassword={setPassword} />
           </FormControl>
           <FormControl mt="3">
             <FormLabel>
               <Text fontSize="1xl" fontWeight="bold">Konfirmasi Password</Text>
             </FormLabel>
-            <Input type="password" placeholder="password" value={confPassword} 
-              borderColor="black" onChange={handleConfPasswordChanges} />
+            <PasswordInput password={confPassword} setPassword={setConfPassword} />
           </FormControl>
           {
             (error != null) && (

@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import { Navbar } from "../components"
+import { Navbar, PasswordInput } from "../components"
 import { LoginImg } from "../images"
 
 import { Flex, Text, Input, Button, Link, HStack, Image } from "@chakra-ui/react"
@@ -10,7 +10,6 @@ export default function Login() {
   const [ email, setEmail ] = useState()
   const handleEmailChanges = (e) => setEmail(e.target.value)
   const [ password, setPassword ] = useState()
-  const handlePasswordChanges = (e) => setPassword(e.target.value)
 
   useState(() => {
     document.title = "Rekrut.id | Login"
@@ -35,8 +34,7 @@ export default function Login() {
             <FormLabel>
               <Text fontSize="1xl" fontWeight="bold">Password</Text>
             </FormLabel>
-            <Input type="password" placeholder="password" value={password} 
-              borderColor="black" onChange={handlePasswordChanges} />
+            <PasswordInput password={password} setPassword={setPassword} />
           </FormControl>
           <Button mt="8" borderRadius="50" borderColor="black" bgColor="#FF8450"
             onClick={() => {

@@ -8,12 +8,7 @@ export default function RegisterPage1({ role, setPage, category, setCategory, bi
   const handleBioChanges = (e) => setBio(e.target.value)
   const handleCategoryChanges = (e) => setCategory(e.target.value)
   const handleCvChanges = (e) => setCv(e.target.files[0])
-  
-  // console.log(cv.name)
-  // setCategory("Web Developer")
-  // useEffect(() => {
-  // }, [])
-  
+
   const [ error, setError ] = useState()
 
   return (
@@ -54,7 +49,8 @@ export default function RegisterPage1({ role, setPage, category, setCategory, bi
                 <FormLabel>
                   <Text fontSize="1xl" fontWeight="bold">CV</Text>
                 </FormLabel>
-                <Input p="1" type="file" borderColor="black" 
+                {/*FIXME: Value of the input */}
+                <Input p="1" type="file" variant="unstyled"
                   onChange={handleCvChanges} />
               </FormControl>
               {/* TODO: Submit CV */}

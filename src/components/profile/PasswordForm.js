@@ -1,17 +1,17 @@
 import React, { useState } from "react"
 
-import { Button, Text, Input, Select, Textarea } from "@chakra-ui/react"
+import { PasswordInput } from "..";
+
 import { Modal, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, ModalOverlay, ModalContent } from "@chakra-ui/react"
-import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react";
 import { Alert, AlertIcon, AlertTitle, AlertDescription } from "@chakra-ui/react"
+import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react";
+import { Button, Text, Input, Select, Textarea } from "@chakra-ui/react"
 
 export default function ProfileForm({ isOpen, onClose, user }) {
   const [ oldPassword, setOldPassword ] = useState()
   const handleOldPasswordChanges = (e) => setOldPassword(e.target.value)
   const [ password, setPassword ] = useState()
-  const handlePasswordChanges = (e) => setPassword(e.target.value)
   const [ confPassword, setConfPassword ] = useState()
-  const handleConfPasswordChanges = (e) => setConfPassword(e.target.value)
 
   const [ error, setError ] = useState()
 
@@ -34,15 +34,15 @@ export default function ProfileForm({ isOpen, onClose, user }) {
               <FormLabel>
                 <Text fontSize="1xl" fontWeight="bold">Password Baru</Text>
               </FormLabel>
-              <Input type="password" value={password} placeholder="password-baru"
-                borderColor="black" onChange={handlePasswordChanges} />
+              <PasswordInput password={password} setPassword={setPassword} 
+                placeholder="password-baru" />
             </FormControl>
             <FormControl mt="3">
               <FormLabel>
                 <Text fontSize="1xl" fontWeight="bold">Konfirmasi Password Baru</Text>
               </FormLabel>
-              <Input type="password" value={confPassword} placeholder="password-baru"
-                borderColor="black" onChange={handleConfPasswordChanges} />
+              <PasswordInput password={confPassword} setPassword={setConfPassword}
+                placeholder="password-baru" />
             </FormControl>
             {
               (error != null) && (
