@@ -1,7 +1,7 @@
 import React from "react"
 import { BiSearch } from "react-icons/bi"
 
-import { HStack, Flex, Icon, Box, Select } from "@chakra-ui/react"
+import { HStack, Flex, Icon, Box, Select, Button } from "@chakra-ui/react"
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react"
 
 export default function SearchBar({ keyword, setKeyword, location, setLocation, type, setType, salary, setSalary }) {
@@ -55,27 +55,30 @@ export default function SearchBar({ keyword, setKeyword, location, setLocation, 
           {
             (location != "Semua lokasi") && (
               <>
-                <Box mt="4" mr="4" p="1" pl="4" pr="4" bg="#FF8450" borderRadius="50">
+                <Button mt="4" mr="4" pl="4" pr="4" bgColor="#FF8450" borderRadius="50"
+                  onClick={() => setLocation("Semua lokasi")}>
                   {location}
-                </Box>
+                </Button>
               </>
             )
           }
           {
             (type != "Semua tipe pekerjaan") && (
               <>
-                <Box mt="4" mr="4" p="1" pl="4" pr="4" bg="#FF8450" borderRadius="50">
+                <Button mt="4" mr="4" pl="4" pr="4" bgColor="#FF8450" borderRadius="50"
+                  onClick={() => setType("Semua tipe pekerjaan")}>
                   {type}
-                </Box>
+                </Button>
               </>
             )
           }
           {
             (salary != "Semua range upah") && (
               <>
-                <Box mt="4" p="1" pl="4" pr="4" bg="#FF8450" borderRadius="50">
+                <Button mt="4" mr="4" pl="4" pr="4" bgColor="#FF8450" borderRadius="50"
+                  onClick={() => setSalary("Semua range upah")}>
                   ≥ {parseAmount(salary)}
-                </Box>
+                </Button>
               </>
             )
           }

@@ -36,7 +36,7 @@ export default function Login() {
             </FormLabel>
             <PasswordInput password={password} setPassword={setPassword} />
           </FormControl>
-          <Button mt="8" borderRadius="50" borderColor="black" bgColor="#FF8450"
+          <Button mt="8" borderRadius="50" bgColor="#FF8450"
             onClick={() => {
               fetch("https://localhost:3001/user/login", {
                 method: "POST",
