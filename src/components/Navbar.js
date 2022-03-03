@@ -62,7 +62,7 @@ export default function Navbar({ login, register }) {
                           <Text>Notifikasi</Text>
                           {
                             (unreadNotifications > 0) && 
-                              <Badge size="xs" colorScheme="red">New</Badge>
+                              <Badge size="xs" colorScheme="red">Baru</Badge>
                           }
                         </HStack>
                       </MenuItem> 

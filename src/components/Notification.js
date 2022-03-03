@@ -104,7 +104,7 @@ export default function Notification({ isOpen, onClose, user }) {
                         <Text pl="2">{notif.title}</Text>
                         {
                           (!notif.read) && 
-                            <Badge size="xs" colorScheme="red">Unread</Badge>
+                            <Badge size="xs" colorScheme="red">Baru</Badge>
                         }
                       </HStack>
                     </Box>
