@@ -35,7 +35,17 @@ export default function JobCard({ job }) {
                 (job.company.rating != null) && <Star rate={job.company.rating} />
               }
               <Text fontSize="sm" color="gray.600">
-                {job.registrants.length+" Pelamar"}
+                {
+                  (job.status == "hiring") ? job.registrants.length+" Pelamar" : (
+                    (job.status == "waiting confirmation") ? "Menunggu Konfirmasi Pekerja" : (
+                      (job.status == "on progress") ? "Dalam Pengerjaan" : (
+                        (job.status == "in review") ? "Dalam Proses Review" : (
+                          (job.status == "done") ? "Pekerjaan Selesai" : ""
+                        )
+                      )
+                    )
+                  )
+                }
               </Text>
             </Box>
           </Flex>

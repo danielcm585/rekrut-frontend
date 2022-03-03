@@ -214,7 +214,7 @@ export default function Dashboard() {
       <Navbar />
       <Flex justifyContent="center">
         <Flex mt="100" w="85%" direction="column">
-          <Text mb="6" fontSize="2xl" fontWeight="semibold">Job Portal</Text>
+          <Text mb="6" fontSize="2xl" fontWeight="semibold">Portal Pekerjaan</Text>
           <SearchBar keyword={keyword} setKeyword={setKeyword}
             location={location} setLocation={setLocation}
             type={type} setType={setType}
@@ -222,35 +222,43 @@ export default function Dashboard() {
         </Flex>
       </Flex>
       {
-        (filteredBestOffer != null) && (
+        (user.role == "worker") ? (
           <>
-            <Flex justifyContent="center">
-              <Box mt="8" w="85%">
-                <Flex>
-                  <Text fontSize="xl" fontWeight="semibold">Penawaran terbaik</Text>
-                  <Spacer></Spacer>
-                  <Button variant="ghost" borderRadius="50" onClick={() => window.location.href="/jobs/best-offer"}>Lihat semua</Button>
-                </Flex>
-                <JobList jobs={filteredBestOffer} />
-              </Box>
-            </Flex>
+            {
+              (filteredBestOffer != null) && (
+                <>
+                  <Flex justifyContent="center">
+                    <Box mt="8" w="85%">
+                      <Flex>
+                        <Text fontSize="xl" fontWeight="semibold">Penawaran terbaik</Text>
+                        <Spacer></Spacer>
+                        <Button variant="ghost" borderRadius="50" onClick={() => window.location.href="/jobs/best-offer"}>Lihat semua</Button>
+                      </Flex>
+                      <JobList jobs={filteredBestOffer} />
+                    </Box>
+                  </Flex>
+                </>
+              )
+            }
+            {
+              (filteredRecentJobs != null) && (
+                <>
+                  <Flex justifyContent="center">
+                    <Box mt="8" w="85%">
+                      <Flex>
+                        <Text fontSize="xl" fontWeight="semibold">Baru ditambahkan</Text>
+                        <Spacer></Spacer>
+                        <Button variant="ghost" borderRadius="50" onClick={() => window.location.href="/jobs/best-offer"}>Lihat semua</Button>
+                      </Flex>
+                      <JobList jobs={filteredRecentJobs} />
+                    </Box>
+                  </Flex>
+                </>
+              )
+            }
           </>
-        )
-      }
-      {
-        (filteredRecentJobs != null) && (
-          <>
-            <Flex justifyContent="center">
-              <Box mt="8" w="85%">
-                <Flex>
-                  <Text fontSize="xl" fontWeight="semibold">Baru ditambahkan</Text>
-                  <Spacer></Spacer>
-                  <Button variant="ghost" borderRadius="50" onClick={() => window.location.href="/jobs/best-offer"}>Lihat semua</Button>
-                </Flex>
-                <JobList jobs={filteredRecentJobs} />
-              </Box>
-            </Flex>
-          </>
+        ) : (
+          <></>
         )
       }
       <Footer />

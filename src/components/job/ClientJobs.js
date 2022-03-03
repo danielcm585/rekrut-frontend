@@ -22,6 +22,7 @@ export default function WorkerJobs({ user }) {
         salary: 5000000,
         location: "Jakarta",
         type: "Full-time",
+        status: "waiting confirmation",
         company: {
           id: 1,
           name: "BukaPedia",
@@ -57,6 +58,7 @@ export default function WorkerJobs({ user }) {
         salary: 6000000,
         location: "Semarang",
         type: "Contract",
+        status: "hiring",
         company: {
           id: 1,
           name: "BukaPedia",
@@ -78,6 +80,7 @@ export default function WorkerJobs({ user }) {
         salary: 4000000,
         location: "Surabaya",
         type: "Full-project",
+        status: "on progress",
         company: {
           id: 2,
           name: "TokoLapak",
@@ -99,6 +102,7 @@ export default function WorkerJobs({ user }) {
         salary: 4000000,
         location: "Surabaya",
         type: "Full-project",
+        status: "done",
         company: {
           id: 2,
           name: "TokoLapak",

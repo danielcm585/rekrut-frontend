@@ -4,8 +4,7 @@ import { Navbar, Footer } from "../components"
 import { ProfileDetails } from "../components/profile"
 import { WorkerJobs, ClientJobs } from "../components/job"
 
-import { Flex, Text, Button, Spacer } from "@chakra-ui/react"
-// import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react"
+import { Flex } from "@chakra-ui/react"
 
 export default function MyProfile() {
   // TODO: Fetch user from api based on id
