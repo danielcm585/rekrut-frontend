@@ -15,11 +15,11 @@ export default function Payment({ isOpen, onClose, job, worker }) {
           <ModalBody>
             <ProfileCard worker={worker} preview={true} />
             <Flex direction="column">
-              <Text align="center">
+              <Text align="center" fontWeight="semibold">
                 Silakan lakukan pembayaran terlebih dahulu melalui rekening bank dibawah ini
               </Text>
-              <Box mt="2" align="center" border="1px" borderColor="gray.600" borderRadius="md">
-                <Text fontSize="lg" fontWeight="semibold">123456789</Text>
+              <Box p="1" mt="2" align="center" border="1px" borderColor="gray.600" borderRadius="md">
+                <Text fontSize="2xl" fontWeight="bold">123456789</Text>
               </Box>
             </Flex>
           </ModalBody>
