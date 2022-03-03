@@ -1,13 +1,18 @@
-import React from "react"
+import React, { useState } from "react"
 
 import { ChooseWorker, ConfirmButton } from "."
 import { ReviewForm } from "../review"
 
-import { Button, Text } from "@chakra-ui/react"
+import { useDisclosure } from "@chakra-ui/react"
+import { Button, Flex, Text } from "@chakra-ui/react"
 
-export default function JobButton({ user, job, isOpen, onOpen, onClose, isConfirmOpen, setIsConfirmOpen }) {
+export default function JobButton({ user, job, canReview }) {
   // FIXME: Can we review?
-  const canReview = true
+  // const canReview = true
+
+  const [ isConfirmOpen, setIsConfirmOpen ] = useState(false)
+  const [ isConfirm2Open, setIsConfirm2Open ] = useState(false)
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <>
@@ -51,15 +56,24 @@ export default function JobButton({ user, job, isOpen, onOpen, onClose, isConfir
         )
       }
       {
-        (job.statur == "waiting confirmation" && canReview) && (
+        (job.status == "waiting confirmation" && canReview) && (
           <>
             {
               (user.role == "worker") ? (
-                <ConfirmButton action="Konfirmasi" isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen}
-                  onClick={() => {
-                    // TODO: Send request to api
-                    console.log("CONFIRM")
-                  }} />
+                <>
+                  <Flex>
+                    <ConfirmButton action="Tolak" second={true} isOpen={isConfirm2Open} setIsOpen={setIsConfirm2Open}
+                      onClick={() => {
+                        // TODO: Set job to "hiring" again
+                        console.log("REJECT")
+                      }} />
+                    <ConfirmButton action="Konfirmasi" isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen}
+                      onClick={() => {
+                        // TODO: Set job to "on progress"
+                        console.log("CONFIRM")
+                      }} />
+                  </Flex>
+                </>
               ) : (
                 <ConfirmButton action="Selesai" isDisabled={true} />
               )
@@ -75,7 +89,7 @@ export default function JobButton({ user, job, isOpen, onOpen, onClose, isConfir
                 <>
                   <ConfirmButton action="Selesai" isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen}
                     onClick={() => {
-                      // TODO: Send request to api
+                      // TODO: Set job status to "in review"
                       console.log("DONE")
                     }} />
                 </>
@@ -101,11 +115,20 @@ export default function JobButton({ user, job, isOpen, onOpen, onClose, isConfir
                   }
                 </>
               ) : (
-                <ConfirmButton  action="Selesai" isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen}
-                  onClick={() => {
-                    // TODO: Send request to api
-                    console.log("APPROVE")
-                  }} />
+                <>
+                  <Flex>
+                    <ConfirmButton  action="Tolak" second={true} isOpen={isConfirm2Open} setIsOpen={setIsConfirm2Open}
+                      onClick={() => {
+                        // TODO: Set job status back to "on progress"
+                        console.log("UN-APPROVE")
+                      }} />
+                    <ConfirmButton  action="Terima" isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen}
+                      onClick={() => {
+                        // TODO: Set job status to "done"
+                        console.log("APPROVE")
+                      }} />
+                  </Flex>
+                </>
               )
             }
           </>

@@ -43,7 +43,7 @@ export default function ChooseWorker({ isOpen, onClose, job }) {
           </ModalBody>
           <ModalFooter>
             <Button borderRadius="50" onClick={() => onClose()}>
-              <Text fontSize="sm" fontWeight="bold">Cancel</Text>
+              <Text fontSize="sm" fontWeight="bold">Batal</Text>
             </Button> 
           </ModalFooter>
         </ModalContent>

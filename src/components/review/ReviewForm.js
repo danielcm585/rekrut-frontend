@@ -31,7 +31,7 @@ export default function ReviewForm({ isOpen, onClose, job }) {
           </ModalBody>
           <ModalFooter>
             <Button borderRadius="50" onClick={() => onClose()}>
-              <Text fontSize="sm" fontWeight="bold">Cancel</Text>
+              <Text fontSize="sm" fontWeight="bold">Batal</Text>
             </Button> 
             <Button ml="2" borderRadius="50" bgColor="#FF8450" 
               onClick={() => {

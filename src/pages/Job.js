@@ -7,7 +7,7 @@ import { JobList, JobButton, JobBadges } from "../components/job"
 import { ProfileList } from "../components/profile"
 import { Navbar, Footer } from "../components"
 
-import { useDisclosure } from "@chakra-ui/react"
+// import { useDisclosure } from "@chakra-ui/react"
 import { Box, Flex, HStack, Image, Link, Spacer, Text, Icon, SimpleGrid } from "@chakra-ui/react"
 import { Star } from "../components/review"
 
@@ -38,10 +38,10 @@ export default function Job() {
     salary: 5000000,
     location: "Jakarta",
     type: "Full Time",
-    status: "hiring",
+    // status: "hiring",
     // status: "waiting confirmation",
     // status: "on progress",
-    // status: "in review",
+    status: "in review",
     // status: "done",
     company: {
       id: 1,
@@ -171,8 +171,8 @@ export default function Job() {
     setOtherJobs(jobs => jobs.slice(0,3))
   }, [])
   
-  const [ isConfirmOpen, setIsConfirmOpen ] = useState(false)
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  // const [ isConfirmOpen, setIsConfirmOpen ] = useState(false)
+  // const { isOpen, onOpen, onClose } = useDisclosure()
 
   const parseAmount = (amount) => {
     return "IDR "+amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")+",00";
@@ -210,9 +210,7 @@ export default function Job() {
               </Box>
             </Flex>
             <Spacer></Spacer>
-            <JobButton user={user} job={job} 
-              isOpen={isOpen} onOpen={onOpen} onClose={onClose}
-              isConfirmOpen={isConfirmOpen} setIsConfirmOpen={setIsConfirmOpen} />
+            <JobButton user={user} job={job} canReview={canReview} />
           </Flex>
           <Flex>
             <SimpleGrid columns="2" spacing="4">
@@ -267,12 +265,18 @@ export default function Job() {
               </>
             )
           }
-          <Text mt="8" fontWeight="bold">Other Job</Text>
-          <Flex mt="2">
-            {
-              (otherJobs != null) && <JobList jobs={otherJobs} />
-            }
-          </Flex>
+          {
+            (user.role == "worker") && (
+              <>
+                <Text mt="8" fontWeight="bold">Other Job</Text>
+                <Flex mt="2">
+                  {
+                    (otherJobs != null) && <JobList jobs={otherJobs} />
+                  }
+                </Flex>
+              </>
+            )
+          }
         </Flex>
       </Flex>
       <Footer /> 
