@@ -9,7 +9,7 @@ import { Box, Button, Flex, Image, SimpleGrid, Text } from "@chakra-ui/react"
 
 export default function Landing() {
   useState(() => {
-    document.title = "Rekrut.id | Work or hire now!"
+    document.title = "Rekrut.id | Kerja atau rekrut sekarang!"
   }, [])
 
   return (

@@ -19,7 +19,7 @@ export default function ReviewCard({ review }) {
                 <Text fontSize="xl" fontWeight="semibold">{review.user.name}</Text>
               </Link>
             </Flex>
-            <Star rate={review.rate} />
+            <Star rating={review.rating} />
             <Text>{review.body}</Text>
           </Box>
         </Flex>

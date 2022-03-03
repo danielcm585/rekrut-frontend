@@ -115,7 +115,7 @@ export default function Notification({ isOpen, onClose, user }) {
           </ModalBody>
           <ModalFooter>
             <Button borderRadius="50" onClick={() => onClose()}>
-              <Text fontSize="sm" fontWeight="bold">Close</Text>
+              <Text fontSize="sm" fontWeight="bold">Tutup</Text>
             </Button> 
           </ModalFooter>
         </ModalContent>

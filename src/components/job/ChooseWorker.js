@@ -1,10 +1,9 @@
 import React from "react"
 
-import { ProfileCard, ProfileCard2, ProfileDetails } from "../profile"
+import { ProfileCard } from "../profile"
 
 import { Button, Text, Flex } from "@chakra-ui/react"
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from "@chakra-ui/react"
-import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon } from '@chakra-ui/react'
 
 export default function ChooseWorker({ isOpen, onClose, job }) {
   return (
@@ -15,29 +14,11 @@ export default function ChooseWorker({ isOpen, onClose, job }) {
           <ModalHeader>Pendaftar</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            {/* <Accordion>
-              {
-                job.registrants.map((worker, idx) => {
-                  return (
-                    <>
-                      <AccordionItem>
-                        <AccordionButton>
-                          <ProfileCard2 worker={worker} />
-                          <AccordionIcon />
-                        </AccordionButton>
-                        <AccordionPanel>
-                          <ProfileDetails user={worker} />
-                        </AccordionPanel>
-                      </AccordionItem>
-                    </>
-                  )
-                })
-              }
-            </Accordion> */}
             <Flex direction="column">
               {
-                job.registrants.map((profile, idx) => 
-                  <ProfileCard key={idx} profile={profile} />)
+                job.registrants.map((worker, idx) => 
+                  <ProfileCard key={idx} job={job} worker={worker} />
+                )
               }
             </Flex>
           </ModalBody>

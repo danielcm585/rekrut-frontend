@@ -21,7 +21,7 @@ export default function Profile() {
     role: "worker",
     cv: "",
     category: "UI/UX Designer",
-    rate: 4.33,
+    rating: 4.33,
     reviews: [
       {
         user: {
@@ -29,7 +29,7 @@ export default function Profile() {
           name: "BukaPedia",
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
         },
-        rate: 4,
+        rating: 4,
         body: "Good work!"
       },
       {
@@ -38,7 +38,7 @@ export default function Profile() {
           name: "MicroHard",
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
         },
-        rate: 4,
+        rating: 4,
         body: "Good work!"
       },
       {
@@ -47,7 +47,7 @@ export default function Profile() {
           name: "TokoLapak",
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
         },
-        rate: 5,
+        rating: 5,
         body: "Good work!"
       },
     ]

@@ -20,7 +20,7 @@ export default function ProfileList({ worker }) {
             </Link>
             {
               (worker.reviews != null && worker.reviews.length > 0) && 
-                <Star rate={worker.rate} />
+                <Star rating={worker.rating} />
             }
           </Box>
         </HStack>

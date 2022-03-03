@@ -20,7 +20,7 @@ export default function MyProfile() {
     role: "clien",
     cv: "",
     category: "UI/UX Designer",
-    rate: 4.33,
+    rating: 4.33,
     reviews: ["ada"]
   }
 

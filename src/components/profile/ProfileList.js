@@ -30,7 +30,7 @@ export default function ProfileList({ profiles }) {
                     <Text fontSize="md" color="gray.600">{worker.category}</Text>
                     {
                       (worker.reviews != null && worker.reviews.length > 0) && 
-                        <Star rate={worker.rating} />
+                        <Star rating={worker.rating} />
                     }
                     {/*TODO: Add the number of job done */}
                   </Box>

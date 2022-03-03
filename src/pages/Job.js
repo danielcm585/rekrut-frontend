@@ -38,10 +38,10 @@ export default function Job() {
     salary: 5000000,
     location: "Jakarta",
     type: "Full Time",
-    // status: "hiring",
+    status: "hiring",
     // status: "waiting confirmation",
     // status: "on progress",
-    status: "in review",
+    // status: "in review",
     // status: "done",
     company: {
       id: 1,
@@ -107,14 +107,17 @@ export default function Job() {
           {
             photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
             name: "Obiwan Kenobi",
+            rating: 4.2,
           },
           {
             photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
             name: "Anakin Skywalker",
+            rating: 3.6,
           },
           {
             photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
             name: "C3PO",
+            rating: 4.2,
           }
         ]
       },
@@ -202,7 +205,7 @@ export default function Job() {
                   </Link>
                 </Flex>
                 {
-                  (job.company.rating != null) && <Star rate={job.company.rating} />
+                  (job.company.rating != null) && <Star rating={job.company.rating} />
                 }
                 <Text fontSize="sm" color="gray.600">
                   {job.registrants.length+" Pelamar"}

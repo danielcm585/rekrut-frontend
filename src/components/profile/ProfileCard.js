@@ -2,24 +2,34 @@ import React, { useState } from "react"
 
 import { ProfileDetails } from "../profile"
 import { ConfirmButton } from "../job"
+import { Payment } from ".."
 
+import { useDisclosure } from "@chakra-ui/react"
 import { Box, Flex, Spacer } from "@chakra-ui/react"
 
-export default function ProfileCard({ profile }) {
+export default function ProfileCard({ worker, job, preview }) {
   const [ isConfrimOpen, setIsConfirmOpen ] = useState()
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <>
-      <Box p="4" mb="2" shadow="md" borderRadius="md"
-        _hover={{ bgColor:"gray.50" }}>
+      <Payment worker={worker} job={job} isOpen={isOpen} onClose={onClose} />
+      <Box p="4" mb="2" shadow={!preview && "md"} borderRadius="md"
+        _hover={!preview && { bgColor:"gray.50" }}>
         <Flex>
-          <ProfileDetails user={profile} />
+          <ProfileDetails user={worker}  />
           <Spacer></Spacer>
-          <ConfirmButton action="Hire" isOpen={isConfrimOpen} setIsOpen={setIsConfirmOpen} 
-            onClick={() => {
-              // TODO: Send request to api
-              console.log("HIRE NOW")
-            }} />
+          {
+            !preview && (
+              <ConfirmButton action="Pilih" isOpen={isConfrimOpen} setIsOpen={setIsConfirmOpen} 
+                onClick={() => {
+                  console.log("HIRE NOW")
+                  onOpen()
+                }} 
+              />
+            )
+          }
         </Flex>
       </Box>
     </>
