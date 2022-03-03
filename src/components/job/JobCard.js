@@ -24,30 +24,6 @@ export default function JobCard({ job }) {
             <Box ml="2" mt="2">
               <HStack spacing="2">
                 <Text fontSize="lg" fontWeight="semibold">{job.title}</Text>
-                {/* {
-                  (job.salary > 5000000) && (
-                    <Badge size="sm" colorScheme="orange">
-                      <Icon mr="1" as={BiLike} />
-                      Best Offer
-                    </Badge>
-                  )
-                }
-                {
-                  (job.company.rating > 4) && (
-                    <Badge size="sm" colorScheme="green">
-                      <Icon mr="1" as={BiStar} />
-                      Great Company
-                    </Badge>
-                  )
-                }
-                {
-                  (job.registrants.length > 5) && (
-                    <Badge size="sm" colorScheme="red">
-                      <Icon mr="1" as={BiTimeFive} />
-                      Limited Time
-                    </Badge>
-                  )
-                } */}
                 <JobBadges job={job} />
               </HStack>
               <Flex>

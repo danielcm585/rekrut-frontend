@@ -16,7 +16,7 @@ export default function JobButton({ user, job, isOpen, onOpen, onClose, isConfir
           <>
             {
               (user.role == "worker") ? (
-                <ConfirmButton action="Apply" isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} 
+                <ConfirmButton action="Daftar" isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} 
                   onClick={() => {
                     // TODO: Send request to api
                     console.log("APPLY")
@@ -32,12 +32,12 @@ export default function JobButton({ user, job, isOpen, onOpen, onClose, isConfir
                               <ChooseWorker job={job} isOpen={isOpen} onClose={onClose} /> 
                               <Button pl="10" pr="10" borderRadius="50" bgColor="#FF8450"
                                 onClick={() => onOpen()}> {/*TODO: Add onClick func */}
-                                <Text fontSize="sm" fontWeight="bold">Hire</Text>
+                                <Text fontSize="sm" fontWeight="bold">Pilih</Text>
                               </Button> 
                             </>
                           ) : (
                             <Button pl="10" pr="10" borderRadius="50" bgColor="#FF8450" isDisabled>
-                              <Text fontSize="sm" fontWeight="bold">Hire</Text>
+                              <Text fontSize="sm" fontWeight="bold">Pilih</Text>
                             </Button> 
                           )
                         }
@@ -51,19 +51,36 @@ export default function JobButton({ user, job, isOpen, onOpen, onClose, isConfir
         )
       }
       {
-        (job.status == "hired" && canReview) && (
+        (job.statur == "waiting confirmation" && canReview) && (
+          <>
+            {
+              (user.role == "worker") ? (
+                <ConfirmButton action="Konfirmasi" isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen}
+                  onClick={() => {
+                    // TODO: Send request to api
+                    console.log("CONFIRM")
+                  }} />
+              ) : (
+                <ConfirmButton action="Selesai" isDisabled={true} />
+              )
+            }
+          </>
+        )
+      }
+      {
+        (job.status == "on progress" && canReview) && (
           <>
             {
               (user.role == "worker") ? (
                 <>
-                  <ConfirmButton action="Done" isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen}
+                  <ConfirmButton action="Selesai" isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen}
                     onClick={() => {
                       // TODO: Send request to api
                       console.log("DONE")
                     }} />
                 </>
               ) : (
-                <ConfirmButton action="Approve" isDisabled={true} />
+                <ConfirmButton action="Selesai" isDisabled={true} />
               )
             }
           </>
@@ -84,7 +101,7 @@ export default function JobButton({ user, job, isOpen, onOpen, onClose, isConfir
                   }
                 </>
               ) : (
-                <ConfirmButton  action="Approve" isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen}
+                <ConfirmButton  action="Selesai" isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen}
                   onClick={() => {
                     // TODO: Send request to api
                     console.log("APPROVE")

@@ -39,7 +39,8 @@ export default function Job() {
     location: "Jakarta",
     type: "Full Time",
     status: "hiring",
-    // status: "hired",
+    // status: "waiting confirmation",
+    // status: "on progress",
     // status: "in review",
     // status: "done",
     company: {
