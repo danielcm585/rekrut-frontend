@@ -4,8 +4,8 @@ import { useToast } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
 import { Flex, Text, Input, Button, SimpleGrid, Select, VStack, Textarea } from "@chakra-ui/react"
 
-export default function RegisterPage1({ role, setPage, category, setCategory, bio, setBio, cv, setCv }) {
-const handleBioChanges = (e) => setBio(e.target.value)
+export default function RegisterPage4({ role, setPage, category, setCategory, cv, setCv }) {
+  // const handleBioChanges = (e) => setBio(e.target.value)
   const handleCategoryChanges = (e) => setCategory(e.target.value)
   const handleCvChanges = (e) => setCv(e.target.files[0])
 
@@ -21,7 +21,7 @@ const handleBioChanges = (e) => setBio(e.target.value)
         <Flex mt="11%" w="100%" direction="column">
           <Flex justifyContent="center">
             <VStack>
-              <Text fontSize="1xl" fontWeight="semibold" color="#FF8450">02/03</Text>
+              <Text fontSize="1xl" fontWeight="semibold" color="#FF8450">03/04</Text>
               <Text fontSize="2xl" fontWeight="semibold" color="#FF8450">Mengenai Pekerjaan</Text>
               <Text fontSize="1xl">Kami akan menyesuaikan pilihan pekerjaan sesuai minat Anda</Text>
             </VStack>
@@ -42,13 +42,13 @@ const handleBioChanges = (e) => setBio(e.target.value)
                   <option value="Photographer">Photographer</option>
                 </Select>
               </FormControl>
-              <FormControl mt="3">
+              {/* <FormControl mt="3">
                 <FormLabel>
                   <Text fontSize="1xl" fontWeight="bold">Bio Anda</Text>
                 </FormLabel>
                 <Textarea type="text" placeholder="Saya seorang web developer profesional" value={bio} 
                   borderColor="black" onChange={handleBioChanges} />
-              </FormControl>
+              </FormControl> */}
               <FormControl mt="3">
                 <FormLabel>
                   <Text fontSize="1xl" fontWeight="bold">CV</Text>
@@ -70,17 +70,16 @@ const handleBioChanges = (e) => setBio(e.target.value)
                       })
                       return
                     }
-                    // TODO: Optional
-                    if (bio == null || bio.length == 0) {
-                      toast({
-                        title: "Bio anda masih kosong",
-                        status: "warning"
-                      })
-                      return
-                    }
                     if (cv == null) {
                       toast({
                         title: "CV tidak boleh kosong",
+                        status: "error"
+                      })
+                      return
+                    }
+                    if (cv.type != "application/pdf") {
+                      toast({
+                        title: "CV harus berbentuk pdf",
                         status: "error"
                       })
                       return

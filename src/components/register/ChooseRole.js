@@ -4,7 +4,7 @@ import { WorkerImg, ClientImg } from "../../images"
 
 import { Box, Button, Flex, Image, Text, Grid } from "@chakra-ui/react"
 
-export default function RegisterPage0({ setRole, setPage }) {
+export default function ChooseRole({ setRole, setPage }) {
   return (
     <>
       <Flex justifyContent="center">
@@ -25,7 +25,7 @@ export default function RegisterPage0({ setRole, setPage }) {
                     </Flex>
                     <Button mt="3" pl="10" pr="10" bgColor="#FF8450" borderColor="black" borderRadius="50" 
                       onClick={() => {
-                        setRole("client")
+                        setRole("worker")
                         setPage(prevPage => prevPage+1)
                       }}>
                       <Text fontSize="sm" fontWeight="bold">Selanjutnya</Text>
@@ -44,7 +44,7 @@ export default function RegisterPage0({ setRole, setPage }) {
                     </Flex>
                     <Button mt="3" pl="10" pr="10" bgColor="#FF8450" borderColor="black" borderRadius="50" 
                       onClick={() => {
-                        setRole("worker")
+                        setRole("client")
                         setPage(prevPage => prevPage+1)
                       }}>
                       <Text fontSize="sm" fontWeight="bold">Selanjutnya</Text>

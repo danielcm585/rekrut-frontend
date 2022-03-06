@@ -4,7 +4,7 @@ import { useToast } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
 import { Flex, Text, Input, Button, SimpleGrid, VStack } from "@chakra-ui/react"
 
-export default function RegisterPage1({ role, setPage, name, setName, phone, setPhone, bank, setBank }) {
+export default function AboutMe({ role, setPage, name, setName, phone, setPhone, bank, setBank }) {
   const handleNameChanges = (e) => setName(e.target.value)
   const handlePhoneChanges = (e) => setPhone(e.target.value)
   const handleBankChanges = (e) => setBank(e.target.value)
@@ -21,7 +21,13 @@ export default function RegisterPage1({ role, setPage, name, setName, phone, set
         <Flex mt="11%" w="100%" direction="column">
           <Flex justifyContent="center">
             <VStack>
-              <Text fontSize="1xl" fontWeight="semibold" color="#FF8450">01/03</Text>
+              <Text fontSize="1xl" fontWeight="semibold" color="#FF8450">
+                {
+                  (role == "worker") ?
+                    "01/04" : 
+                    "01/03"
+                }
+              </Text>
               <Text fontSize="2xl" fontWeight="semibold" color="#FF8450">Informasi Umum</Text>
               <Text fontSize="1xl">Kami akan mengumpulkan informasi umum mengenai diri Anda</Text>
             </VStack>
@@ -32,7 +38,7 @@ export default function RegisterPage1({ role, setPage, name, setName, phone, set
                 <FormLabel>
                   <Text fontSize="1xl" fontWeight="bold">Nama</Text>
                 </FormLabel>
-                <Input type="text" placeholder="John Doe" value={name}
+                <Input type="text" placeholder={(role == "worker") ? "John Doe" : "Google"} value={name}
                   borderColor="black" onChange={handleNameChanges} />
               </FormControl>
               <FormControl mt="3">
@@ -69,14 +75,14 @@ export default function RegisterPage1({ role, setPage, name, setName, phone, set
                       })
                       return
                     }
-                    if (phone.length < 10) {
+                    if (phone.length < 10 || isNaN(phone)) {
                       toast({
                         title: "Nomor telepon tidak valid",
                         status: "error"
                       })
                       return
                     }
-                    if (phone[0] != '+' || phone[0] == '0') {
+                    if (phone[0] != '+') {
                       toast({
                         title: "Nomor telepon harus ditulis dalam format internasional, contoh: +628123456789",
                         status: "error"

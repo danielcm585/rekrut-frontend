@@ -1,7 +1,7 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import { Navbar } from "../components"
-import { RegisterPage0, RegisterPage1, RegisterPage2, RegisterPage3, RegisterPage4 } from "../components/register"
+import { ChooseRole, AboutUser, AboutMe, AboutProfile, AboutJob, TermsCondition } from "../components/register"
 
 export default function Register() {
   const [ role, setRole ] = useState()
@@ -15,46 +15,46 @@ export default function Register() {
   const [ phone, setPhone ] = useState()
   const [ bank, setBank ] = useState()
 
-  const [ category, setCategory ] = useState("-")
   const [ bio, setBio ] = useState()
+  const [ profPic, setProfPic ] = useState(null)
+
+  const [ category, setCategory ] = useState("-")
   const [ cv, setCv ] = useState(null)
 
-  useState(() => {
+  useEffect(() => {
     document.title = "Rekrut.id | Register"
   }, [])
-
+  
   return (
     <>
       <Navbar register={true} />
       {
-        (page == 0) && <RegisterPage0 setRole={setRole} setPage={setPage} />
+        (page == 0) && <ChooseRole setRole={setRole} setPage={setPage} />
       }
       {
-        (page == 1) && <RegisterPage1 role={role} setPage={setPage}
+        (page == 1) && <AboutUser setPage={setPage}
           email={email} setEmail={setEmail}
           password={password} setPassword={setPassword}
           confPassword={confPassword} setConfPassword={setConfPassword} />
       }
       {
-        (page == 2) && <RegisterPage2 role={role} setPage={setPage}
+        (page == 2) && <AboutMe role={role} setPage={setPage}
           name={name} setName={setName}
           phone={phone} setPhone={setPhone}
           bank={bank} setBank={setBank} />
       }
       {
-        (page == 3) && <RegisterPage3 role={role} setPage={setPage} 
-          category={category} setCategory={setCategory}
+        (page == 3) && <AboutProfile role={role} setPage={setPage}
           bio={bio} setBio={setBio}
+          profPic={profPic} setProfPic={setProfPic} />
+      }
+      {
+        (page == 4) && <AboutJob role={role} setPage={setPage} 
+          category={category} setCategory={setCategory}
           cv={cv} setCv={setCv} />
       }
       {
-        (page == 4) && <RegisterPage4 role={role} setPage={setPage}
-          postRequest={() => {
-            // TODO: Post request to API 
-            return {
-              success: true
-            }
-          }} />
+        (page == 5) && <TermsCondition role={role} setPage={setPage} />
       }
     </>
   )

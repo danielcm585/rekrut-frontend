@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { useToast } from "@chakra-ui/react"
 import { Checkbox, Flex, Text, Box, SimpleGrid, Button, VStack } from "@chakra-ui/react"
 
-export default function RegisterPage4({ role, setPage, postRequest }) {
+export default function RegisterPage5({ role, setPage, postRequest }) {
   const [ agree, setAgree ] = useState(false)
   
   const toast = useToast({
@@ -18,7 +18,13 @@ export default function RegisterPage4({ role, setPage, postRequest }) {
         <Flex mt="11%" w="100%" direction="column">
           <Flex justifyContent="center">
             <VStack>
-              <Text fontSize="1xl" fontWeight="semibold" color="#FF8450">03/03</Text>
+              <Text fontSize="1xl" fontWeight="semibold" color="#FF8450">
+                {
+                  (role == "worker") ? 
+                    "04/04" : 
+                    "03/03"
+                }
+              </Text>
               <Text fontSize="2xl" fontWeight="semibold" color="#FF8450">Code of Conduct</Text>
               <Text fontSize="1xl">Silakan baca dan setujui persyaratan di bawah ini</Text>
             </VStack>
@@ -35,22 +41,26 @@ export default function RegisterPage4({ role, setPage, postRequest }) {
                 </Text>
               </Checkbox>
               <SimpleGrid columns="2" spacing="2">
-                <Button mt="8" borderRadius="50" onClick={() => setPage(prev => prev-1)}>
+                <Button mt="8" borderRadius="50" onClick={() => {
+                    if (role == "worker") setPage(prev => prev-1)
+                    else setPage(3)
+                  }}>
                   <Text fontSize="sm" fontWeight="bold">Kembali</Text>
                 </Button>
                 <Button mt="8" bgColor="#FF8450" borderRadius="50"
                   onClick={() => {
                     if (!agree) {
                       toast({
-                        title: "Anda wajib membaca dan menyetujui semua syarat yang berlaku",
+                        title: "Anda wajib membaca dan menyetujui semua syarat untuk menyelesaikan registrasi",
                         status: "error"
                       })
                       return
                     }
                     // TODO: send request
+                    console.log("REGISTER")
                     window.location.href="/login"
                   }}>
-                  <Text fontSize="sm" fontWeight="bold">Selanjutnya</Text>
+                  <Text fontSize="sm" fontWeight="bold">Selesai</Text>
                 </Button>
               </SimpleGrid>
             </Flex>

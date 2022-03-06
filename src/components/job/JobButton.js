@@ -35,10 +35,17 @@ export default function JobButton({ user, job, canReview }) {
                           (job.registrants != null && job.registrants.length > 0) ? (
                             <>
                               <ChooseWorker job={job} isOpen={isOpen} onClose={onClose} /> 
-                              <Button pl="10" pr="10" borderRadius="50" bgColor="#FF8450"
-                                onClick={() => onOpen()}> {/*TODO: Add onClick func */}
-                                <Text fontSize="sm" fontWeight="bold">Pilih</Text>
-                              </Button> 
+                              <Flex>
+                                <ConfirmButton action="Hapus" second={true} isOpen={isConfirm2Open} setIsOpen={setIsConfirm2Open}
+                                  onClick={() => {
+                                    // TODO: Set job to "hiring" again
+                                    console.log("DELETE")
+                                  }} />
+                                <Button ml="2" pl="10" pr="10" borderRadius="50" bgColor="#FF8450"
+                                  onClick={() => onOpen()}> {/*TODO: Add onClick func */}
+                                  <Text fontSize="sm" fontWeight="bold">Pilih</Text>
+                                </Button> 
+                              </Flex>
                             </>
                           ) : (
                             <Button pl="10" pr="10" borderRadius="50" bgColor="#FF8450" isDisabled>
