@@ -28,10 +28,8 @@ export default function ProfileList({ profiles }) {
                       <ProfileBadges profile={worker} />
                     </HStack>
                     <Text fontSize="md" color="gray.600">{worker.category}</Text>
-                    {
-                      (worker.reviews != null && worker.reviews.length > 0) && 
-                        <Star rating={worker.rating} />
-                    }
+                    <Star rating={worker.rating} />
+                    <Text fontSize="sm" color="gray.600">{worker.jobDone.length+" Pekerjaan selesai"}</Text>
                     {/*TODO: Add the number of job done */}
                   </Box>
                 </Flex>

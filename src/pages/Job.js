@@ -58,7 +58,8 @@ export default function Job() {
         rating: 4.3,
         reviews: ["ada"],
         email: "email@gmail.com",
-        phone: "+62123213123"
+        phone: "+62123213123",
+        jobDone: ["ada","ada","ada","ada","ada"]
       },
       {
         id: 10,
@@ -68,7 +69,8 @@ export default function Job() {
         rating: 2.1,
         reviews: ["ada"],
         email: "email@gmail.com",
-        phone: "+62123213123"
+        phone: "+62123213123",
+        jobDone: ["ada","ada","ada","ada","ada"]
       },
       {
         id: 11,
@@ -78,7 +80,8 @@ export default function Job() {
         rating: 4.9,
         reviews: ["ada"],
         email: "email@gmail.com",
-        phone: "+62123213123"
+        phone: "+62123213123",
+        jobDone: ["ada","ada","ada","ada","ada"]
       }
     ],
     chosen: "C3PO"

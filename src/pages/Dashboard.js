@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 
 import { Navbar, SearchBar, Footer } from "../components"
 import { JobList, JobCard } from "../components/job"
+import { ProfileList } from "../components/profile"
 
 import { Flex, Text, Box, Grid, Link, Button, Spacer } from "@chakra-ui/react"
 
@@ -13,174 +14,236 @@ export default function Dashboard() {
     photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
     name: "Luke Skywalker",
     email: "luke.skywalker@gmail.com",
-    role: "worker",
+    // role: "worker",
+    role: "client",
     category: "Web Developer"
   }
 
   // TODO: Fetch jobs data from api
   const [ bestOffer, setBestOffer ] = useState()
   const [ recentJobs, setRecentJobs ] = useState()
+
+  const [ popularTalents, setPopularTalents ] = useState()
+  const [ offeredTalents, setOfferedTalents ] = useState()
+
   useEffect(() => {
-    setBestOffer([
-      {
-        id: 1,
-        title: "Backend Engineer",
-        desc: "Do backend work in developing our app.",
-        category: "Web Developer",
-        salary: 5000000,
-        type: "Full-time",
-        location: "Semarang",
-        company: {
+    if (user.role == "worker") {
+      setBestOffer([
+        {
           id: 1,
-          name: "BukaPedia",
-          rating: 4.2,
-          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+          title: "Backend Engineer",
+          desc: "Do backend work in developing our app.",
+          category: "Web Developer",
+          salary: 5000000,
+          type: "Full-time",
+          location: "Semarang",
+          company: {
+            id: 1,
+            name: "BukaPedia",
+            rating: 4.2,
+            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+          },
+          registrants: [
+            {
+              photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+              name: "Obiwan Kenobi",
+            },
+            {
+              photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+              name: "Anakin Skywalker",
+            },
+            {
+              photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+              name: "C3PO",
+            }
+          ]
         },
-        registrants: [
-          {
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-            name: "Obiwan Kenobi",
-          },
-          {
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-            name: "Anakin Skywalker",
-          },
-          {
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-            name: "C3PO",
-          }
-        ]
-      },
-      {
-        id: 2,
-        title: "Frontend Engineer",
-        category: "Web Developer",
-        desc: "Do frontend work in developing our app.",
-        salary: 6000000,
-        type: "Full-project",
-        location: "Surabaya",
-        company: {
-          id: 1,
-          name: "BukaPedia",
-          rating: 4.2,
-          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-        },
-        registrants: [
-          {
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-            name: "Mace Windu",
-          },
-          {
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-            name: "Din Djarin",
-          },
-          "ada",
-          "ada",
-        ]
-      },
-      {
-        id: 3,
-        title: "Web Developer",
-        category: "Web Developer",
-        desc: "Develop a great website for our company",
-        salary: 4000000,
-        type: "Full-time",
-        location: "Jakarta",
-        company: {
+        {
           id: 2,
-          name: "TokoLapak",
-          rating: 2.1,
-          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+          title: "Frontend Engineer",
+          category: "Web Developer",
+          desc: "Do frontend work in developing our app.",
+          salary: 6000000,
+          type: "Full-project",
+          location: "Surabaya",
+          company: {
+            id: 1,
+            name: "BukaPedia",
+            rating: 4.2,
+            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+          },
+          registrants: [
+            {
+              photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+              name: "Mace Windu",
+            },
+            {
+              photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+              name: "Din Djarin",
+            },
+            "ada",
+            "ada",
+          ]
         },
-        registrants: [
-          "ada",
-          "ada",
-          "ada",
-          "ada",
-          "ada",
-          "ada",
-        ]
-      }
-    ])
-    setRecentJobs([
-      {
-        id: 1,
-        title: "Backend Engineer",
-        desc: "Do backend work in developing our app.",
-        category: "Web Developer",
-        salary: 5000000,
-        type: "Full-time",
-        location: "Jakarta",
-        company: {
+        {
+          id: 3,
+          title: "Web Developer",
+          category: "Web Developer",
+          desc: "Develop a great website for our company",
+          salary: 4000000,
+          type: "Full-time",
+          location: "Jakarta",
+          company: {
+            id: 2,
+            name: "TokoLapak",
+            rating: 2.1,
+            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+          },
+          registrants: [
+            "ada",
+            "ada",
+            "ada",
+            "ada",
+            "ada",
+            "ada",
+          ]
+        }
+      ])
+      setRecentJobs([
+        {
           id: 1,
-          name: "BukaPedia",
-          rating: 4.2,
-          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+          title: "Backend Engineer",
+          desc: "Do backend work in developing our app.",
+          category: "Web Developer",
+          salary: 5000000,
+          type: "Full-time",
+          location: "Jakarta",
+          company: {
+            id: 1,
+            name: "BukaPedia",
+            rating: 4.2,
+            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+          },
+          registrants: [
+            {
+              photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+              name: "Obiwan Kenobi",
+            },
+            {
+              photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+              name: "Anakin Skywalker",
+            },
+            {
+              photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+              name: "C3PO",
+            }
+          ]
         },
-        registrants: [
-          {
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-            name: "Obiwan Kenobi",
-          },
-          {
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-            name: "Anakin Skywalker",
-          },
-          {
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-            name: "C3PO",
-          }
-        ]
-      },
-      {
-        id: 2,
-        title: "Frontend Engineer",
-        category: "Web Developer",
-        desc: "Do frontend work in developing our app.",
-        salary: 6000000,
-        type: "Part-time",
-        location: "Surabaya",
-        company: {
-          id: 1,
-          name: "BukaPedia",
-          rating: 4.2,
-          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-        },
-        registrants: [
-          {
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-            name: "Mace Windu",
-          },
-          {
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-            name: "Din Djarin",
-          }
-        ]
-      },
-      {
-        id: 3,
-        title: "Web Developer",
-        category: "Web Developer",
-        desc: "Develop a great website for our company",
-        salary: 4000000,
-        type: "Contract",
-        location: "Semarang",
-        company: {
+        {
           id: 2,
-          name: "TokoLapak",
-          rating: 2.1,
-          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+          title: "Frontend Engineer",
+          category: "Web Developer",
+          desc: "Do frontend work in developing our app.",
+          salary: 6000000,
+          type: "Part-time",
+          location: "Surabaya",
+          company: {
+            id: 1,
+            name: "BukaPedia",
+            rating: 4.2,
+            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+          },
+          registrants: [
+            {
+              photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+              name: "Mace Windu",
+            },
+            {
+              photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+              name: "Din Djarin",
+            }
+          ]
         },
-        registrants: [
-          "ada",
-          "ada",
-          "ada",
-          "ada",
-          "ada",
-          "ada",
-        ]
-      }
-    ])
+        {
+          id: 3,
+          title: "Web Developer",
+          category: "Web Developer",
+          desc: "Develop a great website for our company",
+          salary: 4000000,
+          type: "Contract",
+          location: "Semarang",
+          company: {
+            id: 2,
+            name: "TokoLapak",
+            rating: 2.1,
+            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+          },
+          registrants: [
+            "ada",
+            "ada",
+            "ada",
+            "ada",
+            "ada",
+            "ada",
+          ]
+        }
+      ])
+    }
+    else {
+      setPopularTalents([
+        {
+          id: 11,
+          name: "Hera Syndulla",
+          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+          category: "Frontend Developer",
+          rating: 4.33,
+          jobDone: ["ada","ada","ada","ada","ada"]
+        },
+        {
+          id: 11,
+          name: "Ahsoka Tano",
+          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+          category: "Frontend Developer",
+          rating: 4.33,
+          jobDone: ["ada","ada","ada","ada","ada"]
+        },
+        {
+          id: 11,
+          name: "Darth Vader",
+          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+          category: "Frontend Developer",
+          rating: 4.33,
+          jobDone: ["ada","ada","ada","ada","ada"]
+        },
+      ])
+      setOfferedTalents([
+        {
+          id: 11,
+          name: "Hera Syndulla",
+          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+          category: "Frontend Developer",
+          rating: 4.33,
+          jobDone: ["ada","ada","ada","ada","ada"]
+        },
+        {
+          id: 11,
+          name: "Ahsoka Tano",
+          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+          category: "Frontend Developer",
+          rating: 4.33,
+          jobDone: ["ada","ada","ada","ada","ada"]
+        },
+        {
+          id: 11,
+          name: "Darth Vader",
+          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
+          category: "Frontend Developer",
+          rating: 4.33,
+          jobDone: ["ada","ada","ada","ada","ada"]
+        },
+      ])
+    }
+    
     console.log("FETCH API")
 
     document.title = "Rekrut.id"
@@ -258,7 +321,40 @@ export default function Dashboard() {
             }
           </>
         ) : (
-          <></>
+          <>
+            {
+              (popularTalents != null) && (
+                <>
+                  <Flex justifyContent="center">
+                    <Box mt="8" w="85%">
+                      <Flex>
+                        <Text fontSize="xl" fontWeight="semibold">Talent Popular</Text>
+                        <Spacer></Spacer>
+                        <Button variant="ghost" borderRadius="50" onClick={() => window.location.href="/worker/popular-talents"}>Lihat semua</Button>
+                      </Flex>
+                      <ProfileList profiles={popularTalents} />
+                    </Box>
+                  </Flex>
+                </>
+              )
+            }
+            {
+              (offeredTalents != null) && (
+                <>
+                  <Flex justifyContent="center">
+                    <Box mt="8" w="85%">
+                      <Flex>
+                        <Text fontSize="xl" fontWeight="semibold">Pekerya yang Anda Butuhkan</Text>
+                        <Spacer></Spacer>
+                        <Button variant="ghost" borderRadius="50" onClick={() => window.location.href="/worker/offered-talents"}>Lihat semua</Button>
+                      </Flex>
+                      <ProfileList profiles={offeredTalents} />
+                    </Box>
+                  </Flex>
+                </>
+              )
+            }
+          </>
         )
       }
       <Footer />
