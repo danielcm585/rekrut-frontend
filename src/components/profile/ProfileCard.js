@@ -1,37 +1,65 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 
-import { ProfileDetails } from "../profile"
-import { ConfirmButton } from "../job"
-import { Payment } from ".."
+import { Star } from "../review"
+import { Payment } from ".." 
+import { ProfileBadges } from "."
 
-import { useDisclosure } from "@chakra-ui/react"
-import { Box, Flex, Spacer } from "@chakra-ui/react"
+import { useDisclosure, useToast } from "@chakra-ui/react"
+import { Box, Flex, Spacer, Image, HStack, Link, Text, Button } from "@chakra-ui/react"
 
-export default function ProfileCard({ worker, job, preview }) {
-  const [ isConfrimOpen, setIsConfirmOpen ] = useState()
-
+export default function ProfileCard({ worker, job }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
-  // useEffect(() => {
-  //   console.log(job)
-  // }, [ job ])
+  const toast = useToast({
+    position: "top",
+    variant: "solid",
+    isClosable: true
+  })
 
   return (
     <>
       <Payment worker={worker} job={job} isOpen={isOpen} onClose={onClose} />
-      <Box p="4" mb="2" shadow={!preview && "md"} borderRadius="md"
-        _hover={!preview && { bgColor:"gray.50" }}>
+      <Box p="2" pr="4" mb="2" shadow="md" borderRadius="md"
+        _hover={{ bgColor:"gray.50" }}
+        onClick={() => {
+          if (job != null) return
+          window.location.href = "/profile/"+worker.id
+        }}>
         <Flex>
-          <ProfileDetails user={worker} />
-          <Spacer></Spacer>
+          <Flex p="2">
+            <Image src={worker.photo} h="95" borderRadius="md" />
+          </Flex>
+          <Box ml="2" mt="2">
+            <HStack>
+              <Link href={"/profile/"+worker.id} isExternal>
+                <Text fontSize="lg" fontWeight="semibold">{worker.name}</Text>
+              </Link>
+              <ProfileBadges profile={worker} />
+            </HStack>
+            <Text fontSize="md" color="gray.600">{worker.category}</Text>
+            {
+              (worker.rating != null && worker.rating > 0) && 
+                <Star rating={worker.rating} />
+            }
+            <Text fontSize="sm" color="gray.600">{worker.jobDone.length+" Pekerjaan selesai"}</Text>
+            {/*TODO: Add the number of job done */}
+          </Box>
           {
-            !preview && (
-              <ConfirmButton action="Pilih" isOpen={isConfrimOpen} setIsOpen={setIsConfirmOpen} 
-                onClick={() => {
-                  console.log("HIRE NOW")
-                  onOpen()
-                }} 
-              />
+            (job != null) && (
+              <>
+                <Spacer></Spacer>
+                <Button mt="2" bgColor="#FF8450" borderRadius="50" 
+                  onClick={() => {
+                    console.log("HIRE NOW")
+                    toast({
+                      title: "Pembayaran akan diteruskan ke pekerja saat pekerjaan selesai",
+                      status: "info"
+                    })
+                    onOpen()
+                  }}>
+                  Pilih
+                </Button>
+              </>
             )
           }
         </Flex>

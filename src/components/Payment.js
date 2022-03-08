@@ -1,5 +1,6 @@
-import React, { useEffect } from "react"
+import React from "react"
 
+import { useToast } from "@chakra-ui/react"
 import { Button, Box, Flex, Text } from "@chakra-ui/react"
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from "@chakra-ui/react"
 import { ProfileCard } from "./profile"
@@ -7,11 +8,7 @@ import { ProfileCard } from "./profile"
 export default function Payment({ isOpen, onClose, job, worker }) {
   const parseAmount = (amount) => {
     return "IDR "+amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".") +",00"
-  }
-
-  // useEffect(() => {
-  //   console.log(job)
-  // }, [ job ])
+  }  
 
   return (
     <>
@@ -22,18 +19,17 @@ export default function Payment({ isOpen, onClose, job, worker }) {
           <ModalCloseButton />
           <ModalBody>
             <ProfileCard worker={worker} preview={true} />
-            <Flex direction="column">
-              <Text fontSize="lg" fontWeight="semibold" align="center">
-                Silakan lakukan pembayaran tepat sebesar nominal yang tertera di layar terlebih dahulu melalui rekening bank dibawah ini. 
+            <Flex mt="4" direction="column">
+              {
+                (job != null) &&
+                  <Text fontSize="3xl" fontWeight="semibold" align="center">{parseAmount(job.salary)}</Text>
+              }
+              <Text mt="2">
+                Silakan lakukan pembayaran tepat sebesar nominal yang tertera di layar melalui rekening bank dibawah ini. 
               </Text>
-              {/*FIXME: job goes undefined */}
-              {/* <Text fontSize="2xl" fontWeight="bold">{parseAmount(job.salary)}</Text> */}
               <Box p="1" mt="2" align="center" border="1px" borderColor="gray.600" borderRadius="md">
-                <Text fontSize="xl" fontWeight="semibold">123456789</Text>
+                <Text fontSize="2xl" fontWeight="semibold">123456789</Text>
               </Box>
-              <Text>
-                * Pembayaran ini akan diteruskan ke pekerja setelah pekerjaan selesai.
-              </Text>
             </Flex>
           </ModalBody>
           <ModalFooter>

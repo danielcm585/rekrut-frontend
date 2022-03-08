@@ -250,6 +250,7 @@ export default function Dashboard() {
   }, [])
 
   const [ keyword, setKeyword ] = useState("")
+
   const [ location, setLocation ] = useState("Semua lokasi")
   const [ type, setType ] = useState("Semua tipe pekerjaan")
   const [ salary, setSalary ] = useState("Semua range upah")
@@ -262,26 +263,57 @@ export default function Dashboard() {
             job.company.name.toLowerCase().includes(keyword.toLowerCase())))
   }
 
+  const [ category, setCategory ] = useState("Semua kategori pekerjaan")
+  const [ experience, setExperience ] = useState("Semua range pengalaman")
+  const filterWorkers = (worker) => {
+    return ((worker.category == category || category == "Semua kategori pekerjaan") && 
+            (worker.jobDone.length >= experience || experience == "Semua range pengalaman") && 
+            (worker.name.toLowerCase().includes(keyword.toLowerCase())))
+  }
+
   const [ filteredRecentJobs, setFilteredRecentJobs ] = useState()
   const [ filteredBestOffer, setFilteredBestOffer ] = useState()
   useEffect(() => {
+    if (user.role != "worker") return
     if (recentJobs != null) setFilteredRecentJobs(recentJobs.filter(filterJobs))
-    if (bestOffer != null) {
-      setFilteredBestOffer(bestOffer.filter(filterJobs)
-        .sort((jobA, jobB) => jobB.salary-jobA.salary)) // FIXME: To be confirmed
+    if (bestOffer != null) {setFilteredBestOffer(bestOffer.filter(filterJobs)
+                                                          .sort((jobA, jobB) => jobB.salary-jobA.salary)) 
+      // FIXME: To be confirmed
     }
   }, [ keyword, location, type, salary, recentJobs, bestOffer ])
+  
+  const [ filteredPopularTalents, setFilteredPopularTalents ] = useState()
+  const [ filteredOfferedTalents, setFilteredOfferedTalents ] = useState()
+  useEffect(() => {
+    if (user.role != "client") return
+    if (popularTalents != null) setFilteredPopularTalents(popularTalents.filter(filterWorkers))
+    if (offeredTalents != null) setFilteredOfferedTalents(offeredTalents.filter(filterWorkers))
+  }, [ keyword, category, experience, popularTalents, offeredTalents ])
 
   return (
     <>
       <Navbar />
       <Flex justifyContent="center">
         <Flex mt="100" w="85%" direction="column">
-          <Text mb="6" fontSize="2xl" fontWeight="semibold">Portal Pekerjaan</Text>
-          <SearchBar keyword={keyword} setKeyword={setKeyword}
-            location={location} setLocation={setLocation}
-            type={type} setType={setType}
-            salary={salary} setSalary={setSalary} />
+          <Text mb="6" fontSize="2xl" fontWeight="semibold">
+            {
+              (user.role == "worker") ? 
+                "Portal Pekerjaan" : 
+                "Portal Talent"
+            }
+          </Text>
+          {
+            (user.role == "worker") ? (
+              <SearchBar keyword={keyword} setKeyword={setKeyword}
+                location={location} setLocation={setLocation}
+                type={type} setType={setType}
+                salary={salary} setSalary={setSalary} />
+            ) : (
+              <SearchBar workers={true} keyword={keyword} setKeyword={setKeyword}
+                category={category} setCategory={setCategory}
+                experience={experience} setExperience={setExperience} />
+            )
+          }
         </Flex>
       </Flex>
       {
@@ -323,7 +355,7 @@ export default function Dashboard() {
         ) : (
           <>
             {
-              (popularTalents != null) && (
+              (filteredPopularTalents != null) && (
                 <>
                   <Flex justifyContent="center">
                     <Box mt="8" w="85%">
@@ -332,14 +364,14 @@ export default function Dashboard() {
                         <Spacer></Spacer>
                         <Button variant="ghost" borderRadius="50" onClick={() => window.location.href="/worker/popular-talents"}>Lihat semua</Button>
                       </Flex>
-                      <ProfileList profiles={popularTalents} />
+                      <ProfileList profiles={filteredPopularTalents} />
                     </Box>
                   </Flex>
                 </>
               )
             }
             {
-              (offeredTalents != null) && (
+              (filteredOfferedTalents != null) && (
                 <>
                   <Flex justifyContent="center">
                     <Box mt="8" w="85%">
@@ -348,7 +380,7 @@ export default function Dashboard() {
                         <Spacer></Spacer>
                         <Button variant="ghost" borderRadius="50" onClick={() => window.location.href="/worker/offered-talents"}>Lihat semua</Button>
                       </Flex>
-                      <ProfileList profiles={offeredTalents} />
+                      <ProfileList profiles={filteredOfferedTalents} />
                     </Box>
                   </Flex>
                 </>

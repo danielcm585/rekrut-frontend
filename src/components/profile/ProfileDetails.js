@@ -19,7 +19,7 @@ export default function ProfileDetails({ user, me }) {
           <Flex>
             <Image mr="5" h="165px" src={user.photo} borderRadius="lg" />
             <Box>
-              <Link href={"/profile/"+user.id}>
+              <Link href={"/profile/"+user.id} isExternal>
                 {/* <Text fontSize="2xl" fontWeight="semibold" color="white">{user.name}</Text> */}
                 <Text fontSize="2xl" fontWeight="semibold">{user.name}</Text>
               </Link>

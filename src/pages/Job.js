@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom"
 import { MdLocationOn, MdWork } from "react-icons/md"
 import { FaMoneyBillWave } from "react-icons/fa"
 
+import { Navbar, Footer, SearchBar } from "../components"
 import { JobList, JobButton, JobBadges } from "../components/job"
 import { ProfileList } from "../components/profile"
-import { Navbar, Footer } from "../components"
 
-// import { useDisclosure } from "@chakra-ui/react"
 import { Box, Flex, HStack, Image, Link, Spacer, Text, Icon, SimpleGrid } from "@chakra-ui/react"
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react"
 import { Star } from "../components/review"
 
 export default function Job() {
@@ -239,42 +239,76 @@ export default function Job() {
             </SimpleGrid>
           </Flex>
           {
-            (job.detail != null) && (
-              <>
-                <Text mt="8" fontWeight="bold">Detail</Text>
-                <Text mt="2">{job.detail}</Text>
-              </>
-            )
-          }
-          {
-            (job.responsibilities != null) && (
-              <>
-                <Text mt="8" fontWeight="bold">Responsibilities</Text>
-                <Text mt="2">{job.responsibilities}</Text>
-              </>
-            )
-          }
-          {
-            (job.qualifications != null) && (
-              <>
-                <Text mt="8" fontWeight="bold">Qualifications</Text>
-                <Text mt="2">{job.qualifications}</Text>
-              </>
-            )
-          }
-          {
             (user.role == "client" && canReview) && (
               <>
-                <Text mt="8" fontWeight="bold">Top Registrants</Text>
-                <Flex mt="2">
-                  <ProfileList profiles={job.registrants} />
-                </Flex>
+                <Tabs mt="8" isFitted>
+                  <TabList>
+                    <Tab>Rincian</Tab>
+                    <Tab>Lamaran Masuk</Tab>
+                  </TabList>
+                  <TabPanels>
+                    <TabPanel>
+                      {
+                        (job.detail != null) && (
+                          <>
+                            <Text mt="3" fontWeight="bold">Detail</Text>
+                            <Text mt="2">{job.detail}</Text>
+                          </>
+                        )
+                      }
+                      {
+                        (job.responsibilities != null) && (
+                          <>
+                            <Text mt="8" fontWeight="bold">Responsibilities</Text>
+                            <Text mt="2">{job.responsibilities}</Text>
+                          </>
+                        )
+                      }
+                      {
+                        (job.qualifications != null) && (
+                          <>
+                            <Text mt="8" fontWeight="bold">Qualifications</Text>
+                            <Text mt="2">{job.qualifications}</Text>
+                          </>
+                        )
+                      }
+                    </TabPanel>
+                    <TabPanel>
+                        {/* <SearchBar /> */}
+                        <ProfileList profiles={job.registrants} job={job} />
+                    </TabPanel>
+                  </TabPanels>
+                </Tabs>
               </>
             )
           }
           {
             (user.role == "worker") && (
               <>
+                {
+                  (job.detail != null) && (
+                    <>
+                      <Text mt="8" fontWeight="bold">Detail</Text>
+                      <Text mt="2">{job.detail}</Text>
+                    </>
+                  )
+                }
+                {
+                  (job.responsibilities != null) && (
+                    <>
+                      <Text mt="8" fontWeight="bold">Responsibilities</Text>
+                      <Text mt="2">{job.responsibilities}</Text>
+                    </>
+                  )
+                }
+                {
+                  (job.qualifications != null) && (
+                    <>
+                      <Text mt="8" fontWeight="bold">Qualifications</Text>
+                      <Text mt="2">{job.qualifications}</Text>
+                    </>
+                  )
+                }
                 <Text mt="8" fontWeight="bold">Other Job</Text>
                 <Flex mt="2">
                   {

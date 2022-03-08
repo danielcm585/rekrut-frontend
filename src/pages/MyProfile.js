@@ -17,7 +17,7 @@ export default function MyProfile() {
     email: "luke.skywalker@gmail.com",
     phone: "+628123456789",
     // role: "worker",
-    role: "clien",
+    role: "client",
     cv: "",
     category: "UI/UX Designer",
     rating: 4.33,
