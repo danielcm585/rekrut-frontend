@@ -47,7 +47,8 @@ export default function Login() {
                 })
               }).then(resp => resp.json())
                 .then(json => {
-                  console.log(json.statusCode)
+                  // TODO: Handle the respond
+                  console.log("WKWK")
                 })
               window.location.href="/dashboard"
             }}>

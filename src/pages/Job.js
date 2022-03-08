@@ -199,7 +199,6 @@ export default function Job() {
   const [ filteredRegistrants, setFilteredRegistrants ] = useState()
   useEffect(() => {
     if (user.role != "client") return
-    console.log("BAA")
     if (registrants != null) setFilteredRegistrants(registrants.filter(filterWorkers))
   }, [ keyword, category, experience, registrants ])
   
@@ -298,7 +297,10 @@ export default function Job() {
                           category={category} setCategory={setCategory}
                           experience={experience} setExperience={setExperience} />
                       </Flex>
-                      <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredRegistrants.length+" orang pelamar"}</Text>
+                      {
+                        (filteredRegistrants != null) && 
+                          <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredRegistrants.length+" orang pelamar"}</Text>
+                      }
                       <ProfileList profiles={filteredRegistrants} job={job} />
                     </TabPanel>
                   </TabPanels>

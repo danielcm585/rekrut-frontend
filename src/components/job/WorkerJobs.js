@@ -131,7 +131,6 @@ export default function WorkerJobs({ user }) {
   const [ filteredOnProgress, setFilteredOnProgress] = useState()
   const [ filteredHistory, setFilteredHistory] = useState()
   useEffect(() => {
-    console.log(location)
     if (pending != null) setFilteredPending(pending.filter(filterJobs))
     if (accepted != null) setFilteredAccepted(accepted.filter(filterJobs))
     if (onProgress != null) setFilteredOnProgress(onProgress.filter(filterJobs))

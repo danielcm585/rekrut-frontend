@@ -7,10 +7,10 @@ import { SimpleGrid } from "@chakra-ui/react"
 export default function ProfileList({ profiles, job }) {  
   return (
     <>
-      <SimpleGrid mt="4" columns="2" spacing="3">
+      <SimpleGrid mt="2" columns="2" spacing="3">
         {
           (profiles != null) &&
-            profiles.map((worker, idx) => <ProfileCard worker={worker} job={job} />)
+            profiles.map((worker, idx) => <ProfileCard key={idx} worker={worker} job={job} />)
         }
       </SimpleGrid>
     </>

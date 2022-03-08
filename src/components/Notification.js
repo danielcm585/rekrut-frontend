@@ -93,7 +93,6 @@ export default function Notification({ isOpen, onClose, user }) {
                     )
                   )
                 )
-
                 return (
                   <>
                     <Box p="2" mb="1" shadow="md" borderRadius="md" 

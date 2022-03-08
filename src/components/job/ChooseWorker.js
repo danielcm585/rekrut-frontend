@@ -6,10 +6,6 @@ import { Button, Text, Flex } from "@chakra-ui/react"
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from "@chakra-ui/react"
 
 export default function ChooseWorker({ isOpen, onClose, job }) {
-  useEffect(() => {
-    console.log(job)
-  }, [ job ])
-
   return (
     <>
       <Modal size="2xl" isOpen={isOpen} onClose={onClose}>
