@@ -26,7 +26,8 @@ export default function ProfileDetails({ user, me }) {
               {/* <Text fontSize="lg" color="white">{user.category}</Text>  */}
               <Text fontSize="lg">{user.category}</Text> 
               {
-                (user.reviews != null && user.reviews.length > 0) && <Star rating={user.rating} />
+                (user.rating != null && user.rating > 0) && 
+                  <Star rating={user.rating} />
               }
               <Link href={"mailto:"+user.email} isExternal>
                 <HStack>

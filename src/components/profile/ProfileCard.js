@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import { ProfileDetails } from "../profile"
 import { ConfirmButton } from "../job"
@@ -12,13 +12,17 @@ export default function ProfileCard({ worker, job, preview }) {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
 
+  // useEffect(() => {
+  //   console.log(job)
+  // }, [ job ])
+
   return (
     <>
       <Payment worker={worker} job={job} isOpen={isOpen} onClose={onClose} />
       <Box p="4" mb="2" shadow={!preview && "md"} borderRadius="md"
         _hover={!preview && { bgColor:"gray.50" }}>
         <Flex>
-          <ProfileDetails user={worker}  />
+          <ProfileDetails user={worker} />
           <Spacer></Spacer>
           {
             !preview && (

@@ -32,7 +32,8 @@ export default function JobCard({ job }) {
                 </Link>
               </Flex>
               {
-                (job.company.rating != null) && <Star rating={job.company.rating} />
+                (job.company.rating != null && job.company.rating > 0) &&  
+                  <Star rating={job.company.rating} />
               }
               <Text fontSize="sm" color="gray.600">
                 {
