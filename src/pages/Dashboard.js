@@ -376,7 +376,7 @@ export default function Dashboard() {
                   <Flex justifyContent="center">
                     <Box mt="8" w="85%">
                       <Flex>
-                        <Text fontSize="xl" fontWeight="semibold">Pekerya yang Anda Butuhkan</Text>
+                        <Text fontSize="xl" fontWeight="semibold">Talent yang Sesuai</Text>
                         <Spacer></Spacer>
                         <Button variant="ghost" borderRadius="50" onClick={() => window.location.href="/worker/offered-talents"}>Lihat semua</Button>
                       </Flex>
