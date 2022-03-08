@@ -87,10 +87,13 @@ export default function Job() {
     chosen: "C3PO"
   }
     
+  const [ registrants, setRegistrants ] = useState()
   const [ otherJobs, setOtherJobs ] = useState()
   useEffect(() => {
     document.title = job.title+" | "+job.company.name
     
+    setRegistrants(job.registrants)
+
     setOtherJobs([
       {
         id: 1,
@@ -173,7 +176,6 @@ export default function Job() {
         ]
       }
     ])
-
     setOtherJobs(jobs => jobs.slice(0,3))
   }, [])
   
@@ -183,6 +185,23 @@ export default function Job() {
   const parseAmount = (amount) => {
     return "IDR "+amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")+",00";
   }
+
+  const [ keyword, setKeyword ] = useState("")
+
+  const [ category, setCategory ] = useState("Semua kategori pekerjaan")
+  const [ experience, setExperience ] = useState("Semua range pengalaman")
+  const filterWorkers = (worker) => {
+    return ((worker.category == category || category == "Semua kategori pekerjaan") && 
+            (worker.jobDone.length >= experience || experience == "Semua range pengalaman") && 
+            (worker.name.toLowerCase().includes(keyword.toLowerCase())))
+  }
+
+  const [ filteredRegistrants, setFilteredRegistrants ] = useState()
+  useEffect(() => {
+    if (user.role != "client") return
+    console.log("BAA")
+    if (registrants != null) setFilteredRegistrants(registrants.filter(filterWorkers))
+  }, [ keyword, category, experience, registrants ])
   
   // FIXME: Can we review?
   const canReview = true
@@ -241,7 +260,7 @@ export default function Job() {
           {
             (user.role == "client" && canReview) && (
               <>
-                <Tabs mt="8" isFitted>
+                <Tabs mt="5" isFitted>
                   <TabList>
                     <Tab>Rincian</Tab>
                     <Tab>Lamaran Masuk</Tab>
@@ -274,8 +293,13 @@ export default function Job() {
                       }
                     </TabPanel>
                     <TabPanel>
-                        {/* <SearchBar /> */}
-                        <ProfileList profiles={job.registrants} job={job} />
+                      <Flex mt="3">
+                        <SearchBar workers={true} keyword={keyword} setKeyword={setKeyword}
+                          category={category} setCategory={setCategory}
+                          experience={experience} setExperience={setExperience} />
+                      </Flex>
+                      <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredRegistrants.length+" orang pelamar"}</Text>
+                      <ProfileList profiles={filteredRegistrants} job={job} />
                     </TabPanel>
                   </TabPanels>
                 </Tabs>

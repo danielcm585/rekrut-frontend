@@ -9,7 +9,8 @@ export default function ProfileList({ profiles, job }) {
     <>
       <SimpleGrid mt="4" columns="2" spacing="3">
         {
-          profiles.map((worker, idx) => <ProfileCard worker={worker} job={job} />)
+          (profiles != null) &&
+            profiles.map((worker, idx) => <ProfileCard worker={worker} job={job} />)
         }
       </SimpleGrid>
     </>
