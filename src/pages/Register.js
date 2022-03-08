@@ -4,8 +4,9 @@ import { Navbar } from "../components"
 import { ChooseRole, AboutUser, AboutMe, AboutProfile, AboutJob, TermsCondition } from "../components/register"
 
 export default function Register() {
-  const [ role, setRole ] = useState()
   const [ page, setPage ] = useState(0)
+  
+  const [ role, setRole ] = useState()
 
   const [ email, setEmail ] = useState()
   const [ password, setPassword ] = useState()

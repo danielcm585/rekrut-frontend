@@ -42,13 +42,6 @@ export default function RegisterPage4({ role, setPage, category, setCategory, cv
                   <option value="Photographer">Photographer</option>
                 </Select>
               </FormControl>
-              {/* <FormControl mt="3">
-                <FormLabel>
-                  <Text fontSize="1xl" fontWeight="bold">Bio Anda</Text>
-                </FormLabel>
-                <Textarea type="text" placeholder="Saya seorang web developer profesional" value={bio} 
-                  borderColor="black" onChange={handleBioChanges} />
-              </FormControl> */}
               <FormControl mt="3">
                 <FormLabel>
                   <Text fontSize="1xl" fontWeight="bold">CV</Text>

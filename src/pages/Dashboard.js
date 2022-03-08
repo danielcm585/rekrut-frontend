@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react"
+import { AiOutlinePlus } from "react-icons/ai"
 
 import { Navbar, SearchBar, Footer } from "../components"
 import { ProfileList } from "../components/profile"
 import { JobList } from "../components/job"
 
-import { Flex, Text, Box, Button, Spacer } from "@chakra-ui/react"
+import { Flex, Text, Box, Button, Spacer, IconButton, Icon } from "@chakra-ui/react"
 
 export default function Dashboard() {
   // TODO: Get user from localStorage??
@@ -17,18 +18,18 @@ export default function Dashboard() {
     photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
     name: "Luke Skywalker",
     email: "luke.skywalker@gmail.com",
-    role: "worker",
-    // role: "client",
+    // role: "worker",
+    role: "client",
     category: "Web Developer"
   }
 
-  // TODO: Fetch jobs data from api
   const [ bestOffer, setBestOffer ] = useState()
   const [ recentJobs, setRecentJobs ] = useState()
-
+  
   const [ popularTalents, setPopularTalents ] = useState()
   const [ offeredTalents, setOfferedTalents ] = useState()
-
+  
+  // TODO: Fetch jobs data from api
   useEffect(() => {
     if (user.role == "worker") {
       setBestOffer([
@@ -298,13 +299,28 @@ export default function Dashboard() {
       <Navbar />
       <Flex justifyContent="center">
         <Flex mt="100" w="85%" direction="column">
-          <Text mb="6" fontSize="2xl" fontWeight="semibold">
+          <Flex mb="5">
+            <Text mb="3" fontSize="2xl" fontWeight="semibold">
+              {
+                (user.role == "worker") ? 
+                  "Portal Pekerjaan" : 
+                  "Portal Talent"
+              }
+            </Text>
             {
-              (user.role == "worker") ? 
-                "Portal Pekerjaan" : 
-                "Portal Talent"
+              (user.role == "client") && (
+                <>
+                  <Spacer></Spacer>
+                  {/* <IconButton size="lg" isRound bgColor="#FF8450" icon={<AiOutlinePlus />} /> */}
+                  <Button pl="10" pr="10" bgColor="#FF8450" borderRadius="full"
+                    onClick={() => window.location.href="/job/new"}>
+                    <Icon mr="2" as={AiOutlinePlus} />
+                    <Text fontSize="sm" fontWeight="bold">Pekerjaan Baru</Text>
+                  </Button>
+                </>
+              )
             }
-          </Text>
+          </Flex>
           {
             (user.role == "worker") ? (
               <SearchBar keyword={keyword} setKeyword={setKeyword}
