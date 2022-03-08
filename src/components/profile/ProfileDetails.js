@@ -6,7 +6,7 @@ import { ProfileForm } from "./";
 import { Star } from "../review"
 
 import { useDisclosure } from "@chakra-ui/react";
-import { Image, Box, Text, HStack, Spacer, Link, Icon, Button, Flex } from "@chakra-ui/react"
+import { Avatar, Box, Text, HStack, Spacer, Link, Icon, Button, Flex } from "@chakra-ui/react"
 
 export default function ProfileDetails({ user, me }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -14,10 +14,10 @@ export default function ProfileDetails({ user, me }) {
   return (
     <>
       {/* <Box bg="#2A2A30"> */}
-      <Flex>
+      <Flex w="100%">
         <Flex direction="column">
           <Flex>
-            <Image mr="5" h="165px" src={user.photo} borderRadius="lg" />
+            <Avatar mr="5" h="165px" w="165px" src={user.photo} borderRadius="lg" />
             <Box>
               <Link href={"/profile/"+user.id} isExternal>
                 {/* <Text fontSize="2xl" fontWeight="semibold" color="white">{user.name}</Text> */}
@@ -63,6 +63,7 @@ export default function ProfileDetails({ user, me }) {
             <>
               {/* <Button variant="ghost" color="white">Edit Profil</Button> */}
               <ProfileForm isOpen={isOpen} onClose={onClose} user={user} />
+              <Spacer></Spacer>
               <Button pl="8" pr="8" variant="ghost" borderRadius="50"
                 onClick={() => onOpen()}>
                 Edit Profil

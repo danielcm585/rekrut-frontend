@@ -56,6 +56,7 @@ export default function Login() {
               .then(resp => resp.json())
               .then(json => {
                   if (json.statusCode >= 400) throw new Error(json.message)
+                  localStorage.setItem("user", JSON.stringify(json))
                   window.location.href="/dashboard"
               })
               .catch((err) => {

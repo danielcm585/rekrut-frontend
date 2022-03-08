@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react"
 
 import { Navbar, SearchBar, Footer } from "../components"
-import { JobList, JobCard } from "../components/job"
 import { ProfileList } from "../components/profile"
+import { JobList } from "../components/job"
 
-import { Flex, Text, Box, Grid, Link, Button, Spacer } from "@chakra-ui/react"
+import { Flex, Text, Box, Button, Spacer } from "@chakra-ui/react"
 
 export default function Dashboard() {
   // TODO: Get user from localStorage??
+  // const user = JSON.parse(localStorage.getItem("user"))
+  // console.log(user)
+  
   // const user = null
   const user = {
     id: 3,
     photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
     name: "Luke Skywalker",
     email: "luke.skywalker@gmail.com",
-    // role: "worker",
-    role: "client",
+    role: "worker",
+    // role: "client",
     category: "Web Developer"
   }
 

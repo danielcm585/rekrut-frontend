@@ -1,25 +1,16 @@
 import React from "react"
 import { IoChevronDown } from "react-icons/io5"
-import { BiBell, BiLogOut, BiUser, BiEdit, BiHistory, BiStar } from "react-icons/bi"
+import { BiBell, BiLogOut, BiUser, BiEdit, BiStar } from "react-icons/bi"
 
 import { Notification } from "./";
 import { PasswordForm } from "./profile";
 
-import { useDisclosure } from "@chakra-ui/react";
-import { Button, Flex, HStack, Spacer, Text, Image, Link, Badge } from "@chakra-ui/react"
+import { Avatar, useDisclosure } from "@chakra-ui/react";
+import { Button, Flex, HStack, Spacer, Text, Link, Badge } from "@chakra-ui/react"
 import { Menu, MenuButton, MenuList, MenuItem, MenuDivider } from "@chakra-ui/react"
 
 export default function Navbar({ login, register }) {
-  // TODO: Get user from localStorage
-  const user = null
-  // const user = {
-  //   id: 3,
-  //   photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-  //   name: "Luke Skywalker",
-  //   email: "luke.skywalker@gmail.com",
-  //   role: "worker",
-  //   category: "Web Developer"
-  // }
+  const user = JSON.parse(localStorage.getItem("user"))
 
   const { 
     isOpen: isPasswordOpen, 
@@ -51,7 +42,7 @@ export default function Navbar({ login, register }) {
                   <Menu>
                     <MenuButton as={Button} variant="ghost" borderRadius="50" rightIcon={<IoChevronDown />}>
                       <HStack>
-                        <Image src={user.photo} h="7" borderRadius="full" />
+                        <Avatar src={user.photo} h="7" w="7" />
                         <Text fontSize="1xl" fontWeight="semibold">{user.name}</Text>
                       </HStack>
                     </MenuButton>
@@ -69,7 +60,10 @@ export default function Navbar({ login, register }) {
                       <MenuItem icon={<BiStar />} onClick={() => window.location.href="/profile/"+user.id}>Ulasan</MenuItem> {/*TODO: Add onClick func */}
                       <MenuDivider />
                       <MenuItem icon={<BiEdit />} onClick={() => onPasswordOpen()}>Ganti Password</MenuItem> 
-                      <MenuItem icon={<BiLogOut />}>Keluar</MenuItem> {/*TODO: Add onClick func */}
+                      <MenuItem icon={<BiLogOut />} onClick={() => {
+                        localStorage.removeItem("user")
+                        window.location.reload()
+                      }}>Keluar</MenuItem>
                     </MenuList>
                   </Menu>
                 </>
