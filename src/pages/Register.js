@@ -54,7 +54,9 @@ export default function Register() {
           cv={cv} setCv={setCv} />
       }
       {
-        (page == 5) && <TermsCondition role={role} setPage={setPage} />
+        (page == 5) && <TermsCondition role={role} setPage={setPage}
+          email={email} password={password} name={name}
+          phone={phone} bank={bank} bio={bio} category={category} />
       }
     </>
   )

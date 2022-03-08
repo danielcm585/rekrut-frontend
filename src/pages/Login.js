@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import { Navbar, PasswordInput } from "../components"
 import { LoginImg } from "../images"
 
+import { useToast } from "@chakra-ui/react"
 import { Flex, Text, Input, Button, Link, HStack, Image } from "@chakra-ui/react"
 import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react"
 
@@ -14,6 +15,12 @@ export default function Login() {
   useState(() => {
     document.title = "Rekrut.id | Login"
   }, [])
+
+  const toast = useToast({
+    position: "top",
+    variant: "solid",
+    isClosable: true
+  })
 
   return (
     <>
@@ -38,19 +45,25 @@ export default function Login() {
           </FormControl>
           <Button mt="8" borderRadius="50" bgColor="#FF8450"
             onClick={() => {
-              fetch("https://localhost:3001/user/login", {
+              fetch("https://protected-castle-75235.herokuapp.com/user/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                   email: email,
                   password: password
                 })
-              }).then(resp => resp.json())
-                .then(json => {
-                  // TODO: Handle the respond
-                  console.log("WKWK")
+              })
+              .then(resp => resp.json())
+              .then(json => {
+                  if (json.statusCode >= 400) throw new Error(json.message)
+                  window.location.href="/dashboard"
+              })
+              .catch((err) => {
+                toast({
+                  title: err.message,
+                  status: "error"
                 })
-              window.location.href="/dashboard"
+              })
             }}>
               <Text fontSize="sm" fontWeight="bold">Login</Text>
             </Button>

@@ -1,9 +1,10 @@
 import React, { useState } from "react"
+import fetch from 'node-fetch'
 
 import { useToast } from "@chakra-ui/react"
 import { Checkbox, Flex, Text, Box, SimpleGrid, Button, VStack } from "@chakra-ui/react"
 
-export default function RegisterPage5({ role, setPage, postRequest }) {
+export default function RegisterPage5({ role, setPage, postRequest, email, password, name, phone, bank, bio, category }) {
   const [ agree, setAgree ] = useState(false)
   
   const toast = useToast({
@@ -56,9 +57,31 @@ export default function RegisterPage5({ role, setPage, postRequest }) {
                       })
                       return
                     }
-                    // TODO: send request
-                    console.log("REGISTER")
-                    window.location.href="/login"
+                    fetch("https://protected-castle-75235.herokuapp.com/user/register", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        email: email,
+                        password: password,
+                        name: name,
+                        phone: phone,
+                        bankAccount: bank,
+                        category: category,
+                        bio: bio,
+                        isWorker: (role == "worker")
+                      })
+                    })
+                    .then(resp => resp.json())
+                    .then(json => {
+                        if (json.statusCode >= 400) throw new Error(json.message)
+                        window.location.href="/login"
+                    })
+                    .catch((err) => {
+                      toast({
+                        title: err.message,
+                        status: "error"
+                      })
+                    })
                   }}>
                   <Text fontSize="sm" fontWeight="bold">Selesai</Text>
                 </Button>
