@@ -2,7 +2,7 @@ import React from "react"
 
 import { JobCard } from "."
 
-import { Flex } from "@chakra-ui/react"
+import { Flex, Skeleton } from "@chakra-ui/react"
 
 export default function JobList({ jobs }) {
   return (

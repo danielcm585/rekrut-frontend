@@ -74,6 +74,10 @@ export default function RegisterPage5({ role, setPage, postRequest, email, passw
                     .then(resp => resp.json())
                     .then(json => {
                         if (json.statusCode >= 400) throw new Error(json.message)
+                        toast({
+                          title: "Akun baru berhasil dibuat",
+                          status: "success"
+                        })
                         window.location.href="/login"
                     })
                     .catch((err) => {
