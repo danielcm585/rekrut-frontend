@@ -53,7 +53,7 @@ export default function RegisterPage5({ role, setPage, email, password, name, ph
                   onClick={() => {
                     try {
                       setIsLoading(true)
-                      if (!agree) throw new Error("Anda wajib membaca dan menyetujui semua syarat untuk menyelesaikan registrasi")
+                      if (!agree) throw new Error("Silakan baca dan setujui semua syarat untuk melanjutkan")
                       fetch("https://protected-castle-75235.herokuapp.com/user/register", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },

@@ -58,7 +58,7 @@ export default function AboutProfile({ role, setPage, bio, setBio, profPic, setP
                   onClick={() => {
                     try {
                       if (bio == null || bio.length == 0) throw new Error("Bio anda masih kosong")
-                      if (profPic != null) throw new Error("SIlakan upload foto profil untuk melanjutkan")
+                      if (profPic == null) throw new Error("SIlakan upload foto profil untuk melanjutkan")
                       if (profPic.type != "image/png" && 
                           profPic.type != "image/jpeg") throw new Error("Foto profil harus berbentuk jpg atau png")
                       if (role == "worker") setPage(prev => prev+1)
