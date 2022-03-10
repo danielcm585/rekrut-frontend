@@ -60,28 +60,18 @@ export default function RegisterPage4({ role, setPage, category, setCategory, cv
                 </Button>
                 <Button mt="8" bgColor="#FF8450" borderRadius="50"
                   onClick={() => {
-                    if (category == "-") {
+                    try {
+                      if (category == "-") throw new Error("Kategori pekerjaan tidak boleh kosong")
+                      if (cv == null) throw new Error("CV tidak boleh kosong")
+                      if (cv.type != "application/pdf") throw new Error("CV harus berbentuk pdf")
+                      setPage(prev => prev+1)
+                    }
+                    catch (err) {
                       toast({
-                        title: "Kategori pekerjaan tidak boleh kosong",
+                        title: err.message,
                         status: "error"
                       })
-                      return
                     }
-                    if (cv == null) {
-                      toast({
-                        title: "CV tidak boleh kosong",
-                        status: "error"
-                      })
-                      return
-                    }
-                    if (cv.type != "application/pdf") {
-                      toast({
-                        title: "CV harus berbentuk pdf",
-                        status: "error"
-                      })
-                      return
-                    }
-                    setPage(prev => prev+1)
                   }}>
                   <Text fontSize="sm" fontWeight="bold">Selanjutnya</Text>
                 </Button>

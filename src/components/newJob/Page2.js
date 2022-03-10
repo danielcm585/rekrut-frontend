@@ -67,7 +67,6 @@ export default function Page2({ setPage, responsibility, setResponsibility, qual
                     .then(resp =>  resp.json())
                     .then(json => {
                       if (json.statusCode >= 400) throw new Error(json.message)
-                      console.log(json)
                       setIsLoading(false)
                       toast({
                         title: "Pekerjaan baru berhasil di-post",

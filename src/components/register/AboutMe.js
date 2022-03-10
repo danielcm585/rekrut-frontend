@@ -61,49 +61,21 @@ export default function AboutMe({ role, setPage, name, setName, phone, setPhone,
                 </Button>
                 <Button mt="8" bgColor="#FF8450" borderRadius="50"
                   onClick={() => {
-                    if (name == null || name.length == 0) {
+                    try {
+                      if (name == null || name.length == 0) throw new Error("Nama tidak boleh kosong")
+                      if (phone == null || phone.length == 0) throw new Error("Nomor telepon tidak boleh kosong")
+                      if (phone.length < 10 || isNaN(phone)) throw new Error("Nomor telepon tidak valid")
+                      if (phone[0] != '+') throw new Error("Nomor telepon harus ditulis dalam format internasional, contoh: +628123456789")
+                      if (bank == null || bank.length == 0)  throw new Error("Nomor rekening tidak boleh kosong")
+                      if (bank.length < 6) throw new Error("Nomor rekening tidak valid")
+                      setPage(prev => prev+1)
+                    }
+                    catch (err) {
                       toast({
-                        title: "Nama tidak boleh kosong",
+                        title: err.message,
                         status: "error"
                       })
-                      return
                     }
-                    if (phone == null || phone.length == 0) {
-                      toast({
-                        title: "Nomor telepon tidak boleh kosong",
-                        status: "error"
-                      })
-                      return
-                    }
-                    if (phone.length < 10 || isNaN(phone)) {
-                      toast({
-                        title: "Nomor telepon tidak valid",
-                        status: "error"
-                      })
-                      return
-                    }
-                    if (phone[0] != '+') {
-                      toast({
-                        title: "Nomor telepon harus ditulis dalam format internasional, contoh: +628123456789",
-                        status: "error"
-                      })
-                      return
-                    }
-                    if (bank == null || bank.length == 0)  {
-                      toast({
-                        title: "Nomor rekening tidak boleh kosong",
-                        status: "error"
-                      })
-                      return
-                    }
-                    if (bank.length < 6) { // FIXME: The valid rule
-                      toast({
-                        title: "Nomor rekening tidak valid",
-                        status: "error"
-                      })
-                      return
-                    }
-                    setPage(prev => prev+1)
                   }}>
                   <Text fontSize="sm" fontWeight="bold">Selanjutnya</Text>
                 </Button>

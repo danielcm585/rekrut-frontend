@@ -51,45 +51,49 @@ export default function RegisterPage5({ role, setPage, email, password, name, ph
                 </Button>
                 <Button mt="8" bgColor="#FF8450" borderRadius="50" isLoading={isLoading}
                   onClick={() => {
-                    setIsLoading(true)
-                    if (!agree) {
-                      toast({
-                        title: "Anda wajib membaca dan menyetujui semua syarat untuk menyelesaikan registrasi",
-                        status: "error"
-                      })
-                      return
-                    }
-                    fetch("https://protected-castle-75235.herokuapp.com/user/register", {
-                      method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({
-                        email: email,
-                        password: password,
-                        name: name,
-                        phone: phone,
-                        bankAccount: bank,
-                        category: category,
-                        bio: bio,
-                        isWorker: (role == "worker")
-                      })
-                    })
-                    .then(resp => resp.json())
-                    .then(json => {
-                        if (json.statusCode >= 400) throw new Error(json.message)
-                        setIsLoading(false)
-                        toast({
-                          title: "Akun baru berhasil dibuat",
-                          status: "success"
-                        })
-                        window.location.href="/login"
-                    })
-                    .catch((err) => {
+                    try {
                       setIsLoading(true)
+                      if (!agree) throw new Error("Anda wajib membaca dan menyetujui semua syarat untuk menyelesaikan registrasi")
+                      fetch("https://protected-castle-75235.herokuapp.com/user/register", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        credentials: "include",
+                        body: JSON.stringify({
+                          email: email,
+                          password: password,
+                          name: name,
+                          phone: phone,
+                          bankAccount: bank,
+                          category: category,
+                          bio: bio,
+                          isWorker: (role == "worker")
+                        })
+                      })
+                      .then(resp => resp.json())
+                      .then(json => {
+                          if (json.statusCode >= 400) throw new Error(json.message)
+                          setIsLoading(false)
+                          toast({
+                            title: "Akun baru berhasil dibuat",
+                            status: "success"
+                          })
+                          window.location.href="/login"
+                      })
+                      .catch((err) => {
+                        setIsLoading(true)
+                        toast({
+                          title: err.message,
+                          status: "error"
+                        })
+                      })
+                    }
+                    catch (err) {
+                      setIsLoading(false)
                       toast({
                         title: err.message,
                         status: "error"
                       })
-                    })
+                    }
                   }}>
                   <Text fontSize="sm" fontWeight="bold">Selesai</Text>
                 </Button>

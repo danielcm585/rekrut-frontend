@@ -44,42 +44,20 @@ export default function AboutUser({ setPage, email, setEmail, password, setPassw
           </FormControl>
           <Button mt="8" borderRadius="50" borderColor="black" bgColor="#FF8450"
             onClick={() => {
-              if (email == null || email.length == 0) {
+              try {
+                if (email == null || email.length == 0) throw new Error("Email tidak boleh kosong")
+                if (email.length < 4 || !email.includes('@')) throw new Error("Email tidak valid")
+                if (password == null || password.length == 0) throw new Error("Password tidak boleh kosong")
+                if (password.length < 6) throw new Error("Password minimal terdiri dari 6 karakter")
+                if (password != confPassword) throw new Error("Password tidak cocok")
+                setPage(prev => prev+1)
+              }
+              catch (err) {
                 toast({
-                  title: "Email tidak boleh kosong",
+                  title: err.message,
                   status: "error"
                 })
-                return
               }
-              if (email.length < 4 || !email.includes('@')) {
-                toast({
-                  title: "Email tidak valid",
-                  status: "error"
-                })
-                return
-              }
-              if (password == null || password.length == 0) {
-                toast({
-                  title: "Password tidak boleh kosong",
-                  status: "error"
-                })
-                return
-              }
-              if (password.length < 6) {
-                toast({
-                  title: "Password minimal terdiri dari 6 karakter",
-                  status: "error"
-                })
-                return
-              }
-              if (password != confPassword) {
-                toast({
-                  title: "Password tidak cocok",
-                  status: "error"
-                })
-                return
-              }
-              setPage(prev => prev+1)
             }}>
               <Text fontSize="sm" fontWeight="bold">Buat Akun</Text>
             </Button>

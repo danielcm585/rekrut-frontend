@@ -88,49 +88,21 @@ export default function Page1({ setPage, title, setTitle, category, setCategory,
                 </Button>
                 <Button mt="8" bgColor="#FF8450" borderRadius="50"
                   onClick={() => {
-                    if (title == null || title.length == 0) {
+                    try {
+                      if (title == null || title.length == 0) throw new Error("Nama pekerjaan tidak boleh kosong")
+                      if (category == "-") throw new Error("Silakan pilih kategori pekerjaan untuk lanjut")
+                      if (location == null || location.length == 0) throw new Error("Lokasi pekerjaan tidak boleh kosong")
+                      if (location == "-") throw new Error("Silakan pilih lokasi pekerjaan untuk lanjut")
+                      if (salary == null || salary.length == 0) throw new Error("Upah tidak boleh kosong")
+                      if (salary <= 100000) throw new Error("Nominal upah tidak valid")
+                      setPage(prev => prev+1)
+                    }
+                    catch (err) {
                       toast({
-                        title: "Nama pekerjaan tidak boleh kosong",
+                        title: err.message,
                         status: "error"
                       })
-                      return
                     }
-                    if (category == "-") {
-                      toast({
-                        title: "Silakan pilih kategori pekerjaan untuk lanjut",
-                        status: "error"
-                      })
-                      return
-                    }
-                    if (location == null || location.length == 0) {
-                      toast({
-                        title: "Lokasi pekerjaan tidak boleh kosong",
-                        status: "error"
-                      })
-                      return
-                    }
-                    if (location == "-") {
-                      toast({
-                        title: "Silakan pilih lokasi pekerjaan untuk lanjut",
-                        status: "error"
-                      })
-                      return
-                    }
-                    if (salary == null || salary.length == 0) {
-                      toast({
-                        title: "Upah tidak boleh kosong",
-                        status: "error"
-                      })
-                      return
-                    }
-                    if (salary <= 100000) {
-                      toast({
-                        title: "Nominal upah tidak valid",
-                        status: "error"
-                      })
-                      return
-                    }
-                    setPage(prev => prev+1)
                   }}>
                   <Text fontSize="sm" fontWeight="bold">Selanjutnya</Text>
                 </Button>

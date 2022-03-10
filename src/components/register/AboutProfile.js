@@ -56,23 +56,20 @@ export default function AboutProfile({ role, setPage, bio, setBio, profPic, setP
                 </Button>
                 <Button mt="8" bgColor="#FF8450" borderRadius="50"
                   onClick={() => {
-                    // TODO: Optional
-                    if (bio == null || bio.length == 0) {
-                      toast({
-                        title: "Bio anda masih kosong",
-                        status: "warning"
-                      })
-                      return
+                    try {
+                      if (bio == null || bio.length == 0) throw new Error("Bio anda masih kosong")
+                      if (profPic != null) throw new Error("SIlakan upload foto profil untuk melanjutkan")
+                      if (profPic.type != "image/png" && 
+                          profPic.type != "image/jpeg") throw new Error("Foto profil harus berbentuk jpg atau png")
+                      if (role == "worker") setPage(prev => prev+1)
+                      else setPage(5)
                     }
-                    if (profPic != null && profPic.type != "image/png" && profPic.type != "image/jpeg") {
+                    catch (err) {
                       toast({
-                        title: "Foto profil harus berbentuk jpg atau png",
+                        title: err.message,
                         status: "error"
                       })
-                      return
                     }
-                    if (role == "worker") setPage(prev => prev+1)
-                    else setPage(5)
                   }}>
                   <Text fontSize="sm" fontWeight="bold">Selanjutnya</Text>
                 </Button>

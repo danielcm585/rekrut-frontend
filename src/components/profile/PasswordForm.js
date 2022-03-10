@@ -56,43 +56,21 @@ export default function ProfileForm({ isOpen, onClose, user }) {
             </Button> 
             <Button ml="2" borderRadius="50" bgColor="#FF8450" 
               onClick={() => {
-                if (oldPassword == null || oldPassword.length == 0) {
+                try {
+                  if (oldPassword == null || oldPassword.length == 0) throw new Error("Password lama tidak boleh kosong")
+                  if (password == null || password.length == 0) throw new Error("Password baru tidak boleh kosong")
+                  if (password.length < 6) throw new Error("Password baru minimal terdiri dari 6 karakter")
+                  if (password != confPassword) throw new Error("Password baru tidak cocok")
+                  if (password == oldPassword) throw new Error("Password baru tidak boleh sama dengan password lama")
+                  // TODO: Send request to api
+                  onClose()
+                }
+                catch (err) {
                   toast({
-                    title: "Password lama tidak boleh kosong",
+                    title: err.message,
                     status: "error"
                   })
-                  return
                 }
-                if (password == null || password.length == 0) {
-                  toast({
-                    title: "Password baru tidak boleh kosong",
-                    status: "error"
-                  })
-                  return
-                }
-                if (password.length < 6) {
-                  toast({
-                    title: "Password baru minimal terdiri dari 6 karakter",
-                    status: "error"
-                  })
-                  return
-                }
-                if (password != confPassword) {
-                  toast({
-                    title: "Password baru tidak cocok",
-                    status: "error"
-                  })
-                  return
-                }
-                if (password == oldPassword) {
-                  toast({
-                    title: "Password baru tidak boleh sama dengan password lama",
-                    status: "error"
-                  })
-                  return
-                }
-                // TODO: Send request to api
-                onClose()
               }}>
               <Text fontSize="sm" fontWeight="bold">Submit</Text>
             </Button> 
