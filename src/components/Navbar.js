@@ -70,13 +70,13 @@ export default function Navbar({ login, register }) {
               ) : (
                 <>
                   <Flex>
-                    <Link href="/login">
-                      <Text color={login ? "#FF8450" : "black"} as={login && "ins"}>Masuk</Text>
+                    <Link href="/register">
+                      <Text color={register ? "#FF8450" : "black"} as={register && "ins"}>Daftar</Text>
                     </Link>
                   </Flex>
                   <Flex pl="8">
-                    <Link href="/register">
-                      <Text color={register ? "#FF8450" : "black"} as={register && "ins"}>Daftar</Text>
+                    <Link href="/login">
+                      <Text color={login ? "#FF8450" : "black"} as={login && "ins"}>Masuk</Text>
                     </Link>
                   </Flex>
                 </>
