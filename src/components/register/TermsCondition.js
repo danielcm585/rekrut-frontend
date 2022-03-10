@@ -4,9 +4,11 @@ import fetch from 'node-fetch'
 import { useToast } from "@chakra-ui/react"
 import { Checkbox, Flex, Text, Box, SimpleGrid, Button, VStack } from "@chakra-ui/react"
 
-export default function RegisterPage5({ role, setPage, postRequest, email, password, name, phone, bank, bio, category }) {
+export default function RegisterPage5({ role, setPage, email, password, name, phone, bank, bio, category }) {
   const [ agree, setAgree ] = useState(false)
   
+  const [ isLoading, setIsLoading ] = useState(false)
+
   const toast = useToast({
     position: "top",
     variant: "solid",
@@ -48,8 +50,9 @@ export default function RegisterPage5({ role, setPage, postRequest, email, passw
                   }}>
                   <Text fontSize="sm" fontWeight="bold">Kembali</Text>
                 </Button>
-                <Button mt="8" bgColor="#FF8450" borderRadius="50"
+                <Button mt="8" bgColor="#FF8450" borderRadius="50" isLoading={isLoading}
                   onClick={() => {
+                    setIsLoading(true)
                     if (!agree) {
                       toast({
                         title: "Anda wajib membaca dan menyetujui semua syarat untuk menyelesaikan registrasi",
@@ -74,6 +77,7 @@ export default function RegisterPage5({ role, setPage, postRequest, email, passw
                     .then(resp => resp.json())
                     .then(json => {
                         if (json.statusCode >= 400) throw new Error(json.message)
+                        setIsLoading(false)
                         toast({
                           title: "Akun baru berhasil dibuat",
                           status: "success"
@@ -81,6 +85,7 @@ export default function RegisterPage5({ role, setPage, postRequest, email, passw
                         window.location.href="/login"
                     })
                     .catch((err) => {
+                      setIsLoading(true)
                       toast({
                         title: err.message,
                         status: "error"

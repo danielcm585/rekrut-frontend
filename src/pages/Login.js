@@ -4,13 +4,15 @@ import { Navbar, PasswordInput } from "../components"
 import { LoginImg } from "../images"
 
 import { useToast } from "@chakra-ui/react"
-import { Flex, Text, Input, Button, Link, HStack, Image } from "@chakra-ui/react"
+import { Flex, Text, Input, Button, Link, Image } from "@chakra-ui/react"
 import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react"
 
 export default function Login() {
   const [ email, setEmail ] = useState()
   const handleEmailChanges = (e) => setEmail(e.target.value)
   const [ password, setPassword ] = useState()
+
+  const [ isLoading, setIsLoading ] = useState(false)
 
   useState(() => {
     document.title = "Rekrut.id | Login"
@@ -43,8 +45,9 @@ export default function Login() {
             </FormLabel>
             <PasswordInput password={password} setPassword={setPassword} />
           </FormControl>
-          <Button mt="8" borderRadius="50" bgColor="#FF8450"
+          <Button mt="8" borderRadius="50" bgColor="#FF8450" isLoading={isLoading}
             onClick={() => {
+              setIsLoading(true)
               fetch("https://protected-castle-75235.herokuapp.com/user/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -56,15 +59,15 @@ export default function Login() {
               .then(resp => resp.json())
               .then(json => {
                   if (json.statusCode >= 400) throw new Error(json.message)
-                  
+                  setIsLoading(false)
                   json.id = json._id
                   json.role = (json.worker != null ? "worker" : "client")
                   json.bank = json.bankAccount
-
                   localStorage.setItem("user", JSON.stringify(json))
                   window.location.href="/dashboard"
               })
               .catch((err) => {
+                setIsLoading(false)
                 toast({
                   title: err.message,
                   status: "error"
