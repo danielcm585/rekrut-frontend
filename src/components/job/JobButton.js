@@ -7,9 +7,6 @@ import { useDisclosure } from "@chakra-ui/react"
 import { Button, Flex, Text } from "@chakra-ui/react"
 
 export default function JobButton({ user, job, canReview }) {
-  // FIXME: Can we review?
-  // const canReview = true
-
   const [ isConfirmOpen, setIsConfirmOpen ] = useState(false)
   const [ isConfirm2Open, setIsConfirm2Open ] = useState(false)
   const { isOpen, onOpen, onClose } = useDisclosure()

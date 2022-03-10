@@ -51,6 +51,7 @@ export default function Login() {
               fetch("https://protected-castle-75235.herokuapp.com/user/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
+                credentials: "include",
                 body: JSON.stringify({
                   email: email,
                   password: password

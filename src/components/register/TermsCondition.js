@@ -1,5 +1,4 @@
 import React, { useState } from "react"
-import fetch from 'node-fetch'
 
 import { useToast } from "@chakra-ui/react"
 import { Checkbox, Flex, Text, Box, SimpleGrid, Button, VStack } from "@chakra-ui/react"

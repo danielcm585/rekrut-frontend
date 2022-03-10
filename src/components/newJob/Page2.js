@@ -53,6 +53,7 @@ export default function Page2({ setPage, responsibility, setResponsibility, qual
                     fetch("https://protected-castle-75235.herokuapp.com/job", {
                       method: "POST",
                       headers: { "Content-Type": "application/json" },
+                      credentials: "include",
                       body: JSON.stringify({
                         title: title,
                         category: category,
@@ -63,9 +64,10 @@ export default function Page2({ setPage, responsibility, setResponsibility, qual
                         qualification: qualifications
                       })
                     })
-                    .then(resp => resp.json())
+                    .then(resp =>  resp.json())
                     .then(json => {
                       if (json.statusCode >= 400) throw new Error(json.message)
+                      console.log(json)
                       setIsLoading(false)
                       toast({
                         title: "Pekerjaan baru berhasil di-post",

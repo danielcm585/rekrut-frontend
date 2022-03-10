@@ -4,8 +4,8 @@ import { useToast } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
 import { Flex, VStack, Text, Input, Button, SimpleGrid, Select } from "@chakra-ui/react"
 
-export default function Page1({ setPage, name, setName, category, setCategory, location, setLocation, type, setType, salary, setSalary }) {
-  const handleNameChanges = (e) => setName(e.target.value)
+export default function Page1({ setPage, title, setTitle, category, setCategory, location, setLocation, type, setType, salary, setSalary }) {
+  const handleTitleChanges = (e) => setTitle(e.target.value)
   const handleCategoryChanges = (e) => setCategory(e.target.value)
   const handleLocationChanges = (e) => setLocation(e.target.value)
   const handleTypeChanges = (e) => setType(e.target.value)
@@ -35,7 +35,7 @@ export default function Page1({ setPage, name, setName, category, setCategory, l
                   <Text fontSize="1xl" fontWeight="bold">Nama Pekerjaan</Text>
                 </FormLabel>
                 <Input type="text" variant="outline" borderColor="black"
-                  value={name} onChange={handleNameChanges} />
+                  value={title} onChange={handleTitleChanges} />
               </FormControl>
               <FormControl mt="3">
                 <FormLabel>
@@ -88,7 +88,48 @@ export default function Page1({ setPage, name, setName, category, setCategory, l
                 </Button>
                 <Button mt="8" bgColor="#FF8450" borderRadius="50"
                   onClick={() => {
-                    
+                    if (title == null || title.length == 0) {
+                      toast({
+                        title: "Nama pekerjaan tidak boleh kosong",
+                        status: "error"
+                      })
+                      return
+                    }
+                    if (category == "-") {
+                      toast({
+                        title: "Silakan pilih kategori pekerjaan untuk lanjut",
+                        status: "error"
+                      })
+                      return
+                    }
+                    if (location == null || location.length == 0) {
+                      toast({
+                        title: "Lokasi pekerjaan tidak boleh kosong",
+                        status: "error"
+                      })
+                      return
+                    }
+                    if (location == "-") {
+                      toast({
+                        title: "Silakan pilih lokasi pekerjaan untuk lanjut",
+                        status: "error"
+                      })
+                      return
+                    }
+                    if (salary == null || salary.length == 0) {
+                      toast({
+                        title: "Upah tidak boleh kosong",
+                        status: "error"
+                      })
+                      return
+                    }
+                    if (salary <= 100000) {
+                      toast({
+                        title: "Nominal upah tidak valid",
+                        status: "error"
+                      })
+                      return
+                    }
                     setPage(prev => prev+1)
                   }}>
                   <Text fontSize="sm" fontWeight="bold">Selanjutnya</Text>
