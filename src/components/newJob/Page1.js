@@ -44,11 +44,15 @@ export default function Page1({ setPage, name, setName, category, setCategory, l
                 <Select variant="outline" borderColor="black"
                   value={category} onChange={handleCategoryChanges}>
                   <option value="-">-</option>
-                  <option value="Web Developer">Web Developer</option>
-                  <option value="Software Engineer">Software Engineer</option>
-                  <option value="UI/UX Designer">UI/UX Designer</option>
-                  <option value="Graphic Designer">Graphic Designer</option>
-                  <option value="Photographer">Photographer</option>
+                  <option value="Design and Creative">Design and Creative</option>
+                  <option value="Development and IT">Development and IT</option>
+                  <option value="Engineering and Architecture">Engineering and Architecture</option>
+                  <option value="Sales and Marketing">Sales and Marketing</option>
+                  <option value="Writing and Translation">Writing and Translation</option>
+                  <option value="HR and Training">HR and Training</option>
+                  <option value="Legal">Legal</option>
+                  <option value="Speaking">Speaking</option>
+                  <option value="Others">Others</option>
                 </Select>
               </FormControl>
               <FormControl mt="3">

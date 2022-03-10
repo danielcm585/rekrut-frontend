@@ -1,12 +1,14 @@
-import React from "react"
+import React, { useState } from "react"
 
 import { useToast } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
 import { Flex, VStack, Text, Button, SimpleGrid, Textarea } from "@chakra-ui/react"
 
-export default function Page2({ setPage, responsibility, setResponsibility, qualifications, setQualifications, name, setName, category, setCategory, location, setLocation, type, setType, salary, setSalary }) {
+export default function Page2({ setPage, responsibility, setResponsibility, qualifications, setQualifications, title, category, location, type, salary }) {
   const handleResponsibilityChanges = (e) => setResponsibility(e.target.value)
   const handleQualificationsChanges = (e) => setQualifications(e.target.value)
+
+  const [ isLoading, setIsLoading ] = useState(false)
 
   const toast = useToast({
     position: "top",
@@ -45,10 +47,39 @@ export default function Page2({ setPage, responsibility, setResponsibility, qual
                 <Button mt="8" borderRadius="50" onClick={() => setPage(prev => prev-1)}>
                   <Text fontSize="sm" fontWeight="bold">Kembali</Text>
                 </Button>
-                <Button mt="8" bgColor="#FF8450" borderRadius="50"
+                <Button mt="8" bgColor="#FF8450" borderRadius="50" isLoading={isLoading}
                   onClick={() => {
-                    // TODO: submit
-                    window.location.href="/prodile/me"
+                    setIsLoading(true)
+                    fetch("https://protected-castle-75235.herokuapp.com/user/login", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        title: title,
+                        category: category,
+                        location: location,
+                        jobType: type,
+                        salary: salary,
+                        responsibility: responsibility,
+                        qualification: qualifications
+                      })
+                    })
+                    .then(resp => resp.json())
+                    .then(json => {
+                      setIsLoading(false)
+                        if (json.statusCode >= 400) throw new Error(json.message)
+                        toast({
+                          title: "Pekerjaan baru berhasil di-post",
+                          status: "success"
+                        })
+                        window.location.href="/profile/me"
+                    })
+                    .catch((err) => {
+                      setIsLoading(false)
+                      toast({
+                        title: err.message,
+                        status: "error"
+                      })
+                    })
                   }}>
                   <Text fontSize="sm" fontWeight="bold">Selesai</Text>
                 </Button>
