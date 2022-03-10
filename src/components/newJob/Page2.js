@@ -50,7 +50,7 @@ export default function Page2({ setPage, responsibility, setResponsibility, qual
                 <Button mt="8" bgColor="#FF8450" borderRadius="50" isLoading={isLoading}
                   onClick={() => {
                     setIsLoading(true)
-                    fetch("https://protected-castle-75235.herokuapp.com/user/login", {
+                    fetch("https://protected-castle-75235.herokuapp.com/job", {
                       method: "POST",
                       headers: { "Content-Type": "application/json" },
                       body: JSON.stringify({
@@ -65,13 +65,13 @@ export default function Page2({ setPage, responsibility, setResponsibility, qual
                     })
                     .then(resp => resp.json())
                     .then(json => {
+                      if (json.statusCode >= 400) throw new Error(json.message)
                       setIsLoading(false)
-                        if (json.statusCode >= 400) throw new Error(json.message)
-                        toast({
-                          title: "Pekerjaan baru berhasil di-post",
-                          status: "success"
-                        })
-                        window.location.href="/profile/me"
+                      toast({
+                        title: "Pekerjaan baru berhasil di-post",
+                        status: "success"
+                      })
+                      window.location.href="/profile/me"
                     })
                     .catch((err) => {
                       setIsLoading(false)
