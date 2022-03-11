@@ -74,7 +74,7 @@ export default function ProfileDetails({ user, me, client }) {
           )
         }
         {
-          client && (
+          (client && user.role == "worker") && (
             <>
               <Spacer></Spacer>
               <ConfirmButton action="Undang" isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} onClick={() => {

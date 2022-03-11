@@ -37,7 +37,7 @@ export default function WorkerJobs({ user }) {
         title: err.message,
         status: "error"
       })
-    })
+    }, [])
 
     // FIXME: fetch data
     setAccepted([

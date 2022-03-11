@@ -3,7 +3,7 @@ import React from "react"
 import { Button, ButtonGroup, Text } from "@chakra-ui/react"
 import { Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverBody, PopoverFooter, PopoverArrow, PopoverCloseButton, PopoverAnchor } from "@chakra-ui/react"
 
-export default function ConfirmButton({ action, second, isOpen, setIsOpen, isDisabled, onClick }) {
+export default function ConfirmButton({ action, second, isOpen, setIsOpen, isDisabled, isLoading, onClick }) {
   return (
     <>
       <Popover isOpen={isOpen} onClose={() => setIsOpen(false)} placement="bottom" returnFocusOnClose={false} closeOnBlur={false}>
@@ -23,7 +23,7 @@ export default function ConfirmButton({ action, second, isOpen, setIsOpen, isDis
           }
         </PopoverTrigger>
         <PopoverContent>
-          <PopoverHeader fontWeight="semibold">Confirmation</PopoverHeader>
+          <PopoverHeader fontWeight="semibold">Konfirmasi</PopoverHeader>
           <PopoverArrow />
           <PopoverCloseButton />
           <PopoverBody>
@@ -32,7 +32,7 @@ export default function ConfirmButton({ action, second, isOpen, setIsOpen, isDis
           <PopoverFooter d="flex" justifyContent="flex-end">
             <ButtonGroup size="sm">
               <Button borderRadius="50" onClick={() => setIsOpen(false)}>Batal</Button>
-              <Button borderRadius="50" bgColor="#FF8450" onClick={onClick}>{action}</Button>
+              <Button borderRadius="50" bgColor="#FF8450" isLoading={isLoading} onClick={onClick}>{action}</Button>
             </ButtonGroup>
           </PopoverFooter>
         </PopoverContent>

@@ -21,7 +21,7 @@ export default function Dashboard() {
     if (user == null || user.role == "worker") {
       setBestOffer([
         {
-          id: 1,
+          id: "622a0448782bde729f35e875",
           title: "Backend Engineer",
           desc: "Do backend work in developing our app.",
           category: "Software Engineer",
@@ -29,7 +29,7 @@ export default function Dashboard() {
           type: "Full-time",
           location: "Semarang",
           company: {
-            id: 1,
+            id: "622a0daf782bde729f35e883",
             name: "BukaPedia",
             rating: 4.2,
             photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
@@ -50,7 +50,7 @@ export default function Dashboard() {
           ]
         },
         {
-          id: 2,
+          id: "622a0448782bde729f35e875",
           title: "Frontend Engineer",
           category: "Software Engineer",
           desc: "Do frontend work in developing our app.",
@@ -58,7 +58,7 @@ export default function Dashboard() {
           type: "Full-project",
           location: "Surabaya",
           company: {
-            id: 1,
+            id: "622a0daf782bde729f35e883",
             name: "BukaPedia",
             rating: 4.2,
             photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
@@ -77,7 +77,7 @@ export default function Dashboard() {
           ]
         },
         {
-          id: 3,
+          id: "622a0448782bde729f35e875",
           title: "Web Developer",
           category: "Software Engineer",
           desc: "Develop a great website for our company",
@@ -85,7 +85,7 @@ export default function Dashboard() {
           type: "Full-time",
           location: "Jakarta",
           company: {
-            id: 2,
+            id: "622a0daf782bde729f35e883",
             name: "TokoLapak",
             rating: 2.1,
             photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
@@ -102,7 +102,7 @@ export default function Dashboard() {
       ])
       setRecentJobs([
         {
-          id: 1,
+          id: "622a0448782bde729f35e875",
           title: "Backend Engineer",
           desc: "Do backend work in developing our app.",
           category: "Software Engineer",
@@ -110,7 +110,7 @@ export default function Dashboard() {
           type: "Full-time",
           location: "Jakarta",
           company: {
-            id: 1,
+            id: "622a0daf782bde729f35e883",
             name: "BukaPedia",
             rating: 4.2,
             photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
@@ -131,7 +131,7 @@ export default function Dashboard() {
           ]
         },
         {
-          id: 2,
+          id: "622a0448782bde729f35e875",
           title: "Frontend Engineer",
           category: "Software Engineer",
           desc: "Do frontend work in developing our app.",
@@ -139,7 +139,7 @@ export default function Dashboard() {
           type: "Part-time",
           location: "Surabaya",
           company: {
-            id: 1,
+            id: "622a0daf782bde729f35e883",
             name: "BukaPedia",
             rating: 4.2,
             photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
@@ -156,7 +156,7 @@ export default function Dashboard() {
           ]
         },
         {
-          id: 3,
+          id: "622a0448782bde729f35e875",
           title: "Web Developer",
           category: "Software Engineer",
           desc: "Develop a great website for our company",
@@ -164,7 +164,7 @@ export default function Dashboard() {
           type: "Contract",
           location: "Semarang",
           company: {
-            id: 2,
+            id: "622a0daf782bde729f35e883",
             name: "TokoLapak",
             rating: 2.1,
             photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
@@ -185,7 +185,7 @@ export default function Dashboard() {
     if (user != null && user.role == "client") {
       setPopularTalents([
         {
-          id: 11,
+          id: "6227688cfea1f57345e41c18",
           name: "Hera Syndulla",
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
           category: "Frontend Developer",
@@ -193,7 +193,7 @@ export default function Dashboard() {
           jobDone: ["ada","ada","ada","ada","ada"]
         },
         {
-          id: 11,
+          id: "6227688cfea1f57345e41c18",
           name: "Ahsoka Tano",
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
           category: "Frontend Developer",
@@ -201,7 +201,7 @@ export default function Dashboard() {
           jobDone: ["ada","ada","ada","ada","ada"]
         },
         {
-          id: 11,
+          id: "6227688cfea1f57345e41c18",
           name: "Darth Vader",
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
           category: "Frontend Developer",
@@ -211,7 +211,7 @@ export default function Dashboard() {
       ])
       setOfferedTalents([
         {
-          id: 11,
+          id: "6227688cfea1f57345e41c18",
           name: "Hera Syndulla",
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
           category: "Frontend Developer",
@@ -219,7 +219,7 @@ export default function Dashboard() {
           jobDone: ["ada","ada","ada","ada","ada"]
         },
         {
-          id: 11,
+          id: "6227688cfea1f57345e41c18",
           name: "Ahsoka Tano",
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
           category: "Frontend Developer",
@@ -227,7 +227,7 @@ export default function Dashboard() {
           jobDone: ["ada","ada","ada","ada","ada"]
         },
         {
-          id: 11,
+          id: "6227688cfea1f57345e41c18",
           name: "Darth Vader",
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
           category: "Frontend Developer",

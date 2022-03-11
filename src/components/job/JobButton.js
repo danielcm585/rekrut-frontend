@@ -3,13 +3,50 @@ import React, { useState } from "react"
 import { ChooseWorker, ConfirmButton } from "."
 import { ReviewForm } from "../review"
 
-import { useDisclosure } from "@chakra-ui/react"
+import { useToast, useDisclosure } from "@chakra-ui/react"
 import { Button, Flex, Text } from "@chakra-ui/react"
 
 export default function JobButton({ user, job, canReview }) {
   const [ isConfirmOpen, setIsConfirmOpen ] = useState(false)
   const [ isConfirm2Open, setIsConfirm2Open ] = useState(false)
+  
   const { isOpen, onOpen, onClose } = useDisclosure()
+  
+  const [ isLoading, setIsLoading ] = useState(false)
+
+  const toast = useToast({
+    position: "top",
+    variant: "solid",
+    isClosable: true
+  })
+
+  const sendRequest = (link, successMessage, json, setIsConfirmOpen) => {
+    setIsLoading(true)
+    fetch(link, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+      body: JSON.stringify(json)
+    })
+    .then(resp => resp.json())
+    .then(json => {
+      if (json.statusCode >= 400) throw new Error(json.message)
+      toast({
+        title: successMessage,
+        status: "success"
+      })
+      setIsLoading(false)
+      setIsConfirmOpen(false)
+    })
+    .catch((err) => {
+      setIsLoading(false)
+      setIsConfirmOpen(false)
+      toast({
+        title: err.message,
+        status: "error"
+      })
+    })
+  }
 
   return (
     <>
@@ -18,11 +55,13 @@ export default function JobButton({ user, job, canReview }) {
           <>
             {
               (user.role == "worker") ? (
-                <ConfirmButton action="Daftar" isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} 
-                  onClick={() => {
-                    // TODO: Send request to api
-                    console.log("APPLY")
-                  }} />
+                <ConfirmButton action="Daftar" isLoading={isLoading}
+                  isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} 
+                  onClick={() => sendRequest(
+                    "https://protected-castle-75235.herokuapp.com/worker/apply", 
+                    "Pendaftaran anda berhasil",
+                    { job: job.id }, setIsConfirmOpen)
+                  } />
               ) : (
                 <>
                   {
@@ -30,7 +69,8 @@ export default function JobButton({ user, job, canReview }) {
                       <>
                         {/* <ChooseWorker job={job} isOpen={isOpen} onClose={onClose} />  */}
                         <Flex>
-                          <ConfirmButton action="Hapus" second={true} isOpen={isConfirm2Open} setIsOpen={setIsConfirm2Open}
+                          <ConfirmButton action="Hapus" second={true} isLoading={isLoading}
+                            isOpen={isConfirm2Open} setIsOpen={setIsConfirm2Open}
                             onClick={() => {
                               // TODO: Set job to "hiring" again
                               console.log("DELETE")
@@ -59,12 +99,14 @@ export default function JobButton({ user, job, canReview }) {
               (user.role == "worker") ? (
                 <>
                   <Flex>
-                    <ConfirmButton action="Tolak" second={true} isOpen={isConfirm2Open} setIsOpen={setIsConfirm2Open}
+                    <ConfirmButton action="Tolak" second={true} isLoading={isLoading}
+                      isOpen={isConfirm2Open} setIsOpen={setIsConfirm2Open}
                       onClick={() => {
                         // TODO: Set job to "hiring" again
                         console.log("REJECT")
                       }} />
-                    <ConfirmButton action="Konfirmasi" isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen}
+                    <ConfirmButton action="Konfirmasi" isLoading={isLoading}
+                      isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen}
                       onClick={() => {
                         // TODO: Set job to "on progress"
                         console.log("CONFIRM")
@@ -84,7 +126,8 @@ export default function JobButton({ user, job, canReview }) {
             {
               (user.role == "worker") ? (
                 <>
-                  <ConfirmButton action="Selesai" isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen}
+                  <ConfirmButton action="Selesai" isLoading={isLoading}
+                    isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen}
                     onClick={() => {
                       // TODO: Set job status to "in review"
                       console.log("DONE")
@@ -114,12 +157,14 @@ export default function JobButton({ user, job, canReview }) {
               ) : (
                 <>
                   <Flex>
-                    <ConfirmButton  action="Tolak" second={true} isOpen={isConfirm2Open} setIsOpen={setIsConfirm2Open}
+                    <ConfirmButton  action="Tolak" second={true} isLoading={isLoading}
+                      isOpen={isConfirm2Open} setIsOpen={setIsConfirm2Open}
                       onClick={() => {
                         // TODO: Set job status back to "on progress"
                         console.log("UN-APPROVE")
                       }} />
-                    <ConfirmButton  action="Terima" isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen}
+                    <ConfirmButton  action="Terima" isLoading={isLoading}
+                      isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen}
                       onClick={() => {
                         // TODO: Set job status to "done"
                         console.log("APPROVE")
