@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { IoMdMail, IoMdDocument } from "react-icons/io"
 import { MdPhone } from "react-icons/md"
 
@@ -7,8 +7,10 @@ import { Star } from "../review"
 
 import { useDisclosure } from "@chakra-ui/react";
 import { Avatar, Box, Text, HStack, Spacer, Link, Icon, Button, Flex } from "@chakra-ui/react"
+import { ConfirmButton } from "../job";
 
-export default function ProfileDetails({ user, me }) {
+export default function ProfileDetails({ user, me, client }) {
+  const [ isConfirmOpen, setIsConfirmOpen ] = useState();
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
@@ -68,6 +70,17 @@ export default function ProfileDetails({ user, me }) {
                 onClick={() => onOpen()}>
                 Edit Profil
               </Button>
+            </>
+          )
+        }
+        {
+          client && (
+            <>
+              <Spacer></Spacer>
+              <ConfirmButton action="Undang" isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} onClick={() => {
+                // TODO: Send invitation
+                console.log("INVITE")
+              }} />
             </>
           )
         }

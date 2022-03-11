@@ -57,12 +57,17 @@ export default function Navbar({ login, register }) {
                           }
                         </HStack>
                       </MenuItem> 
-                      <MenuItem icon={<BiStar />} onClick={() => window.location.href="/profile/"+user.id}>Ulasan</MenuItem> {/*TODO: Add onClick func */}
+                      <MenuItem icon={<BiStar />} onClick={() => window.location.href="/profile/"+user.id}>Ulasan</MenuItem>
                       <MenuDivider />
                       <MenuItem icon={<BiEdit />} onClick={() => onPasswordOpen()}>Ganti Password</MenuItem> 
                       <MenuItem icon={<BiLogOut />} onClick={() => {
                         localStorage.removeItem("user")
-                        window.location.reload()
+                        fetch("https://protected-castle-75235.herokuapp.com/user/logout", {
+                          method: "POST",
+                          headers: { "Content-Type": "application/json" },
+                          credentials: "include",
+                        })
+                        window.location.href="/dashboard"
                       }}>Keluar</MenuItem>
                     </MenuList>
                   </Menu>

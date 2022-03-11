@@ -59,7 +59,7 @@ export default function Profile() {
       <Flex>
         <Flex mt="66" justifyContent="center">
           <Flex w="80%" pt="10" pb="10">
-            <ProfileDetails user={user} />
+            <ProfileDetails user={user} client={true} />
           </Flex>
         </Flex>
       </Flex>
