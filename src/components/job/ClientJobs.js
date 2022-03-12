@@ -17,6 +17,7 @@ export default function ClientJobs({ user }) {
   const [ mine, setMine ] = useState(null)
   const [ waitingConf, setWaitingConf ] = useState(null)
   const [ onProgress, setOnProgress ] = useState(null)
+  const [ inReview, setInReview ] = useState(null)
   const [ history, setHistory ] = useState(null)
   useEffect(() => {
     fetch("https://protected-castle-75235.herokuapp.com/user/"+user._id, {
@@ -30,6 +31,7 @@ export default function ClientJobs({ user }) {
       setMine(json.client.hiring)         // mine
       setWaitingConf(json.client.waiting) // waitingConf
       setOnProgress(json.client.ongoing)  // onProgress
+      setInReview(json.client.reviewing)  // inReview
       setHistory(json.client.done)        // history
     })
     .catch((err) => {
@@ -47,23 +49,24 @@ export default function ClientJobs({ user }) {
   const [ type, setType ] = useState("Semua tipe pekerjaan")
   const [ salary, setSalary ] = useState("Semua range upah")
   const filterJobs = (job) => {
-    // FIXME: Error occured because of not populated yet
     return ((job.location == location || location == "Semua lokasi") &&
             (job.jobType == type || type == "Semua tipe pekerjaan") &&
             (job.salary >= salary || salary == "Semua range upah") && 
             job.title.toLowerCase().includes(keyword.toLowerCase()))
   }
 
-  const [ filteredWaitingConf, setFilteredWaitingConf] = useState()
-  const [ filteredMine, setFilteredMine] = useState()
-  const [ filteredOnProgress, setFilteredOnProgress] = useState()
-  const [ filteredHistory, setFilteredHistory] = useState()
+  const [ filteredWaitingConf, setFilteredWaitingConf] = useState(null)
+  const [ filteredMine, setFilteredMine] = useState(null)
+  const [ filteredOnProgress, setFilteredOnProgress] = useState(null)
+  const [ filteredInReview, setFilteredInReview] = useState(null)
+  const [ filteredHistory, setFilteredHistory] = useState(null)
   useEffect(() => {
     if (mine != null) setFilteredMine(mine.filter(filterJobs))
     if (waitingConf != null) setFilteredWaitingConf(waitingConf.filter(filterJobs))
     if (onProgress != null) setFilteredOnProgress(onProgress.filter(filterJobs))
+    if (inReview != null) setFilteredInReview(inReview.filter(filterJobs))
     if (history != null) setFilteredHistory(history.filter(filterJobs))
-  }, [ keyword, location, type, salary, waitingConf, mine, onProgress, history ])
+  }, [ keyword, location, type, salary, waitingConf, mine, onProgress, inReview, history ])
 
   return (
     <>
@@ -72,6 +75,7 @@ export default function ClientJobs({ user }) {
           <Tab>Mencari pekerja</Tab>
           <Tab>Menunggu konfirmasi</Tab>
           <Tab>Dalam pengerjaan</Tab>
+          <Tab>Dalam pengecekkan</Tab>
           <Tab>Riwayat</Tab>
         </TabList>
         <TabPanels>
@@ -119,6 +123,22 @@ export default function ClientJobs({ user }) {
                   </Flex>
                   <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredOnProgress.length+" pekerjaan dalam pengerjaan"}</Text>
                   <JobList jobs={filteredOnProgress} />
+                </>
+              )
+            }
+          </TabPanel>
+          <TabPanel>
+            {
+              (filteredInReview != null) && (
+                <>
+                  <Flex mt="3">
+                    <SearchBar keyword={keyword} setKeyword={setKeyword}
+                      location={location} setLocation={setLocation}
+                      type={type} setType={setType}
+                      salary={salary} setSalary={setSalary} />
+                  </Flex>
+                  <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredInReview.length+" pekerjaan dalam pengecekkan"}</Text>
+                  <JobList jobs={filteredInReview} />
                 </>
               )
             }

@@ -31,13 +31,13 @@ export default function JobButton({ user, job, canReview }) {
     .then(resp => resp.json())
     .then(json => {
       if (json.statusCode >= 400) throw new Error(json.message)
+      setIsLoading(false)
+      setIsConfirmOpen(false)
+      window.location.reload()
       toast({
         title: successMessage,
         status: "success"
       })
-      setIsLoading(false)
-      setIsConfirmOpen(false)
-      window.location.reload()
     })
     .catch((err) => {
       setIsLoading(false)
@@ -48,7 +48,7 @@ export default function JobButton({ user, job, canReview }) {
       })
     })
   }
-  
+
   return (
     <>
       {
@@ -56,13 +56,21 @@ export default function JobButton({ user, job, canReview }) {
           <>
             {
               (user.role == "worker") ? (
-                <ConfirmButton action="Daftar" isLoading={isLoading}
-                  isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} 
-                  onClick={() => sendRequest(
-                    "https://protected-castle-75235.herokuapp.com/worker/apply", 
-                    "Pendaftaran anda berhasil", "POST",
-                    { job: job._id }, setIsConfirmOpen
-                  )} />
+                <>
+                  {
+                    (job.registrants.filter(worker => worker._id == user._id).length > 0) ? (
+                      <ConfirmButton action="Selesai" isDisabled={true} />
+                    ) : (
+                      <ConfirmButton action="Daftar" isLoading={isLoading}
+                        isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} 
+                        onClick={() => sendRequest(
+                          "https://protected-castle-75235.herokuapp.com/worker/apply", 
+                          "Pendaftaran anda berhasil", "POST",
+                          { job: job._id }, setIsConfirmOpen
+                        )} />
+                    )
+                  }
+                </>
               ) : (
                 <>
                   {
@@ -131,10 +139,11 @@ export default function JobButton({ user, job, canReview }) {
                 <>
                   <ConfirmButton action="Selesai" isLoading={isLoading}
                     isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen}
-                    onClick={() => {
-                      // TODO: Set job status to "in review"
-                      console.log("DONE")
-                    }} />
+                    onClick={() => sendRequest(
+                      "https://protected-castle-75235.herokuapp.com/worker/finish", 
+                      "Selamat! Anda telah menyelesaikan pekerjaan ini. Silakan tunggu persetujuan dari client.", "POST",
+                      { job: job._id }, setIsConfirmOpen
+                    )} />
                 </>
               ) : (
                 <ConfirmButton action="Selesai" isDisabled={true} />
@@ -144,7 +153,7 @@ export default function JobButton({ user, job, canReview }) {
         )
       }
       {
-        (job.status == "REIVIEWING" && canReview) && (
+        (job.status == "REVIEWING" && canReview) && (
           <>
             {
               (user.role == "worker") ? (
@@ -162,16 +171,18 @@ export default function JobButton({ user, job, canReview }) {
                   <Flex>
                     <ConfirmButton  action="Tolak" second={true} isLoading={isLoading}
                       isOpen={isConfirm2Open} setIsOpen={setIsConfirm2Open}
-                      onClick={() => {
-                        // TODO: Set job status back to "on progress"
-                        console.log("UN-APPROVE")
-                      }} />
+                      onClick={() => sendRequest(
+                        "https://protected-castle-75235.herokuapp.com/client/review-bad", 
+                        "Anda berhasil menolak hasil pekerjaan. Silakan tunggu revisi dari worker.", "POST",
+                        { job: job._id }, setIsConfirm2Open
+                      )} />
                     <ConfirmButton  action="Terima" isLoading={isLoading}
                       isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen}
-                      onClick={() => {
-                        // TODO: Set job status to "done"
-                        console.log("APPROVE")
-                      }} />
+                      onClick={() => sendRequest(
+                        "https://protected-castle-75235.herokuapp.com/client/review-good", 
+                        "Yey! pekerjaan anda selesai. Silakan beri review terhadap hasil pekerjaan ini.", "POST",
+                        { job: job._id }, setIsConfirmOpen
+                      )} />
                   </Flex>
                 </>
               )

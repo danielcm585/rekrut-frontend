@@ -37,20 +37,18 @@ export default function Notification({ isOpen, onClose }) {
                   )
                 )
                 return (
-                  <>
-                    <Box p="2" mb="1" shadow="md" borderRadius="md" 
-                      _hover={{ bgColor: "gray.50" }} 
-                      onClick={() => window.location.href=notif.url}>
-                      <HStack pl="2">
-                        <Icon boxSize="5" as={icon} />
-                        <Text pl="2">{notif.msg}</Text>
-                        {
-                          (!notif.read) && 
-                            <Badge size="xs" colorScheme="red">Baru</Badge>
-                        }
-                      </HStack>
-                    </Box>
-                  </>
+                  <Box p="2" mb="1" shadow="md" borderRadius="md" key={idx}
+                    _hover={{ bgColor: "gray.50" }} 
+                    onClick={() => window.location.href=notif.url}>
+                    <HStack pl="2">
+                      <Icon boxSize="5" as={icon} />
+                      <Text pl="2">{notif.msg}</Text>
+                      {
+                        (!notif.read) && 
+                          <Badge size="xs" colorScheme="red">Baru</Badge>
+                      }
+                    </HStack>
+                  </Box>
                 )
               })
             }

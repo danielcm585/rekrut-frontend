@@ -34,11 +34,6 @@ export default function Job() {
     .then(resp => resp.json())
     .then(json => {
       if (json.statusCode >= 400) throw new Error(json.message)
-      json.author = {
-        _id: "622a0daf782bde729f35e883",
-        name: "Gugel",
-        rating: 4.87,
-      }
       setJob(json)
     })
     .catch((err) => {

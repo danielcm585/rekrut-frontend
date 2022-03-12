@@ -68,11 +68,11 @@ export default function Page2({ setPage, responsibility, setResponsibility, qual
                     .then(json => {
                       if (json.statusCode >= 400) throw new Error(json.message)
                       setIsLoading(false)
+                      window.location.href="/profile/me"
                       toast({
                         title: "Pekerjaan baru berhasil di-post",
                         status: "success"
                       })
-                      window.location.href="/profile/me"
                     })
                     .catch((err) => {
                       setIsLoading(false)

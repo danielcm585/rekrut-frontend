@@ -22,14 +22,6 @@ export default function ProfileBadges({ profile }) {
           </Badge>
         )
       }
-      {
-        // (job.registrants.length > 5) && (
-        //   <Badge size="sm" colorScheme="red">
-        //     <Icon mr="1" as={BiTimeFive} />
-        //     Limited Time
-        //   </Badge>
-        // )
-      }
     </>
   )
 }
