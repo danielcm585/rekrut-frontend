@@ -23,7 +23,6 @@ export default function JobBadges({ job }) {
         )
       }
       {
-        /*TODO: Limited Time */
         (job.registrants.length > 5) && (
           <Badge size="sm" colorScheme="red">
             <Icon mr="1" as={BiTimeFive} />

@@ -57,7 +57,7 @@ export default function Job() {
     document.title = job.title+" | "+job.author.name
     
     setRegistrants(job.registrants)
-    setCanReview(user._id == job.author._id || (job.chosen != null && user._id == job.chosen))
+    setCanReview(user != null && (user._id == job.author._id || job.chosen != null && user._id == job.chosen))
   }, [ job ])
 
   const parseAmount = (amount) => {
@@ -76,7 +76,7 @@ export default function Job() {
 
   const [ filteredRegistrants, setFilteredRegistrants ] = useState()
   useEffect(() => {
-    if (user.role != "client") return
+    if (user != null && user.role != "client") return
     if (registrants != null) setFilteredRegistrants(registrants.filter(filterWorkers))
   }, [ keyword, category, experience, registrants ])
   
@@ -134,59 +134,7 @@ export default function Job() {
             </SimpleGrid>
           </Flex>
           {
-            (user.role == "client" && canReview) && (
-              <>
-                <Tabs mt="5" isFitted>
-                  <TabList>
-                    <Tab>Rincian</Tab>
-                    <Tab>Lamaran Masuk</Tab>
-                  </TabList>
-                  <TabPanels>
-                    <TabPanel>
-                      {
-                        (job.detail != null) && (
-                          <>
-                            <Text mt="3" fontWeight="bold">Detail</Text>
-                            <Text mt="2">{job.detail}</Text>
-                          </>
-                        )
-                      }
-                      {
-                        (job.responsibility != null) && (
-                          <>
-                            <Text mt="8" fontWeight="bold">Responsibilities</Text>
-                            <Text mt="2">{job.responsibility}</Text>
-                          </>
-                        )
-                      }
-                      {
-                        (job.qualification != null) && (
-                          <>
-                            <Text mt="8" fontWeight="bold">Qualifications</Text>
-                            <Text mt="2">{job.qualification}</Text>
-                          </>
-                        )
-                      }
-                    </TabPanel>
-                    <TabPanel>
-                      <Flex mt="3">
-                        <SearchBar workers={true} keyword={keyword} setKeyword={setKeyword}
-                          category={category} setCategory={setCategory}
-                          experience={experience} setExperience={setExperience} />
-                      </Flex>
-                      {
-                        (filteredRegistrants != null) && 
-                          <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredRegistrants.length+" orang pelamar"}</Text>
-                      }
-                      <ProfileList profiles={filteredRegistrants} job={job} />
-                    </TabPanel>
-                  </TabPanels>
-                </Tabs>
-              </>
-            )
-          }
-          {
-            (user.role == "worker") && (
+            (user == null || user.role == "worker") ? (
               <>
                 {
                   (job.detail != null) && (
@@ -213,6 +161,55 @@ export default function Job() {
                   )
                 }
               </>
+            ) : (
+              <>
+              <Tabs mt="5" isFitted>
+                <TabList>
+                  <Tab>Rincian</Tab>
+                  <Tab>Lamaran Masuk</Tab>
+                </TabList>
+                <TabPanels>
+                  <TabPanel>
+                    {
+                      (job.detail != null) && (
+                        <>
+                          <Text mt="3" fontWeight="bold">Detail</Text>
+                          <Text mt="2">{job.detail}</Text>
+                        </>
+                      )
+                    }
+                    {
+                      (job.responsibility != null) && (
+                        <>
+                          <Text mt="8" fontWeight="bold">Responsibilities</Text>
+                          <Text mt="2">{job.responsibility}</Text>
+                        </>
+                      )
+                    }
+                    {
+                      (job.qualification != null) && (
+                        <>
+                          <Text mt="8" fontWeight="bold">Qualifications</Text>
+                          <Text mt="2">{job.qualification}</Text>
+                        </>
+                      )
+                    }
+                  </TabPanel>
+                  <TabPanel>
+                    <Flex mt="3">
+                      <SearchBar workers={true} keyword={keyword} setKeyword={setKeyword}
+                        category={category} setCategory={setCategory}
+                        experience={experience} setExperience={setExperience} />
+                    </Flex>
+                    {
+                      (filteredRegistrants != null) && 
+                        <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredRegistrants.length+" orang pelamar"}</Text>
+                    }
+                    <ProfileList profiles={filteredRegistrants} job={job} />
+                  </TabPanel>
+                </TabPanels>
+              </Tabs>
+            </>
             )
           }
         </Flex>

@@ -62,7 +62,7 @@ export default function ProfileForm({ isOpen, onClose, user }) {
                   if (password.length < 6) throw new Error("Password baru minimal terdiri dari 6 karakter")
                   if (password != confPassword) throw new Error("Password baru tidak cocok")
                   if (password == oldPassword) throw new Error("Password baru tidak boleh sama dengan password lama")
-                  // TODO: Send request to api
+                  // TODO: Change password
                   onClose()
                 }
                 catch (err) {

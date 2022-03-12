@@ -44,7 +44,7 @@ export default function ReviewForm({ isOpen, onClose, job }) {
                 }
                 // TODO: Get client and worker
 
-                // TODO: Send request to api
+                // TODO: Submit review
 
                 onClose()
               }}>

@@ -69,7 +69,6 @@ export default function JobButton({ user, job, canReview }) {
                   {
                     canReview && (
                       <>
-                        {/* <ChooseWorker job={job} isOpen={isOpen} onClose={onClose} />  */}
                         <Flex>
                           <ConfirmButton action="Hapus" second={true} isLoading={isLoading}
                             isOpen={isConfirm2Open} setIsOpen={setIsConfirm2Open}
