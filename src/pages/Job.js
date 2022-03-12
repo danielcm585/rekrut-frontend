@@ -53,7 +53,6 @@ export default function Job() {
   const [ registrants, setRegistrants ] = useState(null)
   useEffect(() => {
     if (job == null) return
-    console.log(job)
     document.title = job.title+" | "+job.author.name
     
     setRegistrants(job.registrants)

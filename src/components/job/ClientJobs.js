@@ -65,8 +65,6 @@ export default function ClientJobs({ user }) {
     if (history != null) setFilteredHistory(history.filter(filterJobs))
   }, [ keyword, location, type, salary, waitingConf, mine, onProgress, history ])
 
-  console.log(filteredWaitingConf)
-
   return (
     <>
       <Tabs mt="5" isFitted>

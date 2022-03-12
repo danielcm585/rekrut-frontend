@@ -48,8 +48,7 @@ export default function JobButton({ user, job, canReview }) {
       })
     })
   }
-  console.log(job)
-
+  
   return (
     <>
       {
