@@ -49,7 +49,7 @@ export default function ClientJobs({ user }) {
   const filterJobs = (job) => {
     // FIXME: Error occured because of not populated yet
     return ((job.location == location || location == "Semua lokasi") &&
-            (job.type == type || type == "Semua tipe pekerjaan") &&
+            (job.jobType == type || type == "Semua tipe pekerjaan") &&
             (job.salary >= salary || salary == "Semua range upah") && 
             job.title.toLowerCase().includes(keyword.toLowerCase()))
   }

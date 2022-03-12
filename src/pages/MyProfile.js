@@ -10,7 +10,6 @@ export default function MyProfile() {
   const user = JSON.parse(localStorage.getItem("user"))
 
   useEffect(() => {
-    console.log(user)
     if (user.role == "worker") document.title = user.name + " | " + user.category
     else document.title = user.name
   }, [])

@@ -34,7 +34,6 @@ export default function Job() {
     .then(resp => resp.json())
     .then(json => {
       if (json.statusCode >= 400) throw new Error(json.message)
-      json.type = json.jobType
       json.responsibilities = json.responsibility
       json.qualifications = json.qualification
       json.author = {
@@ -56,6 +55,7 @@ export default function Job() {
   const [ registrants, setRegistrants ] = useState(null)
   useEffect(() => {
     if (job == null) return
+    console.log(job)
     document.title = job.title+" | "+job.author.name
     
     setRegistrants(job.registrants)
@@ -72,7 +72,7 @@ export default function Job() {
   const [ experience, setExperience ] = useState("Semua range pengalaman")
   const filterWorkers = (worker) => {
     return ((worker.category == category || category == "Semua kategori pekerjaan") && 
-            (worker.jobDone.length >= experience || experience == "Semua range pengalaman") && 
+            (worker.review.length >= experience || experience == "Semua range pengalaman") && 
             (worker.name.toLowerCase().includes(keyword.toLowerCase())))
   }
 
@@ -127,7 +127,7 @@ export default function Job() {
                 <Icon as={MdWork} color="gray.600" />
                 <Text color="gray.600">Job Type</Text>
               </HStack>
-              <Text fontWeight="semibold">{job.type}</Text>
+              <Text fontWeight="semibold">{job.jobType}</Text>
               <HStack>
                 <Icon as={FaMoneyBillWave} color="gray.600" />
                 <Text color="gray.600">Salary</Text>

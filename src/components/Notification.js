@@ -99,10 +99,10 @@ export default function Notification({ isOpen, onClose }) {
                   <>
                     <Box p="2" mb="1" shadow="md" borderRadius="md" 
                       _hover={{ bgColor: "gray.50" }} 
-                      onClick={() => window.location.href=notif.link}>
+                      onClick={() => window.location.href=notif.url}>
                       <HStack pl="2">
                         <Icon boxSize="5" as={icon} />
-                        <Text pl="2">{notif.title}</Text>
+                        <Text pl="2">{notif.msg}</Text>
                         {
                           (!notif.read) && 
                             <Badge size="xs" colorScheme="red">Baru</Badge>

@@ -27,10 +27,10 @@ export default function WorkerJobs({ user }) {
     .then(resp => resp.json())
     .then(json => {
       if (json.statusCode >= 400) throw new Error(json.message)
-      // accepted
       setPending(json.worker.applying)   // pending
+      setAccepted(json.worker.accepted)  // accepted
       setOnProgress(json.worker.ongoing) // OnProgress
-      // history
+      setHistory(json.worker.done)       // history
     })
     .catch((err) => {
       toast({
@@ -39,63 +39,6 @@ export default function WorkerJobs({ user }) {
       })
     }, [])
 
-    // FIXME: fetch data
-    setAccepted([
-      {
-        id: 1,
-        title: "Backend Engineer",
-        desc: "Do backend work in developing our app.",
-        category: "Web Developer",
-        salary: 5000000,
-        location: "Jakarta",
-        type: "Full-time",
-        company: {
-          id: 1,
-          name: "BukaPedia",
-          rating: 4.2,
-          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-        },
-        registrants: [
-          {
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-            name: "Obiwan Kenobi",
-          },
-          {
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-            name: "Anakin Skywalker",
-          },
-          {
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-            name: "C3PO",
-          },
-          {
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-            name: "Luke Skywalker",
-          }
-        ],
-      }
-    ])
-    setHistory([
-      {
-        id: 3,
-        title: "Web Developer",
-        category: "Web Developer",
-        desc: "Develop a great website for our company",
-        salary: 4000000,
-        location: "Surabaya",
-        type: "Full-project",
-        company: {
-          id: 2,
-          name: "TokoLapak",
-          rating: 2.3,
-          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-        },
-        registrants: [
-          "ada", "ada", "ada","ada","ada","ada",
-        ],
-        chosen: "Luke Skywalker"
-      }
-    ])
     console.log("FETCH API")
   }, [])
 
@@ -105,7 +48,7 @@ export default function WorkerJobs({ user }) {
   const [ salary, setSalary ] = useState("Semua range upah")
   const filterJobs = (job) => {
     return ((job.location == location || location == "Semua lokasi") &&
-            (job.type == type || type == "Semua tipe pekerjaan") &&
+            (job.jobType == type || type == "Semua tipe pekerjaan") &&
             (job.salary >= salary || salary == "Semua range upah") && 
             (job.title.toLowerCase().includes(keyword.toLowerCase()) ||
             job.author.name.toLowerCase().includes(keyword.toLowerCase())))

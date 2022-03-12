@@ -64,7 +64,7 @@ export default function JobCard({ job }) {
               <Icon as={MdWork} color="gray.600" />
               <Text color="gray.600">Tipe pekerjaan</Text>
             </HStack>
-            <Text fontWeight="semibold">{job.type}</Text>
+            <Text fontWeight="semibold">{job.jobType}</Text>
           </Box>
           <Spacer></Spacer>
           <Box w="16%" pl="2">

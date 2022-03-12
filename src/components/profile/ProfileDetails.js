@@ -26,7 +26,10 @@ export default function ProfileDetails({ user, me, client }) {
                 <Text fontSize="2xl" fontWeight="semibold">{user.name}</Text>
               </Link>
               {/* <Text fontSize="lg" color="white">{user.category}</Text>  */}
-              <Text fontSize="lg">{user.category}</Text> 
+              {
+                (user.category != "-") &&
+                  <Text fontSize="lg">{user.category}</Text> 
+              }
               {
                 (user.rating != null && user.rating > 0) && 
                   <Star rating={user.rating} />

@@ -20,11 +20,10 @@ export default function JobButton({ user, job, canReview }) {
     isClosable: true
   })
 
-  const sendRequest = (link, successMessage, json, setIsConfirmOpen) => {
-    console.log(json)
+  const sendRequest = (link, successMessage, method, json, setIsConfirmOpen) => {
     setIsLoading(true)
     fetch(link, {
-      method: "POST",
+      method: method,
       headers: { "Content-Type": "application/json" },
       credentials: "include",
       body: JSON.stringify(json)
@@ -38,6 +37,7 @@ export default function JobButton({ user, job, canReview }) {
       })
       setIsLoading(false)
       setIsConfirmOpen(false)
+      window.location.reload()
     })
     .catch((err) => {
       setIsLoading(false)
@@ -60,9 +60,9 @@ export default function JobButton({ user, job, canReview }) {
                   isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} 
                   onClick={() => sendRequest(
                     "https://protected-castle-75235.herokuapp.com/worker/apply", 
-                    "Pendaftaran anda berhasil",
-                    { job: job._id }, setIsConfirmOpen)
-                  } />
+                    "Pendaftaran anda berhasil", "POST",
+                    { job: job._id }, setIsConfirmOpen
+                  )} />
               ) : (
                 <>
                   {
@@ -72,10 +72,11 @@ export default function JobButton({ user, job, canReview }) {
                         <Flex>
                           <ConfirmButton action="Hapus" second={true} isLoading={isLoading}
                             isOpen={isConfirm2Open} setIsOpen={setIsConfirm2Open}
-                            onClick={() => {
-                              // TODO: Set job to "hiring" again
-                              console.log("DELETE")
-                            }} />
+                            onClick={() => sendRequest(
+                              "https://protected-castle-75235.herokuapp.com/job/"+job._id, 
+                              "Pekerjaan berhasil dihapus", "DELETE",
+                              { job: job._id }, setIsConfirm2Open
+                            )} />
                           <Button ml="2" pl="10" pr="10" borderRadius="50" bgColor="#FF8450"
                             onClick={() => {
                               {/*TODO: Edit job */}
@@ -103,15 +104,16 @@ export default function JobButton({ user, job, canReview }) {
                     <ConfirmButton action="Tolak" second={true} isLoading={isLoading}
                       isOpen={isConfirm2Open} setIsOpen={setIsConfirm2Open}
                       onClick={() => {
-                        // TODO: Set job to "hiring" again
+                        // TODO: Set job to "on progress"
                         console.log("REJECT")
                       }} />
                     <ConfirmButton action="Konfirmasi" isLoading={isLoading}
                       isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen}
-                      onClick={() => {
-                        // TODO: Set job to "on progress"
-                        console.log("CONFIRM")
-                      }} />
+                      onClick={() => sendRequest(
+                        "https://protected-castle-75235.herokuapp.com/worker/accept", 
+                        "Selamat! Anda berhasil memperoleh pekerjaan ini", "POST",
+                        { job: "622c0edd361fb6e29ae7ed9s" }, setIsConfirm2Open
+                      )} />
                   </Flex>
                 </>
               ) : (

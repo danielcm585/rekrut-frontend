@@ -41,15 +41,14 @@ export default function ProfileCard({ worker, job }) {
               (worker.rating != null && worker.rating > 0) && 
                 <Star rating={worker.rating} />
             }
-            <Text fontSize="sm" color="gray.600">{worker.jobDone.length+" Pekerjaan selesai"}</Text>
+            <Text fontSize="sm" color="gray.600">{worker.review.length+" Pekerjaan selesai"}</Text>
           </Box>
           {
             (job != null) && (
               <>
                 <Spacer></Spacer>
-                <Button mt="2" bgColor="#FF8450" borderRadius="50" 
+                <Button mt="2" bgColor="#FF8450" borderRadius="50" isDisabled={job.status != "HIRING"}
                   onClick={() => {
-                    console.log("HIRE NOW")
                     toast({
                       title: "Pembayaran akan diteruskan ke pekerja saat pekerjaan selesai",
                       status: "info"

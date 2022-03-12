@@ -21,7 +21,7 @@ export default function Dashboard() {
     if (user == null || user.role == "worker") {
       setBestOffer([
         {
-          _id: "622a0448782bde729f35e875",
+          _id: "622c0edd361fb6e29ae7ed9a",
           title: "Backend Engineer",
           desc: "Do backend work in developing our app.",
           category: "Software Engineer",
@@ -51,7 +51,7 @@ export default function Dashboard() {
           ]
         },
         {
-          _id: "622a0448782bde729f35e875",
+          _id: "622c0edd361fb6e29ae7ed9a",
           title: "Frontend Engineer",
           category: "Software Engineer",
           desc: "Do frontend work in developing our app.",
@@ -79,7 +79,7 @@ export default function Dashboard() {
           ]
         },
         {
-          _id: "622a0448782bde729f35e875",
+          _id: "622c0edd361fb6e29ae7ed9a",
           title: "Web Developer",
           category: "Software Engineer",
           desc: "Develop a great website for our author",
@@ -105,7 +105,7 @@ export default function Dashboard() {
       ])
       setRecentJobs([
         {
-          _id: "622a0448782bde729f35e875",
+          _id: "622c0edd361fb6e29ae7ed9a",
           title: "Backend Engineer",
           desc: "Do backend work in developing our app.",
           category: "Software Engineer",
@@ -135,7 +135,7 @@ export default function Dashboard() {
           ]
         },
         {
-          _id: "622a0448782bde729f35e875",
+          _id: "622c0edd361fb6e29ae7ed9a",
           title: "Frontend Engineer",
           category: "Software Engineer",
           desc: "Do frontend work in developing our app.",
@@ -161,7 +161,7 @@ export default function Dashboard() {
           ]
         },
         {
-          _id: "622a0448782bde729f35e875",
+          _id: "622c0edd361fb6e29ae7ed9a",
           title: "Web Developer",
           category: "Software Engineer",
           desc: "Develop a great website for our author",
@@ -196,7 +196,7 @@ export default function Dashboard() {
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
           category: "Frontend Developer",
           rating: 4.33,
-          jobDone: ["ada","ada","ada","ada","ada"]
+          review: ["ada","ada","ada","ada","ada"]
         },
         {
           _id: "6227688cfea1f57345e41c18",
@@ -204,7 +204,7 @@ export default function Dashboard() {
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
           category: "Frontend Developer",
           rating: 4.33,
-          jobDone: ["ada","ada","ada","ada","ada"]
+          review: ["ada","ada","ada","ada","ada"]
         },
         {
           _id: "6227688cfea1f57345e41c18",
@@ -212,7 +212,7 @@ export default function Dashboard() {
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
           category: "Frontend Developer",
           rating: 4.33,
-          jobDone: ["ada","ada","ada","ada","ada"]
+          review: ["ada","ada","ada","ada","ada"]
         },
       ])
       setOfferedTalents([
@@ -222,7 +222,7 @@ export default function Dashboard() {
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
           category: "Frontend Developer",
           rating: 4.33,
-          jobDone: ["ada","ada","ada","ada","ada"]
+          review: ["ada","ada","ada","ada","ada"]
         },
         {
           _id: "6227688cfea1f57345e41c18",
@@ -230,7 +230,7 @@ export default function Dashboard() {
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
           category: "Frontend Developer",
           rating: 4.33,
-          jobDone: ["ada","ada","ada","ada","ada"]
+          review: ["ada","ada","ada","ada","ada"]
         },
         {
           _id: "6227688cfea1f57345e41c18",
@@ -238,7 +238,7 @@ export default function Dashboard() {
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
           category: "Frontend Developer",
           rating: 4.33,
-          jobDone: ["ada","ada","ada","ada","ada"]
+          review: ["ada","ada","ada","ada","ada"]
         },
       ])
       console.log("FETCH CLIENT API")
@@ -254,7 +254,7 @@ export default function Dashboard() {
   const [ salary, setSalary ] = useState("Semua range upah")
   const filterJobs = (job) => {
     return ((job.location == location || location == "Semua lokasi") &&
-            (job.type == type || type == "Semua tipe pekerjaan") &&
+            (job.jobType == type || type == "Semua tipe pekerjaan") &&
             (job.salary >= salary || salary == "Semua range upah") && 
             // (user.category == null || job.category == user.category) && 
             (job.title.toLowerCase().includes(keyword.toLowerCase()) ||
@@ -265,7 +265,7 @@ export default function Dashboard() {
   const [ experience, setExperience ] = useState("Semua range pengalaman")
   const filterWorkers = (worker) => {
     return ((worker.category == category || category == "Semua kategori pekerjaan") && 
-            (worker.jobDone.length >= experience || experience == "Semua range pengalaman") && 
+            (worker.review.length >= experience || experience == "Semua range pengalaman") && 
             (worker.name.toLowerCase().includes(keyword.toLowerCase())))
   }
 

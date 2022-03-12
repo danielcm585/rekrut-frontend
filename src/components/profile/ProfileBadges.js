@@ -7,13 +7,12 @@ export default function ProfileBadges({ profile }) {
   return (
     <>
       {
-        // TODO: Create jobDone
-        // (profile.jobDone.length > 5) && (
-        //   <Badge size="sm" colorScheme="orange">
-        //     <Icon mr="1" as={BiLike} />
-        //     Experienced
-        //   </Badge>
-        // )
+        (profile.review.length > 5) && (
+          <Badge size="sm" colorScheme="orange">
+            <Icon mr="1" as={BiLike} />
+            Experienced
+          </Badge>
+        )
       }
       {
         (profile.rating > 4) && (
