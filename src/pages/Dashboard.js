@@ -5,217 +5,44 @@ import { Navbar, SearchBar, Footer } from "../components"
 import { ProfileList } from "../components/profile"
 import { JobList } from "../components/job"
 
+import { useToast } from "@chakra-ui/react"
 import { Flex, Text, Box, Button, Spacer, Icon } from "@chakra-ui/react"
 
 export default function Dashboard() {
   const user = JSON.parse(localStorage.getItem("user"))
   
-  const [ bestOffer, setBestOffer ] = useState()
-  const [ recentJobs, setRecentJobs ] = useState()
-  
-  const [ popularTalents, setPopularTalents ] = useState()
-  const [ offeredTalents, setOfferedTalents ] = useState()
-  
-  // TODO: Fetch jobs data from api
+  const [ jobs, setJobs ] = useState(null)
+  const [ workers, setWorkers ] = useState(null)
+
+  const toast = useToast({
+    position: "top",
+    variant: "solid",
+    isClosable: true
+  })
+
   useEffect(() => {
     if (user == null || user.role == "worker") {
-      setBestOffer([
-        {
-          _id: "622c0edd361fb6e29ae7ed9a",
-          title: "Backend Engineer",
-          desc: "Do backend work in developing our app.",
-          category: "Software Engineer",
-          salary: 5000000,
-          type: "Full-time",
-          location: "Semarang",
-          status: "HIRING",
-          author: {
-            _id: "622a0daf782bde729f35e883",
-            name: "BukaPedia",
-            rating: 4.2,
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-          },
-          registrants: [
-            {
-              photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-              name: "Obiwan Kenobi",
-            },
-            {
-              photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-              name: "Anakin Skywalker",
-            },
-            {
-              photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-              name: "C3PO",
-            }
-          ]
-        },
-        {
-          _id: "622c0edd361fb6e29ae7ed9a",
-          title: "Frontend Engineer",
-          category: "Software Engineer",
-          desc: "Do frontend work in developing our app.",
-          salary: 6000000,
-          type: "Full-project",
-          location: "Surabaya",
-          status: "HIRING",
-          author: {
-            _id: "622a0daf782bde729f35e883",
-            name: "BukaPedia",
-            rating: 4.2,
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-          },
-          registrants: [
-            {
-              photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-              name: "Mace Windu",
-            },
-            {
-              photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-              name: "Din Djarin",
-            },
-            "ada",
-            "ada",
-          ]
-        },
-        {
-          _id: "622c0edd361fb6e29ae7ed9a",
-          title: "Web Developer",
-          category: "Software Engineer",
-          desc: "Develop a great website for our author",
-          salary: 4000000,
-          type: "Full-time",
-          location: "Jakarta",
-          status: "HIRING",
-          author: {
-            _id: "622a0daf782bde729f35e883",
-            name: "TokoLapak",
-            rating: 2.1,
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-          },
-          registrants: [
-            "ada",
-            "ada",
-            "ada",
-            "ada",
-            "ada",
-            "ada",
-          ]
-        }
-      ])
-      setRecentJobs([
-        {
-          _id: "622c0edd361fb6e29ae7ed9a",
-          title: "Backend Engineer",
-          desc: "Do backend work in developing our app.",
-          category: "Software Engineer",
-          salary: 5000000,
-          type: "Full-time",
-          location: "Jakarta",
-          status: "HIRING",
-          author: {
-            _id: "622a0daf782bde729f35e883",
-            name: "BukaPedia",
-            rating: 4.2,
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-          },
-          registrants: [
-            {
-              photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-              name: "Obiwan Kenobi",
-            },
-            {
-              photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-              name: "Anakin Skywalker",
-            },
-            {
-              photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-              name: "C3PO",
-            }
-          ]
-        },
-        {
-          _id: "622c0edd361fb6e29ae7ed9a",
-          title: "Frontend Engineer",
-          category: "Software Engineer",
-          desc: "Do frontend work in developing our app.",
-          salary: 6000000,
-          type: "Part-time",
-          location: "Surabaya",
-          status: "HIRING",
-          author: {
-            _id: "622a0daf782bde729f35e883",
-            name: "BukaPedia",
-            rating: 4.2,
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-          },
-          registrants: [
-            {
-              photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-              name: "Mace Windu",
-            },
-            {
-              photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-              name: "Din Djarin",
-            }
-          ]
-        },
-        {
-          _id: "622c0edd361fb6e29ae7ed9a",
-          title: "Web Developer",
-          category: "Software Engineer",
-          desc: "Develop a great website for our author",
-          salary: 4000000,
-          type: "Contract",
-          location: "Semarang",
-          status: "HIRING",
-          author: {
-            _id: "622a0daf782bde729f35e883",
-            name: "TokoLapak",
-            rating: 2.1,
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-          },
-          registrants: [
-            "ada",
-            "ada",
-            "ada",
-            "ada",
-            "ada",
-            "ada",
-          ]
-        }
-      ])
+      fetch("https://protected-castle-75235.herokuapp.com/job", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+      })
+      .then(resp => resp.json())
+      .then(json => {
+        if (json.statusCode >= 400) throw new Error(json.message)
+        setJobs(json)
+      })
+      .catch((err) => {
+        toast({
+          title: err.message,
+          status: "error"
+        })
+      })
       console.log("FETCH GENERAL API")
     }
     
     if (user != null && user.role == "client") {
-      setPopularTalents([
-        {
-          _id: "6227688cfea1f57345e41c18",
-          name: "Hera Syndulla",
-          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-          category: "Frontend Developer",
-          rating: 4.33,
-          review: ["ada","ada","ada","ada","ada"]
-        },
-        {
-          _id: "6227688cfea1f57345e41c18",
-          name: "Ahsoka Tano",
-          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-          category: "Frontend Developer",
-          rating: 4.33,
-          review: ["ada","ada","ada","ada","ada"]
-        },
-        {
-          _id: "6227688cfea1f57345e41c18",
-          name: "Darth Vader",
-          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-          category: "Frontend Developer",
-          rating: 4.33,
-          review: ["ada","ada","ada","ada","ada"]
-        },
-      ])
-      setOfferedTalents([
+      setWorkers([
         {
           _id: "6227688cfea1f57345e41c18",
           name: "Hera Syndulla",
@@ -260,6 +87,7 @@ export default function Dashboard() {
             (job.title.toLowerCase().includes(keyword.toLowerCase()) ||
             job.author.name.toLowerCase().includes(keyword.toLowerCase())))
   }
+  const sortJobs = (jobA, jobB) => jobB.salary-jobA.salary
 
   const [ category, setCategory ] = useState("Semua kategori pekerjaan")
   const [ experience, setExperience ] = useState("Semua range pengalaman")
@@ -269,23 +97,16 @@ export default function Dashboard() {
             (worker.name.toLowerCase().includes(keyword.toLowerCase())))
   }
 
-  const [ filteredRecentJobs, setFilteredRecentJobs ] = useState()
-  const [ filteredBestOffer, setFilteredBestOffer ] = useState()
+  const [ filteredJobs, setFilteredJobs ] = useState(null)
   useEffect(() => {
-    if (recentJobs != null) setFilteredRecentJobs(recentJobs.filter(filterJobs))
-    if (bestOffer != null) {setFilteredBestOffer(bestOffer.filter(filterJobs)
-                                                          .sort((jobA, jobB) => jobB.salary-jobA.salary)) 
-      // FIXME: To be confirmed
-    }
-  }, [ keyword, location, type, salary, recentJobs, bestOffer ])
+    if (jobs != null) setFilteredJobs(jobs.filter(filterJobs).sort(sortJobs))
+  }, [ keyword, location, type, salary, jobs ])
   
-  const [ filteredPopularTalents, setFilteredPopularTalents ] = useState()
-  const [ filteredOfferedTalents, setFilteredOfferedTalents ] = useState()
+  const [ filteredWorkers, setFilteredWorkers ] = useState(null)
   useEffect(() => {
     if (user == null || user.role != "client") return
-    if (popularTalents != null) setFilteredPopularTalents(popularTalents.filter(filterWorkers))
-    if (offeredTalents != null) setFilteredOfferedTalents(offeredTalents.filter(filterWorkers))
-  }, [ keyword, category, experience, popularTalents, offeredTalents ])
+    if (workers != null) setFilteredWorkers(workers.filter(filterWorkers))
+  }, [ keyword, category, experience, workers ])
 
   return (
     <>
@@ -332,32 +153,16 @@ export default function Dashboard() {
           (user != null && user.role == "client") ? (
             <>
               {
-                (filteredPopularTalents != null) && (
+                (filteredWorkers != null) && (
                   <>
                     <Flex justifyContent="center">
                       <Box mt="8" w="85%">
                         <Flex>
-                          <Text fontSize="xl" fontWeight="semibold">Talent Popular</Text>
+                          <Text fontSize="xl" fontWeight="semibold">Talent Terbaik</Text>
                           <Spacer></Spacer>
                           <Button variant="ghost" borderRadius="50" onClick={() => window.location.href="/worker/popular-talents"}>Lihat semua</Button>
                         </Flex>
-                        <ProfileList profiles={filteredPopularTalents} />
-                      </Box>
-                    </Flex>
-                  </>
-                )
-              }
-              {
-                (filteredOfferedTalents != null) && (
-                  <>
-                    <Flex justifyContent="center">
-                      <Box mt="8" w="85%">
-                        <Flex>
-                          <Text fontSize="xl" fontWeight="semibold">Talent yang Sesuai</Text>
-                          <Spacer></Spacer>
-                          <Button variant="ghost" borderRadius="50" onClick={() => window.location.href="/worker/offered-talents"}>Lihat semua</Button>
-                        </Flex>
-                        <ProfileList profiles={filteredOfferedTalents} />
+                        <ProfileList profiles={filteredWorkers} />
                       </Box>
                     </Flex>
                   </>
@@ -367,7 +172,7 @@ export default function Dashboard() {
           ) : (
             <>
               {
-                (filteredBestOffer != null) && (
+                (filteredJobs != null) && (
                   <>
                     <Flex justifyContent="center">
                       <Box mt="8" w="85%">
@@ -376,23 +181,7 @@ export default function Dashboard() {
                           <Spacer></Spacer>
                           <Button variant="ghost" borderRadius="50" onClick={() => window.location.href="/jobs/best-offer"}>Lihat semua</Button>
                         </Flex>
-                        <JobList jobs={filteredBestOffer} />
-                      </Box>
-                    </Flex>
-                  </>
-                )
-              }
-              {
-                (filteredRecentJobs != null) && (
-                  <>
-                    <Flex justifyContent="center">
-                      <Box mt="8" w="85%">
-                        <Flex>
-                          <Text fontSize="xl" fontWeight="semibold">Baru ditambahkan</Text>
-                          <Spacer></Spacer>
-                          <Button variant="ghost" borderRadius="50" onClick={() => window.location.href="/jobs/best-offer"}>Lihat semua</Button>
-                        </Flex>
-                        <JobList jobs={filteredRecentJobs} />
+                        <JobList jobs={filteredJobs} />
                       </Box>
                     </Flex>
                   </>

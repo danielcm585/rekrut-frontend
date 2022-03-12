@@ -56,8 +56,9 @@ export default function Profile() {
               <Box w="85%">
                 <Flex>
                   <Text fontSize="xl" fontWeight="semibold">Reviews</Text>
-                  <Spacer></Spacer>
-                  <Button variant="ghost" borderRadius="50" onClick={() => window.location.href=""}>Lihat semua</Button> {/*TODO: Add Lihat semua */}
+                  {/* <Button variant="ghost" borderRadius="50" onClick={() => window.location.href=""}>Lihat semua</Button> 
+                  <Spacer></Spacer> */}
+                  {/*TODO: Add Lihat semua */}
                 </Flex>
                 <ReviewList reviews={user.reviews} />
               </Box>
