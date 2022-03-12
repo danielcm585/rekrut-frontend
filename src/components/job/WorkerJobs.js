@@ -37,8 +37,7 @@ export default function WorkerJobs({ user }) {
         title: err.message,
         status: "error"
       })
-    }, [])
-
+    })
     console.log("FETCH API")
   }, [])
 
