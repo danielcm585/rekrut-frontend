@@ -14,10 +14,10 @@ export default function WorkerJobs({ user }) {
     isClosable: true
   })
 
-  const [ pending, setPending ] = useState()
-  const [ accepted, setAccepted ] = useState()
-  const [ onProgress, setOnProgress ] = useState()
-  const [ history, setHistory ] = useState()
+  const [ pending, setPending ] = useState(null)
+  const [ accepted, setAccepted ] = useState(null)
+  const [ onProgress, setOnProgress ] = useState(null)
+  const [ history, setHistory ] = useState(null)
   useEffect(() => {
     fetch("https://protected-castle-75235.herokuapp.com/user/"+user._id, {
       method: "GET",
@@ -54,16 +54,18 @@ export default function WorkerJobs({ user }) {
             job.author.name.toLowerCase().includes(keyword.toLowerCase())))
   }
 
-  const [ filteredAccepted, setFilteredAccepted] = useState()
-  const [ filteredPending, setFilteredPending] = useState()
-  const [ filteredOnProgress, setFilteredOnProgress] = useState()
-  const [ filteredHistory, setFilteredHistory] = useState()
+  const [ filteredAccepted, setFilteredAccepted] = useState(null)
+  const [ filteredPending, setFilteredPending] = useState(null)
+  const [ filteredOnProgress, setFilteredOnProgress] = useState(null)
+  const [ filteredHistory, setFilteredHistory] = useState(null)
   useEffect(() => {
     if (pending != null) setFilteredPending(pending.filter(filterJobs))
     if (accepted != null) setFilteredAccepted(accepted.filter(filterJobs))
     if (onProgress != null) setFilteredOnProgress(onProgress.filter(filterJobs))
     if (history != null) setFilteredHistory(history.filter(filterJobs))
   }, [ keyword, location, type, salary, accepted, pending, onProgress, history ])
+
+  console.log(filteredAccepted)
 
   return (
     <>

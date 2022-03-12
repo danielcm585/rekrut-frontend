@@ -48,6 +48,7 @@ export default function JobButton({ user, job, canReview }) {
       })
     })
   }
+  console.log(job)
 
   return (
     <>
@@ -103,16 +104,17 @@ export default function JobButton({ user, job, canReview }) {
                   <Flex>
                     <ConfirmButton action="Tolak" second={true} isLoading={isLoading}
                       isOpen={isConfirm2Open} setIsOpen={setIsConfirm2Open}
-                      onClick={() => {
-                        // TODO: Set job to "on progress"
-                        console.log("REJECT")
-                      }} />
+                      onClick={() => sendRequest(
+                        "https://protected-castle-75235.herokuapp.com/worker/decline", 
+                        "Anda telah menolak pekerjaan ini", "POST",
+                        { job: job._id }, setIsConfirmOpen
+                      )} />
                     <ConfirmButton action="Konfirmasi" isLoading={isLoading}
                       isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen}
                       onClick={() => sendRequest(
                         "https://protected-castle-75235.herokuapp.com/worker/accept", 
                         "Selamat! Anda berhasil memperoleh pekerjaan ini", "POST",
-                        { job: "622c0edd361fb6e29ae7ed9s" }, setIsConfirm2Open
+                        { job: job._id }, setIsConfirm2Open
                       )} />
                   </Flex>
                 </>

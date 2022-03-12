@@ -34,8 +34,6 @@ export default function Job() {
     .then(resp => resp.json())
     .then(json => {
       if (json.statusCode >= 400) throw new Error(json.message)
-      json.responsibilities = json.responsibility
-      json.qualifications = json.qualification
       json.author = {
         _id: "622a0daf782bde729f35e883",
         name: "Gugel",
@@ -154,18 +152,18 @@ export default function Job() {
                         )
                       }
                       {
-                        (job.responsibilities != null) && (
+                        (job.responsibility != null) && (
                           <>
                             <Text mt="8" fontWeight="bold">Responsibilities</Text>
-                            <Text mt="2">{job.responsibilities}</Text>
+                            <Text mt="2">{job.responsibility}</Text>
                           </>
                         )
                       }
                       {
-                        (job.qualifications != null) && (
+                        (job.qualification != null) && (
                           <>
                             <Text mt="8" fontWeight="bold">Qualifications</Text>
-                            <Text mt="2">{job.qualifications}</Text>
+                            <Text mt="2">{job.qualification}</Text>
                           </>
                         )
                       }
@@ -199,18 +197,18 @@ export default function Job() {
                   )
                 }
                 {
-                  (job.responsibilities != null) && (
+                  (job.responsibility != null) && (
                     <>
                       <Text mt="8" fontWeight="bold">Responsibilities</Text>
-                      <Text mt="2">{job.responsibilities}</Text>
+                      <Text mt="2">{job.responsibility}</Text>
                     </>
                   )
                 }
                 {
-                  (job.qualifications != null) && (
+                  (job.qualification != null) && (
                     <>
                       <Text mt="8" fontWeight="bold">Qualifications</Text>
-                      <Text mt="2">{job.qualifications}</Text>
+                      <Text mt="2">{job.qualification}</Text>
                     </>
                   )
                 }
