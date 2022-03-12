@@ -52,7 +52,7 @@ export default function Navbar({ login, register }) {
                         <HStack spacing="1">
                           <Text>Notifikasi</Text>
                           {
-                            (unreadNotifications > 0) && 
+                            (user.notif.filter(notif => !notif.read).length > 0) && 
                               <Badge size="xs" colorScheme="red">Baru</Badge>
                           }
                         </HStack>
