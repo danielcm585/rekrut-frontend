@@ -61,7 +61,6 @@ export default function Login() {
               .then(json => {
                 if (json.statusCode >= 400) throw new Error(json.message)
                 setIsLoading(false)
-                json.id = json._id
                 json.role = (json.worker != null ? "worker" : "client")
                 json.bank = json.bankAccount
                 localStorage.setItem("user", JSON.stringify(json))

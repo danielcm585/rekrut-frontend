@@ -39,7 +39,7 @@ export default function Payment({ isOpen, onClose, job, worker }) {
             <Button ml="2" borderRadius="50" bgColor="#FF8450" 
               onClick={() => {
                 // TODO: Set job status to "waiting confirmation"
-                window.location.href="/job/"+job.id
+                window.location.href="/job/"+job._id
               }}>
               <Text fontSize="sm" fontWeight="bold">Selesai</Text>
             </Button> 

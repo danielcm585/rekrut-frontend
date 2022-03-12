@@ -23,7 +23,7 @@ export default function ProfileCard({ worker, job }) {
         _hover={{ bgColor:"gray.50" }}
         onClick={() => {
           if (job != null) return
-          window.location.href = "/profile/"+worker.id
+          window.location.href = "/profile/"+worker._id
         }}>
         <Flex>
           <Flex p="2">
@@ -31,7 +31,7 @@ export default function ProfileCard({ worker, job }) {
           </Flex>
           <Box ml="2" mt="2">
             <HStack>
-              <Link href={"/profile/"+worker.id} isExternal>
+              <Link href={"/profile/"+worker._id} isExternal>
                 <Text fontSize="lg" fontWeight="semibold">{worker.name}</Text>
               </Link>
               <ProfileBadges profile={worker} />
@@ -42,7 +42,6 @@ export default function ProfileCard({ worker, job }) {
                 <Star rating={worker.rating} />
             }
             <Text fontSize="sm" color="gray.600">{worker.jobDone.length+" Pekerjaan selesai"}</Text>
-            {/*TODO: Add the number of job done */}
           </Box>
           {
             (job != null) && (

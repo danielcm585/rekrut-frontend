@@ -10,6 +10,7 @@ export default function MyProfile() {
   const user = JSON.parse(localStorage.getItem("user"))
 
   useEffect(() => {
+    console.log(user)
     if (user.role == "worker") document.title = user.name + " | " + user.category
     else document.title = user.name
   }, [])
@@ -28,11 +29,9 @@ export default function MyProfile() {
       <Flex justifyContent="center">
         <Flex w="85%" direction="column">
           {
-            (user.role == "worker") ? (
-              <WorkerJobs user={user} />
-            ) : (
+            (user.role == "worker") ? 
+              <WorkerJobs user={user} /> :
               <ClientJobs user={user} />
-            )
           }
         </Flex>
       </Flex>

@@ -15,7 +15,7 @@ export default function JobBadges({ job }) {
         )
       }
       {
-        (job.company.rating > 4) && (
+        (job.author.rating != null && job.author.rating > 4) && (
           <Badge size="sm" colorScheme="green">
             <Icon mr="1" as={BiStar} />
             Great Company

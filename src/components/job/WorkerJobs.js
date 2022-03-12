@@ -19,7 +19,7 @@ export default function WorkerJobs({ user }) {
   const [ onProgress, setOnProgress ] = useState()
   const [ history, setHistory ] = useState()
   useEffect(() => {
-    fetch("https://protected-castle-75235.herokuapp.com/user/"+user.id, {
+    fetch("https://protected-castle-75235.herokuapp.com/user/"+user._id, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -108,7 +108,7 @@ export default function WorkerJobs({ user }) {
             (job.type == type || type == "Semua tipe pekerjaan") &&
             (job.salary >= salary || salary == "Semua range upah") && 
             (job.title.toLowerCase().includes(keyword.toLowerCase()) ||
-            job.company.name.toLowerCase().includes(keyword.toLowerCase())))
+            job.author.name.toLowerCase().includes(keyword.toLowerCase())))
   }
 
   const [ filteredAccepted, setFilteredAccepted] = useState()

@@ -21,15 +21,16 @@ export default function Dashboard() {
     if (user == null || user.role == "worker") {
       setBestOffer([
         {
-          id: "622a0448782bde729f35e875",
+          _id: "622a0448782bde729f35e875",
           title: "Backend Engineer",
           desc: "Do backend work in developing our app.",
           category: "Software Engineer",
           salary: 5000000,
           type: "Full-time",
           location: "Semarang",
-          company: {
-            id: "622a0daf782bde729f35e883",
+          status: "HIRING",
+          author: {
+            _id: "622a0daf782bde729f35e883",
             name: "BukaPedia",
             rating: 4.2,
             photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
@@ -50,15 +51,16 @@ export default function Dashboard() {
           ]
         },
         {
-          id: "622a0448782bde729f35e875",
+          _id: "622a0448782bde729f35e875",
           title: "Frontend Engineer",
           category: "Software Engineer",
           desc: "Do frontend work in developing our app.",
           salary: 6000000,
           type: "Full-project",
           location: "Surabaya",
-          company: {
-            id: "622a0daf782bde729f35e883",
+          status: "HIRING",
+          author: {
+            _id: "622a0daf782bde729f35e883",
             name: "BukaPedia",
             rating: 4.2,
             photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
@@ -77,15 +79,16 @@ export default function Dashboard() {
           ]
         },
         {
-          id: "622a0448782bde729f35e875",
+          _id: "622a0448782bde729f35e875",
           title: "Web Developer",
           category: "Software Engineer",
-          desc: "Develop a great website for our company",
+          desc: "Develop a great website for our author",
           salary: 4000000,
           type: "Full-time",
           location: "Jakarta",
-          company: {
-            id: "622a0daf782bde729f35e883",
+          status: "HIRING",
+          author: {
+            _id: "622a0daf782bde729f35e883",
             name: "TokoLapak",
             rating: 2.1,
             photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
@@ -102,15 +105,16 @@ export default function Dashboard() {
       ])
       setRecentJobs([
         {
-          id: "622a0448782bde729f35e875",
+          _id: "622a0448782bde729f35e875",
           title: "Backend Engineer",
           desc: "Do backend work in developing our app.",
           category: "Software Engineer",
           salary: 5000000,
           type: "Full-time",
           location: "Jakarta",
-          company: {
-            id: "622a0daf782bde729f35e883",
+          status: "HIRING",
+          author: {
+            _id: "622a0daf782bde729f35e883",
             name: "BukaPedia",
             rating: 4.2,
             photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
@@ -131,15 +135,16 @@ export default function Dashboard() {
           ]
         },
         {
-          id: "622a0448782bde729f35e875",
+          _id: "622a0448782bde729f35e875",
           title: "Frontend Engineer",
           category: "Software Engineer",
           desc: "Do frontend work in developing our app.",
           salary: 6000000,
           type: "Part-time",
           location: "Surabaya",
-          company: {
-            id: "622a0daf782bde729f35e883",
+          status: "HIRING",
+          author: {
+            _id: "622a0daf782bde729f35e883",
             name: "BukaPedia",
             rating: 4.2,
             photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
@@ -156,15 +161,16 @@ export default function Dashboard() {
           ]
         },
         {
-          id: "622a0448782bde729f35e875",
+          _id: "622a0448782bde729f35e875",
           title: "Web Developer",
           category: "Software Engineer",
-          desc: "Develop a great website for our company",
+          desc: "Develop a great website for our author",
           salary: 4000000,
           type: "Contract",
           location: "Semarang",
-          company: {
-            id: "622a0daf782bde729f35e883",
+          status: "HIRING",
+          author: {
+            _id: "622a0daf782bde729f35e883",
             name: "TokoLapak",
             rating: 2.1,
             photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
@@ -185,7 +191,7 @@ export default function Dashboard() {
     if (user != null && user.role == "client") {
       setPopularTalents([
         {
-          id: "6227688cfea1f57345e41c18",
+          _id: "6227688cfea1f57345e41c18",
           name: "Hera Syndulla",
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
           category: "Frontend Developer",
@@ -193,7 +199,7 @@ export default function Dashboard() {
           jobDone: ["ada","ada","ada","ada","ada"]
         },
         {
-          id: "6227688cfea1f57345e41c18",
+          _id: "6227688cfea1f57345e41c18",
           name: "Ahsoka Tano",
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
           category: "Frontend Developer",
@@ -201,7 +207,7 @@ export default function Dashboard() {
           jobDone: ["ada","ada","ada","ada","ada"]
         },
         {
-          id: "6227688cfea1f57345e41c18",
+          _id: "6227688cfea1f57345e41c18",
           name: "Darth Vader",
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
           category: "Frontend Developer",
@@ -211,7 +217,7 @@ export default function Dashboard() {
       ])
       setOfferedTalents([
         {
-          id: "6227688cfea1f57345e41c18",
+          _id: "6227688cfea1f57345e41c18",
           name: "Hera Syndulla",
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
           category: "Frontend Developer",
@@ -219,7 +225,7 @@ export default function Dashboard() {
           jobDone: ["ada","ada","ada","ada","ada"]
         },
         {
-          id: "6227688cfea1f57345e41c18",
+          _id: "6227688cfea1f57345e41c18",
           name: "Ahsoka Tano",
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
           category: "Frontend Developer",
@@ -227,7 +233,7 @@ export default function Dashboard() {
           jobDone: ["ada","ada","ada","ada","ada"]
         },
         {
-          id: "6227688cfea1f57345e41c18",
+          _id: "6227688cfea1f57345e41c18",
           name: "Darth Vader",
           photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
           category: "Frontend Developer",
@@ -252,7 +258,7 @@ export default function Dashboard() {
             (job.salary >= salary || salary == "Semua range upah") && 
             // (user.category == null || job.category == user.category) && 
             (job.title.toLowerCase().includes(keyword.toLowerCase()) ||
-            job.company.name.toLowerCase().includes(keyword.toLowerCase())))
+            job.author.name.toLowerCase().includes(keyword.toLowerCase())))
   }
 
   const [ category, setCategory ] = useState("Semua kategori pekerjaan")

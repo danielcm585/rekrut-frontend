@@ -7,19 +7,19 @@ import { useToast } from "@chakra-ui/react"
 import { Text, Flex } from "@chakra-ui/react"
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react"
 
-export default function WorkerJobs({ user }) {
+export default function ClientJobs({ user }) {
   const toast = useToast({
     position: "top",
     variant: "solid",
     isClosable: true
   })
 
-  const [ mine, setMine ] = useState()
-  const [ waitingConf, setWaitingConf ] = useState()
-  const [ onProgress, setOnProgress ] = useState()
-  const [ history, setHistory ] = useState()
+  const [ mine, setMine ] = useState(null)
+  const [ waitingConf, setWaitingConf ] = useState(null)
+  const [ onProgress, setOnProgress ] = useState(null)
+  const [ history, setHistory ] = useState(null)
   useEffect(() => {
-    fetch("https://protected-castle-75235.herokuapp.com/user/"+user.id, {
+    fetch("https://protected-castle-75235.herokuapp.com/user/"+user._id, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -47,11 +47,11 @@ export default function WorkerJobs({ user }) {
   const [ type, setType ] = useState("Semua tipe pekerjaan")
   const [ salary, setSalary ] = useState("Semua range upah")
   const filterJobs = (job) => {
+    // FIXME: Error occured because of not populated yet
     return ((job.location == location || location == "Semua lokasi") &&
             (job.type == type || type == "Semua tipe pekerjaan") &&
             (job.salary >= salary || salary == "Semua range upah") && 
-            (job.title.toLowerCase().includes(keyword.toLowerCase()) ||
-            job.company.name.toLowerCase().includes(keyword.toLowerCase())))
+            job.title.toLowerCase().includes(keyword.toLowerCase()))
   }
 
   const [ filteredWaitingConf, setFilteredWaitingConf] = useState()

@@ -6,170 +6,61 @@ import { FaMoneyBillWave } from "react-icons/fa"
 import { Navbar, Footer, SearchBar } from "../components"
 import { JobList, JobButton, JobBadges } from "../components/job"
 import { ProfileList } from "../components/profile"
-
-import { Box, Flex, HStack, Image, Link, Spacer, Text, Icon, SimpleGrid } from "@chakra-ui/react"
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react"
 import { Star } from "../components/review"
+
+import { useToast } from "@chakra-ui/react"
+import { Avatar, Box, Flex, HStack, Link, Spacer, Text, Icon, SimpleGrid } from "@chakra-ui/react"
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react"
 
 export default function Job() {
   const { id } = useParams()
-
+  
   const user = JSON.parse(localStorage.getItem("user"))
   
-  // TODO: Fetch job data from api
-  const job = {
-    id: 1,
-    title: "Backend Engineer",
-    detail: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    responsibilities: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    qualifications: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-    category: "Web Developer",
-    salary: 5000000,
-    location: "Jakarta",
-    type: "Full Time",
-    status: "hiring",
-    // status: "waiting confirmation",
-    // status: "on progress",
-    // status: "in review",
-    // status: "done",
-    company: {
-      id: 1,
-      name: "BukaPedia",
-      rating: 4.2,
-      photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-    },
-    registrants: [
-      {
-        id: 9,
-        photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-        name: "Obiwan Kenobi",
-        category: "Web Developer",
-        rating: 4.3,
-        reviews: ["ada"],
-        email: "email@gmail.com",
-        phone: "+62123213123",
-        jobDone: ["ada","ada","ada","ada","ada"]
-      },
-      {
-        id: 10,
-        photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-        name: "Anakin Skywalker",
-        category: "Web Developer",
-        rating: 2.1,
-        reviews: ["ada"],
-        email: "email@gmail.com",
-        phone: "+62123213123",
-        jobDone: ["ada","ada","ada","ada","ada"]
-      },
-      {
-        id: 11,
-        photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-        name: "C3PO",
-        category: "Web Developer",
-        rating: 4.9,
-        reviews: ["ada"],
-        email: "email@gmail.com",
-        phone: "+62123213123",
-        jobDone: ["ada","ada","ada","ada","ada"]
-      }
-    ],
-    chosen: "C3PO"
-  }
-    
-  const [ registrants, setRegistrants ] = useState()
-  const [ otherJobs, setOtherJobs ] = useState()
-  useEffect(() => {
-    document.title = job.title+" | "+job.company.name
-    
-    setRegistrants(job.registrants)
+  const toast = useToast({
+    position: "top",
+    variant: "solid",
+    isClosable: true
+  })
+  
+  const [ job, setJob ] = useState(null)
 
-    setOtherJobs([
-      {
-        id: 1,
-        title: "Backend Engineer",
-        desc: "Do backend work in developing our app.",
-        category: "Web Developer",
-        salary: 5000000,
-        type: "Full-time",
-        location: "Jakarta",
-        company: {
-          id: 1,
-          name: "BukaPedia",
-          rating: 4.2,
-          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-        },
-        registrants: [
-          {
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-            name: "Obiwan Kenobi",
-            rating: 4.2,
-          },
-          {
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-            name: "Anakin Skywalker",
-            rating: 3.6,
-          },
-          {
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-            name: "C3PO",
-            rating: 4.2,
-          }
-        ]
-      },
-      {
-        id: 2,
-        title: "Frontend Engineer",
-        category: "Web Developer",
-        desc: "Do frontend work in developing our app.",
-        salary: 6000000,
-        type: "Part-time",
-        location: "Surabaya",
-        company: {
-          id: 1,
-          name: "BukaPedia",
-          rating: 4.2,
-          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-        },
-        registrants: [
-          {
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-            name: "Mace Windu",
-          },
-          {
-            photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-            name: "Din Djarin",
-          }
-        ]
-      },
-      {
-        id: 3,
-        title: "Web Developer",
-        category: "Web Developer",
-        desc: "Develop a great website for our company",
-        salary: 4000000,
-        type: "Contract",
-        location: "Semarang",
-        company: {
-          id: 2,
-          name: "TokoLapak",
-          rating: 2.1,
-          photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
-        },
-        registrants: [
-          "ada",
-          "ada",
-          "ada",
-          "ada",
-          "ada",
-          "ada",
-        ]
+  useEffect(() => {
+    fetch("https://protected-castle-75235.herokuapp.com/job/"+id, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    })
+    .then(resp => resp.json())
+    .then(json => {
+      if (json.statusCode >= 400) throw new Error(json.message)
+      json.type = json.jobType
+      json.responsibilities = json.responsibility
+      json.qualifications = json.qualification
+      json.author = {
+        _id: "622a0daf782bde729f35e883",
+        name: "Gugel",
+        rating: 4.87,
       }
-    ])
-    setOtherJobs(jobs => jobs.slice(0,3))
+      setJob(json)
+    })
+    .catch((err) => {
+      toast({
+        title: err.message,
+        status: "error"
+      })
+    })
   }, [])
   
-  // const [ isConfirmOpen, setIsConfirmOpen ] = useState(false)
-  // const { isOpen, onOpen, onClose } = useDisclosure()
+  const [ canReview, setCanReview ] = useState(false)
+  const [ registrants, setRegistrants ] = useState(null)
+  useEffect(() => {
+    if (job == null) return
+    document.title = job.title+" | "+job.author.name
+    
+    setRegistrants(job.registrants)
+    setCanReview(user._id == job.author._id || (job.chosen != null && user._id == job.chosen))
+  }, [ job ])
 
   const parseAmount = (amount) => {
     return "IDR "+amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")+",00";
@@ -191,10 +82,7 @@ export default function Job() {
     if (registrants != null) setFilteredRegistrants(registrants.filter(filterWorkers))
   }, [ keyword, category, experience, registrants ])
   
-  // FIXME: Can we review?
-  const canReview = (user.id == job.author) || (user.id == job.chosen)
-  console.log(canReview)
-  
+  if (job == null) return <></>
   return (
     <>
       <Navbar />
@@ -203,7 +91,8 @@ export default function Job() {
           <Flex>
             <Flex>
               <Flex p="2" pl="0">
-                <Image src={job.company.photo} h="95" borderRadius="md" />
+                <Avatar h="95" w="95" borderRadius="md" src={job.author.photo} />
+                {/* <Image src={job.company.photo} h="95" borderRadius="md" /> */}
               </Flex>
               <Box ml="2" mt="1">
                 <HStack>
@@ -211,13 +100,13 @@ export default function Job() {
                   <JobBadges job={job} />
                 </HStack>
                 <Flex>
-                  <Link href={"/profile/"+job.company.id}>
-                    <Text color="gray.600">{job.company.name}</Text>
+                  <Link href={"/profile/"+job.author._id}>
+                    <Text color="gray.600">{job.author.name}</Text>
                   </Link>
                 </Flex>
                 {
-                  (job.company.rating != null && job.company.rating > 0) && 
-                    <Star rating={job.company.rating} />
+                  (job.author.rating != null && job.author.rating > 0) && 
+                    <Star rating={job.author.rating} />
                 }
                 <Text fontSize="sm" color="gray.600">
                   {job.registrants.length+" Pelamar"}
@@ -325,12 +214,6 @@ export default function Job() {
                     </>
                   )
                 }
-                <Text mt="8" fontWeight="bold">Other Job</Text>
-                <Flex mt="2">
-                  {
-                    (otherJobs != null) && <JobList jobs={otherJobs} />
-                  }
-                </Flex>
               </>
             )
           }

@@ -21,6 +21,7 @@ export default function JobButton({ user, job, canReview }) {
   })
 
   const sendRequest = (link, successMessage, json, setIsConfirmOpen) => {
+    console.log(json)
     setIsLoading(true)
     fetch(link, {
       method: "POST",
@@ -51,7 +52,7 @@ export default function JobButton({ user, job, canReview }) {
   return (
     <>
       {
-        (job.status == "hiring") && (
+        (job.status == "HIRING") && (
           <>
             {
               (user.role == "worker") ? (
@@ -60,7 +61,7 @@ export default function JobButton({ user, job, canReview }) {
                   onClick={() => sendRequest(
                     "https://protected-castle-75235.herokuapp.com/worker/apply", 
                     "Pendaftaran anda berhasil",
-                    { job: job.id }, setIsConfirmOpen)
+                    { job: job._id }, setIsConfirmOpen)
                   } />
               ) : (
                 <>
@@ -93,7 +94,7 @@ export default function JobButton({ user, job, canReview }) {
         )
       }
       {
-        (job.status == "waiting confirmation" && canReview) && (
+        (job.status == "WAITING" && canReview) && (
           <>
             {
               (user.role == "worker") ? (
@@ -121,7 +122,7 @@ export default function JobButton({ user, job, canReview }) {
         )
       }
       {
-        (job.status == "on progress" && canReview) && (
+        (job.status == "ONGOING" && canReview) && (
           <>
             {
               (user.role == "worker") ? (
@@ -141,7 +142,7 @@ export default function JobButton({ user, job, canReview }) {
         )
       }
       {
-        (job.status == "in review" && canReview) && (
+        (job.status == "REIVIEWING" && canReview) && (
           <>
             {
               (user.role == "worker") ? (
@@ -177,7 +178,7 @@ export default function JobButton({ user, job, canReview }) {
         )
       }
       {
-        (job.status == "done" && canReview) && (
+        (job.status == "DONE" && canReview) && (
           <>
             <ReviewForm isOpen={isOpen} onClose={onClose} job={job} />
             <Button pl="10" pr="10" borderRadius="50" bgColor="#FF8450" 

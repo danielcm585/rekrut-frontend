@@ -2,7 +2,7 @@ import React from "react"
 import { MdWork, MdLocationOn } from "react-icons/md"
 import { FaMoneyBillWave } from "react-icons/fa"
 
-import { Box, HStack, Image, Link, Spacer, Text, Flex, Icon, Badge } from "@chakra-ui/react"
+import { Box, HStack, Link, Spacer, Text, Flex, Icon, Avatar } from "@chakra-ui/react"
 import { Star } from "../review"
 import { JobBadges } from "."
 
@@ -15,11 +15,12 @@ export default function JobCard({ job }) {
     <>
       <Box p="2" mb="2" shadow="md" borderRadius="md"
         _hover={{ bgColor: "gray.50" }}
-        onClick={() => window.location.href="/job/"+job.id}>
+        onClick={() => window.location.href="/job/"+job._id}>
         <HStack w="100%">
           <Flex w="50%">
             <Flex p="2">
-              <Image src={job.company.photo} h="95" borderRadius="md" />
+              {/* <Image src={job.company.photo} h="95" borderRadius="md" /> */}
+              <Avatar h="95" w="95" borderRadius="md" src={job.author.photo} />
             </Flex>
             <Box ml="2" mt="2">
               <HStack spacing="2">
@@ -27,21 +28,21 @@ export default function JobCard({ job }) {
                 <JobBadges job={job} />
               </HStack>
               <Flex>
-                <Link href={"/profile/"+job.company.id}>
-                  <Text fontSize="md" color="gray.600">{job.company.name}</Text>
+                <Link href={"/profile/"+job.author._id}>
+                  <Text fontSize="md" color="gray.600">{job.author.name}</Text>
                 </Link>
               </Flex>
               {
-                (job.company.rating != null && job.company.rating > 0) &&  
-                  <Star rating={job.company.rating} />
+                (job.author.rating != null && job.author.rating > 0) &&  
+                  <Star rating={job.author.rating} />
               }
               <Text fontSize="sm" color="gray.600">
                 {
-                  (job.status == "hiring") ? job.registrants.length+" Pelamar" : (
-                    (job.status == "waiting confirmation") ? "Menunggu Konfirmasi Pekerja" : (
-                      (job.status == "on progress") ? "Dalam Pengerjaan" : (
-                        (job.status == "in review") ? "Dalam Proses Review" : (
-                          (job.status == "done") ? "Pekerjaan Selesai" : ""
+                  (job.status == "HIRING") ? job.registrants.length+" Pelamar" : (
+                    (job.status == "WAITING") ? "Menunggu Konfirmasi Pekerja" : (
+                      (job.status == "ONGOING") ? "Dalam Pengerjaan" : (
+                        (job.status == "REVIEWING") ? "Dalam Proses Review" : (
+                          (job.status == "DONE") ? "Pekerjaan Selesai" : ""
                         )
                       )
                     )

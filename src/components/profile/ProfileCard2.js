@@ -15,7 +15,7 @@ export default function ProfileList({ worker }) {
             <Image src={worker.photo} h="55" borderRadius="md" />
           </Flex>
           <Box>
-            <Link href={"/profile/"+worker.id}>
+            <Link href={"/profile/"+worker._id}>
               <Text fontSize="lg" fontWeight="semibold">{worker.name}</Text>
             </Link>
             {

@@ -57,7 +57,7 @@ export default function Navbar({ login, register }) {
                           }
                         </HStack>
                       </MenuItem> 
-                      <MenuItem icon={<BiStar />} onClick={() => window.location.href="/profile/"+user.id}>Ulasan</MenuItem>
+                      <MenuItem icon={<BiStar />} onClick={() => window.location.href="/profile/"+user._id}>Ulasan</MenuItem>
                       <MenuDivider />
                       <MenuItem icon={<BiEdit />} onClick={() => onPasswordOpen()}>Ganti Password</MenuItem> 
                       <MenuItem icon={<BiLogOut />} onClick={() => {

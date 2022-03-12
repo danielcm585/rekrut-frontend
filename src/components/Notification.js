@@ -8,7 +8,7 @@ import { ImPointRight } from "react-icons/im"
 import { Box, Button, HStack, Icon, Badge, Text } from "@chakra-ui/react"
 import { Modal, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, ModalOverlay, ModalContent } from "@chakra-ui/react"
 
-export default function Notification({ isOpen, onClose, user }) {
+export default function Notification({ isOpen, onClose, profile }) {
   // TODO: Fetch notification from api
   const notifications = [
     // Client
