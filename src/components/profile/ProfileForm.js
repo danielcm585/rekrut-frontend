@@ -79,7 +79,7 @@ export default function ProfileForm({ isOpen, onClose, user }) {
                 // TODO: Send request to api
                 onClose()
               }}>
-              <Text fontSize="sm" fontWeight="bold">Submit</Text>
+              <Text fontSize="sm" fontWeight="bold">Edit</Text>
             </Button> 
           </ModalFooter>
         </ModalContent>
