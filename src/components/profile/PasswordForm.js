@@ -20,6 +20,8 @@ export default function ProfileForm({ isOpen, onClose, user }) {
     isClosable: true
   })
 
+  const [ isLoading, setIsLoading ] = useState(false)
+
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -54,7 +56,7 @@ export default function ProfileForm({ isOpen, onClose, user }) {
             <Button borderRadius="50" onClick={() => onClose()}>
               <Text fontSize="sm" fontWeight="bold">Batal</Text>
             </Button> 
-            <Button ml="2" borderRadius="50" bgColor="#FF8450" 
+            <Button ml="2" borderRadius="50" bgColor="#FF8450" isLoading={isLoading}
               onClick={() => {
                 try {
                   if (oldPassword == null || oldPassword.length == 0) throw new Error("Password lama tidak boleh kosong")
@@ -62,8 +64,32 @@ export default function ProfileForm({ isOpen, onClose, user }) {
                   if (password.length < 6) throw new Error("Password baru minimal terdiri dari 6 karakter")
                   if (password != confPassword) throw new Error("Password baru tidak cocok")
                   if (password == oldPassword) throw new Error("Password baru tidak boleh sama dengan password lama")
-                  // TODO: Change password
-                  onClose()
+                  setIsLoading(true)
+                  // FIXME: Doesn't work
+                  fetch("https://protected-castle-75235.herokuapp.com/user/"+user._id, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    credentials: "include",
+                    body: JSON.stringify({ password: password })
+                  })
+                  .then(resp => resp.json())
+                  .then(json => {
+                    if (json.statusCode >= 400) throw new Error(json.message)
+                    setIsLoading(false)
+                    onClose()
+                    window.location.reload()
+                    toast({
+                      title: "Berhasil mengubah password",
+                      status: "success"
+                    })
+                  })
+                  .catch((err) => {
+                    setIsLoading(false)
+                    toast({
+                      title: err.message,
+                      status: "error"
+                    })
+                  })
                 }
                 catch (err) {
                   toast({

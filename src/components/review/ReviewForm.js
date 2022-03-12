@@ -17,6 +17,8 @@ export default function ReviewForm({ isOpen, onClose, job }) {
     isClosable: true
   })
 
+  const [ isLoading, setIsLoading ] = useState(false)
+
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose}>
@@ -33,7 +35,7 @@ export default function ReviewForm({ isOpen, onClose, job }) {
             <Button borderRadius="50" onClick={() => onClose()}>
               <Text fontSize="sm" fontWeight="bold">Cancel</Text>
             </Button> 
-            <Button ml="2" borderRadius="50" bgColor="#FF8450" 
+            <Button ml="2" borderRadius="50" bgColor="#FF8450" isLoading={isLoading}
               onClick={() => {
                 if (rating == null) {
                   toast({
@@ -42,11 +44,34 @@ export default function ReviewForm({ isOpen, onClose, job }) {
                   })
                   return;
                 }
-                // TODO: Get client and worker
-
-                // TODO: Submit review
-
-                onClose()
+                setIsLoading(true)
+                fetch("https://protected-castle-75235.herokuapp.com/review/"+job._id, {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  credentials: "include",
+                  body: JSON.stringify({
+                    body: body,
+                    rating: rating
+                  })
+                })
+                .then(resp => resp.json())
+                .then(json => {
+                  if (json.statusCode >= 400) throw new Error(json.message)
+                  setIsLoading(false)
+                  onClose()
+                  toast({
+                    title: "Berhasil menyimpan review",
+                    status: "success"
+                  })
+                })
+                .catch((err) => {
+                  setIsLoading(false)
+                  onClose()
+                  toast({
+                    title: err.message,
+                    status: "error"
+                  })
+                })
               }}>
               <Text fontSize="sm" fontWeight="bold">Submit</Text>
             </Button> 
