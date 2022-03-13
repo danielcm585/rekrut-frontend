@@ -9,6 +9,8 @@ import { useToast } from "@chakra-ui/react"
 import { Box, Flex, Spacer, Button, Text } from "@chakra-ui/react"
 
 export default function Profile() {
+  const me = JSON.parse(localStorage.getItem("user"))
+  
   const { id } = useParams()
 
   const toast = useToast({
@@ -28,6 +30,7 @@ export default function Profile() {
     .then(resp => resp.json())
     .then(json => {
       if (json.statusCode >= 400) throw new Error(json.message)
+      json.role = (json.worker != null ? "worker" : "client")
       setUser(json)
     })
     .catch((err) => {
@@ -45,7 +48,7 @@ export default function Profile() {
       <Flex w="100%">
         <Flex w="100%" mt="66" justifyContent="center">
           <Flex w="80%" pt="10" pb="10">
-            <ProfileDetails user={user} client={true} />
+            <ProfileDetails user={user} client={me.role == "client"} />
           </Flex>
         </Flex>
       </Flex>
@@ -56,9 +59,6 @@ export default function Profile() {
               <Box w="85%">
                 <Flex>
                   <Text fontSize="xl" fontWeight="semibold">Reviews</Text>
-                  {/* <Button variant="ghost" borderRadius="50" onClick={() => window.location.href=""}>Lihat semua</Button> 
-                  <Spacer></Spacer> */}
-                  {/*TODO: Add Lihat semua */}
                 </Flex>
                 <ReviewList reviews={user.reviews} />
               </Box>
