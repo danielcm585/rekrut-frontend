@@ -60,7 +60,7 @@ export default function JobButton({ user, job, canReview }) {
                 <>
                   {
                     (job.registrants.filter(worker => worker._id == user._id).length > 0) ? (
-                      <ConfirmButton action="Selesai" isDisabled={true} />
+                      <ConfirmButton action="Tunggu" isDisabled={true} />
                     ) : (
                       <ConfirmButton action="Daftar" isLoading={isLoading}
                         isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} 
