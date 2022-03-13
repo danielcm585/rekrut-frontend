@@ -125,7 +125,6 @@ export default function Dashboard() {
               (user != null && user.role == "client") && (
                 <>
                   <Spacer></Spacer>
-                  {/* <IconButton size="lg" isRound bgColor="#FF8450" icon={<AiOutlinePlus />} /> */}
                   <Button pl="10" pr="10" bgColor="#FF8450" borderRadius="full"
                     onClick={() => window.location.href="/job/new"}>
                     <Icon mr="2" as={AiOutlinePlus} />
@@ -157,11 +156,7 @@ export default function Dashboard() {
                   <>
                     <Flex justifyContent="center">
                       <Box mt="8" w="85%">
-                        <Flex>
-                          <Text fontSize="xl" fontWeight="semibold">Talent Terbaik</Text>
-                          <Spacer></Spacer>
-                          <Button variant="ghost" borderRadius="50" onClick={() => window.location.href="/worker/popular-talents"}>Lihat semua</Button>
-                        </Flex>
+                        <Text fontSize="xl" fontWeight="semibold">Talent Terbaik</Text>
                         <ProfileList profiles={filteredWorkers} />
                       </Box>
                     </Flex>
@@ -176,11 +171,7 @@ export default function Dashboard() {
                   <>
                     <Flex justifyContent="center">
                       <Box mt="8" w="85%">
-                        <Flex>
-                          <Text fontSize="xl" fontWeight="semibold">Penawaran terbaik</Text>
-                          <Spacer></Spacer>
-                          <Button variant="ghost" borderRadius="50" onClick={() => window.location.href="/jobs/best-offer"}>Lihat semua</Button>
-                        </Flex>
+                        <Text fontSize="xl" fontWeight="semibold">Penawaran terbaik</Text>
                         <JobList jobs={filteredJobs} />
                       </Box>
                     </Flex>

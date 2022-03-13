@@ -49,6 +49,7 @@ export default function JobButton({ user, job, canReview }) {
     })
   }
 
+  if (user == null) return <></>
   return (
     <>
       {
