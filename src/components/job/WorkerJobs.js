@@ -30,7 +30,7 @@ export default function WorkerJobs({ user }) {
       setPending(json.worker.applying)   // pending
       setAccepted(json.worker.accepted)  // accepted
       setOnProgress(json.worker.ongoing) // OnProgress
-      setHistory(json.worker.done)       // history
+      setHistory(json.worker.finished)   // history
     })
     .catch((err) => {
       toast({
