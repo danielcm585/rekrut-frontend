@@ -82,7 +82,7 @@ export default function Dashboard() {
   const filterJobs = (job) => {
     return ((job.location == location || location == "Semua lokasi") &&
             (job.jobType == type || type == "Semua tipe pekerjaan") &&
-            (job.salary >= salary || salary == "Semua range upah") && 
+            (parseInt(job.salary) >= parseInt(salary) || salary == "Semua range upah") && 
             // (user.category == null || job.category == user.category) && 
             (job.title.toLowerCase().includes(keyword.toLowerCase()) ||
             job.author.name.toLowerCase().includes(keyword.toLowerCase())))
@@ -93,7 +93,7 @@ export default function Dashboard() {
   const [ experience, setExperience ] = useState("Semua range pengalaman")
   const filterWorkers = (worker) => {
     return ((worker.category == category || category == "Semua kategori pekerjaan") && 
-            (worker.review.length >= experience || experience == "Semua range pengalaman") && 
+            (worker.review.length >= parseInt(experience) || experience == "Semua range pengalaman") && 
             (worker.name.toLowerCase().includes(keyword.toLowerCase())))
   }
 

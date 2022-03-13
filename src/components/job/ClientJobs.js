@@ -51,7 +51,7 @@ export default function ClientJobs({ user }) {
   const filterJobs = (job) => {
     return ((job.location == location || location == "Semua lokasi") &&
             (job.jobType == type || type == "Semua tipe pekerjaan") &&
-            (job.salary >= salary || salary == "Semua range upah") && 
+            (parseInt(job.salary) >= parseInt(salary) || salary == "Semua range upah") && 
             job.title.toLowerCase().includes(keyword.toLowerCase()))
   }
 
