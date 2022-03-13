@@ -11,7 +11,6 @@ import { Modal, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, ModalOver
 export default function Notification({ isOpen, onClose }) {
   const user = JSON.parse(localStorage.getItem("user"))
 
-  if (user == null) return <></>
   return (
     <>
       <Modal size="lg" isOpen={isOpen} onClose={onClose}>
