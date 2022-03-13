@@ -7,6 +7,8 @@ import { Button, Text, Textarea } from "@chakra-ui/react"
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from "@chakra-ui/react"
 
 export default function ReviewForm({ isOpen, onClose, job }) {
+  const user = JSON.parse(localStorage.getItem("user"))
+
   const [ rating, setRating ] = useState()
   const [ body, setBody ] = useState()
   const handleBodyChange = (e) => setBody(e.target.value)
@@ -51,7 +53,8 @@ export default function ReviewForm({ isOpen, onClose, job }) {
                   credentials: "include",
                   body: JSON.stringify({
                     body: body,
-                    rating: rating
+                    rating: rating,
+                    author: user._id
                   })
                 })
                 .then(resp => resp.json())

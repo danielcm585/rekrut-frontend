@@ -22,12 +22,12 @@ export default function Notification({ isOpen, onClose }) {
             {
               user.notif.reverse().map((notif, idx) => {
                 const icon = (
-                  (notif.type == "done") ? MdDone : (
-                    (notif.type == "done all") ? MdDoneAll : (
-                      (notif.type == "chosen") ? ImPointRight : (
-                        (notif.type == "hired") ? FaRegHandshake : (
-                          (notif.type == "rejected") ? MdClose : (
-                            (notif.type == "important") ? 
+                  (notif.category == "done") ? MdDone : (
+                    (notif.category == "done all") ? MdDoneAll : (
+                      (notif.category == "chosen") ? ImPointRight : (
+                        (notif.category == "hired") ? FaRegHandshake : (
+                          (notif.category == "rejected") ? MdClose : (
+                            (notif.category == "important") ? 
                               MdOutlineNotificationImportant :
                               MdOutlineNotificationsNone
                           )
