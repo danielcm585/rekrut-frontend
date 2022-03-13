@@ -20,7 +20,7 @@ export default function Notification({ isOpen, onClose }) {
           <ModalCloseButton />
           <ModalBody>
             {
-              user.notif.map((notif, idx) => {
+              user.notif.reverse().map((notif, idx) => {
                 const icon = (
                   (notif.type == "done") ? MdDone : (
                     (notif.type == "done all") ? MdDoneAll : (
