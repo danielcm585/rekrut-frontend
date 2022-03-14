@@ -17,7 +17,7 @@ export default function AboutMe({ role, setPage, name, setName, phone, setPhone,
 
   return (
     <>
-      <Flex mt="7%" justifyContent="center">
+      <Flex mt="8%" justifyContent="center">
         <Flex w="100%" direction="column">
           <Flex justifyContent="center">
             <VStack>

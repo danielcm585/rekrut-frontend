@@ -16,7 +16,7 @@ export default function RegisterPage5({ role, setPage, email, password, name, ph
 
   return (
     <>
-      <Flex mt="7%" justifyContent="center">
+      <Flex mt="8%" justifyContent="center">
         <Flex w="100%" direction="column">
           <Flex justifyContent="center">
             <VStack>

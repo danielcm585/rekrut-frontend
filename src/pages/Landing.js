@@ -26,16 +26,10 @@ export default function Landing() {
               </p>
               </div>
               <Flex>
-                {/* <SimpleGrid w="55%"> */}
                   <Button mt="6" p="7" pl="50" pr="50" borderRadius="50" bgColor="#FF8450"
                     onClick={() => window.location.href="/register"}>
                     <Text fontSize="xl" fontWeight="bold">Mulai Sekarang</Text>
-                  </Button> 
-                  {/* <Button size="lg" mt="4" borderRadius="50" bgColor="#FF8450"
-                    onClick={() => window.location.href="/login"}>
-                    <Text fontSize="lg" fontWeight="bold">Cari Jasa</Text>
-                  </Button> 
-                </SimpleGrid> */}
+                  </Button>
               </Flex>
             </div>
           </div>

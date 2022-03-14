@@ -18,7 +18,7 @@ export default function AboutUser({ setPage, email, setEmail, password, setPassw
 
   return (
     <>
-      <Flex mt="5%" justifyContent="center">
+      <Flex mt="6%" justifyContent="center">
         <Image mr="20" w="30%" src={LoginImg} />
         <Flex w="30%" p="10" direction="column">
           <Text fontSize="3xl" fontWeight="bold">Halo, pengguna baru</Text>
