@@ -1,7 +1,7 @@
 import React from "react"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 
-import { Landing, Login, Register, Dashboard, Profile, MyProfile, Job, NewJob, NotFound } from "./pages"
+import { Landing, Login, Register, Dashboard, Profile, MyProfile, Job, NewJob, NotFound, Terms } from "./pages"
 
 export default function App() {
   return (
@@ -15,6 +15,7 @@ export default function App() {
         <Route exact path="/profile/me" element={<MyProfile />} /> 
         <Route exact path="/job/:id" element={<Job />} /> 
         <Route exact path="/job/new" element={<NewJob />} /> 
+        <Route exact path="/terms" element={<Terms />} /> 
         <Route element={<NotFound />} />
       </Routes>
     </Router>
