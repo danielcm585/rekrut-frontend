@@ -2,12 +2,29 @@ import React from "react"
 
 import { useToast } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
-import { Flex, Text, Input, Button, SimpleGrid, Select, VStack, Textarea } from "@chakra-ui/react"
+import { Flex, Text, Input, Button, SimpleGrid, Select, VStack } from "@chakra-ui/react"
 
 export default function RegisterPage4({ role, setPage, category, setCategory, cv, setCv }) {
-  // const handleBioChanges = (e) => setBio(e.target.value)
   const handleCategoryChanges = (e) => setCategory(e.target.value)
-  const handleCvChanges = (e) => setCv(e.target.files[0])
+
+  const getBase64 = (file) => {
+    var reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => setCv(reader.result)
+    reader.onerror = () => toast({
+      title: "Gagal menyimpan foto profil",
+      status: "error"
+    })
+  }
+  const handleCvChanges = (e) => {
+    if (e.target.files[0].type != "application/pdf") {
+      toast({
+        title: "CV harus berbentuk pdf",
+        status: "error"
+      }) 
+    }
+    getBase64(e.target.files[0])
+  }
 
   const toast = useToast({
     position: "top",
@@ -63,7 +80,6 @@ export default function RegisterPage4({ role, setPage, category, setCategory, cv
                     try {
                       if (category == "-") throw new Error("Kategori pekerjaan tidak boleh kosong")
                       if (cv == null) throw new Error("CV tidak boleh kosong")
-                      if (cv.type != "application/pdf") throw new Error("CV harus berbentuk pdf")
                       setPage(prev => prev+1)
                     }
                     catch (err) {

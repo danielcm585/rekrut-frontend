@@ -57,7 +57,8 @@ export default function Register() {
       {
         (page == 5) && <TermsCondition role={role} setPage={setPage}
           email={email} password={password} name={name}
-          phone={phone} bank={bank} bio={bio} category={category} />
+          phone={phone} bank={bank} bio={bio} category={category}
+          cv={cv} profPic={profPic} />
       }
     </>
   )

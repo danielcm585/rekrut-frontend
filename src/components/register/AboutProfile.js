@@ -6,13 +6,36 @@ import { Flex, Text, Input, Button, SimpleGrid, VStack, Textarea } from "@chakra
 
 export default function AboutProfile({ role, setPage, bio, setBio, profPic, setProfPic }) {
   const handleBioChanges = (e) => setBio(e.target.value)
-  const handleProfPicChanges = (e) => setProfPic(e.target.files[0])
 
   const toast = useToast({
     position: "top",
     variant: "solid",
     isClosable: true
   })
+  
+  const getBase64 = (file) => {
+    var reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => setProfPic(reader.result)
+    reader.onerror = () => toast({
+      title: "Gagal menyimpan foto profil",
+      status: "error"
+    })
+  }
+  const handleProfPicChanges = (e) => {
+    try {
+      console.log(e.target.files[0].size)
+      if (e.target.files[0].type != "image/jpeg" && e.target.files[0].type != "image/png") throw new Error("Foto profil harus berbentuk jpg atau png")
+      if (e.target.files[0].size > 16*1024*1024) throw new Error("Foto profil tidak boleh lebih dari 16 MB")
+      getBase64(e.target.files[0])
+    }
+    catch (err) {
+      toast({
+        title: err.message,
+        status: "error"
+      })
+    }
+  }
 
   return (
     <>
@@ -58,8 +81,6 @@ export default function AboutProfile({ role, setPage, bio, setBio, profPic, setP
                   onClick={() => {
                     try {
                       if (bio == null || bio.length == 0) throw new Error("Bio anda masih kosong")
-                      if (profPic != null && profPic.type != "image/png" && 
-                          profPic.type != "image/jpeg") throw new Error("Foto profil harus berbentuk jpg atau png")
                       if (role == "worker") setPage(prev => prev+1)
                       else setPage(5)
                     }

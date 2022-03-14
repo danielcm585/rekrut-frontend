@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { useToast } from "@chakra-ui/react"
 import { Checkbox, Flex, Text, Box, SimpleGrid, Button, VStack } from "@chakra-ui/react"
 
-export default function RegisterPage5({ role, setPage, email, password, name, phone, bank, bio, category }) {
+export default function RegisterPage5({ role, setPage, email, password, name, phone, bank, bio, category, cv, profPic }) {
   const [ agree, setAgree ] = useState(false)
   
   const [ isLoading, setIsLoading ] = useState(false)
@@ -66,6 +66,8 @@ export default function RegisterPage5({ role, setPage, email, password, name, ph
                           bankAccount: bank,
                           category: category,
                           bio: bio,
+                          cv: cv,
+                          profPic: profPic,
                           isWorker: (role == "worker")
                         })
                       })
