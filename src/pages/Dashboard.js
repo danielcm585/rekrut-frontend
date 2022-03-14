@@ -87,7 +87,7 @@ export default function Dashboard() {
       console.log("FETCH CLIENT API")
     }
     
-    document.title = "Rekrut.id"
+    document.title = "Rekrut.id | Dashboard"
   }, [])
 
   const [ keyword, setKeyword ] = useState("")

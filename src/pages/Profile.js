@@ -42,6 +42,12 @@ export default function Profile() {
     })
   }, [])
 
+  useEffect(() => {
+    if (user == null) return
+    if (user.role == "worker") document.title = user.name+" | "+user.category
+    else document.title = user.name
+  }, [ user ])
+
   if (user == null) return <></>
   return (
     <>

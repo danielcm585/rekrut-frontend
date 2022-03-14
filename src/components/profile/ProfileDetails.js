@@ -74,7 +74,6 @@ export default function ProfileDetails({ user, me, client }) {
             </>
           )
         }
-        {/* FIXME: duh */}
         {
           (client && user.role == "worker") && (
             <>

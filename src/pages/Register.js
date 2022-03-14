@@ -23,7 +23,7 @@ export default function Register() {
   const [ cv, setCv ] = useState(null)
 
   useEffect(() => {
-    document.title = "Rekrut.id | Register"
+    document.title = "Rekrut.id | Daftar"
   }, [])
   
   return (

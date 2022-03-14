@@ -15,7 +15,7 @@ export default function Login() {
   const [ isLoading, setIsLoading ] = useState(false)
 
   useState(() => {
-    document.title = "Rekrut.id | Login"
+    document.title = "Rekrut.id | Masuk"
   }, [])
 
   const toast = useToast({

@@ -19,6 +19,8 @@ export default function MyProfile() {
   const [ profile, setProfile ] = useState(null)
 
   useEffect(() => {
+    document.title = "Rekrut.id | Profil Saya"
+
     fetch("https://protected-castle-75235.herokuapp.com/user/"+user._id, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
@@ -40,11 +42,11 @@ export default function MyProfile() {
     })
   }, [])
 
-  useEffect(() => {
-    if (profile == null) return
-    if (profile.role == "worker") document.title = profile.name + " | " + profile.category
-    else document.title = profile.name
-  }, [ profile ])
+  // useEffect(() => {
+  //   if (profile == null) return
+  //   if (profile.role == "worker") document.title = profile.name + " | " + profile.category
+  //   else document.title = profile.name
+  // }, [ profile ])
   
   if (profile == null) return <></>
   return (

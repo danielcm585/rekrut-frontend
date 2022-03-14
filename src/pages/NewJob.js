@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 import { Navbar } from "../components"
 import { Page1, Page2 } from "../components/newJob"
@@ -14,6 +14,10 @@ export default function NewJob() {
 
   const [ responsibility, setResponsibility ] = useState()
   const [ qualifications, setQualifications ] = useState()
+
+  useEffect(() => {
+    document.title = "Rekrut.id | Pekerjaan Baru"
+  }, [])
 
   return (
     <>
