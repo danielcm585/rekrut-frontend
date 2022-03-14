@@ -20,7 +20,7 @@ export default function Page1({ setPage, title, setTitle, category, setCategory,
   return (
     <>
       <Flex justifyContent="center">
-        <Flex mt="7%" w="100%" direction="column">
+        <Flex mt="2%" w="100%" direction="column">
           <Flex justifyContent="center">
             <VStack>
               <Text fontSize="1xl" fontWeight="semibold" color="#FF8450">01/02</Text>

@@ -27,9 +27,9 @@ export default function Login() {
   return (
     <>
       <Navbar login={true} />
-      <Flex justifyContent="center">
-        <Image mt="11%" mr="20" w="30%" src={LoginImg} />
-        <Flex w="30%" p="10" mt="11%" direction="column">
+      <Flex mt="7%" justifyContent="center">
+        <Image mr="20" w="30%" src={LoginImg} />
+        <Flex w="30%" p="10" direction="column">
           <Text fontSize="3xl" fontWeight="bold">Selamat datang kembali</Text>
           <Text mt="2" fontSize="1xl">Login untuk melanjutkan</Text>
           <FormControl mt="3">

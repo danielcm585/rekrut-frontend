@@ -19,7 +19,7 @@ export default function Page2({ setPage, responsibility, setResponsibility, qual
   return (
     <>
       <Flex justifyContent="center">
-        <Flex mt="7%" w="100%" direction="column">
+        <Flex mt="2%" w="100%" direction="column">
           <Flex justifyContent="center">
             <VStack>
               <Text fontSize="1xl" fontWeight="semibold" color="#FF8450">02/02</Text>

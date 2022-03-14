@@ -16,8 +16,8 @@ export default function AboutProfile({ role, setPage, bio, setBio, profPic, setP
 
   return (
     <>
-      <Flex justifyContent="center">
-        <Flex mt="11%" w="100%" direction="column">
+      <Flex mt="7%" justifyContent="center">
+        <Flex w="100%" direction="column">
           <Flex justifyContent="center">
             <VStack>
               <Text fontSize="1xl" fontWeight="semibold" color="#FF8450">

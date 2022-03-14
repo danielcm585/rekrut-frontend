@@ -47,7 +47,7 @@ export default function Profile() {
     <>
       <Navbar />
       <Flex w="100%">
-        <Flex w="100%" mt="66" justifyContent="center">
+        <Flex w="100%" justifyContent="center">
           <Flex w="80%" pt="10" pb="10">
             <ProfileDetails user={user} client={me != null && me.role == "client"} />
           </Flex>

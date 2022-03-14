@@ -4,7 +4,6 @@ html, body {
 }
 .black {
   background-color: #2A2A30;
-  margin-top: 65px;
   
   width: 100%;
   padding: 10vh;
@@ -35,14 +34,12 @@ html, body {
 .orange {
   position: absolute;
   background-color: #FF8450;
-  margin-top: 65px;
   margin-left: 106vh;
   width: 57vh;
   height: 95vh;
 }
 .image {
   position: absolute;
-  margin-top: 65px;
   margin-left: 99vh;
   height: 95vh;
 }

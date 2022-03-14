@@ -17,8 +17,8 @@ export default function RegisterPage4({ role, setPage, category, setCategory, cv
 
   return (
     <>
-      <Flex justifyContent="center">
-        <Flex mt="11%" w="100%" direction="column">
+      <Flex mt="7%" justifyContent="center">
+        <Flex w="100%" direction="column">
           <Flex justifyContent="center">
             <VStack>
               <Text fontSize="1xl" fontWeight="semibold" color="#FF8450">03/04</Text>

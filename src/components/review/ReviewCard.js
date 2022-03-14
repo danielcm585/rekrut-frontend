@@ -2,7 +2,7 @@ import React from "react"
 
 import { Star } from "."
 
-import { Box, HStack, Flex, Image, Link, Text, Avatar } from "@chakra-ui/react"
+import { Box, Flex, Link, Text, Avatar } from "@chakra-ui/react"
 
 export default function ReviewCard({ review }) {
   console.log(review)
@@ -13,7 +13,6 @@ export default function ReviewCard({ review }) {
         <Flex>
           <Flex p="2">
             <Avatar h="95" w="95" borderRadius="md" src={review.author.photo} />
-            {/* <Image src={review.user.photo} h="95" borderRadius="md" /> */}
           </Flex>
           <Box ml="2" mt="2">
             <Flex>

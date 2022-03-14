@@ -51,7 +51,7 @@ export default function MyProfile() {
     <>
       <Navbar />
       <Flex>
-        <Flex w="100%" mt="66" justifyContent="center">
+        <Flex w="100%" justifyContent="center">
           <Flex w="80%" pt="10" pb="10">
             <ProfileDetails user={profile} me={true} />
           </Flex>

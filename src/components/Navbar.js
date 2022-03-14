@@ -27,7 +27,7 @@ export default function Navbar({ login, register }) {
 
   return (
     <>
-      <Flex w="100%" as="header" position="fixed">
+      <Flex w="100%">
         <Flex p="3" w="100%" justifyContent="center">
           <HStack w="85%">
             <Link href="/dashboard">

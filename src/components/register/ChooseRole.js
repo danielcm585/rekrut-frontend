@@ -8,7 +8,7 @@ export default function ChooseRole({ setRole, setPage }) {
   return (
     <>
       <Flex justifyContent="center">
-        <Flex w="45%" p="10" mt="10%" direction="column">
+        <Flex w="45%" p="10" mt="5%" direction="column">
           <Flex justifyContent="center">
             <Text fontSize="3xl" fontWeight="bold">Halo, Apa Role Anda?</Text>
           </Flex>
