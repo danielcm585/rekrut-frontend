@@ -2,16 +2,18 @@ import React, { useState } from "react"
 import { IoMdMail, IoMdDocument } from "react-icons/io"
 import { MdPhone } from "react-icons/md"
 
-import { ProfileForm } from "./";
+import { ChooseJob, ConfirmButton } from "../job";
 import { Star } from "../review"
+import { ProfileForm } from "./";
 
 import { useDisclosure } from "@chakra-ui/react";
 import { Avatar, Box, Text, HStack, Spacer, Link, Icon, Button, Flex } from "@chakra-ui/react"
-import { ConfirmButton } from "../job";
 
 export default function ProfileDetails({ user, me, client }) {
   const [ isConfirmOpen, setIsConfirmOpen ] = useState();
   const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const [ isLoading, setIsLoading ] = useState(false)
 
   return (
     <>
@@ -72,14 +74,16 @@ export default function ProfileDetails({ user, me, client }) {
             </>
           )
         }
+        {/* FIXME: duh */}
         {
           (client && user.role == "worker") && (
             <>
+              <ChooseJob isOpen={isOpen} onClose={onClose} worker={user} />
               <Spacer></Spacer>
-              <ConfirmButton action="Undang" isOpen={isConfirmOpen} setIsOpen={setIsConfirmOpen} onClick={() => {
-                // TODO: Send invitation
-                console.log("INVITE")
-              }} />
+              <Button ml="2" pl="10" pr="10" borderRadius="50" bgColor="#FF8450"
+                onClick={() => onOpen()}>
+                <Text fontSize="sm" fontWeight="bold">Undang</Text>
+              </Button> 
             </>
           )
         }

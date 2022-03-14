@@ -78,8 +78,8 @@ export default function Job() {
   return (
     <>
       <Navbar />
-      <Flex justifyContent="center">
-        <Flex mt="100" w="85%" direction="column">
+      <Flex mt="10" justifyContent="center">
+        <Flex w="85%" direction="column">
           <Flex>
             <Flex>
               <Flex p="2" pl="0">

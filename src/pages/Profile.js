@@ -6,7 +6,7 @@ import { ProfileDetails } from "../components/profile"
 import { ReviewList } from "../components/review"
 
 import { useToast } from "@chakra-ui/react"
-import { Box, Flex, Spacer, Button, Text } from "@chakra-ui/react"
+import { Box, Flex, Text } from "@chakra-ui/react"
 
 export default function Profile() {
   const me = JSON.parse(localStorage.getItem("user"))
