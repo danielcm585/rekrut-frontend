@@ -31,6 +31,7 @@ export default function Profile() {
     .then(json => {
       if (json.statusCode >= 400) throw new Error(json.message)
       json.role = (json.worker != null ? "worker" : "client")
+      console.log(json)
       setUser(json)
     })
     .catch((err) => {
@@ -48,19 +49,19 @@ export default function Profile() {
       <Flex w="100%">
         <Flex w="100%" mt="66" justifyContent="center">
           <Flex w="80%" pt="10" pb="10">
-            <ProfileDetails user={user} client={me.role == "client"} />
+            <ProfileDetails user={user} client={me != null && me.role == "client"} />
           </Flex>
         </Flex>
       </Flex>
       {
-        (user.reviews != null && user.reviews.length != 0) && (
+        (user.review != null && user.review.length != 0) && (
           <>
             <Flex w="100%" justifyContent="center">
               <Box w="85%">
                 <Flex>
                   <Text fontSize="xl" fontWeight="semibold">Reviews</Text>
                 </Flex>
-                <ReviewList reviews={user.reviews} />
+                <ReviewList reviews={user.review} />
               </Box>
             </Flex>
           </>
