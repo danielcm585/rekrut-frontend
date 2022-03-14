@@ -65,9 +65,8 @@ export default function ProfileForm({ isOpen, onClose, user }) {
                   if (password != confPassword) throw new Error("Password baru tidak cocok")
                   if (password == oldPassword) throw new Error("Password baru tidak boleh sama dengan password lama")
                   setIsLoading(true)
-                  // FIXME: Doesn't work
                   fetch("https://protected-castle-75235.herokuapp.com/user/"+user._id, {
-                    method: "PUT",
+                    method: "POST",
                     headers: { "Content-Type": "application/json" },
                     credentials: "include",
                     body: JSON.stringify({ password: password })

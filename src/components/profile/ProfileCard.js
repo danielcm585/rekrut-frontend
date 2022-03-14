@@ -5,7 +5,7 @@ import { Payment } from ".."
 import { ProfileBadges } from "."
 
 import { useDisclosure, useToast } from "@chakra-ui/react"
-import { Box, Flex, Spacer, Image, HStack, Link, Text, Button } from "@chakra-ui/react"
+import { Box, Flex, Spacer, Avatar, HStack, Link, Text, Button } from "@chakra-ui/react"
 
 export default function ProfileCard({ worker, job }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -27,7 +27,7 @@ export default function ProfileCard({ worker, job }) {
         }}>
         <Flex>
           <Flex p="2">
-            <Image src={worker.photo} h="95" borderRadius="md" />
+            <Avatar src={worker.photo} h="95" w="95" borderRadius="md" />
           </Flex>
           <Box ml="2" mt="2">
             <HStack>
