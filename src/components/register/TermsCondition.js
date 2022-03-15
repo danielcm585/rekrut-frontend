@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 
 import { useToast } from "@chakra-ui/react"
-import { Checkbox, Flex, Text, Box, SimpleGrid, Button, VStack } from "@chakra-ui/react"
+import { Checkbox, Flex, Text, Box, SimpleGrid, Button, VStack, Link } from "@chakra-ui/react"
 
 export default function RegisterPage5({ role, setPage, email, password, name, phone, bank, bio, category, cv, profPic }) {
   const [ agree, setAgree ] = useState(false)
@@ -34,12 +34,14 @@ export default function RegisterPage5({ role, setPage, email, password, name, ph
           <Flex justifyContent="center">
             <Flex w="30%" p="10" pt="2" direction="column">
               <Box mt="5">  
-                <Text fontSize="1xl" fontWeight="bold">Terms and Conditions</Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <Text fontSize="1xl" fontWeight="bold">Syarat dan Ketentuan</Text>
+                {"Selamat datang di platform pencari kerja digital Rekrut.id. Ini adalah syarat dan ketentuan yang berlaku dalam penggunaan platform kami yang dapat diakses "}
+                <Link href="/terms" color="orange" isExternal>di sini</Link>
+                . Dalam syarat dan ketentuan ini yang kami maksud dengan "Rekrut" adalah platform digital yang berada di bawah naungan tim Rekrut, termasuk dengan semua situs pihak ketiga yang terhubung. Jika kamu menyetujuinya, kamu akan terikat dengan segala hukum yang berlaku di Negara Indonesia.
               </Box>
-              <Checkbox isChecked={agree} onChange={() => setAgree(prev => !prev)}>
+              <Checkbox mt="2" isChecked={agree} onChange={() => setAgree(prev => !prev)}>
                 <Text fontWeight="semibold">
-                  I agree to all terms and conditions
+                  Saya menyetujui S&K yang berlaku
                 </Text>
               </Checkbox>
               <SimpleGrid columns="2" spacing="2">
@@ -53,7 +55,7 @@ export default function RegisterPage5({ role, setPage, email, password, name, ph
                   onClick={() => {
                     try {
                       setIsLoading(true)
-                      if (!agree) throw new Error("Silakan baca dan setujui semua syarat untuk melanjutkan")
+                      if (!agree) throw new Error("Silakan setujui S&K yang berlaku untuk melanjutkan")
                       fetch("https://protected-castle-75235.herokuapp.com/user/register", {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
