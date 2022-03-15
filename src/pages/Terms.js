@@ -12,9 +12,10 @@ export default function Terms() {
   return (
     <>
       <Navbar />
-      <Flex mt="10" justifyContent="center">
-        <Flex w="85%"> 
-          <Accordion w="100%" allowToggle>
+      <Flex mt="8" justifyContent="center">
+        <Flex w="85%" direction="column"> 
+          <Text fontSize="xl" fontWeight="semibold">Syarat dan Ketentuan</Text>
+          <Accordion mt="6" w="100%" allowToggle>
             {
               tnc.map((chap, idx) => {
                 return (

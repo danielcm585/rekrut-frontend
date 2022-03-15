@@ -9,7 +9,7 @@ export default function Paragraph({ data, depth }) {
     <>
       {
         data.map((section, idx) => {
-          if (!Array.isArray(section)) return <Flex mt="2">{section}</Flex>
+          if (!Array.isArray(section)) return <Flex key={idx} mt="2">{section}</Flex>
           return <List key={idx} data={section} depth={depth+1} />
         })
       }
