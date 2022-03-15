@@ -1,6 +1,6 @@
 import React from "react"
 import { IoChevronDown } from "react-icons/io5"
-import { BiBell, BiLogOut, BiUser, BiEdit, BiStar } from "react-icons/bi"
+import { BiBell, BiLogOut, BiUser, BiEdit, BiStar, BiDetail } from "react-icons/bi"
 
 import { Notification } from "./";
 import { PasswordForm } from "./profile";
@@ -58,6 +58,7 @@ export default function Navbar({ login, register }) {
                         </HStack>
                       </MenuItem> 
                       <MenuItem icon={<BiStar />} onClick={() => window.location.href="/profile/"+user._id}>Ulasan</MenuItem>
+                      <MenuItem icon={<BiDetail />} onClick={() => window.location.href="/terms"}>{`Syarat & Ketentuan`}</MenuItem>
                       <MenuDivider />
                       <MenuItem icon={<BiEdit />} onClick={() => onPasswordOpen()}>Ganti Password</MenuItem> 
                       <MenuItem icon={<BiLogOut />} onClick={() => {
