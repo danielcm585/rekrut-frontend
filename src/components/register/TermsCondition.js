@@ -28,7 +28,7 @@ export default function RegisterPage5({ role, setPage, email, password, name, ph
                 }
               </Text>
               <Text fontSize="2xl" fontWeight="semibold" color="#FF8450">Code of Conduct</Text>
-              <Text fontSize="1xl">Silakan baca dan setujui persyaratan di bawah ini</Text>
+              <Text fontSize="1xl">Silakan baca dan setujui S&K dan kebijakan privasi di bawah ini</Text>
             </VStack>
           </Flex>
           <Flex justifyContent="center">
@@ -41,7 +41,7 @@ export default function RegisterPage5({ role, setPage, email, password, name, ph
               </Box>
               <Checkbox mt="2" isChecked={agree} onChange={() => setAgree(prev => !prev)}>
                 <Text fontWeight="semibold">
-                  Saya menyetujui S&K yang berlaku
+                  Saya menyetujui S&K dan kebijakan privasi yang berlaku
                 </Text>
               </Checkbox>
               <SimpleGrid columns="2" spacing="2">
