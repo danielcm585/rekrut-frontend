@@ -36,7 +36,7 @@ export default function RegisterPage5({ role, setPage, email, password, name, ph
               <Box mt="5">  
                 <Text fontSize="1xl" fontWeight="bold">Syarat dan Ketentuan</Text>
                 {"Selamat datang di platform pencari kerja digital Rekrut.id. Ini adalah syarat dan ketentuan yang berlaku dalam penggunaan platform kami yang dapat diakses "}
-                <Link href="/terms" color="orange" isExternal>di sini</Link>
+                <Link href="/terms" color="#FF8450" isExternal>di sini</Link>
                 . Dalam syarat dan ketentuan ini yang kami maksud dengan "Rekrut" adalah platform digital yang berada di bawah naungan tim Rekrut, termasuk dengan semua situs pihak ketiga yang terhubung. Jika kamu menyetujuinya, kamu akan terikat dengan segala hukum yang berlaku di Negara Indonesia.
               </Box>
               <Checkbox mt="2" isChecked={agree} onChange={() => setAgree(prev => !prev)}>
