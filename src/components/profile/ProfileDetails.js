@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-import { IoMdMail, IoMdDocument } from "react-icons/io"
-import { MdPhone } from "react-icons/md"
+import { IoMdDocument } from "react-icons/io"
+import { MdPhone, MdMail } from "react-icons/md"
 
 import { ChooseJob, ConfirmButton } from "../job";
 import { Star } from "../review"
@@ -35,7 +35,7 @@ export default function ProfileDetails({ user, me, client }) {
               }
               <Link href={"mailto:"+user.email} isExternal>
                 <HStack>
-                  <Icon as={IoMdMail} color="#FF8450" />
+                  <Icon as={MdMail} color="#FF8450" />
                   <Text>{user.email}</Text>
                 </HStack>
               </Link>
@@ -47,7 +47,7 @@ export default function ProfileDetails({ user, me, client }) {
               </Link>
               {
                 (user.role == "worker") && (
-                  <Link href={user.cv} isExternal>
+                  <Link href={"/cv/"+user.id} isExternal>
                     <HStack>
                       <Icon as={IoMdDocument} color="#FF8450" />
                       <Text>{"CV "+user.name}</Text>
