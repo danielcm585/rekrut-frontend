@@ -31,7 +31,6 @@ export default function Profile() {
     .then(json => {
       if (json.statusCode >= 400) throw new Error(json.message)
       json.role = (json.worker != null ? "worker" : "client")
-      console.log(json)
       setUser(json)
     })
     .catch((err) => {
