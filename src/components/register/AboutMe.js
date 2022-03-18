@@ -4,10 +4,11 @@ import { useToast } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
 import { Flex, Text, Input, Button, SimpleGrid, VStack } from "@chakra-ui/react"
 
-export default function AboutMe({ role, setPage, name, setName, phone, setPhone, bank, setBank }) {
+export default function AboutMe({ role, setPage, name, setName, phone, setPhone, bank, setBank, website, setWebsite }) {
   const handleNameChanges = (e) => setName(e.target.value)
   const handlePhoneChanges = (e) => setPhone(e.target.value)
   const handleBankChanges = (e) => setBank(e.target.value)
+  const handleWebsiteChanges = (e) => setWebsite(e.target.value)
 
   const toast = useToast({
     position: "top",
@@ -17,7 +18,7 @@ export default function AboutMe({ role, setPage, name, setName, phone, setPhone,
 
   return (
     <>
-      <Flex mt="8%" justifyContent="center">
+      <Flex mt="6%" justifyContent="center">
         <Flex w="100%" direction="column">
           <Flex justifyContent="center">
             <VStack>
@@ -54,6 +55,13 @@ export default function AboutMe({ role, setPage, name, setName, phone, setPhone,
                 </FormLabel>
                 <Input type="number" placeholder="31234567" value={bank} 
                   borderColor="black" onChange={handleBankChanges} />
+              </FormControl>
+              <FormControl mt="3">
+                <FormLabel>
+                  <Text fontSize="1xl" fontWeight="bold">Website Personal</Text>
+                </FormLabel>
+                <Input type="text" placeholder="my-name.com" value={website} 
+                  borderColor="black" onChange={handleWebsiteChanges} />
               </FormControl>
               <SimpleGrid columns="2" spacing="2">
                 <Button mt="8" borderRadius="50" onClick={() => setPage(prev => prev-1)}>

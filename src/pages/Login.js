@@ -74,7 +74,7 @@ export default function Login() {
                 })
               })
             }}>
-              <Text fontSize="sm" fontWeight="bold">Login</Text>
+              <Text fontSize="sm" fontWeight="bold">Masuk</Text>
             </Button>
           <Flex mt="7">
             <Text fontWeight="semibold">
