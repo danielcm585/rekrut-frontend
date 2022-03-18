@@ -39,7 +39,7 @@ export default function RegisterPage4({ role, setPage, experience, setExperience
                 <FormLabel>
                   <Text fontSize="1xl" fontWeight="bold">Pendidikan</Text>
                 </FormLabel>
-                <Textarea type="text" placeholder="Saya lulusan Harvard"
+                <Textarea type="text" placeholder="Saya lulusan Harvard terbaik"
                   value={education} borderColor="black" onChange={handleEducationChanges} />
               </FormControl>
               <FormControl mt="3">
