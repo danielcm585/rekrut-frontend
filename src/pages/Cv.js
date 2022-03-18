@@ -88,20 +88,32 @@ export default function Cv() {
                   </Link>
                 </Box>
               </Flex>
-              <Divider mt="10" orientation="horizontal" />
-              <Box>
-                <Text mt="9" fontSize="xl" fontWeight="semibold" color="#404040">
-                  EXPERIENCE
-                </Text>
-                <Text mt="1" color="#404040">{user.experience}</Text>
-              </Box>
-              <Divider mt="6" orientation="horizontal" />
-              <Box>
-                <Text mt="9" fontSize="xl" fontWeight="semibold" color="#404040">
-                  EDUCATION
-                </Text>
-                <Text mt="1" color="#404040">{user.education}</Text>
-              </Box>
+              {
+                (user.experience != null) && (
+                  <>
+                    <Divider mt="10" orientation="horizontal" />
+                    <Box>
+                      <Text mt="9" fontSize="xl" fontWeight="semibold" color="#404040">
+                        EXPERIENCE
+                      </Text>
+                      <Text mt="1" color="#404040">{user.experience}</Text>
+                    </Box>
+                  </>
+                )
+              }
+              {
+                (user.education != null) && (
+                  <>
+                    <Divider mt="6" orientation="horizontal" />
+                    <Box>
+                      <Text mt="9" fontSize="xl" fontWeight="semibold" color="#404040">
+                        EDUCATION
+                      </Text>
+                      <Text mt="1" color="#404040">{user.education}</Text>
+                    </Box>
+                  </>
+                )
+              }
             </Flex>
           </Flex>
         </Flex>
