@@ -73,7 +73,6 @@ export default function Dashboard() {
     return ((job.location == location || location == "Semua lokasi") &&
             (job.jobType == type || type == "Semua tipe pekerjaan") &&
             (parseInt(job.salary) >= parseInt(salary) || salary == "Semua range upah") && 
-            // (user.category == null || job.category == user.category) && 
             (job.title.toLowerCase().includes(keyword.toLowerCase()) ||
             job.author.name.toLowerCase().includes(keyword.toLowerCase())))
   }
@@ -84,8 +83,8 @@ export default function Dashboard() {
   const filterWorkers = (worker) => {
     return ((worker.category == category || category == "Semua kategori pekerjaan") && 
             (worker.review.length >= parseInt(experience) || experience == "Semua range pengalaman") && 
-            ((worker.name.toLowerCase().includes(keyword.toLowerCase())) || 
-            (worker.skill != null && worker.skill.toLowerCase().includes(keyword.toLowerCase()))))
+            (worker.name.toLowerCase().includes(keyword.toLowerCase()) || 
+            worker.skill != null && worker.skill.toLowerCase().includes(keyword.toLowerCase())))
   }
 
   const [ filteredJobs, setFilteredJobs ] = useState(null)
