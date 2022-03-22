@@ -45,7 +45,6 @@ export default function Profile() {
     if (user == null) return
     if (user.role == "worker") document.title = user.name+" | "+user.category
     else document.title = user.name
-    console.log(user)
   }, [ user ])
 
   if (user == null) return <></>

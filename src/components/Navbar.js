@@ -5,8 +5,8 @@ import { BiBell, BiLogOut, BiUser, BiEdit, BiStar, BiDetail } from "react-icons/
 import { Notification } from "./";
 import { PasswordForm } from "./profile";
 
-import { Avatar, useDisclosure } from "@chakra-ui/react";
-import { Button, Flex, HStack, Spacer, Text, Link, Badge } from "@chakra-ui/react"
+import { useDisclosure, useToast } from "@chakra-ui/react";
+import { Avatar, Button, Flex, HStack, Spacer, Text, Link, Badge } from "@chakra-ui/react"
 import { Menu, MenuButton, MenuList, MenuItem, MenuDivider } from "@chakra-ui/react"
 
 export default function Navbar({ login, register }) {
@@ -18,12 +18,17 @@ export default function Navbar({ login, register }) {
     onClose: onPasswordClose
   } = useDisclosure()
   
-  const unreadNotifications = 2
   const { 
     isOpen: isNotificationOpen, 
     onOpen: onNotificationOpen, 
     onClose: onNotificationClose
   } = useDisclosure()
+
+  const toast = useToast({
+    position: "top",
+    variant: "solid",
+    isClosable: true
+  })
 
   return (
     <>
@@ -48,7 +53,21 @@ export default function Navbar({ login, register }) {
                     </MenuButton>
                     <MenuList>
                       <MenuItem icon={<BiUser />} onClick={() => window.location.href="/profile/me"}>Profil Saya</MenuItem>
-                      <MenuItem icon={<BiBell />} onClick={() => onNotificationOpen()}>
+                      <MenuItem icon={<BiBell />} onClick={() => {
+                        fetch("https://protected-castle-75235.herokuapp.com/notification", {
+                          method: "POST",
+                          headers: { "Content-Type": "application/json" },
+                          credentials: "include",
+                          body: JSON.stringify({ })
+                        })
+                        .catch((err) => {
+                          toast({
+                            title: err.message,
+                            status: "error"
+                          })
+                        })
+                        onNotificationOpen()
+                      }}>
                         <HStack spacing="1">
                           <Text>Notifikasi</Text>
                           {

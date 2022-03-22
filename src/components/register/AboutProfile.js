@@ -26,7 +26,6 @@ export default function AboutProfile({ role, setPage, category, setCategory, ski
   }
   const handleProfPicChanges = (e) => {
     try {
-      console.log(e.target.files[0].size)
       if (e.target.files[0].type != "image/jpeg" && e.target.files[0].type != "image/png") throw new Error("Foto profil harus berbentuk jpg atau png")
       if (e.target.files[0].size > 16*1024*1024) throw new Error("Foto profil tidak boleh lebih dari 16 MB")
       getBase64(e.target.files[0])
