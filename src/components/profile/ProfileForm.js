@@ -18,11 +18,26 @@ export default function ProfileForm({ isOpen, onClose, user }) {
   const [ bank, setBank ] = useState(user.bank)
   const handleBankChanges = (e) => setBank(e.target.value)
 
+  const [ website, setWebsite ] = useState(user.website)
+  const handleWebsiteChanges = (e) => setWebsite(e.target.value)
+
   const [ category, setCategory ] = useState(user.category)
   const handleCategoryChanges = (e) => setCategory(e.target.value)
+
+  const [ skill, setSkill ] = useState(user.skill)
+  const handleSkillChanges = (e) => setSkill(e.target.value)
   
   const [ bio, setBio ] = useState(user.bio)
   const handleBioChanges = (e) => setBio(e.target.value)
+  
+  const [ experience, setExperience ] = useState(user.experience)
+  const handleExperienceChanges = (e) => setExperience(e.target.value)
+
+  const [ education, setEducation ] = useState(user.education)
+  const handleEducationChanges = (e) => setEducation(e.target.value)
+  
+  const [ award, setAward ] = useState(user.award)
+  const handleAwardChanges = (e) => setAward(e.target.value)
 
   const [ isLoading, setIsLoading ] = useState(false)
 
@@ -34,7 +49,7 @@ export default function ProfileForm({ isOpen, onClose, user }) {
 
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal size="xl" isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Edit Profil</ModalHeader>
@@ -44,33 +59,49 @@ export default function ProfileForm({ isOpen, onClose, user }) {
               <FormLabel>
                 <Text fontSize="1xl" fontWeight="bold">Nama</Text>
               </FormLabel>
-              <Input type="text" value={name} 
+              <Input type="text" placeholder={(user.role == "worker") ? "John Doe" : "Google"} value={name} 
                 borderColor="black" onChange={handleNameChanges} />
             </FormControl>
             <FormControl mt="3">
               <FormLabel>
                 <Text fontSize="1xl" fontWeight="bold">Email</Text>
               </FormLabel>
-              <Input type="email" value={email} 
+              <Input type="email" placeholder="email@gmail.com" value={email} 
                 borderColor="black" onChange={handleEmailChanges} />
             </FormControl>
             <FormControl mt="3">
               <FormLabel>
                 <Text fontSize="1xl" fontWeight="bold">Nomor Telepon</Text>
               </FormLabel>
-              <Input type="text" value={phone} 
+              <Input type="text" placeholder="+628123456789" value={phone} 
                 borderColor="black" onChange={handlePhoneChanges} />
+            </FormControl>
+            <FormControl mt="3">
+              <FormLabel>
+                <Text fontSize="1xl" fontWeight="bold">Nomor Rekening</Text>
+              </FormLabel>
+              <Input type="number" placeholder="31234567" value={bank} 
+                borderColor="black" onChange={handleBankChanges} />
+            </FormControl>
+            <FormControl mt="3">
+              <FormLabel>
+                <Text fontSize="1xl" fontWeight="bold">Website Pribadi</Text>
+              </FormLabel>
+              <Input type="text" placeholder="my-name.com" value={website} 
+                borderColor="black" onChange={handleWebsiteChanges} />
+            </FormControl>
+            <FormControl mt="3">
+              <FormLabel>
+                <Text fontSize="1xl" fontWeight="bold">Bio</Text>
+              </FormLabel>
+              <Textarea type="text" placeholder={(user.role == "worker") ?
+                  "Saya seorang web developer profesional" : 
+                  "Kami adalah perusahaan teknologi terbesar di Indonesia" } 
+                value={bio} borderColor="black" onChange={handleBioChanges} />
             </FormControl>
             {
               (user.role == "worker") && (
                 <>
-                  <FormControl mt="3">
-                    <FormLabel>
-                      <Text fontSize="1xl" fontWeight="bold">Nomor Rekening</Text>
-                    </FormLabel>
-                    <Input type="number" value={bank} 
-                      borderColor="black" onChange={handleBankChanges} />
-                  </FormControl>
                   <FormControl mt="3">
                     <FormLabel>
                       <Text fontSize="1xl" fontWeight="bold">Kategori Pekerjaan</Text>
@@ -88,16 +119,37 @@ export default function ProfileForm({ isOpen, onClose, user }) {
                       <option value="Others">Others</option>
                     </Select>
                   </FormControl>
+                  <FormControl mt="3">
+                    <FormLabel>
+                      <Text fontSize="1xl" fontWeight="bold">Skill</Text>
+                    </FormLabel>
+                    <Input type="text" placeholder="Mobile Development" value={skill} 
+                      borderColor="black" onChange={handleSkillChanges} />
+                  </FormControl>
+                  <FormControl mt="3">
+                    <FormLabel>
+                      <Text fontSize="1xl" fontWeight="bold">Pengalaman</Text>
+                    </FormLabel>
+                    <Textarea type="text" placeholder="Saya sorang Software Engineer di ABC selama 3 tahun" value={experience} 
+                      borderColor="black" onChange={handleExperienceChanges} />
+                  </FormControl>
+                  <FormControl mt="3">
+                    <FormLabel>
+                      <Text fontSize="1xl" fontWeight="bold">Pendidikan</Text>
+                    </FormLabel>
+                    <Textarea type="text" placeholder="Saya lulusan Harvard terbaik" value={education} 
+                      borderColor="black" onChange={handleEducationChanges} />
+                  </FormControl>
+                  <FormControl mt="3">
+                    <FormLabel>
+                      <Text fontSize="1xl" fontWeight="bold">Penghargaan</Text>
+                    </FormLabel>
+                    <Textarea type="text" placeholder="Saya medalis ICPC" value={award} 
+                      borderColor="black" onChange={handleAwardChanges} />
+                  </FormControl>
                 </>
               )
             }
-            <FormControl mt="3">
-              <FormLabel>
-                <Text fontSize="1xl" fontWeight="bold">Bio</Text>
-              </FormLabel>
-              <Textarea type="text" placeholder="Saya seorang web developer profesional" value={bio} 
-                borderColor="black" onChange={handleBioChanges} />
-            </FormControl>
           </ModalBody>
           <ModalFooter>
             <Button borderRadius="50" onClick={() => onClose()}>
@@ -107,9 +159,11 @@ export default function ProfileForm({ isOpen, onClose, user }) {
               onClick={() => {
                 try {
                   if (user.role == "worker") {
-                    if (bank == null || bank.length == 0)  throw new Error("Nomor rekening tidak boleh kosong")
-                    if (bank.length < 6) throw new Error("Nomor rekening tidak valid")
+                    if (category == "-") throw new Error("Kategori pekerjaan tidak boleh kosong")
+                    if (skill == null || skill.length == 0) throw new Error("Skill tidak boleh kosong")
                   }
+                  if (bank == null || bank.length == 0)  throw new Error("Nomor rekening tidak boleh kosong")
+                  if (bank.length < 6) throw new Error("Nomor rekening tidak valid")
                   if (name == null || name.length == 0) throw new Error("Nama tidak boleh kosong")
                   if (phone == null || phone.length == 0) throw new Error("Nomor telepon tidak boleh kosong")
                   if (phone.length < 10 || isNaN(phone)) throw new Error("Nomor telepon tidak valid")
@@ -127,7 +181,12 @@ export default function ProfileForm({ isOpen, onClose, user }) {
                       email: email,
                       phone: phone, 
                       category: category,
-                      bio: bio
+                      bio: bio,
+                      website: website,
+                      skill: skill,
+                      experience: experience,
+                      education: education,
+                      award: award
                     })
                   })
                   .then(resp => resp.json())

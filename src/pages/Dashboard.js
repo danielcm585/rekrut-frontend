@@ -58,32 +58,6 @@ export default function Dashboard() {
           status: "error"
         })
       })
-      // setWorkers([
-      //   {
-      //     _id: "6227688cfea1f57345e41c18",
-      //     name: "Hera Syndulla",
-      //     photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-      //     category: "Frontend Developer",
-      //     rating: 4.33,
-      //     review: ["ada","ada","ada","ada","ada"]
-      //   },
-      //   {
-      //     _id: "6227688cfea1f57345e41c18",
-      //     name: "Ahsoka Tano",
-      //     photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-      //     category: "Frontend Developer",
-      //     rating: 4.33,
-      //     review: ["ada","ada","ada","ada","ada"]
-      //   },
-      //   {
-      //     _id: "6227688cfea1f57345e41c18",
-      //     name: "Darth Vader",
-      //     photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-      //     category: "Frontend Developer",
-      //     rating: 4.33,
-      //     review: ["ada","ada","ada","ada","ada"]
-      //   },
-      // ])
       console.log("FETCH CLIENT API")
     }
     
@@ -99,7 +73,6 @@ export default function Dashboard() {
     return ((job.location == location || location == "Semua lokasi") &&
             (job.jobType == type || type == "Semua tipe pekerjaan") &&
             (parseInt(job.salary) >= parseInt(salary) || salary == "Semua range upah") && 
-            // (user.category == null || job.category == user.category) && 
             (job.title.toLowerCase().includes(keyword.toLowerCase()) ||
             job.author.name.toLowerCase().includes(keyword.toLowerCase())))
   }
@@ -110,7 +83,8 @@ export default function Dashboard() {
   const filterWorkers = (worker) => {
     return ((worker.category == category || category == "Semua kategori pekerjaan") && 
             (worker.review.length >= parseInt(experience) || experience == "Semua range pengalaman") && 
-            (worker.name.toLowerCase().includes(keyword.toLowerCase())))
+            (worker.name.toLowerCase().includes(keyword.toLowerCase()) || 
+            worker.skill != null && worker.skill.toLowerCase().includes(keyword.toLowerCase())))
   }
 
   const [ filteredJobs, setFilteredJobs ] = useState(null)
@@ -121,7 +95,6 @@ export default function Dashboard() {
   const [ filteredWorkers, setFilteredWorkers ] = useState(null)
   useEffect(() => {
     if (user == null || user.role != "client") return
-    console.log(workers)
     if (workers != null) setFilteredWorkers(workers.filter(filterWorkers))
   }, [ keyword, category, experience, workers ])
 

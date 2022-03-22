@@ -2,29 +2,12 @@ import React from "react"
 
 import { useToast } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
-import { Flex, Text, Input, Button, SimpleGrid, Select, VStack } from "@chakra-ui/react"
+import { Flex, Text, Input, Button, SimpleGrid, Textarea, VStack } from "@chakra-ui/react"
 
-export default function RegisterPage4({ role, setPage, category, setCategory, cv, setCv }) {
-  const handleCategoryChanges = (e) => setCategory(e.target.value)
-
-  const getBase64 = (file) => {
-    var reader = new FileReader()
-    reader.readAsDataURL(file)
-    reader.onload = () => setCv(reader.result)
-    reader.onerror = () => toast({
-      title: "Gagal menyimpan foto profil",
-      status: "error"
-    })
-  }
-  const handleCvChanges = (e) => {
-    if (e.target.files[0].type != "application/pdf") {
-      toast({
-        title: "CV harus berbentuk pdf",
-        status: "error"
-      }) 
-    }
-    getBase64(e.target.files[0])
-  }
+export default function RegisterPage4({ role, setPage, experience, setExperience, education, setEducation, award, setAward }) {
+  const handleExperienceChanges = (e) => setExperience(e.target.value)
+  const handleEducationChanges = (e) => setEducation(e.target.value)
+  const handleAwardChanges = (e) => setAward(e.target.value)
 
   const toast = useToast({
     position: "top",
@@ -34,61 +17,44 @@ export default function RegisterPage4({ role, setPage, category, setCategory, cv
 
   return (
     <>
-      <Flex mt="8%" justifyContent="center">
+      <Flex mt="6%" justifyContent="center">
         <Flex w="100%" direction="column">
           <Flex justifyContent="center">
             <VStack>
               <Text fontSize="1xl" fontWeight="semibold" color="#FF8450">03/04</Text>
-              <Text fontSize="2xl" fontWeight="semibold" color="#FF8450">Mengenai Pekerjaan</Text>
-              <Text fontSize="1xl">Kami akan menyesuaikan pilihan pekerjaan sesuai minat Anda</Text>
+              <Text fontSize="2xl" fontWeight="semibold" color="#FF8450">Buat CV</Text>
+              <Text fontSize="1xl">Kami akan menyusun CV anda secara otomatis</Text>
             </VStack>
           </Flex>
           <Flex justifyContent="center">
             <Flex w="30%" p="10" pt="2" direction="column">
               <FormControl mt="5">
                 <FormLabel>
-                  <Text fontSize="1xl" fontWeight="bold">Kategori Pekerjaan</Text>
+                  <Text fontSize="1xl" fontWeight="bold">Pengalaman</Text>
                 </FormLabel>
-                <Select variant="outline" borderColor="black"
-                  value={category} onChange={handleCategoryChanges}>
-                  <option value="-">-</option>
-                  <option value="Design and Creative">Design and Creative</option>
-                  <option value="Development and IT">Development and IT</option>
-                  <option value="Engineering and Architecture">Engineering and Architecture</option>
-                  <option value="Sales and Marketing">Sales and Marketing</option>
-                  <option value="Writing and Translation">Writing and Translation</option>
-                  <option value="HR and Training">HR and Training</option>
-                  <option value="Legal">Legal</option>
-                  <option value="Speaking">Speaking</option>
-                  <option value="Others">Others</option>
-                </Select>
+                <Textarea type="text" placeholder="Saya sorang Software Engineer di ABC selama 3 tahun"
+                  value={experience} borderColor="black" onChange={handleExperienceChanges} />
               </FormControl>
               <FormControl mt="3">
                 <FormLabel>
-                  <Text fontSize="1xl" fontWeight="bold">CV</Text>
+                  <Text fontSize="1xl" fontWeight="bold">Pendidikan</Text>
                 </FormLabel>
-                {/*FIXME: Value of the input */}
-                <Input p="1" type="file" variant="unstyled"
-                  onChange={handleCvChanges} />
+                <Textarea type="text" placeholder="Saya lulusan Harvard terbaik"
+                  value={education} borderColor="black" onChange={handleEducationChanges} />
+              </FormControl>
+              <FormControl mt="3">
+                <FormLabel>
+                  <Text fontSize="1xl" fontWeight="bold">Penghargaan</Text>
+                </FormLabel>
+                <Textarea type="text" placeholder="Saya medalis ICPC"
+                  value={award} borderColor="black" onChange={handleAwardChanges} />
               </FormControl>
               <SimpleGrid columns="2" spacing="2">
                 <Button mt="8" borderRadius="50" onClick={() => setPage(prev => prev-1)}>
                   <Text fontSize="sm" fontWeight="bold">Kembali</Text>
                 </Button>
                 <Button mt="8" bgColor="#FF8450" borderRadius="50"
-                  onClick={() => {
-                    try {
-                      if (category == "-") throw new Error("Kategori pekerjaan tidak boleh kosong")
-                      if (cv == null) throw new Error("CV tidak boleh kosong")
-                      setPage(prev => prev+1)
-                    }
-                    catch (err) {
-                      toast({
-                        title: err.message,
-                        status: "error"
-                      })
-                    }
-                  }}>
+                  onClick={() => setPage(prev => prev+1)}>
                   <Text fontSize="sm" fontWeight="bold">Selanjutnya</Text>
                 </Button>
               </SimpleGrid>

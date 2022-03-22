@@ -1,17 +1,52 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { FaCheckCircle, FaRegHandshake, FaRegHandPointRight } from "react-icons/fa"
 import { IoMdCloseCircle } from "react-icons/io"
 import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai"
 import { MdDone, MdDoneAll, MdClose, MdOutlineNotificationImportant, MdOutlineNotificationsNone } from "react-icons/md"
 import { ImPointRight } from "react-icons/im" 
 
+import { useToast } from "@chakra-ui/react"
 import { Box, Button, HStack, Icon, Badge, Text } from "@chakra-ui/react"
 import { Modal, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, ModalOverlay, ModalContent } from "@chakra-ui/react"
 
 export default function Notification({ isOpen, onClose }) {
-  const user = JSON.parse(localStorage.getItem("user"))
+  const toast = useToast({
+    position: "top",
+    variant: "solid",
+    isClosable: true
+  })
 
-  if (user == null || user.notif == null) return <></>
+  const curUser = JSON.parse(localStorage.getItem("user"))
+  const [ user, setUser ] = useState(null)
+  useEffect(() => {
+    fetch("https://protected-castle-75235.herokuapp.com/user/"+curUser._id, {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    })
+    .then(resp => resp.json())
+    .then(json => {
+      if (json.statusCode >= 400) throw new Error(json.message)
+      json.role = (json.worker != null ? "worker" : "client")
+      json.bank = json.bankAccount
+      localStorage.setItem("user", JSON.stringify(json))
+      setUser(json)
+    })
+    .catch((err) => {
+      toast({
+        title: err.message,
+        status: "error"
+      })
+    })
+  }, [])
+
+  const [ notification, setNotification ] = useState(null)
+  useEffect(() => {
+    if (user == null) return
+    setNotification(user.notif.reverse())
+  }, [ user ])
+
+  if (notification == null) return <></>
   return (
     <>
       <Modal size="lg" isOpen={isOpen} onClose={onClose}>
@@ -21,7 +56,7 @@ export default function Notification({ isOpen, onClose }) {
           <ModalCloseButton />
           <ModalBody>
             {
-              user.notif.reverse().map((notif, idx) => {
+              notification.map((notif, idx) => {
                 const icon = (
                   (notif.category == "done") ? MdDone : (
                     (notif.category == "done all") ? MdDoneAll : (

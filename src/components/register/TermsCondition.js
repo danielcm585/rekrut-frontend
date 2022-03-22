@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { useToast } from "@chakra-ui/react"
 import { Checkbox, Flex, Text, Box, SimpleGrid, Button, VStack, Link } from "@chakra-ui/react"
 
-export default function RegisterPage5({ role, setPage, email, password, name, phone, bank, bio, category, cv, profPic }) {
+export default function RegisterPage5({ role, setPage, email, password, name, phone, bank, bio, category, website, skill, experience, education, award }) {
   const [ agree, setAgree ] = useState(false)
   
   const [ isLoading, setIsLoading ] = useState(false)
@@ -16,7 +16,7 @@ export default function RegisterPage5({ role, setPage, email, password, name, ph
 
   return (
     <>
-      <Flex mt="8%" justifyContent="center">
+      <Flex mt="6%" justifyContent="center">
         <Flex w="100%" direction="column">
           <Flex justifyContent="center">
             <VStack>
@@ -69,8 +69,8 @@ export default function RegisterPage5({ role, setPage, email, password, name, ph
                           category: category,
                           bio: bio,
                           isWorker: (role == "worker")
-                          // cv: cv,
-                          // profPic: profPic,
+
+                          // TODO: Add website, skill, experience, education, award
                         })
                       })
                       .then(resp => resp.json())

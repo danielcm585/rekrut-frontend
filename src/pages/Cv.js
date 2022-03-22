@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { MdEmail, MdPhone } from "react-icons/md"
+import { IoMdGlobe } from "react-icons/io"
 
 import { Navbar } from "../components"
 
 import { Link, HStack, Icon, Spacer, Text, useToast, Divider } from "@chakra-ui/react"
 import { Avatar, Box, Flex } from "@chakra-ui/react"
-import Job from "./Job"
 
 export default function Cv() {
   const { id } = useParams()
@@ -29,13 +29,13 @@ export default function Cv() {
     .then(json => {
       if (json.statusCode >= 400) throw new Error(json.message)
       json.role = (json.worker != null ? "worker" : "client")
-      // TODO: Remind
       json.skill = "Lawyer"
       json.experience = `
         2009-2012 -> HaloHalo Law Firm
         2012-2015 -> Anyeong Law Firm
       `
       json.education = `Halo`
+      json.award = `Halo`
       setUser(json)
     })
     .catch((err) => {
@@ -63,17 +63,30 @@ export default function Cv() {
                 </Text>
                 <Text mt="1" color="white">{user.bio}</Text>
               </Box>
+              {
+                (user.award != null) && (
+                  <>
+                    <Divider mt="6" orientation="horizontal" />
+                    <Box>
+                      <Text mt="9" fontSize="xl" fontWeight="semibold" color="white">
+                        AWARDS
+                      </Text>
+                      <Text mt="1" color="white">{user.award}</Text>
+                    </Box>
+                  </>
+                )
+              }
             </Flex>
           </Flex>
           <Flex w="70%" pb="20" justifyContent="center">
-            <Flex w="90%" mt="59" direction="column">
+            <Flex w="90%" mt="79" direction="column">
               <Flex w="100%">
                 <Box>
                   <Text fontSize="4xl" fontWeight="bold" color="#404040">{user.name.toUpperCase()}</Text>
                   <Text fontSize="xl" color="#404040">{user.skill}</Text>
                 </Box>
                 <Spacer></Spacer>
-                <Box mt="4">
+                <Box mt="3">
                   <Link href={"mailto:"+user.email} isExternal>
                     <HStack>
                       <Icon as={MdEmail} color="#404040" />
@@ -86,22 +99,44 @@ export default function Cv() {
                       <Text>{user.phone}</Text>
                     </HStack>
                   </Link>
+                  {
+                    (user.website != null) && (
+                      <Link href={user.website} isExternal>
+                        <HStack mt="2">
+                          <Icon as={IoMdGlobe} color="#404040" />
+                          <Text>My Personal Web</Text>
+                        </HStack>
+                      </Link>
+                    )
+                  }
                 </Box>
               </Flex>
-              <Divider mt="10" orientation="horizontal" />
-              <Box>
-                <Text mt="9" fontSize="xl" fontWeight="semibold" color="#404040">
-                  EXPERIENCE
-                </Text>
-                <Text mt="1" color="#404040">{user.experience}</Text>
-              </Box>
-              <Divider mt="6" orientation="horizontal" />
-              <Box>
-                <Text mt="9" fontSize="xl" fontWeight="semibold" color="#404040">
-                  EDUCATION
-                </Text>
-                <Text mt="1" color="#404040">{user.education}</Text>
-              </Box>
+              {
+                (user.experience != null) && (
+                  <>
+                    <Divider mt="10" orientation="horizontal" />
+                    <Box>
+                      <Text mt="9" fontSize="xl" fontWeight="semibold" color="#404040">
+                        EXPERIENCE
+                      </Text>
+                      <Text mt="1" color="#404040">{user.experience}</Text>
+                    </Box>
+                  </>
+                )
+              }
+              {
+                (user.education != null) && (
+                  <>
+                    <Divider mt="6" orientation="horizontal" />
+                    <Box>
+                      <Text mt="9" fontSize="xl" fontWeight="semibold" color="#404040">
+                        EDUCATION
+                      </Text>
+                      <Text mt="1" color="#404040">{user.education}</Text>
+                    </Box>
+                  </>
+                )
+              }
             </Flex>
           </Flex>
         </Flex>
