@@ -110,7 +110,8 @@ export default function Dashboard() {
   const filterWorkers = (worker) => {
     return ((worker.category == category || category == "Semua kategori pekerjaan") && 
             (worker.review.length >= parseInt(experience) || experience == "Semua range pengalaman") && 
-            (worker.name.toLowerCase().includes(keyword.toLowerCase())))
+            ((worker.name.toLowerCase().includes(keyword.toLowerCase())) || 
+            (worker.skill != null && worker.skill.toLowerCase().includes(keyword.toLowerCase()))))
   }
 
   const [ filteredJobs, setFilteredJobs ] = useState(null)
@@ -121,7 +122,6 @@ export default function Dashboard() {
   const [ filteredWorkers, setFilteredWorkers ] = useState(null)
   useEffect(() => {
     if (user == null || user.role != "client") return
-    console.log(workers)
     if (workers != null) setFilteredWorkers(workers.filter(filterWorkers))
   }, [ keyword, category, experience, workers ])
 
