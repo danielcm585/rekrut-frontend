@@ -4,7 +4,7 @@
 Rekrut.id is a listing website where people with any kind of skill background can look for work. Our website has a lot of features that can help both worker and client achieve what they want. Workers can look for high paying job that fits with their skill, schedule, and location. Client can look for skilled and experienced worker that fits with the job requirements.
 
 
-![Logo](https://i.ibb.co/D7YSjsD/Rekrut.png)
+![Logo](https://i.ibb.co/PzdRV7b/Rekrut2.png)
 
 
 ## Authors
