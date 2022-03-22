@@ -58,32 +58,6 @@ export default function Dashboard() {
           status: "error"
         })
       })
-      // setWorkers([
-      //   {
-      //     _id: "6227688cfea1f57345e41c18",
-      //     name: "Hera Syndulla",
-      //     photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-      //     category: "Frontend Developer",
-      //     rating: 4.33,
-      //     review: ["ada","ada","ada","ada","ada"]
-      //   },
-      //   {
-      //     _id: "6227688cfea1f57345e41c18",
-      //     name: "Ahsoka Tano",
-      //     photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-      //     category: "Frontend Developer",
-      //     rating: 4.33,
-      //     review: ["ada","ada","ada","ada","ada"]
-      //   },
-      //   {
-      //     _id: "6227688cfea1f57345e41c18",
-      //     name: "Darth Vader",
-      //     photo: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-      //     category: "Frontend Developer",
-      //     rating: 4.33,
-      //     review: ["ada","ada","ada","ada","ada"]
-      //   },
-      // ])
       console.log("FETCH CLIENT API")
     }
     
