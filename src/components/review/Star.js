@@ -16,7 +16,7 @@ export default function Star({ rating }) {
             return <Icon key={idx} as={ImStarHalf} color="#FF8450" />
           })
         }
-        <Text>{"("+rating+")"}</Text>
+        <Text>{"("+rating.toPrecision(2)+")"}</Text>
       </HStack>
     </>
   )
