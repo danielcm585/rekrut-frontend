@@ -11,6 +11,7 @@ import { Avatar, Box, Flex } from "@chakra-ui/react"
 
 export default function Cv() {
   const { id } = useParams()
+  console.log(id)
 
   const toast = useToast({
     position: "top",
@@ -21,7 +22,7 @@ export default function Cv() {
   const [ user, setUser ] = useState(null)
 
   useEffect(() => {
-    document.title = "CV "+user.name
+    console.log("HERE")
     fetch("https://protected-castle-75235.herokuapp.com/user/"+id, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
@@ -41,6 +42,11 @@ export default function Cv() {
       })
     })
   }, [])
+
+  useEffect(() => {
+    if (user == null) return
+    document.title = "CV "+user.name
+  }, [ user ])
 
   if (user == null || user.role != "worker") return <></>
   return (
