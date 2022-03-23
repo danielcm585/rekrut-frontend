@@ -32,7 +32,7 @@ export default function ProfileForm({ isOpen, onClose, user }) {
   const [ bio, setBio ] = useState(user.bio)
   const handleBioChanges = (e) => setBio(e.target.value)
   
-  const [ profPic, setProfPic ] = useState()
+  const [ profPic, setProfPic ] = useState(user.profPic)
 
   const [ experience, setExperience ] = useState(user.experience)
   const handleExperienceChanges = (e) => setExperience(e.target.value)
