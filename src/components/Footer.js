@@ -1,7 +1,5 @@
 import React from "react"
-// import { AiFillMail } from "react-icons/ai"
-// import { IoMdMail } from "react-icons/io"  
-// import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from "react-icons/fa"
+
 import { GrMail, GrInstagram, GrLinkedin } from "react-icons/gr"
 import { SiWhatsapp } from "react-icons/si"
 

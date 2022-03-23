@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+
 import { MdLocationOn, MdWork } from "react-icons/md"
 import { FaMoneyBillWave } from "react-icons/fa"
 

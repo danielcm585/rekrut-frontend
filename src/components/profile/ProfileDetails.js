@@ -1,19 +1,17 @@
 import React, { useState } from "react"
+
 import { IoMdDocument } from "react-icons/io"
 import { MdPhone, MdMail } from "react-icons/md"
 
-import { ChooseJob, ConfirmButton } from "../job";
-import { Star } from "../review"
 import { ProfileForm } from "./";
+import { ChooseJob } from "../job";
+import { Star } from "../review"
 
 import { useDisclosure } from "@chakra-ui/react";
-import { Avatar, Box, Text, HStack, Spacer, Link, Icon, Button, Flex } from "@chakra-ui/react"
+import { Avatar, Text, HStack, Spacer, Link, Icon, Button, Flex } from "@chakra-ui/react"
 
 export default function ProfileDetails({ user, me, client }) {
-  const [ isConfirmOpen, setIsConfirmOpen ] = useState();
   const { isOpen, onOpen, onClose } = useDisclosure()
-
-  const [ isLoading, setIsLoading ] = useState(false)
 
   return (
     <>

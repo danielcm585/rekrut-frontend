@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
+
 import { MdEmail, MdPhone } from "react-icons/md"
 import { IoMdGlobe } from "react-icons/io"
 
