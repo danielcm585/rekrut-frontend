@@ -104,7 +104,7 @@ export default function ProfileForm({ isOpen, onClose, user }) {
                 value={bio} borderColor="black" onChange={handleBioChanges} />
             </FormControl>
             <FormControl mt="3">
-              <FileUpload file={profPic} setFile={profPic} />
+              <FileUpload file={profPic} setFile={setProfPic} />
             </FormControl>
             {
               (user.role == "worker") && (
