@@ -1,5 +1,7 @@
 import React, { useState } from "react"
 
+import { FileUpload } from "../../components"
+
 import { useToast } from "@chakra-ui/react"
 import { Button, Text, Input, Select, Textarea } from "@chakra-ui/react"
 import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react";
@@ -30,6 +32,8 @@ export default function ProfileForm({ isOpen, onClose, user }) {
   const [ bio, setBio ] = useState(user.bio)
   const handleBioChanges = (e) => setBio(e.target.value)
   
+  const [ profPic, setProfPic ] = useState()
+
   const [ experience, setExperience ] = useState(user.experience)
   const handleExperienceChanges = (e) => setExperience(e.target.value)
 
@@ -98,6 +102,9 @@ export default function ProfileForm({ isOpen, onClose, user }) {
                   "Saya seorang web developer profesional" : 
                   "Kami adalah perusahaan teknologi terbesar di Indonesia" } 
                 value={bio} borderColor="black" onChange={handleBioChanges} />
+            </FormControl>
+            <FormControl mt="3">
+              <FileUpload file={profPic} setFile={profPic} />
             </FormControl>
             {
               (user.role == "worker") && (
@@ -186,7 +193,8 @@ export default function ProfileForm({ isOpen, onClose, user }) {
                       skill: skill,
                       experience: experience,
                       education: education,
-                      award: award
+                      award: award,
+                      profPic: profPic
                     })
                   })
                   .then(resp => resp.json())
