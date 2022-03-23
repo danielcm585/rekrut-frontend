@@ -20,6 +20,7 @@ Rekrut.id is a listing website where people with any kind of skill background ca
 - Search and filter the jobs and workers 
 - CV generator that helps both workers and clients
 - Apply jobs and hire workers fast
+- Review and rate jobs and workers
 - Notification of all recent activity
 - Easy and secured payment 
 
