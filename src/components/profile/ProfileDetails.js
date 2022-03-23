@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 
 import { IoMdDocument } from "react-icons/io"
 import { MdPhone, MdMail } from "react-icons/md"
