@@ -57,7 +57,16 @@ export default function ProfileDetails({ user, me, client }) {
             <Spacer></Spacer>
           </Flex>
           {
-            (user.bio != null) && <Text mt="5">{user.bio}</Text>
+            (user.bio != null) && (
+              <Flex mt="4">
+                {
+                  user.bio.split('\n').map((par, idx) => 
+                    <Text key={idx} mt="1">{par}</Text>
+                  )
+                }
+              </Flex>
+            )
+            // <Text mt="5">{user.bio}</Text>
           }
         </Flex>
         {

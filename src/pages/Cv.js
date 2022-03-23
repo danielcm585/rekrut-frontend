@@ -57,7 +57,11 @@ export default function Cv() {
                 <Text mt="9" fontSize="xl" fontWeight="semibold" color="white">
                   ABOUT ME
                 </Text>
-                <Text mt="1" color="white">{user.bio}</Text>
+                {
+                  user.bio.split('\n').map((par, idx) => 
+                    <Text key={idx} mt="1" color="white">{par}</Text>
+                  )
+                }
               </Box>
               {
                 (user.award != null) && (
@@ -67,7 +71,11 @@ export default function Cv() {
                       <Text mt="9" fontSize="xl" fontWeight="semibold" color="white">
                         AWARDS
                       </Text>
-                      <Text mt="1" color="white">{user.award}</Text>
+                      {
+                        user.award.split('\n').map((par, idx) => 
+                          <Text key={idx} mt="1" color="white">{par}</Text>
+                        )
+                      }
                     </Box>
                   </>
                 )
@@ -115,7 +123,11 @@ export default function Cv() {
                       <Text mt="9" fontSize="xl" fontWeight="semibold" color="#404040">
                         EXPERIENCE
                       </Text>
-                      <Text mt="1" color="#404040">{user.experience}</Text>
+                      {
+                        user.experience.split('\n').map((par, idx) => 
+                          <Text key={idx} mt="1" color="#404040">{par}</Text>
+                        )
+                      }
                     </Box>
                   </>
                 )
@@ -128,7 +140,11 @@ export default function Cv() {
                       <Text mt="9" fontSize="xl" fontWeight="semibold" color="#404040">
                         EDUCATION
                       </Text>
-                      <Text mt="1" color="#404040">{user.education}</Text>
+                      {
+                        user.education.split('\n').map((par, idx) => 
+                          <Text key={idx} mt="1" color="#404040">{par}</Text>
+                        )
+                      }
                     </Box>
                   </>
                 )
