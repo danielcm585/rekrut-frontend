@@ -223,7 +223,7 @@ export default function ProfileForm({ isOpen, onClose, user }) {
                   })
                 }
               }}>
-              <Text fontSize="sm" fontWeight="bold">Edit</Text>
+              <Text fontSize="sm" fontWeight="bold">Simpan</Text>
             </Button> 
           </ModalFooter>
         </ModalContent>
