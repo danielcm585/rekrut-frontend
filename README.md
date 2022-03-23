@@ -34,7 +34,7 @@ Rekrut.id is a listing website where people with any kind of skill background ca
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/danielcm585/rekrut-frontend.git
 ```
 
 Go to the project directory
