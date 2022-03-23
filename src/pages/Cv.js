@@ -20,6 +20,7 @@ export default function Cv() {
   const [ user, setUser ] = useState(null)
 
   useEffect(() => {
+    document.title = "CV "+user.name
     fetch("https://protected-castle-75235.herokuapp.com/user/"+id, {
       method: "GET",
       headers: { "Content-Type": "application/json" },
@@ -29,13 +30,7 @@ export default function Cv() {
     .then(json => {
       if (json.statusCode >= 400) throw new Error(json.message)
       json.role = (json.worker != null ? "worker" : "client")
-      json.skill = "Lawyer"
-      json.experience = `
-        2009-2012 -> HaloHalo Law Firm
-        2012-2015 -> Anyeong Law Firm
-      `
-      json.education = `Halo`
-      json.award = `Halo`
+      console.log(json)
       setUser(json)
     })
     .catch((err) => {
