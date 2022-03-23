@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 
 import { IoMdDocument } from "react-icons/io"
 import { MdPhone, MdMail } from "react-icons/md"
@@ -8,7 +8,7 @@ import { ChooseJob } from "../job";
 import { Star } from "../review"
 
 import { useDisclosure } from "@chakra-ui/react";
-import { Avatar, Text, HStack, Spacer, Link, Icon, Button, Flex } from "@chakra-ui/react"
+import { Avatar, Box, Text, HStack, Spacer, Link, Icon, Button, Flex } from "@chakra-ui/react"
 
 export default function ProfileDetails({ user, me, client }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -58,13 +58,13 @@ export default function ProfileDetails({ user, me, client }) {
           </Flex>
           {
             (user.bio != null) && (
-              <Flex mt="4">
+              <Box mt="4">
                 {
                   user.bio.split('\n').map((par, idx) => 
                     <Text key={idx} mt="1">{par}</Text>
                   )
                 }
-              </Flex>
+              </Box>
             )
             // <Text mt="5">{user.bio}</Text>
           }
