@@ -1,7 +1,8 @@
 import React, { useState } from "react"
+
 import { BiShow, BiHide } from "react-icons/bi"
 
-import { Button, IconButton } from "@chakra-ui/react"
+import { IconButton } from "@chakra-ui/react"
 import { Input, InputGroup, InputRightElement } from "@chakra-ui/react"
 
 export default function PasswordInput({ password, setPassword, placeholder }) {

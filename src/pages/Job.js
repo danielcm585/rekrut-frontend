@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+
 import { MdLocationOn, MdWork } from "react-icons/md"
 import { FaMoneyBillWave } from "react-icons/fa"
 
@@ -141,7 +142,11 @@ export default function Job() {
                   (job.responsibility != null) && (
                     <>
                       <Text mt="8" fontWeight="bold">Responsibilities</Text>
-                      <Text mt="2">{job.responsibility}</Text>
+                      {
+                        job.responsibility.split('\n').map((par, idx) => 
+                          <Text key={idx} mt="2">{par}</Text>
+                        )
+                      }
                     </>
                   )
                 }
@@ -149,7 +154,11 @@ export default function Job() {
                   (job.qualification != null) && (
                     <>
                       <Text mt="8" fontWeight="bold">Qualifications</Text>
-                      <Text mt="2">{job.qualification}</Text>
+                      {
+                        job.qualification.split('\n').map((par, idx) => 
+                          <Text key={idx} mt="2">{par}</Text>
+                        )
+                      }
                     </>
                   )
                 }
@@ -175,7 +184,11 @@ export default function Job() {
                       (job.responsibility != null) && (
                         <>
                           <Text mt="8" fontWeight="bold">Responsibilities</Text>
-                          <Text mt="2">{job.responsibility}</Text>
+                          {
+                            job.responsibility.split('\n').map((par, idx) => 
+                              <Text key={idx} mt="1">{par}</Text>
+                            )
+                          }
                         </>
                       )
                     }
@@ -183,7 +196,11 @@ export default function Job() {
                       (job.qualification != null) && (
                         <>
                           <Text mt="8" fontWeight="bold">Qualifications</Text>
-                          <Text mt="2">{job.qualification}</Text>
+                          {
+                            job.qualification.split('\n').map((par, idx) => 
+                              <Text key={idx} mt="2">{par}</Text>
+                            )
+                          }
                         </>
                       )
                     }
