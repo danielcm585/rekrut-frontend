@@ -20,6 +20,7 @@ Rekrut.id is a listing website where people with any kind of skill background ca
 - Search and filter the jobs and workers 
 - CV generator that helps both workers and clients
 - Apply jobs and hire workers fast
+- Review and rate jobs and workers
 - Notification of all recent activity
 - Easy and secured payment 
 
@@ -34,13 +35,13 @@ Rekrut.id is a listing website where people with any kind of skill background ca
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/danielcm585/rekrut-frontend.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd rekrut-frontend
 ```
 
 Install dependencies
