@@ -69,8 +69,12 @@ export default function RegisterPage5({ role, setPage, email, password, name, ph
                           category: category,
                           bio: bio,
                           isWorker: (role == "worker"),
-                          profPic: profPic
-                          // TODO: Add website, skill, experience, education, award
+                          profPic: profPic,
+                          website: website,
+                          skill: skill,
+                          education: education,
+                          experience: experience,
+                          award: award
                         })
                       })
                       .then(resp => resp.json())

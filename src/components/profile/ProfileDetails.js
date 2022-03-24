@@ -18,7 +18,7 @@ export default function ProfileDetails({ user, me, client }) {
       <Flex w="100%">
         <Flex direction="column">
           <Flex>
-            <Avatar mr="5" h="165px" w="165px" src={user.photo} borderRadius="lg" />
+            <Avatar mr="5" h="165px" w="165px" src={user.profPic} borderRadius="lg" />
             <Flex direction="column">
               <Link href={"/profile/"+user.id} isExternal>
                 <Text fontSize="2xl" fontWeight="semibold">{user.name}</Text>

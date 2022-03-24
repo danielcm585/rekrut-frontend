@@ -48,7 +48,7 @@ export default function Navbar({ login, register }) {
                   <Menu>
                     <MenuButton as={Button} variant="ghost" borderRadius="50" rightIcon={<IoChevronDown />}>
                       <HStack>
-                        <Avatar src={user.photo} h="7" w="7" />
+                        <Avatar src={user.profPic} h="7" w="7" />
                         <Text fontSize="1xl" fontWeight="semibold">{user.name}</Text>
                       </HStack>
                     </MenuButton>

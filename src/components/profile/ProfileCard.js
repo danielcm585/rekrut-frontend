@@ -27,7 +27,7 @@ export default function ProfileCard({ worker, job }) {
         }}>
         <Flex>
           <Flex p="2">
-            <Avatar src={worker.photo} h="95" w="95" borderRadius="md" />
+            <Avatar src={worker.profPic} h="95" w="95" borderRadius="md" />
           </Flex>
           <Box ml="2" mt="2">
             <HStack>

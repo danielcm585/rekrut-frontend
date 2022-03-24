@@ -3,9 +3,6 @@ import React, { useState } from "react"
 import { useToast } from "@chakra-ui/react"
 import { InputGroup, Input, Button, FormLabel, Text } from "@chakra-ui/react"
 
-// const casual = require("casual")
-// const imgbb = require("imgbb-uploader")
-
 export default function FileUpload({ file, setFile }) {
   const toast = useToast({
     position: "top",
@@ -22,27 +19,6 @@ export default function FileUpload({ file, setFile }) {
       const image = reader.result.split(',')[1]
       const form = new FormData()
       form.append("image",image)
-      // imgbb({
-      //   apiKey: "1f7342009732d86b66bfab298a07677d",
-      //   base64string: image
-      // })
-      // // .then(resp => resp.json())
-      // .then(json => {
-      //   if (!json.success) throw new Error("Gagal mengunggah foto profil")
-      //   setIsLoading(false)
-      //   setFile(json.data.url)
-      //   toast({
-      //     title: "Berhasil mengunggah foto profil",
-      //     status: "success"
-      //   })
-      // })
-      // .catch((err) => {
-      //   setIsLoading(false)
-      //   toast({
-      //     title: err.message,
-      //     status: "error"
-      //   })
-      // })
       fetch("https://api.imgbb.com/1/upload?key=1f7342009732d86b66bfab298a07677d", {
         method: "POST",
         headers: { },
