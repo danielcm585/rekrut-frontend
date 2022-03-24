@@ -84,7 +84,7 @@ export default function Job() {
           <Flex>
             <Flex>
               <Flex p="2" pl="0">
-                <Avatar h="95" w="95" borderRadius="md" src={job.author.photo} />
+                <Avatar h="95" w="95" borderRadius="md" src={job.author.profPic} />
               </Flex>
               <Box ml="2" mt="1">
                 <HStack>
