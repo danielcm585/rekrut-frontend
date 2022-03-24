@@ -11,7 +11,6 @@ import { Avatar, Box, Flex } from "@chakra-ui/react"
 
 export default function Cv() {
   const { id } = useParams()
-  console.log(id)
 
   const toast = useToast({
     position: "top",
@@ -57,7 +56,7 @@ export default function Cv() {
           <Flex w="30%" pb="20" justifyContent="center" bg="#404040"> 
             <Flex mt="10" w="70%" direction="column">
               <Flex justifyContent="center">
-                <Avatar h="170px" w="170px" src={user.photo} />
+                <Avatar h="170px" w="170px" src={user.profPic} />
               </Flex>
               <Box>
                 <Text mt="9" fontSize="xl" fontWeight="semibold" color="white">
@@ -70,7 +69,7 @@ export default function Cv() {
                 }
               </Box>
               {
-                (user.award != null) && (
+                (user.award != null && user.award.length > 0) && (
                   <>
                     <Divider mt="6" orientation="horizontal" />
                     <Box>
@@ -122,7 +121,7 @@ export default function Cv() {
                 </Box>
               </Flex>
               {
-                (user.experience != null) && (
+                (user.experience != null && user.experience.length > 0) && (
                   <>
                     <Divider mt="10" orientation="horizontal" />
                     <Box>
@@ -139,7 +138,7 @@ export default function Cv() {
                 )
               }
               {
-                (user.education != null) && (
+                (user.education != null && user.education.length > 0) && (
                   <>
                     <Divider mt="6" orientation="horizontal" />
                     <Box>
