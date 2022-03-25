@@ -6,7 +6,7 @@ import { Navbar, SearchBar, Footer } from "../components"
 import { ProfileList } from "../components/profile"
 import { JobList } from "../components/job"
 
-import { useToast } from "@chakra-ui/react"
+import { useToast, useMediaQuery } from "@chakra-ui/react"
 import { Flex, Text, Box, Button, Spacer, Icon } from "@chakra-ui/react"
 
 export default function Dashboard() {
@@ -97,6 +97,8 @@ export default function Dashboard() {
     if (workers != null) setFilteredWorkers(workers.filter(filterWorkers))
   }, [ keyword, category, experience, workers ])
 
+  const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
+
   return (
     <>
       <Navbar />
@@ -114,7 +116,7 @@ export default function Dashboard() {
               (user != null && user.role == "client") && (
                 <>
                   <Spacer></Spacer>
-                  <Button pl="10" pr="10" bgColor="#FF8450" borderRadius="full"
+                  <Button pl={isBigScreen && "10"} pr={isBigScreen && "10"} bgColor="#FF8450" borderRadius="full"
                     onClick={() => window.location.href="/job/new"}>
                     <Icon mr="2" as={AiOutlinePlus} />
                     <Text fontSize="sm" fontWeight="bold">Pekerjaan Baru</Text>
@@ -137,39 +139,39 @@ export default function Dashboard() {
           }
         </Flex>
       </Flex>
-        {
-          (user != null && user.role == "client") ? (
-            <>
-              {
-                (filteredWorkers != null) && (
-                  <>
-                    <Flex justifyContent="center">
-                      <Box mt="8" w="85%">
-                        <Text fontSize="xl" fontWeight="semibold">Talent Terbaik</Text>
-                        <ProfileList profiles={filteredWorkers} />
-                      </Box>
-                    </Flex>
-                  </>
-                )
-              }
-            </>
-          ) : (
-            <>
-              {
-                (filteredJobs != null) && (
-                  <>
-                    <Flex justifyContent="center">
-                      <Box mt="8" w="85%">
-                        <Text fontSize="xl" fontWeight="semibold">Penawaran terbaik</Text>
-                        <JobList jobs={filteredJobs} />
-                      </Box>
-                    </Flex>
-                  </>
-                )
-              }
-            </>
-          )
-        }
+      {
+        (user != null && user.role == "client") ? (
+          <>
+            {
+              (filteredWorkers != null) && (
+                <>
+                  <Flex justifyContent="center">
+                    <Box mt="8" w="85%">
+                      <Text fontSize="xl" fontWeight="semibold">Talent Terbaik</Text>
+                      <ProfileList profiles={filteredWorkers} />
+                    </Box>
+                  </Flex>
+                </>
+              )
+            }
+          </>
+        ) : (
+          <>
+            {
+              (filteredJobs != null) && (
+                <>
+                  <Flex justifyContent="center">
+                    <Box mt="8" w="85%">
+                      <Text fontSize="xl" fontWeight="semibold">Penawaran terbaik</Text>
+                      <JobList jobs={filteredJobs} />
+                    </Box>
+                  </Flex>
+                </>
+              )
+            }
+          </>
+        )
+      }
       <Footer />
     </>
   )

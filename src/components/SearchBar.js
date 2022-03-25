@@ -4,17 +4,9 @@ import { BiSearch } from "react-icons/bi"
 import { GrFormClose } from "react-icons/gr"
 
 import { useMediaQuery, useDisclosure } from "@chakra-ui/react"
-import { HStack, Flex, Icon, Box, Select, Button } from "@chakra-ui/react"
+import { HStack, Flex, Icon, Box, Select, Text, Button } from "@chakra-ui/react"
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react"
-import {
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-} from '@chakra-ui/react'
+import { Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton } from '@chakra-ui/react'
 
 export default function SearchBar({ workers, keyword, setKeyword, location, setLocation, type, setType, salary, setSalary, category, setCategory, experience, setExperience }) {
   const handleKeywordChanges = (e) => setKeyword(e.target.value)
@@ -112,6 +104,7 @@ export default function SearchBar({ workers, keyword, setKeyword, location, setL
               <Drawer placement="bottom" onClose={onClose} isOpen={isOpen}>
                 <DrawerOverlay />
                 <DrawerContent>
+                  <DrawerCloseButton />
                   <DrawerHeader borderBottomWidth="1px">Filter</DrawerHeader>
                   <DrawerBody>
                   {
@@ -183,7 +176,8 @@ export default function SearchBar({ workers, keyword, setKeyword, location, setL
                   </InputGroup>
                 </Flex>
                 <Button borderRadius="50" bgColor="#FF8450" onClick={onOpen}>
-                  Filter
+                  <Text fontSize="sm" fontWeight="bold">Filter</Text>
+                  {/* Filter */}
                 </Button>
               </HStack>
             </>
