@@ -4,7 +4,7 @@ import { Star } from "../review"
 import { Payment } from ".." 
 import { ProfileBadges } from "."
 
-import { useDisclosure, useToast } from "@chakra-ui/react"
+import { useDisclosure, useToast, useMediaQuery } from "@chakra-ui/react"
 import { Box, Flex, Spacer, Avatar, HStack, Link, Text, Button } from "@chakra-ui/react"
 
 export default function ProfileCard({ worker, job }) {
@@ -15,6 +15,8 @@ export default function ProfileCard({ worker, job }) {
     variant: "solid",
     isClosable: true
   })
+
+  const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
 
   return (
     <>
@@ -27,14 +29,21 @@ export default function ProfileCard({ worker, job }) {
         }}>
         <Flex>
           <Flex p="2">
-            <Avatar src={worker.profPic} h="95px" w="95px" borderRadius="md" />
+            <Avatar src={worker.profPic} h="115px" w="115px" borderRadius="md" />
           </Flex>
-          <Box ml="2" mt="2">
+          <Box ml="2" mt="1">
+            {
+              !isBigScreen &&
+                <ProfileBadges profile={worker} />
+            }
             <HStack>
               <Link href={"/profile/"+worker._id} isExternal>
                 <Text fontSize="lg" fontWeight="semibold">{worker.name}</Text>
               </Link>
-              <ProfileBadges profile={worker} />
+              {
+                isBigScreen &&
+                  <ProfileBadges profile={worker} />
+              }
             </HStack>
             <Text fontSize="md" color="gray.600">{worker.category}</Text>
             {
