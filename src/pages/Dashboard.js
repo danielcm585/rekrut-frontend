@@ -39,7 +39,6 @@ export default function Dashboard() {
           status: "error"
         })
       })
-      console.log("FETCH GENERAL API")
     }
     
     if (user != null && user.role == "client") {
@@ -59,7 +58,6 @@ export default function Dashboard() {
           status: "error"
         })
       })
-      console.log("FETCH CLIENT API")
     }
     
     document.title = "Rekrut.id | Dashboard"
@@ -74,8 +72,8 @@ export default function Dashboard() {
     return ((job.location == location || location == "Semua lokasi") &&
             (job.jobType == type || type == "Semua tipe pekerjaan") &&
             (parseInt(job.salary) >= parseInt(salary) || salary == "Semua range upah") && 
-            (job.title.toLowerCase().includes(keyword.toLowerCase()) ||
-            job.author.name.toLowerCase().includes(keyword.toLowerCase())))
+            (job.title != null && job.title.toLowerCase().includes(keyword.toLowerCase()) ||
+            job.author.name != null &&  job.author.name.toLowerCase().includes(keyword.toLowerCase())))
   }
   const sortJobs = (jobA, jobB) => jobB.salary-jobA.salary
 
@@ -84,7 +82,7 @@ export default function Dashboard() {
   const filterWorkers = (worker) => {
     return ((worker.category == category || category == "Semua kategori pekerjaan") && 
             (worker.review.length >= parseInt(experience) || experience == "Semua range pengalaman") && 
-            (worker.name.toLowerCase().includes(keyword.toLowerCase()) || 
+            (worker.name != null && worker.name.toLowerCase().includes(keyword.toLowerCase()) || 
             worker.skill != null && worker.skill.toLowerCase().includes(keyword.toLowerCase())))
   }
 
