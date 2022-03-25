@@ -55,7 +55,9 @@ export default function ProfileCard({ worker, job }) {
                     })
                     onOpen()
                   }}>
-                  Pilih
+                  {
+                    (job.status != "HIRING") ? "Tunggu" : "Pilih"
+                  }
                 </Button>
               </>
             )

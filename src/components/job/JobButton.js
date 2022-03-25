@@ -126,7 +126,7 @@ export default function JobButton({ user, job, canReview }) {
                   </Flex>
                 </>
               ) : (
-                <ConfirmButton action="Selesai" isDisabled={true} />
+                <ConfirmButton action="Tunggu" isDisabled={true} />
               )
             }
           </>
@@ -147,7 +147,7 @@ export default function JobButton({ user, job, canReview }) {
                     )} />
                 </>
               ) : (
-                <ConfirmButton action="Selesai" isDisabled={true} />
+                <ConfirmButton action="Tunggu" isDisabled={true} />
               )
             }
           </>
@@ -162,7 +162,7 @@ export default function JobButton({ user, job, canReview }) {
                   {
                     canReview && (
                       <Button pl="10" pr="10" borderRadius="50" bgColor="#FF8450" isDisabled>
-                        <Text fontSize="sm" fontWeight="bold">Review</Text>
+                        <Text fontSize="sm" fontWeight="bold">Tunggu</Text>
                       </Button>
                     )
                   }
