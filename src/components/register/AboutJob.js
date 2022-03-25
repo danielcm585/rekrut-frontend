@@ -1,16 +1,19 @@
 import React from "react"
 
+import { useMediaQuery } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
-import { Flex, Text, Input, Button, SimpleGrid, Textarea, VStack } from "@chakra-ui/react"
+import { Flex, Text, Button, SimpleGrid, Textarea, VStack } from "@chakra-ui/react"
 
 export default function RegisterPage4({ role, setPage, experience, setExperience, education, setEducation, award, setAward }) {
   const handleExperienceChanges = (e) => setExperience(e.target.value)
   const handleEducationChanges = (e) => setEducation(e.target.value)
   const handleAwardChanges = (e) => setAward(e.target.value)
 
+  const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
+
   return (
     <>
-      <Flex mt="6%" justifyContent="center">
+      <Flex mt={isBigScreen ? "6%" : "5"} justifyContent="center">
         <Flex w="100%" direction="column">
           <Flex justifyContent="center">
             <VStack>
@@ -20,7 +23,7 @@ export default function RegisterPage4({ role, setPage, experience, setExperience
             </VStack>
           </Flex>
           <Flex justifyContent="center">
-            <Flex w="30%" p="10" pt="2" direction="column">
+            <Flex w={isBigScreen ? "30%" : "100%"} p="10" pt="2" direction="column">
               <FormControl mt="5">
                 <FormLabel>
                   <Text fontSize="1xl" fontWeight="bold">Pengalaman</Text>

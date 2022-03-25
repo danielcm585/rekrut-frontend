@@ -2,7 +2,7 @@ import React from "react"
 
 import { FileUpload } from "../../components"
 
-import { useToast } from "@chakra-ui/react"
+import { useToast, useMediaQuery } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
 import { Flex, Text, Input, Button, SimpleGrid, VStack, Select, Textarea } from "@chakra-ui/react"
 
@@ -17,9 +17,11 @@ export default function AboutProfile({ role, setPage, category, setCategory, ski
     isClosable: true
   })
 
+  const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
+
   return (
     <>
-      <Flex mt="6%" justifyContent="center">
+      <Flex mt={isBigScreen ? "6%" : "5"} justifyContent="center">
         <Flex w="100%" direction="column">
           <Flex justifyContent="center">
             <VStack>
@@ -35,7 +37,7 @@ export default function AboutProfile({ role, setPage, category, setCategory, ski
             </VStack>
           </Flex>
           <Flex justifyContent="center">
-            <Flex w="30%" p="10" pt="2" direction="column">
+            <Flex w={isBigScreen ? "30%" : "100%"} p="10" pt="2" direction="column">
               <FormControl mt="5">
                 <FormLabel>
                   <Text fontSize="1xl" fontWeight="bold">Bio</Text>

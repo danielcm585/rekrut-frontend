@@ -31,7 +31,7 @@ export default function JobCard({ job, preview, worker }) {
         onClick={() => window.location.href="/job/"+job._id}>
         <Flex>
           <Flex p="2">
-            <Avatar h="95px" w="95px" borderRadius="md" src={job.author.profPic} />
+            <Avatar h="115px" w="115px" borderRadius="md" src={job.author.profPic} />
           </Flex>
           <Box ml="2" mt="2">
             {
@@ -69,7 +69,7 @@ export default function JobCard({ job, preview, worker }) {
           (!preview) ? (
             <>
               <HStack mt="1">
-                <Box>
+                <Box ml="2">
                   <HStack>
                     <Icon as={MdLocationOn} color="gray.600" />
                     <Text color="gray.600">Lokasi</Text>
@@ -83,7 +83,7 @@ export default function JobCard({ job, preview, worker }) {
                     <Text color="gray.600">Salary</Text>
                   </HStack>
                 </Box>
-                <Box pl="7">
+                <Box pl="38px">
                   <Text fontWeight="semibold">{job.location}</Text>
                   <Text mt="1" fontWeight="semibold">{job.jobType}</Text>
                   <Text mt="1" fontWeight="semibold">{parseAmount(job.salary)}</Text>

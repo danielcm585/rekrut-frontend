@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import { useToast } from "@chakra-ui/react"
+import { useToast, useMediaQuery } from "@chakra-ui/react"
 import { Checkbox, Flex, Text, Box, SimpleGrid, Button, VStack, Link } from "@chakra-ui/react"
 
 export default function RegisterPage5({ role, setPage, email, password, name, phone, bank, bio, category, profPic, website, skill, experience, education, award }) {
@@ -14,9 +14,11 @@ export default function RegisterPage5({ role, setPage, email, password, name, ph
     isClosable: true
   })
 
+  const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
+
   return (
     <>
-      <Flex mt="6%" justifyContent="center">
+      <Flex mt={isBigScreen ? "6%" : "5"} justifyContent="center">
         <Flex w="100%" direction="column">
           <Flex justifyContent="center">
             <VStack>
@@ -32,7 +34,7 @@ export default function RegisterPage5({ role, setPage, email, password, name, ph
             </VStack>
           </Flex>
           <Flex justifyContent="center">
-            <Flex w="30%" p="10" pt="2" direction="column">
+            <Flex w={isBigScreen ? "30%" : "100%"} p="10" pt="2" direction="column">
               <Box mt="5">  
                 <Text fontSize="1xl" fontWeight="bold">Syarat dan Ketentuan</Text>
                 {"Selamat datang di platform pencari kerja digital Rekrut.id. Ini adalah syarat dan ketentuan yang berlaku dalam penggunaan platform kami yang dapat diakses "}

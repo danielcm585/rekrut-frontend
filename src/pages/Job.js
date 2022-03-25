@@ -5,11 +5,11 @@ import { MdLocationOn, MdWork } from "react-icons/md"
 import { FaMoneyBillWave } from "react-icons/fa"
 
 import { Navbar, Footer, SearchBar } from "../components"
-import { JobList, JobButton, JobBadges } from "../components/job"
+import { JobButton, JobBadges } from "../components/job"
 import { ProfileList } from "../components/profile"
 import { Star } from "../components/review"
 
-import { useToast } from "@chakra-ui/react"
+import { useToast, useMediaQuery } from "@chakra-ui/react"
 import { Avatar, Box, Flex, HStack, Link, Spacer, Text, Icon, SimpleGrid } from "@chakra-ui/react"
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react"
 
@@ -74,6 +74,8 @@ export default function Job() {
     if (user != null && user.role != "client") return
     if (registrants != null) setFilteredRegistrants(registrants.filter(filterWorkers))
   }, [ keyword, category, experience, registrants ])
+
+  const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
   
   if (job == null) return <></>
   return (
@@ -84,12 +86,19 @@ export default function Job() {
           <Flex>
             <Flex>
               <Flex p="2" pl="0">
-                <Avatar h="95px" w="95px" borderRadius="md" src={job.author.profPic} />
+                <Avatar h="115px" w="115px" borderRadius="md" src={job.author.profPic} />
               </Flex>
-              <Box ml="2" mt="1">
+              <Box ml="2" mt={isBigScreen ? "1" : "2"}>
+                {
+                  !isBigScreen &&
+                    <JobBadges job={job} />
+                }
                 <HStack>
                   <Text fontSize="xl" fontWeight="semibold">{job.title}</Text>
-                  <JobBadges job={job} />
+                  {
+                    isBigScreen &&
+                      <JobBadges job={job} />
+                  }
                 </HStack>
                 <Flex>
                   <Link href={"/profile/"+job.author._id}>

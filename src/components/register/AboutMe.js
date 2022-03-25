@@ -1,6 +1,6 @@
 import React from "react"
 
-import { useToast } from "@chakra-ui/react"
+import { useToast, useMediaQuery } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
 import { Flex, Text, Input, Button, SimpleGrid, VStack } from "@chakra-ui/react"
 
@@ -16,9 +16,11 @@ export default function AboutMe({ role, setPage, name, setName, phone, setPhone,
     isClosable: true
   })
 
+  const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
+
   return (
     <>
-      <Flex mt="6%" justifyContent="center">
+      <Flex mt={useMediaQuery ? "6%" : "5"} justifyContent="center">
         <Flex w="100%" direction="column">
           <Flex justifyContent="center">
             <VStack>
@@ -34,7 +36,7 @@ export default function AboutMe({ role, setPage, name, setName, phone, setPhone,
             </VStack>
           </Flex>
           <Flex justifyContent="center">
-            <Flex w="30%" p="10" pt="2" direction="column">
+            <Flex w={isBigScreen ? "30%" : "100%"} p="10" pt="2" direction="column">
               <FormControl mt="5">
                 <FormLabel>
                   <Text fontSize="1xl" fontWeight="bold">Nama</Text>
