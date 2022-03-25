@@ -30,7 +30,7 @@ export default function JobCard({ job, preview, worker }) {
         <HStack w="100%">
           <Flex w="50%">
             <Flex p="2">
-              <Avatar h="95" w="95" borderRadius="md" src={job.author.profPic} />
+              <Avatar h="95px" w="95px" borderRadius="md" src={job.author.profPic} />
             </Flex>
             <Box ml="2" mt="2">
               <HStack spacing="2">

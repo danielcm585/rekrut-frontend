@@ -12,7 +12,7 @@ export default function ReviewCard({ review }) {
         _hover={{ bgColor:"gray.50" }}>
         <Flex>
           <Flex p="2">
-            <Avatar h="95" w="95" borderRadius="md" src={review.author.profPic} />
+            <Avatar h="95px" w="95px" borderRadius="md" src={review.author.profPic} />
           </Flex>
           <Box ml="2" mt="2">
             <Flex>
