@@ -112,12 +112,12 @@ export default function SearchBar({ workers, keyword, setKeyword, location, setL
               <Drawer placement="bottom" onClose={onClose} isOpen={isOpen}>
                 <DrawerOverlay />
                 <DrawerContent>
-                  <DrawerHeader borderBottomWidth='1px'>Basic Drawer</DrawerHeader>
+                  <DrawerHeader borderBottomWidth="1px">Filter</DrawerHeader>
                   <DrawerBody>
                   {
                     workers ? (
                       <>
-                        <Select variant="outline" borderColor="black" 
+                        <Select mt="3" variant="outline" borderColor="black" 
                           value={category} onChange={handleCategoryChanges}>
                           <option value="Semua kategori pekerjaan">Semua kategori pekerjaan</option>
                           <option value="Design and Creative">Design and Creative</option>
@@ -130,7 +130,7 @@ export default function SearchBar({ workers, keyword, setKeyword, location, setL
                           <option value="Speaking">Speaking</option>
                           <option value="Others">Others</option>
                         </Select>
-                        <Select mt="3" variant="outline" borderColor="black" 
+                        <Select mb="100px" mt="3" variant="outline" borderColor="black" 
                           value={experience} onChange={handleExperienceChanges}>
                           <option value="Semua range pengalaman">Semua range pengalaman</option>
                           <option value={1}>≥ 1</option>
@@ -142,7 +142,7 @@ export default function SearchBar({ workers, keyword, setKeyword, location, setL
                       </>
                     ) : (
                       <>
-                        <Select variant="outline" borderColor="black" 
+                        <Select mt="3" variant="outline" borderColor="black" 
                           value={location} onChange={handleLocationChanges}>
                           <option value="Semua lokasi">Semua lokasi</option>
                           <option value="Jakarta">Jakarta</option>
@@ -157,7 +157,7 @@ export default function SearchBar({ workers, keyword, setKeyword, location, setL
                           <option value="Full-project">Full-project</option>
                           <option value="Contract">Contract</option>
                         </Select>
-                        <Select mt="3" variant="outline" borderColor="black" 
+                        <Select mb="100px" mt="3" variant="outline" borderColor="black" 
                           value={salary} onChange={handleSalaryChanges}>
                           <option value="Semua range upah">Semua range upah</option>
                           <option value={1000000}>≥ IDR 1.000.000,00</option>

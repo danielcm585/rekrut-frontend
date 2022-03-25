@@ -84,12 +84,11 @@ export default function ProfileDetails({ user, me, client }) {
                 <Spacer></Spacer>
                 {
                   isBigScreen ? (
-                    <Button pl="8" pr="8" variant="ghost" borderRadius="50"
-                      onClick={() => onOpen()}>
+                    <Button pl="8" pr="8" variant="ghost" borderRadius="50" onClick={onOpen}>
                       Edit Profil
                     </Button>
                   ) : (
-                    <IconButton variant="ghost" isRounded icon={<FaEdit />} />
+                    <IconButton variant="ghost" isRounded icon={<FaEdit />} onClick={onOpen} />
                   )
                 }
               </>

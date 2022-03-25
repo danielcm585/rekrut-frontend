@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react"
 import { SearchBar } from ".."
 import { JobList } from "."
 
-import { useToast } from "@chakra-ui/react"
+import { useToast, useMediaQuery } from "@chakra-ui/react"
 import { Text, Flex } from "@chakra-ui/react"
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react"
 
@@ -68,9 +68,11 @@ export default function ClientJobs({ user }) {
     if (history != null) setFilteredHistory(history.filter(filterJobs))
   }, [ keyword, location, type, salary, waitingConf, mine, onProgress, inReview, history ])
 
+  const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
+
   return (
     <>
-      <Tabs mt="5" isFitted>
+      <Tabs mt={isBigScreen ? "5" : "0"} isFitted>
         <TabList>
           <Tab>Mencari pekerja</Tab>
           <Tab>Menunggu konfirmasi</Tab>
