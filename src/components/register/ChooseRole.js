@@ -18,7 +18,7 @@ export default function ChooseRole({ setRole, setPage }) {
       <Flex justifyContent="center">
         <Flex w={isBigScreen ? "45%" : "100%"} p="10" mt={isBigScreen ? "6%" : "5"} direction="column">
           <Flex justifyContent="center">
-            <Text fontSize="3xl" fontWeight="bold">Halo, Apa Role Anda?</Text>
+            <Text align="center" fontSize="3xl" fontWeight="bold">Halo, Apa Role Anda?</Text>
           </Flex>
           <Box mt="50">
             <Grid templateColumns="repeat(2, 1fr)" gap={isBigScreen ? "20" : "2"}>

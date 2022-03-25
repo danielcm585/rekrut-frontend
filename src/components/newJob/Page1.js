@@ -1,6 +1,6 @@
 import React from "react"
 
-import { useToast } from "@chakra-ui/react"
+import { useToast, useMediaQuery } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
 import { Flex, VStack, Text, Input, Button, SimpleGrid, Select } from "@chakra-ui/react"
 
@@ -17,19 +17,21 @@ export default function Page1({ setPage, title, setTitle, category, setCategory,
     isClosable: true
   })
 
+  const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
+
   return (
     <>
       <Flex justifyContent="center">
-        <Flex mt="2%" w="100%" direction="column">
+        <Flex mt={isBigScreen ? "2%" : "5"} w="100%" direction="column">
           <Flex justifyContent="center">
             <VStack>
               <Text fontSize="1xl" fontWeight="semibold" color="#FF8450">01/02</Text>
               <Text fontSize="2xl" fontWeight="semibold" color="#FF8450">Informasi Pekerjaan</Text>
-              <Text fontSize="1xl">Kami akan mengumpulkan informasi-informasi umum mengenai diri Anda</Text>
+              <Text align="center" fontSize="1xl">Kami akan mengumpulkan informasi-informasi umum mengenai diri Anda</Text>
             </VStack>
           </Flex>
           <Flex justifyContent="center">
-            <Flex w="30%" p="10" pt="2" direction="column">
+            <Flex w={isBigScreen ? "30%" : "100%"} p="10" pt="2" direction="column">
               <FormControl mt="5">
                 <FormLabel>
                   <Text fontSize="1xl" fontWeight="bold">Nama Pekerjaan</Text>

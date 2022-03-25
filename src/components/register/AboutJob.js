@@ -19,7 +19,7 @@ export default function RegisterPage4({ role, setPage, experience, setExperience
             <VStack>
               <Text fontSize="1xl" fontWeight="semibold" color="#FF8450">03/04</Text>
               <Text fontSize="2xl" fontWeight="semibold" color="#FF8450">Buat CV</Text>
-              <Text fontSize="1xl">Kami akan menyusun CV anda secara otomatis</Text>
+              <Text align="center" fontSize="1xl">Kami akan menyusun CV anda secara otomatis</Text>
             </VStack>
           </Flex>
           <Flex justifyContent="center">

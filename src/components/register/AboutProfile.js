@@ -33,7 +33,7 @@ export default function AboutProfile({ role, setPage, category, setCategory, ski
                 }
               </Text>
               <Text fontSize="2xl" fontWeight="semibold" color="#FF8450">Ceritakan Tentang Diri Anda</Text>
-              <Text fontSize="1xl">Keunikan anda dapat memudahkan pencari kerja menemukan anda.</Text>
+              <Text align="center" fontSize="1xl">Keunikan anda dapat memudahkan pencari kerja menemukan anda.</Text>
             </VStack>
           </Flex>
           <Flex justifyContent="center">

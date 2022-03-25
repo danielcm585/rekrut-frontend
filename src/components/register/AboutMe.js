@@ -32,7 +32,7 @@ export default function AboutMe({ role, setPage, name, setName, phone, setPhone,
                 }
               </Text>
               <Text fontSize="2xl" fontWeight="semibold" color="#FF8450">Informasi Umum</Text>
-              <Text fontSize="1xl">Kami akan mengumpulkan informasi umum mengenai diri Anda</Text>
+              <Text align="center" fontSize="1xl">Kami akan mengumpulkan informasi umum mengenai diri Anda</Text>
             </VStack>
           </Flex>
           <Flex justifyContent="center">
