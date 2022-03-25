@@ -41,12 +41,6 @@ export default function MyProfile() {
       })
     })
   }, [])
-
-  // useEffect(() => {
-  //   if (profile == null) return
-  //   if (profile.role == "worker") document.title = profile.name + " | " + profile.category
-  //   else document.title = profile.name
-  // }, [ profile ])
   
   if (profile == null) return <></>
   return (

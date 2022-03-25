@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react"
 
-import { FaCheckCircle, FaRegHandshake, FaRegHandPointRight } from "react-icons/fa"
-import { IoMdCloseCircle } from "react-icons/io"
-import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai"
 import { MdDone, MdDoneAll, MdClose, MdOutlineNotificationImportant, MdOutlineNotificationsNone } from "react-icons/md"
+import { FaRegHandshake } from "react-icons/fa"
 import { ImPointRight } from "react-icons/im" 
 
 import { useToast } from "@chakra-ui/react"

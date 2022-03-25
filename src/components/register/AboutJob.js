@@ -1,6 +1,5 @@
 import React from "react"
 
-import { useToast } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
 import { Flex, Text, Input, Button, SimpleGrid, Textarea, VStack } from "@chakra-ui/react"
 
@@ -8,12 +7,6 @@ export default function RegisterPage4({ role, setPage, experience, setExperience
   const handleExperienceChanges = (e) => setExperience(e.target.value)
   const handleEducationChanges = (e) => setEducation(e.target.value)
   const handleAwardChanges = (e) => setAward(e.target.value)
-
-  const toast = useToast({
-    position: "top",
-    variant: "solid",
-    isClosable: true
-  })
 
   return (
     <>
