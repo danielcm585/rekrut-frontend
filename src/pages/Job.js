@@ -83,8 +83,8 @@ export default function Job() {
       <Navbar />
       <Flex mt="10" justifyContent="center">
         <Flex w="85%" direction="column">
-          <Flex>
-            <Flex>
+          <Flex w="100%">
+            <Flex w="100%">
               <Flex p="2" pl="0">
                 <Avatar h="115px" w="115px" borderRadius="md" src={job.author.profPic} />
               </Flex>
@@ -115,27 +115,36 @@ export default function Job() {
               </Box>
             </Flex>
             <Spacer></Spacer>
-            <JobButton user={user} job={job} canReview={canReview} />
+            {
+              isBigScreen && 
+                <JobButton user={user} job={job} canReview={canReview} />
+            }
           </Flex>
-          <Flex>
-            <SimpleGrid columns="2" spacing="4">
-              <HStack mt="8">
+          <HStack mt="5">
+            <Box ml="2">
+              <HStack>
                 <Icon as={MdLocationOn} color="gray.600" />
                 <Text color="gray.600">Lokasi</Text>
               </HStack>
-              <Text mt="8" fontWeight="semibold">{job.location}</Text>
-              <HStack>
+              <HStack mt="1">
                 <Icon as={MdWork} color="gray.600" />
                 <Text color="gray.600">Job Type</Text>
               </HStack>
-              <Text fontWeight="semibold">{job.jobType}</Text>
-              <HStack>
+              <HStack mt="1">
                 <Icon as={FaMoneyBillWave} color="gray.600" />
                 <Text color="gray.600">Salary</Text>
               </HStack>
-              <Text fontWeight="semibold">{parseAmount(job.salary)}</Text>
-            </SimpleGrid>
-          </Flex>
+            </Box>
+            <Box pl="38px">
+              <Text fontWeight="semibold">{job.location}</Text>
+              <Text mt="1" fontWeight="semibold">{job.jobType}</Text>
+              <Text mt="1" fontWeight="semibold">{parseAmount(job.salary)}</Text>
+            </Box>
+          </HStack>
+          {
+            !isBigScreen && 
+              <JobButton user={user} job={job} canReview={canReview} />
+          }
           {
             (user == null || user.role == "worker") ? (
               <>
