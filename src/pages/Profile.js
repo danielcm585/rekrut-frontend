@@ -5,7 +5,7 @@ import { Footer, Navbar } from "../components"
 import { ProfileDetails } from "../components/profile"
 import { ReviewList } from "../components/review"
 
-import { useToast } from "@chakra-ui/react"
+import { useToast, useMediaQuery } from "@chakra-ui/react"
 import { Box, Flex, Text } from "@chakra-ui/react"
 
 export default function Profile() {
@@ -47,13 +47,15 @@ export default function Profile() {
     else document.title = user.name
   }, [ user ])
 
+  const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
+
   if (user == null) return <></>
   return (
     <>
       <Navbar />
       <Flex w="100%">
         <Flex w="100%" justifyContent="center">
-          <Flex w="80%" pt="10" pb="10">
+          <Flex w="80%" pt={isBigScreen ? "10" : "5"} pb="10">
             <ProfileDetails user={user} client={me != null && me.role == "client"} />
           </Flex>
         </Flex>

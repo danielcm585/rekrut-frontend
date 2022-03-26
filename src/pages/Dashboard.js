@@ -103,7 +103,7 @@ export default function Dashboard() {
     <>
       <Navbar />
       <Flex justifyContent="center">
-        <Flex mt="10" w="85%" direction="column">
+        <Flex mt={isBigScreen ? "10" : "5"} w="85%" direction="column">
           <Flex mb="5">
             <Text mb="3" fontSize="2xl" fontWeight="semibold">
               {

@@ -81,7 +81,7 @@ export default function Job() {
   return (
     <>
       <Navbar />
-      <Flex mt="10" justifyContent="center">
+      <Flex mt={isBigScreen ? "10" : "5"} justifyContent="center">
         <Flex w="85%" direction="column">
           <Flex w="100%">
             <Flex w="100%">

@@ -25,7 +25,7 @@ export default function ProfileDetails({ user, me, client }) {
               {
                 isBigScreen ? 
                   <Avatar mr="5" h="165px" w="165px" src={user.profPic} borderRadius="lg" /> : 
-                  <Avatar mr="5" h="135px" w="135px" src={user.profPic} borderRadius="lg" />
+                  <Avatar mt="3" mr="5" h="135px" w="135px" src={user.profPic} borderRadius="lg" />
               }
               <Flex direction="column">
                 <Link href={"/profile/"+user.id} isExternal>
@@ -74,7 +74,6 @@ export default function ProfileDetails({ user, me, client }) {
                   }
                 </Box>
               )
-              // <Text mt="5">{user.bio}</Text>
             }
           </Flex>
           {
@@ -88,7 +87,7 @@ export default function ProfileDetails({ user, me, client }) {
                       Edit Profil
                     </Button>
                   ) : (
-                    <IconButton variant="ghost" isRounded icon={<FaEdit />} onClick={onOpen} />
+                    <IconButton variant="ghost" isRound icon={<FaEdit />} onClick={onOpen} />
                   )
                 }
               </>
