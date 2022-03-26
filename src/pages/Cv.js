@@ -6,8 +6,8 @@ import { IoMdGlobe } from "react-icons/io"
 
 import { Navbar } from "../components"
 
-import { Link, HStack, Icon, Spacer, Text, useToast, Divider } from "@chakra-ui/react"
-import { Avatar, Box, Flex } from "@chakra-ui/react"
+import { useToast, useMediaQuery } from "@chakra-ui/react"
+import { Link, HStack, Icon, Spacer, Text, Divider, Avatar, Box, Flex } from "@chakra-ui/react"
 
 export default function Cv() {
   const { id } = useParams()
@@ -47,6 +47,8 @@ export default function Cv() {
     document.title = "CV "+user.name
   }, [ user ])
 
+  const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
+
   if (user == null || user.role != "worker") return <></>
   return (
     <>
@@ -56,7 +58,7 @@ export default function Cv() {
           <Flex w="30%" pb="20" justifyContent="center" bg="#404040"> 
             <Flex mt="10" w="70%" direction="column">
               <Flex justifyContent="center">
-                <Avatar h="170px" w="170px" src={user.profPic} />
+                <Avatar h={isBigScreen ? "170px" : "100px"} w={isBigScreen ? "170px" : "100px"} src={user.profPic} />
               </Flex>
               <Box>
                 <Text mt="9" fontSize="xl" fontWeight="semibold" color="white">
@@ -88,14 +90,14 @@ export default function Cv() {
             </Flex>
           </Flex>
           <Flex w="70%" pb="20" justifyContent="center">
-            <Flex w="90%" mt="79" direction="column">
+            <Flex w="90%" mt={isBigScreen ? "79" : "39"} direction="column">
               <Flex w="100%">
                 <Box>
-                  <Text fontSize="4xl" fontWeight="bold" color="#404040">{user.name.toUpperCase()}</Text>
+                  <Text fontSize={isBigScreen ? "4xl" : "2xl"} fontWeight="bold" color="#404040">{user.name.toUpperCase()}</Text>
                   <Text fontSize="xl" color="#404040">{user.skill}</Text>
                 </Box>
                 <Spacer></Spacer>
-                <Box mt="3">
+                <Box mt={isBigScreen ? "3" : "2"}>
                   <Link href={"mailto:"+user.email} isExternal>
                     <HStack>
                       <Icon as={MdEmail} color="#404040" />
