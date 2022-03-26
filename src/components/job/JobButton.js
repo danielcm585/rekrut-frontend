@@ -172,7 +172,7 @@ export default function JobButton({ user, job, canReview }) {
                   </>
                 ) : (
                   <>
-                    <Flex>
+                    <Flex w="100%">
                       <ConfirmButton  action="Tolak" second={true} isLoading={isLoading}
                         isOpen={isConfirm2Open} setIsOpen={setIsConfirm2Open}
                         onClick={() => sendRequest(

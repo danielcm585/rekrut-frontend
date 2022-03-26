@@ -166,7 +166,7 @@ export default function SearchBar({ workers, keyword, setKeyword, location, setL
                 </DrawerContent>
               </Drawer>
               <HStack w="100%">
-                <Flex w="80%">
+                <Flex w="83%">
                   <InputGroup w="6000px">
                     <InputLeftElement children={<Icon ml="2" as={BiSearch} color="gray.600" />} />
                     <Input variant="flushed" borderColor="black" 
@@ -177,7 +177,6 @@ export default function SearchBar({ workers, keyword, setKeyword, location, setL
                 </Flex>
                 <Button borderRadius="50" bgColor="#FF8450" onClick={onOpen}>
                   <Text fontSize="sm" fontWeight="bold">Filter</Text>
-                  {/* Filter */}
                 </Button>
               </HStack>
             </>
