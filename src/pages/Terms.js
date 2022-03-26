@@ -6,15 +6,18 @@ import pp from "../data/policy"
 import { Footer, Navbar } from "../components"
 import { Paragraph } from "../components/terms"
 
-import { AccordionIcon, Box, Flex, TabPanel, Text } from "@chakra-ui/react"
+import { useMediaQuery } from "@chakra-ui/react"
+import { Box, Flex, TabPanel, Text } from "@chakra-ui/react"
 import { Tab, TabList, TabPanels, Tabs } from "@chakra-ui/react"
-import { Accordion, AccordionButton, AccordionItem, AccordionPanel } from "@chakra-ui/react"
+import { Accordion, AccordionButton, AccordionItem, AccordionIcon, AccordionPanel } from "@chakra-ui/react"
 
 export default function Terms() {
+  const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
+
   return (
     <>
       <Navbar />
-      <Flex mt="8" justifyContent="center">
+      <Flex mt={isBigScreen ? "8" : "5"} justifyContent="center">
         <Flex w="85%" direction="column"> 
           <Tabs>
             <TabList>
