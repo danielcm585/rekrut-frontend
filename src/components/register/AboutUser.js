@@ -3,11 +3,14 @@ import React from "react"
 import { PasswordInput } from ".."
 import { LoginImg } from "../../images"
 
-import { useToast, useMediaQuery } from "@chakra-ui/react"
+import { useToast, useMediaQuery, useColorMode } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
 import { Flex, Text, Input, Button, Link, Image } from "@chakra-ui/react"
 
 export default function AboutUser({ setPage, email, setEmail, password, setPassword, confPassword, setConfPassword }) {
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
+
   const handleEmailChanges = (e) => setEmail(e.target.value)
 
   const toast = useToast({

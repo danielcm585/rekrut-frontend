@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import { useToast } from "@chakra-ui/react"
+import { useToast, useColorMode } from "@chakra-ui/react"
 import { Button, Box, Flex, Text } from "@chakra-ui/react"
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from "@chakra-ui/react"
 import { ProfileCard } from "./profile"
@@ -8,7 +8,10 @@ import { ProfileCard } from "./profile"
 export default function Payment({ isOpen, onClose, job, worker }) {
   const parseAmount = (amount) => {
     return "IDR "+amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".") +",00"
-  }  
+  }
+
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
 
   const [ isLoading, setIsLoading ] = useState(false)
 

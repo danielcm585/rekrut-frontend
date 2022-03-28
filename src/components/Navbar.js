@@ -2,16 +2,17 @@ import React from "react"
 
 import { IoChevronDown } from "react-icons/io5"
 import { GiHamburgerMenu } from "react-icons/gi"
+import { FaSun, FaMoon } from "react-icons/fa"
 import { BiBell, BiLogOut, BiUser, BiEdit, BiStar, BiDetail, BiLogIn, BiReceipt } from "react-icons/bi"
 
 import { Notification } from "./";
 import { PasswordForm } from "./profile";
-
-import { useDisclosure, useToast, useMediaQuery, IconButton, Divider, Box } from "@chakra-ui/react";
-import { Avatar, Button, Flex, HStack, Spacer, Text, Link, Badge } from "@chakra-ui/react"
-import { Menu, MenuButton, MenuList, MenuItem, MenuDivider } from "@chakra-ui/react"
-import { Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton } from "@chakra-ui/react"
 import { Star } from "./review";
+
+import { useDisclosure, useToast, useMediaQuery, useColorMode } from "@chakra-ui/react";
+import { Avatar, Button, Flex, HStack, Spacer, Text, Link, Badge, IconButton, Divider, Box } from "@chakra-ui/react"
+import { Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton } from "@chakra-ui/react"
+import { Menu, MenuButton, MenuList, MenuItem, MenuDivider } from "@chakra-ui/react"
 
 export default function Navbar({ login, register }) {
   const user = JSON.parse(localStorage.getItem("user"))
@@ -63,6 +64,9 @@ export default function Navbar({ login, register }) {
     })
     window.location.href="/dashboard"
   }
+
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
 
   return (
     <>
@@ -165,6 +169,7 @@ export default function Navbar({ login, register }) {
             <Link href="/dashboard">
               <Text fontSize="2xl" fontWeight="bold">Rekrut.id</Text>
             </Link>
+            <IconButton ml="5" icon={isDark ? <FaSun /> : <FaMoon />} isRound variant="ghost" onClick={toggleColorMode} />
             <Spacer></Spacer>
             {
               (user != null) ? (
@@ -213,12 +218,12 @@ export default function Navbar({ login, register }) {
                       <>
                         <Flex>
                           <Link href="/register">
-                            <Text color={register ? "#FF8450" : "black"} as={register && "ins"}>Daftar</Text>
+                            <Text color={register && "#FF8450"} as={register && "ins"}>Daftar</Text>
                           </Link>
                         </Flex>
                         <Flex pl="8">
                           <Link href="/login">
-                            <Text color={login ? "#FF8450" : "black"} as={login && "ins"}>Masuk</Text>
+                            <Text color={login && "#FF8450"} as={login && "ins"}>Masuk</Text>
                           </Link>
                         </Flex>
                       </>

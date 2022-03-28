@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react"
 import { SearchBar } from ".."
 import { JobList } from "."
 
-import { useToast, useMediaQuery } from "@chakra-ui/react"
+import { useToast, useMediaQuery, useColorMode } from "@chakra-ui/react"
 import { Text, Flex } from "@chakra-ui/react"
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react"
 
@@ -13,6 +13,9 @@ export default function ClientJobs({ user }) {
     variant: "solid",
     isClosable: true
   })
+
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
 
   const [ mine, setMine ] = useState(null)
   const [ waitingConf, setWaitingConf ] = useState(null)

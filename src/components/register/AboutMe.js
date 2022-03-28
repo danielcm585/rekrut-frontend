@@ -1,10 +1,13 @@
 import React from "react"
 
-import { useToast, useMediaQuery } from "@chakra-ui/react"
+import { useToast, useMediaQuery, useColorMode } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
 import { Flex, Text, Input, Button, SimpleGrid, VStack } from "@chakra-ui/react"
 
 export default function AboutMe({ role, setPage, name, setName, phone, setPhone, bank, setBank, website, setWebsite }) {
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
+
   const handleNameChanges = (e) => setName(e.target.value)
   const handlePhoneChanges = (e) => setPhone(e.target.value)
   const handleBankChanges = (e) => setBank(e.target.value)

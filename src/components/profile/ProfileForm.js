@@ -2,12 +2,15 @@ import React, { useState } from "react"
 
 import { FileUpload } from "../../components"
 
-import { useToast } from "@chakra-ui/react"
+import { useToast, useColorMode } from "@chakra-ui/react"
 import { Button, Text, Input, Select, Textarea } from "@chakra-ui/react"
 import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react";
 import { Modal, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, ModalOverlay, ModalContent } from "@chakra-ui/react"
 
 export default function ProfileForm({ isOpen, onClose, user }) {
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
+
   const [ name, setName ] = useState(user.name)
   const handleNameChanges = (e) => setName(e.target.value)
 

@@ -4,11 +4,14 @@ import { Star } from "../review"
 import { Payment } from ".." 
 import { ProfileBadges } from "."
 
-import { useDisclosure, useToast, useMediaQuery } from "@chakra-ui/react"
+import { useDisclosure, useToast, useMediaQuery, useColorMode } from "@chakra-ui/react"
 import { Box, Flex, Spacer, Avatar, HStack, Link, Text, Button } from "@chakra-ui/react"
 
 export default function ProfileCard({ worker, job }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
 
   const toast = useToast({
     position: "top",
@@ -22,7 +25,7 @@ export default function ProfileCard({ worker, job }) {
     <>
       <Payment worker={worker} job={job} isOpen={isOpen} onClose={onClose} />
       <Box p="2" pr="4" mb="2" shadow="md" borderRadius="md"
-        _hover={{ bgColor:"gray.50" }}
+        _hover={{ bgColor:(isDark ? "#1D2330" : "gray.50") }}
         onClick={() => {
           if (job != null) return
           window.location.href = "/profile/"+worker._id

@@ -1,6 +1,6 @@
 import React from "react"
 
-import { useToast, useMediaQuery } from "@chakra-ui/react"
+import { useToast, useMediaQuery, useColorMode } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
 import { Flex, VStack, Text, Input, Button, SimpleGrid, Select } from "@chakra-ui/react"
 
@@ -16,6 +16,9 @@ export default function Page1({ setPage, title, setTitle, category, setCategory,
     variant: "solid",
     isClosable: true
   })
+
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
 
   const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
 

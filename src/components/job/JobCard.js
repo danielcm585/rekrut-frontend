@@ -6,10 +6,13 @@ import { FaMoneyBillWave } from "react-icons/fa"
 import { JobBadges } from "."
 import { Star } from "../review"
 
-import { useToast, useMediaQuery } from "@chakra-ui/react"
+import { useToast, useMediaQuery, useColorMode } from "@chakra-ui/react"
 import { Box, Button, HStack, Link, Spacer, Text, Flex, Icon, Avatar, SimpleGrid } from "@chakra-ui/react"
 
 export default function JobCard({ job, preview, worker }) {
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
+
   const parseAmount = (amount) => {
     return "IDR "+amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".")+",00";
   }
@@ -27,7 +30,7 @@ export default function JobCard({ job, preview, worker }) {
   if (!isBigScreen) return (
     <>
       <Box p="2" mb="2" shadow="md" borderRadius="md"
-        _hover={{ bgColor: "gray.50" }}
+        _hover={{ bgColor: (isDark ? "#1D2330" : "gray.50") }}
         onClick={() => window.location.href="/job/"+job._id}>
         <Flex>
           <Flex p="2">
@@ -134,7 +137,7 @@ export default function JobCard({ job, preview, worker }) {
   return (
     <>
       <Box p="2" mb="2" shadow="md" borderRadius="md"
-        _hover={{ bgColor: "gray.50" }}
+        _hover={{ bgColor: (isDark ? "#1D2330" : "gray.50") }}
         onClick={() => window.location.href="/job/"+job._id}>
         <HStack w="100%">
           <Flex w="50%">

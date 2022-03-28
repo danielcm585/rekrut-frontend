@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react"
 
 import { JobList } from "."
-import { ProfileCard } from "../profile"
 
-import { useToast } from "@chakra-ui/react"
-import { Button, Text, Flex } from "@chakra-ui/react"
+import { useToast, useColorMode } from "@chakra-ui/react"
+import { Button, Text } from "@chakra-ui/react"
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from "@chakra-ui/react"
 
 export default function ChooseJob({ isOpen, onClose, worker }) {
   const user = JSON.parse(localStorage.getItem("user"))
 
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
+  
   const toast = useToast({
     position: "top",
     variant: "solid",

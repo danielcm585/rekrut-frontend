@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { Navbar, PasswordInput } from "../components"
 import { LoginImg } from "../images"
 
-import { useToast, useMediaQuery } from "@chakra-ui/react"
+import { useToast, useMediaQuery, useColorMode } from "@chakra-ui/react"
 import { Flex, Text, Input, Button, Link, Image } from "@chakra-ui/react"
 import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react"
 
@@ -25,6 +25,9 @@ export default function Login() {
   })
 
   const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
+
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
 
   return (
     <>

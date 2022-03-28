@@ -2,10 +2,14 @@ import React from "react"
 
 import { ImStarEmpty, ImStarFull } from "react-icons/im"
 
+import { useColorMode } from "@chakra-ui/react"
 import { Flex, HStack, Icon, Text } from "@chakra-ui/react"
 
 export default function StarButton({ rating, setRating }) {
   const stars = [1,2,3,4,5]
+
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
 
   return (
     <>

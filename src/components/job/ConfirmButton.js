@@ -1,11 +1,14 @@
 import React from "react"
 
-import { useMediaQuery } from "@chakra-ui/react"
+import { useMediaQuery, useColorMode } from "@chakra-ui/react"
 import { Button, ButtonGroup, Text } from "@chakra-ui/react"
 import { Popover, PopoverTrigger, PopoverContent, PopoverHeader, PopoverBody, PopoverFooter, PopoverArrow, PopoverCloseButton, PopoverAnchor } from "@chakra-ui/react"
 
 export default function ConfirmButton({ action, second, isOpen, setIsOpen, isDisabled, isLoading, onClick }) {
   const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
+  
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
 
   return (
     <>

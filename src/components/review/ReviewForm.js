@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 import { StarButton } from "."
 
-import { useToast } from "@chakra-ui/react"
+import { useToast, useColorMode } from "@chakra-ui/react"
 import { Button, Text, Textarea } from "@chakra-ui/react"
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton } from "@chakra-ui/react"
 
@@ -20,6 +20,9 @@ export default function ReviewForm({ isOpen, onClose, job }) {
   })
 
   const [ isLoading, setIsLoading ] = useState(false)
+
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
 
   return (
     <>

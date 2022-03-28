@@ -4,7 +4,7 @@ import { MdDone, MdDoneAll, MdClose, MdOutlineNotificationImportant, MdOutlineNo
 import { FaRegHandshake } from "react-icons/fa"
 import { ImPointRight } from "react-icons/im" 
 
-import { useToast } from "@chakra-ui/react"
+import { useToast, useColorMode } from "@chakra-ui/react"
 import { Box, Button, HStack, Icon, Badge, Text } from "@chakra-ui/react"
 import { Modal, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, ModalOverlay, ModalContent } from "@chakra-ui/react"
 
@@ -45,6 +45,9 @@ export default function Notification({ isOpen, onClose }) {
     setNotification(user.notif.reverse())
   }, [ user ])
 
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
+
   if (notification == null) return <></>
   return (
     <>
@@ -73,7 +76,7 @@ export default function Notification({ isOpen, onClose }) {
                 )
                 return (
                   <Box p="2" mb="1" shadow="md" borderRadius="md" key={idx}
-                    _hover={{ bgColor: "gray.50" }} 
+                    _hover={{ bgColor: (isDark ? "#1D2330" : "gray.50") }} 
                     onClick={() => window.location.href=notif.url}>
                     <HStack pl="2">
                       <Icon boxSize="5" as={icon} />

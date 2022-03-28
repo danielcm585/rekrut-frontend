@@ -8,13 +8,16 @@ import { ProfileForm } from "./";
 import { ChooseJob } from "../job";
 import { Star } from "../review"
 
-import { IconButton, useDisclosure, useMediaQuery } from "@chakra-ui/react";
+import { IconButton, useDisclosure, useMediaQuery, useColorMode } from "@chakra-ui/react";
 import { Avatar, Box, Text, HStack, Spacer, Link, Icon, Button, Flex } from "@chakra-ui/react"
 
 export default function ProfileDetails({ user, me, client }) {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
+
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
 
   return (
     <>

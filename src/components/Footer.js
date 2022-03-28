@@ -3,11 +3,14 @@ import React from "react"
 import { GrMail, GrInstagram, GrLinkedin } from "react-icons/gr"
 import { SiWhatsapp } from "react-icons/si"
 
-import { useMediaQuery } from "@chakra-ui/react"
+import { useMediaQuery, useColorMode } from "@chakra-ui/react"
 import { Box, Flex, IconButton, Text } from "@chakra-ui/react"
 
 export default function Footer() {
   const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
+
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
 
   return (
     <>

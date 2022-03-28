@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import { useToast } from "@chakra-ui/react"
+import { useToast, useColorMode } from "@chakra-ui/react"
 import { InputGroup, Input, Button, FormLabel, Text } from "@chakra-ui/react"
 
 export default function FileUpload({ file, setFile }) {
@@ -9,6 +9,9 @@ export default function FileUpload({ file, setFile }) {
     variant: "solid",
     isClosable: true
   })
+
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
 
   const [ isLoading, setIsLoading ] = useState(false)
 

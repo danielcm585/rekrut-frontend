@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 import { PasswordInput } from "..";
 
-import { useToast } from "@chakra-ui/react"
+import { useToast, useColorMode } from "@chakra-ui/react"
 import { Button, Text, Input, Select, Textarea } from "@chakra-ui/react"
 import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/react";
 import { Modal, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, ModalOverlay, ModalContent } from "@chakra-ui/react"
@@ -10,6 +10,9 @@ import { Modal, ModalBody, ModalCloseButton, ModalFooter, ModalHeader, ModalOver
 export default function ProfileForm({ isOpen, onClose, user }) {
   const [ oldPassword, setOldPassword ] = useState()
   const handleOldPasswordChanges = (e) => setOldPassword(e.target.value)
+
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
   
   const [ password, setPassword ] = useState()
   const [ confPassword, setConfPassword ] = useState()

@@ -3,12 +3,15 @@ import React, { useRef } from "react"
 import { BiSearch } from "react-icons/bi"
 import { GrFormClose } from "react-icons/gr"
 
-import { useMediaQuery, useDisclosure } from "@chakra-ui/react"
+import { useMediaQuery, useDisclosure, useColorMode } from "@chakra-ui/react"
 import { HStack, Flex, Icon, Box, Select, Text, Button } from "@chakra-ui/react"
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react"
 import { Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton } from '@chakra-ui/react'
 
 export default function SearchBar({ workers, keyword, setKeyword, location, setLocation, type, setType, salary, setSalary, category, setCategory, experience, setExperience }) {
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
+
   const handleKeywordChanges = (e) => setKeyword(e.target.value)
   
   const handleLocationChanges = (e) => setLocation(e.target.value)

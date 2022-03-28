@@ -2,17 +2,15 @@ import React from "react"
 
 import { WorkerImg, ClientImg } from "../../images"
 
-import { useMediaQuery } from "@chakra-ui/react"
+import { useMediaQuery, useColorMode } from "@chakra-ui/react"
 import { Box, Button, Flex, Image, Text, Grid } from "@chakra-ui/react"
 
 export default function ChooseRole({ setRole, setPage }) {
   const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
 
-  // if (!isBigScreen) return (
-  //   <>
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
 
-  //   </>
-  // )
   return (
     <>
       <Flex justifyContent="center">

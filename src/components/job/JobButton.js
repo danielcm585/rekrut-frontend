@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { ConfirmButton } from "."
 import { ReviewForm } from "../review"
 
-import { useToast, useDisclosure, useMediaQuery } from "@chakra-ui/react"
+import { useToast, useDisclosure, useMediaQuery, useColorMode } from "@chakra-ui/react"
 import { Button, Flex, Text } from "@chakra-ui/react"
 
 export default function JobButton({ user, job, canReview }) {
@@ -51,7 +51,15 @@ export default function JobButton({ user, job, canReview }) {
 
   const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
 
-  if (user == null) return <></>
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
+
+  if (user == null) return (
+    <Button w={!isBigScreen && "100%"} pl="10" pr="10" borderRadius="50" bgColor="#FF8450" 
+      onClick={() => window.location.href="/login"}>
+      <Text fontSize="sm" fontWeight="bold">Login</Text>
+    </Button>
+  )
   return (
     <>
       <Flex w="100%" mt={!isBigScreen && "5"}>

@@ -6,7 +6,7 @@ import { Navbar, SearchBar, Footer } from "../components"
 import { ProfileList } from "../components/profile"
 import { JobList } from "../components/job"
 
-import { useToast, useMediaQuery } from "@chakra-ui/react"
+import { useToast, useMediaQuery, useColorMode } from "@chakra-ui/react"
 import { Flex, Text, Box, Button, Spacer, Icon } from "@chakra-ui/react"
 
 export default function Dashboard() {
@@ -98,6 +98,9 @@ export default function Dashboard() {
   }, [ keyword, category, experience, workers ])
 
   const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
+
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
 
   return (
     <>

@@ -1,6 +1,6 @@
 import React from "react"
 
-import { useMediaQuery } from "@chakra-ui/react"
+import { useMediaQuery, useColorMode } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
 import { Flex, Text, Button, SimpleGrid, Textarea, VStack } from "@chakra-ui/react"
 
@@ -10,6 +10,9 @@ export default function RegisterPage4({ role, setPage, experience, setExperience
   const handleAwardChanges = (e) => setAward(e.target.value)
 
   const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
+
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
 
   return (
     <>

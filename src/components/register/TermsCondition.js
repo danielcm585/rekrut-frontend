@@ -1,9 +1,12 @@
 import React, { useState } from "react"
 
-import { useToast, useMediaQuery } from "@chakra-ui/react"
+import { useToast, useMediaQuery, useColorMode } from "@chakra-ui/react"
 import { Checkbox, Flex, Text, Box, SimpleGrid, Button, VStack, Link } from "@chakra-ui/react"
 
 export default function RegisterPage5({ role, setPage, email, password, name, phone, bank, bio, category, profPic, website, skill, experience, education, award }) {
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
+
   const [ agree, setAgree ] = useState(false)
   
   const [ isLoading, setIsLoading ] = useState(false)

@@ -2,11 +2,14 @@ import React from "react"
 
 import { FileUpload } from "../../components"
 
-import { useToast, useMediaQuery } from "@chakra-ui/react"
+import { useToast, useMediaQuery, useColorMode } from "@chakra-ui/react"
 import { FormControl, FormLabel } from "@chakra-ui/react"
 import { Flex, Text, Input, Button, SimpleGrid, VStack, Select, Textarea } from "@chakra-ui/react"
 
 export default function AboutProfile({ role, setPage, category, setCategory, skill, setSkill, bio, setBio, profPic, setProfPic }) {
+  const { colorMode, toggleColorMode } = useColorMode()
+  const isDark = (colorMode == "dark")
+
   const handleBioChanges = (e) => setBio(e.target.value)
   const handleCategoryChanges = (e) => setCategory(e.target.value)
   const handleSkillChanges = (e) => setSkill(e.target.value)
