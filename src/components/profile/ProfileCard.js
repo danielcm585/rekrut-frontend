@@ -24,7 +24,7 @@ export default function ProfileCard({ worker, job }) {
   return (
     <>
       <Payment worker={worker} job={job} isOpen={isOpen} onClose={onClose} />
-      <Box p="2" pr="4" mb="2" shadow="md" borderRadius="md"
+      <Box p="2" pr="4" mb="2" shadow="lg" borderRadius="md"
         _hover={{ bgColor:(isDark ? "#1D2330" : "gray.50") }}
         onClick={() => {
           if (job != null) return

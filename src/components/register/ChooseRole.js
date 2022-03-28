@@ -20,7 +20,7 @@ export default function ChooseRole({ setRole, setPage }) {
           </Flex>
           <Box mt="50">
             <Grid templateColumns="repeat(2, 1fr)" gap={isBigScreen ? "20" : "2"}>
-              <Box pt="4" pl="6" pr="6" pb="7" shadow="md">
+              <Box pt="4" pl="6" pr="6" pb="7" shadow="lg">
                 <Flex justifyContent="center">
                   <Image src={WorkerImg} />
                 </Flex>
@@ -39,7 +39,7 @@ export default function ChooseRole({ setRole, setPage }) {
                   </Flex>
                 </Flex>
               </Box>
-              <Box p="4" pl="6" pr="6" pb="7" shadow="md">
+              <Box p="4" pl="6" pr="6" pb="7" shadow="lg">
                 <Flex justifyContent="center">
                   <Image src={ClientImg} />
                 </Flex>

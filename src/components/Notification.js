@@ -75,7 +75,7 @@ export default function Notification({ isOpen, onClose }) {
                   )
                 )
                 return (
-                  <Box p="2" mb="1" shadow="md" borderRadius="md" key={idx}
+                  <Box p="2" mb="1" shadow="lg" borderRadius="md" key={idx}
                     _hover={{ bgColor: (isDark ? "#1D2330" : "gray.50") }} 
                     onClick={() => window.location.href=notif.url}>
                     <HStack pl="2">

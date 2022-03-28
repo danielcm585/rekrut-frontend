@@ -29,7 +29,7 @@ export default function JobCard({ job, preview, worker }) {
 
   if (!isBigScreen) return (
     <>
-      <Box p="2" mb="2" shadow="md" borderRadius="md"
+      <Box p="2" mb="2" shadow="lg" borderRadius="md"
         _hover={{ bgColor: (isDark ? "#1D2330" : "gray.50") }}
         onClick={() => window.location.href="/job/"+job._id}>
         <Flex>
@@ -136,7 +136,7 @@ export default function JobCard({ job, preview, worker }) {
   )
   return (
     <>
-      <Box p="2" mb="2" shadow="md" borderRadius="md"
+      <Box p="2" mb="2" shadow="lg" borderRadius="md"
         _hover={{ bgColor: (isDark ? "#1D2330" : "gray.50") }}
         onClick={() => window.location.href="/job/"+job._id}>
         <HStack w="100%">

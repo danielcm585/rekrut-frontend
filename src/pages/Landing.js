@@ -88,7 +88,7 @@ export default function Landing() {
       </Flex>
       <Flex mt="8" justifyContent="center">
         <SimpleGrid w="85%" columns="3" spacing="10">
-          <Box p="2" pb="3" borderRadius="md" shadow="md">
+          <Box p="2" pb="3" borderRadius="md" shadow="lg">
             <Image src={Procedure1Img} borderRadius="md" />
             <Flex mt="2" justifyContent="center">
               <Text fontSize="xl" fontWeight="bold">1. Jelaskan Kebutuhanmu</Text>
@@ -99,7 +99,7 @@ export default function Landing() {
               </Text>
             </Flex>
           </Box>
-          <Box p="2" pb="3" borderRadius="md" shadow="md">
+          <Box p="2" pb="3" borderRadius="md" shadow="lg">
             <Image src={Procedure1Img} borderRadius="md" />
             <Flex mt="2" justifyContent="center">
               <Text fontSize="xl" fontWeight="bold">2. Bandingkan Setiap Jasa</Text>
@@ -110,7 +110,7 @@ export default function Landing() {
               </Text>
             </Flex>
           </Box>
-          <Box p="2" pb="3" borderRadius="md" shadow="md">
+          <Box p="2" pb="3" borderRadius="md" shadow="lg">
             <Image src={Procedure1Img} borderRadius="md" />
             <Flex mt="2" justifyContent="center">
               <Text fontSize="xl" fontWeight="bold">3. Rekrut Pekerja</Text>

@@ -11,7 +11,7 @@ export default function ReviewCard({ review }) {
 
   return (
     <>
-      <Box p="3" mt="2" mb="2" shadow="md" borderRadius="md" 
+      <Box p="3" mt="2" mb="2" shadow="lg" borderRadius="md" 
         _hover={{ bgColor:(isDark ? "#1D2330" : "gray.50") }}>
         <Flex>
           <Flex p="2">

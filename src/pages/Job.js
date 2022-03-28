@@ -114,10 +114,13 @@ export default function Job() {
                 </Text>
               </Box>
             </Flex>
-            <Spacer></Spacer>
             {
-              isBigScreen && 
-                <JobButton user={user} job={job} canReview={canReview} />
+              isBigScreen && (
+                <>
+                  <Spacer></Spacer>
+                  <JobButton user={user} job={job} canReview={canReview} />
+                </>
+              )
             }
           </Flex>
           <HStack mt="5">

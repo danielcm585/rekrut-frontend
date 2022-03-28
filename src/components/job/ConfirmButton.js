@@ -14,19 +14,9 @@ export default function ConfirmButton({ action, second, isOpen, setIsOpen, isDis
     <>
       <Popover isOpen={isOpen} onClose={() => setIsOpen(false)} placement="bottom" returnFocusOnClose={false} closeOnBlur={false}>
         <PopoverTrigger>
-          {
-            isDisabled ? (
-              <Button w={!isBigScreen && "100%"} ml="2" pl="10" pr="10" borderRadius="50" isDisabled
-                bgColor={!second && "#FF8450"}>
-                <Text fontSize="sm" fontWeight="bold">{action}</Text>
-              </Button> 
-            ) : (
-              <Button w={!isBigScreen && "100%"} ml="2" pl="10" pr="10" borderRadius="50" bgColor={!second && "#FF8450"} 
-                onClick={() => setIsOpen(prev => !prev)}>
-                <Text fontSize="sm" fontWeight="bold">{action}</Text>
-              </Button> 
-            )
-          }
+          <Button w={!isBigScreen && "100%"} ml="2" pl="10" pr="10" borderRadius="50" isDisabled={isDisabled} bgColor={!second && "#FF8450"}>
+            <Text fontSize="sm" fontWeight="bold">{action}</Text>
+          </Button> 
         </PopoverTrigger>
         <PopoverContent>
           <PopoverHeader fontWeight="semibold">Konfirmasi</PopoverHeader>
