@@ -114,7 +114,7 @@ export default function Dashboard() {
       ...prev,
       workers: [...data.workers].filter(filterWorkers)
     }))
-  })
+  }, [ filter, data.workers ])
 
   const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
 

@@ -97,26 +97,48 @@ export default function ProfileDetails({ user, me, client }) {
             )
           }
           {
-            (client && user.role == "worker" && isBigScreen) && (
+            (isBigScreen && !me) && (
               <>
-                <ChooseJob isOpen={isOpen} onClose={onClose} worker={user} />
                 <Spacer></Spacer>
-                <Button ml="2" pl="10" pr="10" borderRadius="50" bgColor="#FF8450"
-                  onClick={() => onOpen()}>
-                  <Text fontSize="sm" fontWeight="bold">Undang</Text>
-                </Button> 
+                {
+                  (client && user.role == "worker") ? (
+                    <>
+                      <ChooseJob isOpen={isOpen} onClose={onClose} worker={user} />
+                      <Button ml="2" pl="10" pr="10" borderRadius="50" bgColor="#FF8450"
+                        onClick={() => onOpen()}>
+                        <Text fontSize="sm" fontWeight="bold">Undang</Text>
+                      </Button> 
+                    </>
+                  ) : (
+                    <Button ml="2" pl="10" pr="10" borderRadius="50" bgColor="#FF8450"
+                      onClick={() => window.location.href="/login"}>
+                      <Text fontSize="sm" fontWeight="bold">Undang</Text>
+                    </Button> 
+                  )
+                }
               </>
             )
           }
         </Flex>
         {
-          (client && user.role == "worker" && !isBigScreen) && (
+          (!isBigScreen && !me) && (
             <>
-              <ChooseJob isOpen={isOpen} onClose={onClose} worker={user} />
-              <Button w="100%" mt="5" pl="10" pr="10" borderRadius="50" bgColor="#FF8450"
-                onClick={() => onOpen()}>
-                <Text fontSize="sm" fontWeight="bold">Undang</Text>
-              </Button> 
+              {
+                (client && user.role == "worker") ? (
+                  <>
+                    <ChooseJob isOpen={isOpen} onClose={onClose} worker={user} />
+                    <Button w="100%" mt="5" pl="10" pr="10" borderRadius="50" bgColor="#FF8450"
+                      onClick={() => onOpen()}>
+                      <Text fontSize="sm" fontWeight="bold">Undang</Text>
+                    </Button>
+                  </>
+                ) : (
+                  <Button w="100%" mt="5" pl="10" pr="10" borderRadius="50" bgColor="#FF8450"
+                    onClick={() => window.location.href="/login"}>
+                    <Text fontSize="sm" fontWeight="bold">Undang</Text>
+                  </Button> 
+                )
+              }
             </>
           )
         }
