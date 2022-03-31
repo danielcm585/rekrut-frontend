@@ -14,10 +14,17 @@ export default function WorkerJobs({ user }) {
     isClosable: true
   })
 
-  const [ pending, setPending ] = useState(null)
-  const [ accepted, setAccepted ] = useState(null)
-  const [ onProgress, setOnProgress ] = useState(null)
-  const [ history, setHistory ] = useState(null)
+  const [ data, setData ] = useState({
+    applying: [],
+    accepted: [],
+    ongoing: [],
+    finished: []
+  })
+
+  // const [ pending, setPending ] = useState(null)
+  // const [ accepted, setAccepted ] = useState(null)
+  // const [ onProgress, setOnProgress ] = useState(null)
+  // const [ history, setHistory ] = useState(null)
   useEffect(() => {
     fetch("https://protected-castle-75235.herokuapp.com/user/"+user._id, {
       method: "GET",
@@ -27,10 +34,17 @@ export default function WorkerJobs({ user }) {
     .then(resp => resp.json())
     .then(json => {
       if (json.statusCode >= 400) throw new Error(json.message)
-      setPending(json.worker.applying)   // pending
-      setAccepted(json.worker.accepted)  // accepted
-      setOnProgress(json.worker.ongoing) // OnProgress
-      setHistory(json.worker.finished)   // history
+      setData(prev => ({
+        ...prev,
+        applying: json.worker.applying,
+        aceepted: json.worker.aceepted,
+        ongoing: json.worker.ongoing,
+        finished: json.worker.finished
+      }))
+      // setPending(json.worker.applying)   // pending
+      // setAccepted(json.worker.accepted)  // accepted
+      // setOnProgress(json.worker.ongoing) // OnProgress
+      // setHistory(json.worker.finished)   // history
     })
     .catch((err) => {
       toast({
@@ -38,31 +52,52 @@ export default function WorkerJobs({ user }) {
         status: "error"
       })
     })
-    console.log("FETCH API")
+    // console.log("FETCH API")
   }, [])
 
-  const [ keyword, setKeyword ] = useState("")
-  const [ location, setLocation ] = useState("Semua lokasi")
-  const [ type, setType ] = useState("Semua tipe pekerjaan")
-  const [ salary, setSalary ] = useState("Semua range upah")
+  const [ filter, setFilter ] = useState({
+    keyword: "",
+    location: "Semua lokasi",
+    type: "Semua tipe pekerjaan",
+    salary: "Semua range upah"
+  })
+
+  // const [ keyword, setKeyword ] = useState("")
+  // const [ location, setLocation ] = useState("Semua lokasi")
+  // const [ type, setType ] = useState("Semua tipe pekerjaan")
+  // const [ salary, setSalary ] = useState("Semua range upah")
   const filterJobs = (job) => {
-    return ((job.location == location || location == "Semua lokasi") &&
-            (job.jobType == type || type == "Semua tipe pekerjaan") &&
-            (parseInt(job.salary) >= parseInt(salary) || salary == "Semua range upah") && 
-            (job.title.toLowerCase().includes(keyword.toLowerCase()) ||
-            job.author.name.toLowerCase().includes(keyword.toLowerCase())))
+    return ((job.location == filter.location || filter.location == "Semua lokasi") &&
+            (job.jobType == filter.type || filter.type == "Semua tipe pekerjaan") &&
+            (parseInt(job.salary) >= parseInt(filter.salary) || filter.salary == "Semua range upah") && 
+            (job.title.toLowerCase().includes(filter.keyword.toLowerCase()) ||
+            job.author.name.toLowerCase().includes(filter.keyword.toLowerCase())))
   }
 
-  const [ filteredAccepted, setFilteredAccepted] = useState(null)
-  const [ filteredPending, setFilteredPending] = useState(null)
-  const [ filteredOnProgress, setFilteredOnProgress] = useState(null)
-  const [ filteredHistory, setFilteredHistory] = useState(null)
+  const [ filtered, setFiltered ] = useState({
+    applying: [],
+    accepted: [],
+    ongoing: [],
+    finished: []
+  })
+
+  // const [ filteredAccepted, setFilteredAccepted] = useState(null)
+  // const [ filteredPending, setFilteredPending] = useState(null)
+  // const [ filteredOnProgress, setFilteredOnProgress] = useState(null)
+  // const [ filteredHistory, setFilteredHistory] = useState(null)
   useEffect(() => {
-    if (pending != null) setFilteredPending(pending.filter(filterJobs))
-    if (accepted != null) setFilteredAccepted(accepted.filter(filterJobs))
-    if (onProgress != null) setFilteredOnProgress(onProgress.filter(filterJobs))
-    if (history != null) setFilteredHistory(history.filter(filterJobs))
-  }, [ keyword, location, type, salary, accepted, pending, onProgress, history ])
+    setFiltered(prev => ({
+      ...prev,
+      applying: [...data.applying].filter(filterJobs),
+      accepted: [...data.accepted].filter(filterJobs),
+      ongoing: [...data.ongoing].filter(filterJobs),
+      finished: [...data.finished].filter(filterJobs)
+    }))
+    // if (pending != null) setFilteredPending(pending.filter(filterJobs))
+    // if (accepted != null) setFilteredAccepted(accepted.filter(filterJobs))
+    // if (onProgress != null) setFilteredOnProgress(onProgress.filter(filterJobs))
+    // if (history != null) setFilteredHistory(history.filter(filterJobs))
+  }, [ filter, data ])
 
   const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
 
@@ -78,64 +113,52 @@ export default function WorkerJobs({ user }) {
         <TabPanels>
           <TabPanel>
             {
-              (filteredPending != null) && (
+              (filtered.applying != null) && (
                 <>
                   <Flex mt="3">
-                    <SearchBar keyword={keyword} setKeyword={setKeyword}
-                      location={location} setLocation={setLocation}
-                      type={type} setType={setType}
-                      salary={salary} setSalary={setSalary} />
+                    <SearchBar filter={filter} setFilter={setFilter} />
                   </Flex>
-                  <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredPending.length+" lamaran dikirim"}</Text>
-                  <JobList jobs={filteredPending} />
+                  <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filtered.applying.length+" lamaran dikirim"}</Text>
+                  <JobList jobs={filtered.applying} />
                 </>
               )
             }
           </TabPanel>
           <TabPanel>
             {
-              (filteredAccepted != null) && (
+              (filtered.accepted != null) && (
                 <>
                   <Flex mt="3">
-                    <SearchBar keyword={keyword} setKeyword={setKeyword}
-                      location={location} setLocation={setLocation}
-                      type={type} setType={setType}
-                      salary={salary} setSalary={setSalary} />
+                    <SearchBar filter={filter} setFilter={setFilter} />
                   </Flex>
-                  <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredAccepted.length+" lamaran diterima"}</Text>
-                  <JobList jobs={filteredAccepted} />
+                  <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filtered.accepted.length+" lamaran diterima"}</Text>
+                  <JobList jobs={filtered.accepted} />
                 </>
               )
             }
           </TabPanel>
           <TabPanel>
             {
-              (filteredOnProgress != null) && (
+              (filtered.ongoing != null) && (
                 <>
                   <Flex mt="3">
-                    <SearchBar keyword={keyword} setKeyword={setKeyword}
-                      location={location} setLocation={setLocation}
-                      type={type} setType={setType}
-                      salary={salary} setSalary={setSalary} />
+                    <SearchBar filter={filter} setFilter={setFilter} />
                   </Flex>
-                  <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredOnProgress.length+" pekerjaan dalam pengerjaan"}</Text>
-                  <JobList jobs={filteredOnProgress} />
+                  <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filtered.ongoing.length+" pekerjaan dalam pengerjaan"}</Text>
+                  <JobList jobs={filtered.ongoing} />
                 </>
               )
             }
           </TabPanel>
           <TabPanel>
             {
-              (filteredHistory != null) && (
+              (filtered.finished != null) && (
                 <>
                   <Flex mt="3">
-                    <SearchBar keyword={keyword} setKeyword={setKeyword}
-                      location={location} setLocation={setLocation}
-                      type={type} setType={setType}
-                      salary={salary} setSalary={setSalary} />
+                    <SearchBar filter={filter} setFilter={setFilter} />
                   </Flex>
-                  <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredHistory.length+" pekerjaan selesai"}</Text>
-                  <JobList jobs={filteredHistory} />
+                  <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filtered.finished.length+" pekerjaan selesai"}</Text>
+                  <JobList jobs={filtered.finished} />
                 </>
               )
             }

@@ -17,11 +17,14 @@ export default function ClientJobs({ user }) {
   const { colorMode, toggleColorMode } = useColorMode()
   const isDark = (colorMode == "dark")
 
-  const [ mine, setMine ] = useState(null)
-  const [ waitingConf, setWaitingConf ] = useState(null)
-  const [ onProgress, setOnProgress ] = useState(null)
-  const [ inReview, setInReview ] = useState(null)
-  const [ history, setHistory ] = useState(null)
+  const [ data, setData ] = useState({
+    hiring: [],
+    waiting: [],
+    ongoing: [],
+    reviewing: [],
+    done: []
+  })
+
   useEffect(() => {
     fetch("https://protected-castle-75235.herokuapp.com/user/"+user._id, {
       method: "GET",
@@ -31,11 +34,14 @@ export default function ClientJobs({ user }) {
     .then(resp => resp.json())
     .then(json => {
       if (json.statusCode >= 400) throw new Error(json.message)
-      setMine(json.client.hiring)         // mine
-      setWaitingConf(json.client.waiting) // waitingConf
-      setOnProgress(json.client.ongoing)  // onProgress
-      setInReview(json.client.reviewing)  // inReview
-      setHistory(json.client.done)        // history
+      setData(prev => ({
+        ...prev,
+        hiring: json.client.hiring,
+        waiting: json.client.waiting,
+        ongoing: json.client.ongoing,
+        reviewing: json.client.reviewing,
+        done: json.client.done
+      }))
     })
     .catch((err) => {
       toast({
@@ -43,33 +49,40 @@ export default function ClientJobs({ user }) {
         status: "error"
       })
     })
-    
-    console.log("FETCH API")
   }, [])
 
-  const [ keyword, setKeyword ] = useState("")
-  const [ location, setLocation ] = useState("Semua lokasi")
-  const [ type, setType ] = useState("Semua tipe pekerjaan")
-  const [ salary, setSalary ] = useState("Semua range upah")
+  const [ filter, setFilter ] = useState({
+    keyword: "",
+    location: "Semua lokasi",
+    type: "Semua tipe pekerjaan",
+    salary: "Semua range upah"
+  })
+
   const filterJobs = (job) => {
-    return ((job.location == location || location == "Semua lokasi") &&
-            (job.jobType == type || type == "Semua tipe pekerjaan") &&
-            (parseInt(job.salary) >= parseInt(salary) || salary == "Semua range upah") && 
-            job.title.toLowerCase().includes(keyword.toLowerCase()))
+    return ((job.location == filter.location || filter.location == "Semua lokasi") &&
+            (job.jobType == filter.type || filter.type == "Semua tipe pekerjaan") &&
+            (parseInt(job.salary) >= parseInt(filter.salary) || filter.salary == "Semua range upah") && 
+            job.title.toLowerCase().includes(filter.keyword.toLowerCase()))
   }
 
-  const [ filteredWaitingConf, setFilteredWaitingConf] = useState(null)
-  const [ filteredMine, setFilteredMine] = useState(null)
-  const [ filteredOnProgress, setFilteredOnProgress] = useState(null)
-  const [ filteredInReview, setFilteredInReview] = useState(null)
-  const [ filteredHistory, setFilteredHistory] = useState(null)
+  const [ filtered, setFiltered ] = useState({
+    hiring: [],
+    waiting: [],
+    ongoing: [],
+    reviewing: [],
+    done: []
+  })
+
   useEffect(() => {
-    if (mine != null) setFilteredMine(mine.filter(filterJobs))
-    if (waitingConf != null) setFilteredWaitingConf(waitingConf.filter(filterJobs))
-    if (onProgress != null) setFilteredOnProgress(onProgress.filter(filterJobs))
-    if (inReview != null) setFilteredInReview(inReview.filter(filterJobs))
-    if (history != null) setFilteredHistory(history.filter(filterJobs))
-  }, [ keyword, location, type, salary, waitingConf, mine, onProgress, inReview, history ])
+    setFiltered(prev => ({
+      ...prev,
+      hiring: [...data.hiring].filter(filterJobs),
+      waiting: [...data.waiting].filter(filterJobs),
+      ongoing: [...data.ongoing].filter(filterJobs),
+      reviewing: [...data.reviewing].filter(filterJobs),
+      done: [...data.done].filter(filterJobs),
+    }))
+  }, [ filter, data ])
 
   const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
 
@@ -86,80 +99,65 @@ export default function ClientJobs({ user }) {
         <TabPanels>
           <TabPanel>
             {
-              (filteredMine != null) && (
+              (filtered.hiring != null) && (
                 <>
                   <Flex mt="3">
-                    <SearchBar keyword={keyword} setKeyword={setKeyword}
-                      location={location} setLocation={setLocation}
-                      type={type} setType={setType}
-                      salary={salary} setSalary={setSalary} />
+                    <SearchBar filter={filter} setFilter={setFilter} />
                   </Flex>
-                  <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredMine.length+" lapangan pekerjaan terbuka"}</Text>
-                  <JobList jobs={filteredMine} />
+                  <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filtered.hiring.length+" lapangan pekerjaan terbuka"}</Text>
+                  <JobList jobs={filtered.hiring} />
                 </>
               )
             }
           </TabPanel>
           <TabPanel>
             {
-              (filteredWaitingConf != null) && (
+              (filtered.waiting != null) && (
                 <>
                   <Flex mt="3">
-                    <SearchBar keyword={keyword} setKeyword={setKeyword}
-                      location={location} setLocation={setLocation}
-                      type={type} setType={setType}
-                      salary={salary} setSalary={setSalary} />
+                    <SearchBar filter={filter} setFilter={setFilter} />
                   </Flex>
-                  <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredWaitingConf.length+" pekerjaan menunggu konfirmasi pekerja"}</Text>
-                  <JobList jobs={filteredWaitingConf} />
+                  <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filtered.waiting.length+" pekerjaan menunggu konfirmasi pekerja"}</Text>
+                  <JobList jobs={filtered.waiting} />
                 </>
               )
             }
           </TabPanel>
           <TabPanel>
             {
-              (filteredOnProgress != null) && (
+              (filtered.ongoing != null) && (
                 <>
                   <Flex mt="3">
-                    <SearchBar keyword={keyword} setKeyword={setKeyword}
-                      location={location} setLocation={setLocation}
-                      type={type} setType={setType}
-                      salary={salary} setSalary={setSalary} />
+                    <SearchBar filter={filter} setFilter={setFilter} />
                   </Flex>
-                  <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredOnProgress.length+" pekerjaan dalam pengerjaan"}</Text>
-                  <JobList jobs={filteredOnProgress} />
+                  <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filtered.ongoing.length+" pekerjaan dalam pengerjaan"}</Text>
+                  <JobList jobs={filtered.ongoing} />
                 </>
               )
             }
           </TabPanel>
           <TabPanel>
             {
-              (filteredInReview != null) && (
+              (filtered.reviewing != null) && (
                 <>
                   <Flex mt="3">
-                    <SearchBar keyword={keyword} setKeyword={setKeyword}
-                      location={location} setLocation={setLocation}
-                      type={type} setType={setType}
-                      salary={salary} setSalary={setSalary} />
+                    <SearchBar filter={filter} setFilter={setFilter} />
                   </Flex>
-                  <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredInReview.length+" pekerjaan dalam pengecekkan"}</Text>
-                  <JobList jobs={filteredInReview} />
+                  <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filtered.reviewing.length+" pekerjaan dalam pengecekkan"}</Text>
+                  <JobList jobs={filtered.reviewing} />
                 </>
               )
             }
           </TabPanel>
           <TabPanel>
             {
-              (filteredHistory != null) && (
+              (filtered.done != null) && (
                 <>
                   <Flex mt="3">
-                    <SearchBar keyword={keyword} setKeyword={setKeyword}
-                      location={location} setLocation={setLocation}
-                      type={type} setType={setType}
-                      salary={salary} setSalary={setSalary} />
+                    <SearchBar filter={filter} setFilter={setFilter} />
                   </Flex>
-                  <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filteredHistory.length+" pekerjaan selesai"}</Text>
-                  <JobList jobs={filteredHistory} />
+                  <Text mt="5" mb="2" fontWeight="semibold">{"Anda memiliki "+filtered.done.length+" pekerjaan selesai"}</Text>
+                  <JobList jobs={filtered.done} />
                 </>
               )
             }

@@ -11,9 +11,11 @@ import { Flex, Text, Box, Button, Spacer, Icon } from "@chakra-ui/react"
 
 export default function Dashboard() {
   const user = JSON.parse(localStorage.getItem("user"))
-  
-  const [ jobs, setJobs ] = useState(null)
-  const [ workers, setWorkers ] = useState(null)
+
+  const [ data, setData ] = useState({
+    jobs: [],
+    workers: []
+  })
 
   const toast = useToast({
     position: "top",
@@ -31,7 +33,10 @@ export default function Dashboard() {
       .then(resp => resp.json())
       .then(json => {
         if (json.statusCode >= 400) throw new Error(json.message)
-        setJobs(json)
+        setData(prev => ({
+          ...prev,
+          jobs: json
+        }))
       })
       .catch((err) => {
         toast({
@@ -50,7 +55,10 @@ export default function Dashboard() {
       .then(resp => resp.json())
       .then(json => {
         if (json.statusCode >= 400) throw new Error(json.message)
-        setWorkers(json)
+        setData(prev => ({
+          ...prev,
+          workers: json
+        }))
       })
       .catch((err) => {
         toast({
@@ -63,39 +71,50 @@ export default function Dashboard() {
     document.title = "Rekrut.id | Dashboard"
   }, [])
 
-  const [ keyword, setKeyword ] = useState("")
+  const [ filter, setFilter ] = useState({
+    keyword: "",
+    location: "Semua lokasi",
+    type: "Semua tipe pekerjaan",
+    salary: "Semua range upah",
+    category: "Semua kategori pekerjaan",
+    experience: "Semua range pengalaman"
+  })
 
-  const [ location, setLocation ] = useState("Semua lokasi")
-  const [ type, setType ] = useState("Semua tipe pekerjaan")
-  const [ salary, setSalary ] = useState("Semua range upah")
   const filterJobs = (job) => {
-    return ((job.location == location || location == "Semua lokasi") &&
-            (job.jobType == type || type == "Semua tipe pekerjaan") &&
-            (parseInt(job.salary) >= parseInt(salary) || salary == "Semua range upah") && 
-            (job.title != null && job.title.toLowerCase().includes(keyword.toLowerCase()) ||
-            job.author.name != null &&  job.author.name.toLowerCase().includes(keyword.toLowerCase())))
+    return ((job.location == filter.location || filter.location == "Semua lokasi") &&
+            (job.jobType == filter.type || filter.type == "Semua tipe pekerjaan") &&
+            (parseInt(job.salary) >= parseInt(filter.salary) || filter.salary == "Semua range upah") && 
+            (job.title != null && job.title.toLowerCase().includes(filter.keyword.toLowerCase()) ||
+            job.author.name != null &&  job.author.name.toLowerCase().includes(filter.keyword.toLowerCase())))
   }
+  
+  const filterWorkers = (worker) => {
+    return ((worker.category == filter.category || filter.category == "Semua kategori pekerjaan") && 
+            (worker.review.length >= parseInt(filter.experience) || filter.experience == "Semua range pengalaman") && 
+            (worker.name != null && worker.name.toLowerCase().includes(filter.keyword.toLowerCase()) || 
+            worker.skill != null && worker.skill.toLowerCase().includes(filter.keyword.toLowerCase())))
+  }
+
   const sortJobs = (jobA, jobB) => jobB.salary-jobA.salary
 
-  const [ category, setCategory ] = useState("Semua kategori pekerjaan")
-  const [ experience, setExperience ] = useState("Semua range pengalaman")
-  const filterWorkers = (worker) => {
-    return ((worker.category == category || category == "Semua kategori pekerjaan") && 
-            (worker.review.length >= parseInt(experience) || experience == "Semua range pengalaman") && 
-            (worker.name != null && worker.name.toLowerCase().includes(keyword.toLowerCase()) || 
-            worker.skill != null && worker.skill.toLowerCase().includes(keyword.toLowerCase())))
-  }
+  const [ filtered, setFiltered ] = useState({
+    jobs: [],
+    workers: []
+  })
 
-  const [ filteredJobs, setFilteredJobs ] = useState(null)
   useEffect(() => {
-    if (jobs != null) setFilteredJobs(jobs.filter(filterJobs).sort(sortJobs))
-  }, [ keyword, location, type, salary, jobs ])
-  
-  const [ filteredWorkers, setFilteredWorkers ] = useState(null)
+    setFiltered(prev => ({
+      ...prev,
+      jobs: [...data.jobs].filter(filterJobs).sort(sortJobs)
+    }))
+  }, [ filter, data.jobs ])
+
   useEffect(() => {
-    if (user == null || user.role != "client") return
-    if (workers != null) setFilteredWorkers(workers.filter(filterWorkers))
-  }, [ keyword, category, experience, workers ])
+    setFiltered(prev => ({
+      ...prev,
+      workers: [...data.workers].filter(filterWorkers)
+    }))
+  })
 
   const [ isBigScreen ] = useMediaQuery("(min-width:600px)")
 
@@ -130,14 +149,9 @@ export default function Dashboard() {
           </Flex>
           {
             (user != null && user.role == "client") ? (
-              <SearchBar workers={true} keyword={keyword} setKeyword={setKeyword}
-                category={category} setCategory={setCategory}
-                experience={experience} setExperience={setExperience} />
+              <SearchBar workers={true} filter={filter} setFilter={setFilter} />
             ) : (
-              <SearchBar keyword={keyword} setKeyword={setKeyword}
-                location={location} setLocation={setLocation}
-                type={type} setType={setType}
-                salary={salary} setSalary={setSalary} />
+              <SearchBar filter={filter} setFilter={setFilter} />
             )
           }
         </Flex>
@@ -146,12 +160,12 @@ export default function Dashboard() {
         (user != null && user.role == "client") ? (
           <>
             {
-              (filteredWorkers != null) && (
+              (filtered.workers != null) && (
                 <>
                   <Flex justifyContent="center">
                     <Box mt="8" w="85%">
                       <Text fontSize="xl" fontWeight="semibold">Talent Terbaik</Text>
-                      <ProfileList profiles={filteredWorkers} />
+                      <ProfileList profiles={filtered.workers} />
                     </Box>
                   </Flex>
                 </>
@@ -161,12 +175,12 @@ export default function Dashboard() {
         ) : (
           <>
             {
-              (filteredJobs != null) && (
+              (filtered.jobs != null) && (
                 <>
                   <Flex justifyContent="center">
                     <Box mt="8" w="85%">
                       <Text fontSize="xl" fontWeight="semibold">Penawaran terbaik</Text>
-                      <JobList jobs={filteredJobs} />
+                      <JobList jobs={filtered.jobs} />
                     </Box>
                   </Flex>
                 </>

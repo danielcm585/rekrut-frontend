@@ -8,7 +8,7 @@ import { HStack, Flex, Icon, Box, Select, Text, Button } from "@chakra-ui/react"
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react"
 import { Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton } from '@chakra-ui/react'
 
-export default function SearchBar({ workers, keyword, setKeyword, location, setLocation, type, setType, salary, setSalary, category, setCategory, experience, setExperience }) {
+export default function SearchBar({ filter, setFilter, workers, keyword, setKeyword, location, setLocation, type, setType, salary, setSalary, category, setCategory, experience, setExperience }) {
   const { colorMode, toggleColorMode } = useColorMode()
   const isDark = (colorMode == "dark")
 
@@ -20,6 +20,14 @@ export default function SearchBar({ workers, keyword, setKeyword, location, setL
 
   const handleCategoryChanges = (e) => setCategory(e.target.value)
   const handleExperienceChanges = (e) => setExperience(e.target.value)
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFilter(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
 
   const parseAmount = (amount) => {
     return "IDR "+amount.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ".") +",00"
@@ -39,17 +47,17 @@ export default function SearchBar({ workers, keyword, setKeyword, location, setL
                 <Flex w="50%">
                   <InputGroup w="6000px">
                     <InputLeftElement children={<Icon ml="2" as={BiSearch} color="gray.600" />} />
-                    <Input variant="flushed" borderColor="black" 
+                    <Input variant="flushed" borderColor="black" name="keyword"
                       placeholder={workers ? "Cari pekerja" : "Cari pekerjaan"}
-                      value={keyword} onChange={handleKeywordChanges}>
+                      value={filter.keyword} onChange={handleChange}>
                     </Input>
                   </InputGroup>
                 </Flex>
                 {
                   workers ? (
                     <>
-                      <Select variant="outline" borderColor="black" 
-                        value={category} onChange={handleCategoryChanges}>
+                      <Select variant="outline" borderColor="black" name="category"
+                        value={filter.category} onChange={handleChange}>
                         <option value="Semua kategori pekerjaan">Semua kategori pekerjaan</option>
                         <option value="Design and Creative">Design and Creative</option>
                         <option value="Development and IT">Development and IT</option>
@@ -61,8 +69,8 @@ export default function SearchBar({ workers, keyword, setKeyword, location, setL
                         <option value="Speaking">Speaking</option>
                         <option value="Others">Others</option>
                       </Select>
-                      <Select variant="outline" borderColor="black" 
-                        value={experience} onChange={handleExperienceChanges}>
+                      <Select variant="outline" borderColor="black" name="experience"
+                        value={filter.experience} onChange={handleChange}>
                         <option value="Semua range pengalaman">Semua range pengalaman</option>
                         <option value={1}>≥ 1</option>
                         <option value={5}>≥ 5</option>
@@ -73,23 +81,23 @@ export default function SearchBar({ workers, keyword, setKeyword, location, setL
                     </>
                   ) : (
                     <>
-                      <Select variant="outline" borderColor="black" 
-                        value={location} onChange={handleLocationChanges}>
+                      <Select variant="outline" borderColor="black" name="location"
+                        value={filter.location} onChange={handleChange}>
                         <option value="Semua lokasi">Semua lokasi</option>
                         <option value="Jakarta">Jakarta</option>
                         <option value="Semarang">Semarang</option>
                         <option value="Surabaya">Surabaya</option>
                       </Select>
-                      <Select variant="outline" borderColor="black" 
-                        value={type} onChange={handleTypeChanges}>
+                      <Select variant="outline" borderColor="black" name="type"
+                        value={filter.type} onChange={handleChange}>
                         <option value="Semua tipe pekerjaan">Semua tipe pekerjaan</option>
                         <option value="Part-time">Part-time</option>
                         <option value="Full-time">Full-time</option>
                         <option value="Full-project">Full-project</option>
                         <option value="Contract">Contract</option>
                       </Select>
-                      <Select variant="outline" borderColor="black" 
-                        value={salary} onChange={handleSalaryChanges}>
+                      <Select variant="outline" borderColor="black" name="salary"
+                        value={filter.salary} onChange={handleChange}>
                         <option value="Semua range upah">Semua range upah</option>
                         <option value={1000000}>≥ IDR 1.000.000,00</option>
                         <option value={2000000}>≥ IDR 2.000.000,00</option>
@@ -113,8 +121,8 @@ export default function SearchBar({ workers, keyword, setKeyword, location, setL
                   {
                     workers ? (
                       <>
-                        <Select mt="3" variant="outline" borderColor="black" 
-                          value={category} onChange={handleCategoryChanges}>
+                        <Select mt="3" variant="outline" borderColor="black" name="category"
+                          value={filter.category} onChange={handleChange}>
                           <option value="Semua kategori pekerjaan">Semua kategori pekerjaan</option>
                           <option value="Design and Creative">Design and Creative</option>
                           <option value="Development and IT">Development and IT</option>
@@ -126,8 +134,8 @@ export default function SearchBar({ workers, keyword, setKeyword, location, setL
                           <option value="Speaking">Speaking</option>
                           <option value="Others">Others</option>
                         </Select>
-                        <Select mb="100px" mt="3" variant="outline" borderColor="black" 
-                          value={experience} onChange={handleExperienceChanges}>
+                        <Select mb="100px" mt="3" variant="outline" borderColor="black" name="experience"
+                          value={filter.experience} onChange={handleChange}>
                           <option value="Semua range pengalaman">Semua range pengalaman</option>
                           <option value={1}>≥ 1</option>
                           <option value={5}>≥ 5</option>
@@ -138,23 +146,23 @@ export default function SearchBar({ workers, keyword, setKeyword, location, setL
                       </>
                     ) : (
                       <>
-                        <Select mt="3" variant="outline" borderColor="black" 
-                          value={location} onChange={handleLocationChanges}>
+                        <Select mt="3" variant="outline" borderColor="black" name="location"
+                          value={filter.location} onChange={handleChange}>
                           <option value="Semua lokasi">Semua lokasi</option>
                           <option value="Jakarta">Jakarta</option>
                           <option value="Semarang">Semarang</option>
                           <option value="Surabaya">Surabaya</option>
                         </Select>
-                        <Select mt="3" variant="outline" borderColor="black" 
-                          value={type} onChange={handleTypeChanges}>
+                        <Select mt="3" variant="outline" borderColor="black" name="type"
+                          value={filter.type} onChange={handleChange}>
                           <option value="Semua tipe pekerjaan">Semua tipe pekerjaan</option>
                           <option value="Part-time">Part-time</option>
                           <option value="Full-time">Full-time</option>
                           <option value="Full-project">Full-project</option>
                           <option value="Contract">Contract</option>
                         </Select>
-                        <Select mb="100px" mt="3" variant="outline" borderColor="black" 
-                          value={salary} onChange={handleSalaryChanges}>
+                        <Select mb="100px" mt="3" variant="outline" borderColor="black" name="salary"
+                          value={filter.salary} onChange={handleChange}>
                           <option value="Semua range upah">Semua range upah</option>
                           <option value={1000000}>≥ IDR 1.000.000,00</option>
                           <option value={2000000}>≥ IDR 2.000.000,00</option>
@@ -172,9 +180,9 @@ export default function SearchBar({ workers, keyword, setKeyword, location, setL
                 <Flex w="83%">
                   <InputGroup w="6000px">
                     <InputLeftElement children={<Icon ml="2" as={BiSearch} color="gray.600" />} />
-                    <Input variant="flushed" borderColor="black" 
+                    <Input variant="flushed" borderColor="black" name="keyword"
                       placeholder={workers ? "Cari pekerja" : "Cari pekerjaan"}
-                      value={keyword} onChange={handleKeywordChanges}>
+                      value={filter.keyword} onChange={handleChange}>
                     </Input>
                   </InputGroup>
                 </Flex>
@@ -187,51 +195,66 @@ export default function SearchBar({ workers, keyword, setKeyword, location, setL
         }
         <Flex>
           {
-            (location != null && location != "Semua lokasi") && (
+            (filter.location != null && filter.location != "Semua lokasi") && (
               <>
                 <Button mt="4" mr="4" pl="4" pr="3" bgColor="#FF8450" borderRadius="50" rightIcon={<GrFormClose />}
-                  onClick={() => setLocation("Semua lokasi")}>
-                  {location}
+                  onClick={() => setFilter(prev => ({
+                    ...prev,
+                    location: "Semua lokasi"
+                  }))}>
+                  {filter.location}
                 </Button>
               </>
             )
           }
           {
-            (type != null && type != "Semua tipe pekerjaan") && (
+            (filter.type != null && filter.type != "Semua tipe pekerjaan") && (
               <>
                 <Button mt="4" mr="4" pl="4" pr="3" bgColor="#FF8450" borderRadius="50" rightIcon={<GrFormClose />}
-                  onClick={() => setType("Semua tipe pekerjaan")}>
-                  {type}
+                  onClick={() => setFilter(prev => ({
+                    ...prev,
+                    type: "Semua tipe pekerjaan"
+                  }))}>
+                  {filter.type}
                 </Button>
               </>
             )
           }
           {
-            (salary != null && salary != "Semua range upah") && (
+            (filter.salary != null && filter.salary != "Semua range upah") && (
               <>
                 <Button mt="4" mr="4" pl="4" pr="3" bgColor="#FF8450" borderRadius="50" rightIcon={<GrFormClose />}
-                  onClick={() => setSalary("Semua range upah")}>
-                  ≥ {parseAmount(salary)}
+                  onClick={() => setFilter(prev => ({
+                    ...prev,
+                    salary: "Semua range upah"
+                  }))}>
+                  ≥ {parseAmount(filter.salary)}
                 </Button>
               </>
             )
           }
           {
-            (category != null && category != "Semua kategori pekerjaan") && (
+            (filter.category != null && filter.category != "Semua kategori pekerjaan") && (
               <>
                 <Button mt="4" mr="4" pl="4" pr="3" bgColor="#FF8450" borderRadius="50" rightIcon={<GrFormClose />}
-                  onClick={() => setCategory("Semua kategori pekerjaan")}>
-                  ≥ {category}
+                  onClick={() => setFilter(prev => ({
+                    ...prev,
+                    category: "Semua kategori pekerjaan"
+                  }))}>
+                  ≥ {filter.category}
                 </Button>
               </>
             )
           }
           {
-            (experience != null && experience != "Semua range pengalaman") && (
+            (filter.experience != null && filter.experience != "Semua range pengalaman") && (
               <>
                 <Button mt="4" mr="4" pl="4" pr="3" bgColor="#FF8450" borderRadius="50" rightIcon={<GrFormClose />}
-                  onClick={() => setExperience("Semua range pengalaman")}>
-                  ≥ {experience}
+                  onClick={() => setFilter(prev => ({
+                    ...prev,
+                    experience: "Semua range pengalaman"
+                  }))}>
+                  ≥ {filter.experience}
                 </Button>
               </>
             )
