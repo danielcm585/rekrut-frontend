@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react"
 
-import "../styles/Landing.css"
-
-import { LandingImg, Procedure1Img } from "../images"
 import { JobList } from "../components/job"
 import { ProfileList } from "../components/profile"
-import { Navbar, Footer, SearchBar } from "../components"
+import { Navbar, Footer, SearchBar, Welcome } from "../components"
 
 import { useToast } from "@chakra-ui/react"
 import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react"
-import { Box, Button, Flex, Image, SimpleGrid, Text } from "@chakra-ui/react"
+import { Box, Flex } from "@chakra-ui/react"
 
 export default function Landing() {
   const toast = useToast({
@@ -45,6 +42,7 @@ export default function Landing() {
         status: "error"
       })
     })
+    
     fetch("https://protected-castle-75235.herokuapp.com/client/dashboard", {
       method: "GET",
       headers: { "Content-Type": "application/json" },
@@ -109,26 +107,7 @@ export default function Landing() {
     <>
       <Navbar />
       <Flex>
-        <div className="black">
-          <div className="white">
-            <div className="section">
-              <div className="text">
-              <h1>Rekrut.id</h1>
-              <p>
-                Rekrut.id adalah web pencari kerja untuk para freelancer dan pencari jasa bagi para pengusaha
-              </p>
-              </div>
-              <Flex>
-                  <Button mt="6" p="7" pl="50" pr="50" borderRadius="50" bgColor="#FF8450"
-                    onClick={() => window.location.href="/register"}>
-                    <Text fontSize="xl" fontWeight="bold">Mulai Sekarang</Text>
-                  </Button>
-              </Flex>
-            </div>
-          </div>
-        </div>
-        <div className="orange"></div>
-        <img className="image" src={LandingImg} />
+        <Welcome />
       </Flex>
       <Flex w="100%" mt="10" justifyContent="center">
         <Flex w="85%">

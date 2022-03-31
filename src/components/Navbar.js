@@ -9,7 +9,7 @@ import { Notification } from "./";
 import { PasswordForm } from "./profile";
 import { Star } from "./review";
 
-import { useDisclosure, useToast, useMediaQuery, useColorMode } from "@chakra-ui/react";
+import { useDisclosure, useToast, useMediaQuery, useColorMode, Switch, Icon } from "@chakra-ui/react";
 import { Avatar, Button, Flex, HStack, Spacer, Text, Link, Badge, IconButton, Divider, Box } from "@chakra-ui/react"
 import { Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton } from "@chakra-ui/react"
 import { Menu, MenuButton, MenuList, MenuItem, MenuDivider } from "@chakra-ui/react"
@@ -169,8 +169,12 @@ export default function Navbar({ login, register }) {
             <Link href="/dashboard">
               <Text fontSize="2xl" fontWeight="bold">Rekrut.id</Text>
             </Link>
-            <IconButton ml="5" icon={isDark ? <FaSun /> : <FaMoon />} isRound variant="ghost" onClick={toggleColorMode} />
             <Spacer></Spacer>
+            <HStack pr={user != null ? "5" : "10"}>
+              <Switch mt="2px" isChecked={isDark} onChange={(e) => toggleColorMode()} />
+              <Icon as={FaMoon} />
+            </HStack>
+            {/* <IconButton ml="5" icon={isDark ? <FaSun /> : <FaMoon />} isRound variant="ghost" onClick={toggleColorMode} /> */}
             {
               (user != null) ? (
                 <>

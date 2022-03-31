@@ -14,7 +14,7 @@ export default function Footer() {
 
   return (
     <>
-      <Flex mt="450" w="100%" justifyContent="center" bg="#2A2A30">
+      <Flex mt="300" w="100%" justifyContent="center" bg={isDark ? "#111114" : "#2A2A30"}>
         <Flex mt="10" mb="10" w="85%" direction={!isBigScreen && "column"}>
           <Flex w={isBigScreen ? "45%" : "100%"} direction="column">
             <Text fontSize="2xl" fontWeight="bold" color="white">Rekrut.id</Text>

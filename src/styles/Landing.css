@@ -9,9 +9,21 @@ html, body {
   padding: 10vh;
   justify-content: center;
 }
+.black-dark {
+  background-color: #111114;
+  
+  width: 100%;
+  padding: 10vh;
+  justify-content: center;
+}
 .white {
   position: relative;
   background-color: white;
+  height: 75vh;
+}
+.white-dark {
+  position: relative;
+  background-color: #1A202C;
   height: 75vh;
 }
 .section {
@@ -20,9 +32,9 @@ html, body {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   
-  width: 60vh;
+  width: 30vw;
   margin: 0;
-  margin-left: 20vh;
+  margin-left: 10vw;
 }
 .text h1 {
   font-size: 7vh;
@@ -34,12 +46,65 @@ html, body {
 .orange {
   position: absolute;
   background-color: #FF8450;
-  margin-left: 106vh;
+  margin-left: 54.5vw;
   width: 57vh;
   height: 95vh;
 }
 .image {
   position: absolute;
-  margin-left: 99vh;
+  margin-left: 51vw;
   height: 95vh;
+}
+.black-mobile {
+  background-color: #2A2A30;
+  
+  width: 100%;
+  padding: 5vh;
+  justify-content: center;
+}
+.white-mobile {
+  position: relative;
+  background-color: white;
+  height: 84vh;
+}
+.black-dark-mobile {
+  background-color: #111114;
+  
+  width: 100%;
+  padding: 10vh;
+  justify-content: center;
+}
+.white-dark-mobile {
+  position: relative;
+  background-color: #1A202C;
+  height: 84vh;
+}
+.orange-mobile {
+  position: absolute;
+  background-color: #FF8450;
+  margin-top: 44vh;
+  width: 100vw;
+  height: 40vh;
+}
+.image-mobile {
+  position: absolute;
+
+  margin-top: 29vh;
+  height: 65vh;
+}
+.section-mobile {
+  position: absolute;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  
+  width: 60vh;
+  margin-top: 10vh;
+  margin-left: 2vw;
+}
+.text-mobile h1 {
+  font-size: 3vh;
+  font-weight: bold;
+}
+.text-mobile p {
+  font-size: 2vh;
 }
