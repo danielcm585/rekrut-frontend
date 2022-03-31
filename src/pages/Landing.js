@@ -1,16 +1,109 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import "../styles/Landing.css"
 
 import { LandingImg, Procedure1Img } from "../images"
-import { Navbar, Footer } from "../components"
+import { JobList } from "../components/job"
+import { ProfileList } from "../components/profile"
+import { Navbar, Footer, SearchBar } from "../components"
 
+import { useToast } from "@chakra-ui/react"
+import { Tab, TabList, TabPanel, TabPanels, Tabs } from "@chakra-ui/react"
 import { Box, Button, Flex, Image, SimpleGrid, Text } from "@chakra-ui/react"
 
 export default function Landing() {
-  useState(() => {
+  const toast = useToast({
+    position: "top",
+    variant: "solid",
+    isClosable: true
+  })
+
+  const [ data, setData ] = useState({
+    jobs: [],
+    workers: []
+  })
+
+  useEffect(() => {
     document.title = "Rekrut.id | Kerja atau rekrut sekarang!"
+
+    fetch("https://protected-castle-75235.herokuapp.com/worker/dashboard", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    })
+    .then(resp => resp.json())
+    .then(json => {
+      if (json.statusCode >= 400) throw new Error(json.message)
+      setData(prev => ({
+        ...prev,
+        jobs: json
+      }))
+    })
+    .catch((err) => {
+      toast({
+        title: err.message,
+        status: "error"
+      })
+    })
+    fetch("https://protected-castle-75235.herokuapp.com/client/dashboard", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
+    })
+    .then(resp => resp.json())
+    .then(json => {
+      if (json.statusCode >= 400) throw new Error(json.message)
+      setData(prev => ({
+        ...prev,
+        workers: json
+      }))
+    })
+    .catch((err) => {
+      toast({
+        title: err.message,
+        status: "error"
+      })
+    })
   }, [])
+
+  const [ filter, setFilter ] = useState({
+    keyword: "",
+    category: "Semua kategori pekerjaan",
+    experience: "Semua range pengalaman",
+    location: "Semua lokasi",
+    type: "Semua tipe pekerjaan",
+    salary: "Semua range upah"
+  })
+
+  const filterJobs = (job) => {
+    return ((job.location == filter.location || filter.location == "Semua lokasi") &&
+            (job.jobType == filter.type || filter.type == "Semua tipe pekerjaan") &&
+            (parseInt(job.salary) >= parseInt(filter.salary) || filter.salary == "Semua range upah") && 
+            (job.title != null && job.title.toLowerCase().includes(filter.keyword.toLowerCase()) ||
+            job.author.name != null && job.author.name.toLowerCase().includes(filter.keyword.toLowerCase())))
+  }
+
+  const filterWorkers = (worker) => {
+    return ((worker.category == filter.category || filter.category == "Semua kategori pekerjaan") && 
+            (worker.review.length >= parseInt(filter.experience) || filter.experience == "Semua range pengalaman") && 
+            (worker.name != null && worker.name.toLowerCase().includes(filter.keyword.toLowerCase()) || 
+            worker.skill != null && worker.skill.toLowerCase().includes(filter.keyword.toLowerCase())))
+  }
+
+  const [ filtered, setFiltered ] = useState({
+    jobs: [],
+    workers: []
+  })
+
+  const sortJobs = (jobA, jobB) => jobB.salary-jobA.salary
+
+  useEffect(() => {
+    setFiltered(prev => ({
+      ...prev,
+      jobs: [...data.jobs].filter(filterJobs).sort(sortJobs),
+      workers: [...data.workers].filter(filterWorkers)
+    }))
+  }, [ data, filter ])
 
   return (
     <>
@@ -37,7 +130,35 @@ export default function Landing() {
         <div className="orange"></div>
         <img className="image" src={LandingImg} />
       </Flex>
-      <Flex mt="90" justifyContent="center">
+      <Flex w="100%" mt="10" justifyContent="center">
+        <Flex w="85%">
+          <Tabs w="100%" isFitted>
+            <TabList>
+              <Tab>Worker</Tab>
+              <Tab>Client</Tab>
+            </TabList>
+            <TabPanels>
+              <TabPanel>
+                <Flex w="100%" mt="3" direction="column">
+                  <SearchBar filter={filter} setFilter={setFilter} />
+                  <Box w="100%" mt="3">
+                    <JobList jobs={filtered.jobs} />
+                  </Box>
+                </Flex>
+              </TabPanel>
+              <TabPanel>
+                <Flex w="100%" mt="3" direction="column">
+                  <SearchBar workers={true} filter={filter} setFilter={setFilter} />
+                  <Box w="100%" mt="3">
+                    <ProfileList profiles={filtered.workers} />
+                  </Box>
+                </Flex>
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
+        </Flex>
+      </Flex>
+      {/* <Flex mt="90" justifyContent="center">
         <Text fontSize="3xl" fontWeight="bold">Ribuan Bidang Pekerjaan</Text>
       </Flex>
       <Flex mt="10" justifyContent="center">
@@ -122,7 +243,7 @@ export default function Landing() {
             </Flex>
           </Box>
         </SimpleGrid>
-      </Flex>
+      </Flex> */}
       <Footer />
     </>
   )
